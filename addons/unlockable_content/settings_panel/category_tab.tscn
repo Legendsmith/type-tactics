@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://crmg3jtcv48fr"]
+
+[ext_resource type="StyleBox" uid="uid://bd5p86pqvox30" path="res://addons/unlockable_content/settings_panel/setting_tab_panel.tres" id="1_qd5ua"]
+[ext_resource type="Script" uid="uid://c4b4i0ktydadd" path="res://addons/unlockable_content/settings_panel/category_tab.gd" id="2_yv3i0"]
+
+[node name="CategoryTab" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_qd5ua")
+script = ExtResource("2_yv3i0")
+metadata/_tab_index = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 2
+
+[node name="ContentListArea" type="ScrollContainer" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/ContentListArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/ContentListArea/VBoxContainer"]
+layout_mode = 2
+
+[node name="AddButton" type="Button" parent="HSplitContainer/ContentListArea/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Add Item"
+
+[node name="RemoveButton" type="Button" parent="HSplitContainer/ContentListArea/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Remove Item"
+
+[node name="MoveUpButton" type="Button" parent="HSplitContainer/ContentListArea/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Move Up"
+
+[node name="MoveDownButton" type="Button" parent="HSplitContainer/ContentListArea/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Move Down"
+
+[node name="ContentList" type="ItemList" parent="HSplitContainer/ContentListArea/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+fixed_icon_size = Vector2i(256, 144)

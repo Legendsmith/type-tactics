@@ -1,0 +1,222 @@
+[gd_scene load_steps=9 format=3 uid="uid://bbw0hei7n7ew4"]
+
+[ext_resource type="Script" uid="uid://cqa12pulcxtd0" path="res://addons/unlockable_content/settings_panel/unlockable_content_setting.gd" id="1_n8qbd"]
+[ext_resource type="Script" uid="uid://coe0cv78kdmio" path="res://addons/unlockable_content/settings_panel/flags.gd" id="2_daanq"]
+[ext_resource type="StyleBox" uid="uid://bd5p86pqvox30" path="res://addons/unlockable_content/settings_panel/setting_tab_panel.tres" id="2_fx1hh"]
+[ext_resource type="Script" uid="uid://cotq4j611yi67" path="res://addons/unlockable_content/uc_validated_line_edit.gd" id="2_mbesl"]
+[ext_resource type="Script" uid="uid://b3shaf1sjhomu" path="res://addons/unlockable_content/settings_panel/general_settings.gd" id="2_uj5g4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uj5g4"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.156863, 0.176471, 0.207843, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n8qbd"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.156863, 0.176471, 0.207843, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_n8qbd"]
+vertical = true
+
+[node name="Unlockables" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n8qbd")
+
+[node name="SettingTabContainer" type="TabContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="General Settings" type="PanelContainer" parent="SettingTabContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_fx1hh")
+script = ExtResource("2_uj5g4")
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingTabContainer/General Settings"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingTabContainer/General Settings/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="AddCategoryButton" type="Button" parent="SettingTabContainer/General Settings/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Add"
+
+[node name="CategoryNameEdit" type="LineEdit" parent="SettingTabContainer/General Settings/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+script = ExtResource("2_mbesl")
+casing_strategy = 1
+valid_characters = "abcdefghijklmnopqrstuvwxyz0123456789_"
+metadata/_custom_type_script = "uid://cotq4j611yi67"
+
+[node name="ResourceTypeOptions" type="OptionButton" parent="SettingTabContainer/General Settings/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "CGUnlockable"
+popup/item_0/id = 0
+popup/item_1/text = "CharacterUnlockable"
+popup/item_1/id = 1
+popup/item_2/text = "GlossaryUnlockable"
+popup/item_2/id = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="SettingTabContainer/General Settings/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_uj5g4")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SettingTabContainer/General Settings/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="CategoryList" type="VBoxContainer" parent="SettingTabContainer/General Settings/VBoxContainer/PanelContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Flags" type="PanelContainer" parent="SettingTabContainer"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_fx1hh")
+script = ExtResource("2_daanq")
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingTabContainer/Flags"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingTabContainer/Flags/VBoxContainer"]
+layout_mode = 2
+
+[node name="AddFlagsGroupButton" type="Button" parent="SettingTabContainer/Flags/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+disabled = true
+text = "Add Flag Group"
+
+[node name="FlagGroupName" type="LineEdit" parent="SettingTabContainer/Flags/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+placeholder_text = "Flag Group"
+context_menu_enabled = false
+emoji_menu_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+script = ExtResource("2_mbesl")
+casing_strategy = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="SettingTabContainer/Flags/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_n8qbd")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="SettingTabContainer/Flags/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_styles/split_bar_background = SubResource("StyleBoxLine_n8qbd")
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="SettingTabContainer/Flags/VBoxContainer/PanelContainer/HSplitContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FlagGroupSelectionArea" type="ItemList" parent="SettingTabContainer/Flags/VBoxContainer/PanelContainer/HSplitContainer/ScrollContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+item_count = 3
+item_0/text = "test_group_2"
+item_1/text = "test_group_1"
+item_2/text = "cg_flags"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SettingTabContainer/Flags/VBoxContainer/PanelContainer/HSplitContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FlagInfoContainer" type="VBoxContainer" parent="SettingTabContainer/Flags/VBoxContainer/PanelContainer/HSplitContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="RemoveFlagGroupButton" type="Button" parent="SettingTabContainer/Flags/VBoxContainer/PanelContainer/HSplitContainer/ScrollContainer/FlagInfoContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Remove Group"
+
+[node name="FlagInfo" type="VBoxContainer" parent="SettingTabContainer/Flags/VBoxContainer/PanelContainer/HSplitContainer/ScrollContainer/FlagInfoContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AddFlagContainer" type="HBoxContainer" parent="SettingTabContainer/Flags/VBoxContainer/PanelContainer/HSplitContainer/ScrollContainer/FlagInfoContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="AddFlagButton" type="Button" parent="SettingTabContainer/Flags/VBoxContainer/PanelContainer/HSplitContainer/ScrollContainer/FlagInfoContainer/AddFlagContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Add Flag"
+
+[node name="FlagNameEdit" type="LineEdit" parent="SettingTabContainer/Flags/VBoxContainer/PanelContainer/HSplitContainer/ScrollContainer/FlagInfoContainer/AddFlagContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Flag Name"
+emoji_menu_enabled = false
+drag_and_drop_selection_enabled = false
+script = ExtResource("2_mbesl")
+casing_strategy = 1
+
+[node name="FlagValue" type="LineEdit" parent="SettingTabContainer/Flags/VBoxContainer/PanelContainer/HSplitContainer/ScrollContainer/FlagInfoContainer/AddFlagContainer"]
+layout_mode = 2
+placeholder_text = "auto"
+context_menu_enabled = false
+emoji_menu_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+script = ExtResource("2_mbesl")
+valid_characters = "0123456789"
+
+[connection signal="pressed" from="SettingTabContainer/Flags/VBoxContainer/HBoxContainer/AddFlagsGroupButton" to="SettingTabContainer/Flags" method="_on_add_flags_button_pressed"]
+[connection signal="validation_succesful" from="SettingTabContainer/Flags/VBoxContainer/HBoxContainer/FlagGroupName" to="SettingTabContainer/Flags" method="_on_flag_group_name_validation_succesful"]
+[connection signal="item_selected" from="SettingTabContainer/Flags/VBoxContainer/PanelContainer/HSplitContainer/ScrollContainer2/FlagGroupSelectionArea" to="SettingTabContainer/Flags" method="_on_flag_group_selection_area_item_selected"]
+[connection signal="pressed" from="SettingTabContainer/Flags/VBoxContainer/PanelContainer/HSplitContainer/ScrollContainer/FlagInfoContainer/RemoveFlagGroupButton" to="SettingTabContainer/Flags" method="_on_remove_flag_group_button_pressed"]
+[connection signal="pressed" from="SettingTabContainer/Flags/VBoxContainer/PanelContainer/HSplitContainer/ScrollContainer/FlagInfoContainer/AddFlagContainer/AddFlagButton" to="SettingTabContainer/Flags" method="_on_add_flag_button_pressed"]
+[connection signal="validation_succesful" from="SettingTabContainer/Flags/VBoxContainer/PanelContainer/HSplitContainer/ScrollContainer/FlagInfoContainer/AddFlagContainer/FlagNameEdit" to="SettingTabContainer/Flags" method="_on_flag_name_edit_text_changed"]

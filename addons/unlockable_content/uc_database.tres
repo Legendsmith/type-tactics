@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="UCDatabase" load_steps=2 format=3 uid="uid://bb3uvsb2y0uyb"]
+
+[ext_resource type="Script" uid="uid://jb12qit2m88l" path="res://addons/unlockable_content/uc_database.gd" id="1_iy1de"]
+
+[resource]
+script = ExtResource("1_iy1de")
