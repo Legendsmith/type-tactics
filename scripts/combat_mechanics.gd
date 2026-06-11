@@ -4,8 +4,9 @@ const NOTYPE_CHARGE_USE := 4
 const DUAL_TYPE_CHARGE_USE := 3
 const MONOTYPE_CHARGE_USE := 2
 
-enum Attribute {
-	HP, ATTACK, DEFENSE, SPECIAL_ATTACK, SPECIAL_DEFENSE, SPEED, SIZE
+
+enum TargetTypes {
+	SELF,NOT_SELF,ENEMY,ALLY,TILE,ANY
 }
 
 ## Attribute modifier scale, ranges from -6 to +6.
@@ -33,7 +34,7 @@ const ACCURACY: Array = [
 static func calc_attribute(attribute: int, modifier: int) -> int:
 	return int(attribute * MODIFIER[clampi(modifier, -6, 6)])
 
-static func charge_usage(technique: Resource, types: Array[StringName]) -> int:
+static func charge_usage(technique: BattleTechnique, types: Array[StringName]) -> int:
 	var type_match: bool = technique.type in types
 	if type_match and types.size() == 1:
 		return MONOTYPE_CHARGE_USE

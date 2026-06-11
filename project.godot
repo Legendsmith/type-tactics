@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 GUIDE="*uid://p2jwrgjcbexr"
 UnlockableContent="*uid://p3ilsmea4pp7"
 Dialogic="*uid://ds2q0uclmolvu"
+GameManager="*uid://or5hd5dlt0kq"
 
 [dialogic]
 
@@ -38,6 +39,7 @@ enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/guid
 
 folder_colors={
 "res://addons/": "gray",
+"res://data/": "pink",
 "res://entities/": "teal",
 "res://globals/": "purple",
 "res://scripts/": "blue",

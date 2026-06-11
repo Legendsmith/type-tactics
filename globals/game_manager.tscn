@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://or5hd5dlt0kq"]
+
+[ext_resource type="Script" uid="uid://ccqqqdf13a0it" path="res://globals/game_manager.gd" id="1_dmcod"]
+[ext_resource type="PackedScene" uid="uid://dysomavkjoi23" path="res://ui/battle_interface.tscn" id="2_77tft"]
+
+[sub_resource type="Animation" id="Animation_vmn2j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Blackout:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_76d3x"]
+resource_name = "fade"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Blackout:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8cw7n"]
+_data = {
+&"RESET": SubResource("Animation_vmn2j"),
+&"fade": SubResource("Animation_76d3x")
+}
+
+[node name="GameManager" type="CanvasLayer" unique_id=3519122]
+script = ExtResource("1_dmcod")
+
+[node name="Blackout" type="ColorRect" parent="." unique_id=946613613]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1586898018]
+libraries/ = SubResource("AnimationLibrary_8cw7n")
+
+[node name="BattleInterface" parent="." unique_id=1169973163 instance=ExtResource("2_77tft")]

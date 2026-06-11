@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BattleTechnique" format=3 uid="uid://dagu5nkeqlqr4"]
+
+[ext_resource type="Script" uid="uid://btssfmuejunjh" path="res://scripts/battle_technique.gd" id="1_shhc8"]
+
+[resource]
+script = ExtResource("1_shhc8")
+technique_name = "none"
+max_charges = -1
+metadata/_custom_type_script = "uid://btssfmuejunjh"
