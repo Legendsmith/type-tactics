@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dysomavkjoi23"]
+
+[ext_resource type="Script" uid="uid://bv2bx83tgpiji" path="res://ui/game_interface.gd" id="1_f7uk0"]
+
+[node name="BattleInterface" type="Control" unique_id=1169973163]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f7uk0")
