@@ -1,6 +1,19 @@
 [gd_scene format=3 uid="uid://dysomavkjoi23"]
 
+[ext_resource type="Theme" uid="uid://v0ph6goeqn0u" path="res://data/battle_theme.tres" id="1_dgdf5"]
 [ext_resource type="Script" uid="uid://bv2bx83tgpiji" path="res://ui/game_interface.gd" id="1_f7uk0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dgdf5"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="BattleInterface" type="Control" unique_id=1169973163]
 layout_mode = 3
@@ -9,4 +22,106 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("1_dgdf5")
 script = ExtResource("1_f7uk0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1671671964]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopUIArea" type="HBoxContainer" parent="VBoxContainer" unique_id=1725570141]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+
+[node name="MessageBar" type="VBoxContainer" parent="VBoxContainer/TopUIArea" unique_id=1147511216]
+layout_mode = 2
+alignment = 2
+
+[node name="Alert" type="Button" parent="VBoxContainer/TopUIArea/MessageBar" unique_id=1167145379]
+layout_mode = 2
+theme = ExtResource("1_dgdf5")
+theme_type_variation = &"AlertButton"
+text = "Alert!"
+
+[node name="Alert2" type="Button" parent="VBoxContainer/TopUIArea/MessageBar" unique_id=587256413]
+layout_mode = 2
+theme = ExtResource("1_dgdf5")
+theme_type_variation = &"AlertButton"
+text = "Alert2"
+
+[node name="BattleBarMargin" type="MarginContainer" parent="VBoxContainer" unique_id=841507245]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="BattleBar" type="HBoxContainer" parent="VBoxContainer/BattleBarMargin" unique_id=294696036]
+layout_mode = 2
+alignment = 2
+
+[node name="MessageContainer" type="MarginContainer" parent="VBoxContainer/BattleBarMargin/BattleBar" unique_id=713942459]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MoveList" type="ItemList" parent="VBoxContainer/BattleBarMargin/BattleBar/MessageContainer" unique_id=1439130373]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_dgdf5")
+
+[node name="Messagelabel" type="Label" parent="VBoxContainer/BattleBarMargin/BattleBar/MessageContainer/MoveList" unique_id=1531920678]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -856.0
+offset_top = -20.5
+offset_right = 856.0
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_type_variation = &"BattleBarLabel"
+text = "It's Battle time!"
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="MarginContainer" parent="VBoxContainer/BattleBarMargin/BattleBar" unique_id=761303398]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 12
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/BattleBarMargin/BattleBar/PanelContainer" unique_id=1885913780]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/h_separation = 29
+columns = 2
+
+[node name="ButtonFight" type="Button" parent="VBoxContainer/BattleBarMargin/BattleBar/PanelContainer/GridContainer" unique_id=186597241]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"BattleActionButton"
+text = "Fight"
+
+[node name="ButtonItem" type="Button" parent="VBoxContainer/BattleBarMargin/BattleBar/PanelContainer/GridContainer" unique_id=664902004]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"BattleActionButton"
+text = "Item"
+
+[node name="ButtonTeam" type="Button" parent="VBoxContainer/BattleBarMargin/BattleBar/PanelContainer/GridContainer" unique_id=1680408812]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"BattleActionButton"
+text = "Team"
+
+[node name="ButtonRun" type="Button" parent="VBoxContainer/BattleBarMargin/BattleBar/PanelContainer/GridContainer" unique_id=1822733284]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"BattleActionButton"
+text = "Flee"

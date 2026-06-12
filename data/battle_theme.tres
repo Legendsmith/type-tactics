@@ -1,0 +1,68 @@
+[gd_resource type="Theme" format=3 uid="uid://v0ph6goeqn0u"]
+
+[ext_resource type="FontFile" uid="uid://iydw2xhpferi" path="res://data/ByteBounce.ttf" id="1_0yory"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0yory"]
+size = Vector2(24, 24)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_henaf"]
+bg_color = Color(0.6803212, 0.68032134, 0.68032104, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.2, 0.2, 0.2, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+expand_margin_left = 12.0
+expand_margin_right = 12.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0yory"]
+bg_color = Color(0.972549, 0.972549, 0.972549, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+shadow_size = 2
+shadow_offset = Vector2(0, 2)
+anti_aliasing = false
+
+[resource]
+default_font = ExtResource("1_0yory")
+default_font_size = 48
+AlertButton/base_type = &"Button"
+AlertButton/colors/font_color = Color(1, 0.8156863, 0.14509805, 1)
+AlertButton/constants/outline_size = 0
+AlertButton/font_sizes/font_size = 24
+AlertButton/icons/icon = SubResource("PlaceholderTexture2D_0yory")
+BattleActionButton/base_type = &"Button"
+BattleActionButton/colors/font_color = Color(1, 1, 1, 1)
+BattleActionButton/colors/font_outline_color = Color(0.25, 0.25, 0.25, 1)
+BattleActionButton/constants/outline_size = 12
+BattleActionButton/font_sizes/font_size = 72
+BattleActionButton/styles/normal = SubResource("StyleBoxFlat_henaf")
+BattleBarLabel/base_type = &"Label"
+BattleBarLabel/colors/font_color = Color(0.31764707, 0.31764707, 0.3529412, 1)
+BattleBarLabel/colors/font_shadow_color = Color(0.62352943, 0.62352943, 0.62352943, 1)
+BattleBarLabel/constants/shadow_outline_size = 2
+Button/constants/align_to_largest_stylebox = 1
+Button/constants/outline_size = 8
+ItemList/fonts/font = ExtResource("1_0yory")
+Label/fonts/font = ExtResource("1_0yory")
+MarginContainer/constants/margin_bottom = 4
+MarginContainer/constants/margin_left = 4
+MarginContainer/constants/margin_right = 4
+MarginContainer/constants/margin_top = 4
+WhitePanel/base_type = &"PanelContainer"
+WhitePanel/styles/panel = SubResource("StyleBoxFlat_0yory")
