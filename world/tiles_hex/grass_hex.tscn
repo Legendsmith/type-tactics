@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://chu6nu64iahhi"]
+
+[ext_resource type="PackedScene" uid="uid://cdmpxskr41i5j" path="res://world/tiles_hex/hex.tscn" id="1_rv0o7"]
+
+[node name="Hex" unique_id=990413583 instance=ExtResource("1_rv0o7")]
+terrain = 3

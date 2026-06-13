@@ -5,5 +5,3 @@
 [node name="BattleStage" type="Node2D" unique_id=257154894]
 script = ExtResource("1_k7dgi")
 interface_scene = "uid://dysomavkjoi23"
-
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=557498028]

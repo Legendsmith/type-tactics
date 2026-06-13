@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cdmpxskr41i5j"]
+
+[ext_resource type="Script" uid="uid://bx6428a8xb8vd" path="res://world/tiles_hex/hex.gd" id="1_ycj6h"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ycj6h"]
+vertices = PackedVector2Array(32, -16, 32, 16, 0, 32, -32, 16, -32, -16, 0, -32)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, -32, 32, -16, 32, 16, 0, 32, -32, 16, -32, -16)])
+agent_radius = 0.0
+baking_rect = Rect2(-32, -32, 64, 64)
+
+[node name="Hex" type="Polygon2D" unique_id=990413583]
+color = Color(0.87761563, 0.8776158, 0.87761545, 1)
+polygon = PackedVector2Array(0, -64, 64, -32, 64, 32, 0, 64, -64, 32, -64, -32)
+script = ExtResource("1_ycj6h")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1291674054]
+visible = false
+navigation_polygon = SubResource("NavigationPolygon_ycj6h")

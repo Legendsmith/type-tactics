@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cl1al24ldsn5m"]
+
+[ext_resource type="PackedScene" uid="uid://bdvl7dj38htkr" path="res://world/tiles_hex/hex_wall.tscn" id="1_x464p"]
+
+[sub_resource type="Gradient" id="Gradient_kwcdf"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.5)
+colors = PackedColorArray(0.55, 0.55, 0.55, 1, 0.75, 0.75, 0.75, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pp43l"]
+gradient = SubResource("Gradient_kwcdf")
+
+[node name="HexWall" unique_id=990413583 instance=ExtResource("1_x464p")]
+texture = SubResource("GradientTexture2D_pp43l")
+uv = PackedVector2Array(32, 0, 64, 0, 64, 64, 32, 64.00001, 0, 64, 0, 0)
+terrain = 3
+
+[node name="NavigationObstacle2D" parent="." index="2" unique_id=305290076]
+vertices = PackedVector2Array(2.9390552e-15, -48, 41.569218, -24, 41.569218, 24, 2.9390552e-15, 48, -41.569218, 24, -41.569218, -24)

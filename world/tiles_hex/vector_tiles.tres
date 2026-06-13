@@ -1,0 +1,42 @@
+[gd_resource type="TileSet" format=3 uid="uid://cgcjel86hj5ue"]
+
+[ext_resource type="PackedScene" uid="uid://cdmpxskr41i5j" path="res://world/tiles_hex/hex.tscn" id="1_rd74b"]
+[ext_resource type="PackedScene" uid="uid://chu6nu64iahhi" path="res://world/tiles_hex/grass_hex.tscn" id="2_7m0vh"]
+[ext_resource type="PackedScene" uid="uid://bdvl7dj38htkr" path="res://world/tiles_hex/hex_wall.tscn" id="2_tuwer"]
+[ext_resource type="PackedScene" uid="uid://cl1al24ldsn5m" path="res://world/tiles_hex/grass_wall.tscn" id="3_33b8b"]
+[ext_resource type="PackedScene" uid="uid://bb1p8ma2iwl3f" path="res://world/tiles_hex/sand_hex.tscn" id="4_6a5d3"]
+[ext_resource type="PackedScene" uid="uid://db61xtd2oshp3" path="res://world/tiles_hex/sand_wall.tscn" id="5_adq4t"]
+[ext_resource type="PackedScene" uid="uid://wo0cqjbi7un3" path="res://world/tiles_hex/stone_hex.tscn" id="7_7m0vh"]
+[ext_resource type="PackedScene" uid="uid://qrb1nmlr646i" path="res://world/tiles_hex/stone_wall.tscn" id="8_33b8b"]
+[ext_resource type="PackedScene" uid="uid://lylavjh1w266" path="res://world/tiles_hex/dirt_hex.tscn" id="9_fy0tb"]
+[ext_resource type="PackedScene" uid="uid://06uq4gqgb16d" path="res://world/tiles_hex/dirt_wall.tscn" id="10_gos1y"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_75dpe"]
+resource_name = "Vector"
+scenes/1/scene = ExtResource("1_rd74b")
+scenes/2/scene = ExtResource("2_tuwer")
+scenes/6/scene = ExtResource("7_7m0vh")
+scenes/7/scene = ExtResource("8_33b8b")
+scenes/8/scene = ExtResource("9_fy0tb")
+scenes/9/scene = ExtResource("10_gos1y")
+scenes/10/scene = ExtResource("2_7m0vh")
+scenes/11/scene = ExtResource("3_33b8b")
+scenes/12/scene = ExtResource("4_6a5d3")
+scenes/13/scene = ExtResource("5_adq4t")
+
+[resource]
+tile_shape = 3
+tile_layout = 1
+tile_size = Vector2i(128, 128)
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "white"
+terrain_set_0/terrain_0/color = Color(1, 1, 1, 1)
+terrain_set_0/terrain_1/name = "dirt"
+terrain_set_0/terrain_1/color = Color(0.7038114, 0.50903386, 0.39332664, 1)
+terrain_set_0/terrain_2/name = "sand"
+terrain_set_0/terrain_2/color = Color(1, 0.875, 0.5, 1)
+terrain_set_0/terrain_3/name = "grass"
+terrain_set_0/terrain_3/color = Color(0.47058824, 0.70980394, 0.2509804, 1)
+terrain_set_0/terrain_4/name = "concrete"
+terrain_set_0/terrain_4/color = Color(0.56880003, 0.64621997, 0.79, 1)
+sources/0 = SubResource("TileSetScenesCollectionSource_75dpe")
