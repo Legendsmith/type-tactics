@@ -1,0 +1,420 @@
+[gd_scene format=3 uid="uid://ctm1dywctee5u"]
+
+[ext_resource type="Theme" uid="uid://v0ph6goeqn0u" path="res://data/battle_theme.tres" id="1_owsuq"]
+[ext_resource type="Texture2D" uid="uid://yhbmlpwrnm48" path="res://texture/auteru_portrait.png" id="2_6ccv2"]
+[ext_resource type="Script" uid="uid://bgdb2huhcikeq" path="res://ui/character_inspector.gd" id="2_7ir13"]
+[ext_resource type="Material" uid="uid://bmkuayydt1i7a" path="res://ui/subtract_panel_material.tres" id="2_oaf66"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7ir13"]
+blend_mode = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oaf66"]
+bg_color = Color(0.12, 0.12, 0.12, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.24, 0.24, 0.24, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ir13"]
+bg_color = Color(0.12, 0.12, 0.12, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cu0aw"]
+bg_color = Color(1, 1, 1, 0.26666668)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 4.0
+expand_margin_top = 2.0
+expand_margin_right = 4.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ccv2"]
+bg_color = Color(1, 1, 1, 0.26666668)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+expand_margin_left = 4.0
+expand_margin_right = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jx1ty"]
+bg_color = Color(1, 1, 1, 0.4)
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jx1ty"]
+
+[node name="CharacterInspector" type="PanelContainer" unique_id=1385153129]
+clip_children = 2
+material = SubResource("CanvasItemMaterial_7ir13")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_owsuq")
+script = ExtResource("2_7ir13")
+
+[node name="BackgroundColor" type="ColorRect" parent="." unique_id=874090497]
+unique_name_in_owner = true
+show_behind_parent = true
+z_index = -1
+layout_mode = 2
+color = Color(0.32156864, 0.56078434, 0.4392157, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=269871386]
+layout_mode = 2
+
+[node name="InfoGrid" type="GridContainer" parent="MarginContainer" unique_id=1233944858]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 3
+
+[node name="PortraitContainer" type="PanelContainer" parent="MarginContainer/InfoGrid" unique_id=215513837]
+material = ExtResource("2_oaf66")
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_oaf66")
+
+[node name="Portrait" type="TextureRect" parent="MarginContainer/InfoGrid/PortraitContainer" unique_id=1390070212]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_6ccv2")
+expand_mode = 5
+
+[node name="MiddleContainer" type="PanelContainer" parent="MarginContainer/InfoGrid" unique_id=1379673243]
+material = ExtResource("2_oaf66")
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7ir13")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/InfoGrid/MiddleContainer" unique_id=727052813]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatsContainer" type="VBoxContainer" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer" unique_id=1993365120]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="Name" type="RichTextLabel" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer" unique_id=210865473]
+layout_mode = 2
+theme_type_variation = &"RichHeaderLarge"
+text = "Auteru"
+fit_content = true
+scroll_active = false
+
+[node name="Subtitle" type="RichTextLabel" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer" unique_id=1658306465]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "Hammer Wielding Hunter"
+fit_content = true
+scroll_active = false
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer" unique_id=1918607127]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cu0aw")
+
+[node name="Types" type="HBoxContainer" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/PanelContainer" unique_id=718968747]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/PanelContainer/Types" unique_id=1136775922]
+layout_mode = 2
+text = "TYPE/"
+
+[node name="TypeA" type="RichTextLabel" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/PanelContainer/Types" unique_id=1496997244]
+layout_mode = 2
+bbcode_enabled = true
+text = "[color=green][Life][/color]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="TypeB" type="RichTextLabel" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/PanelContainer/Types" unique_id=1405021449]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[color=yellow][Solar][/color]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer" unique_id=1370716289]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/VBoxContainer" unique_id=1399979697]
+layout_mode = 2
+theme_type_variation = &"RichHeaderSmall"
+text = "ABILITY"
+fit_content = true
+scroll_active = false
+
+[node name="AbilityTitle" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/VBoxContainer" unique_id=919394967]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ccv2")
+text = "Irrepressible"
+
+[node name="Panel" type="PanelContainer" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/VBoxContainer" unique_id=431570550]
+custom_minimum_size = Vector2(0, 33)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_jx1ty")
+
+[node name="AbilityDescription" type="RichTextLabel" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/VBoxContainer/Panel" unique_id=943042129]
+layout_mode = 2
+size_flags_vertical = 0
+bbcode_enabled = true
+text = "Clear 1 Status Effect upon [color=LightGreen]Regeneration[/color]"
+fit_content = true
+scroll_active = false
+
+[node name="AttributeTable" type="HBoxContainer" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer" unique_id=501876764]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="AttributeLabels" type="VBoxContainer" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable" unique_id=1299186982]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeLabels" unique_id=1595517384]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "Attribute"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeLabels" unique_id=42655756]
+layout_mode = 2
+
+[node name="AttributeLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeLabels" unique_id=361188976]
+layout_mode = 2
+theme_override_constants/line_spacing = 4
+text = "HP
+Attack
+Defense
+S. Attack
+S. Defense
+Speed
+Size"
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable" unique_id=374820693]
+layout_mode = 2
+
+[node name="AttributeBase" type="VBoxContainer" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable" unique_id=1215909263]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBase" unique_id=1219281810]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "Base"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBase" unique_id=803255768]
+layout_mode = 2
+
+[node name="HpLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBase" unique_id=1975192318]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="AttackLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBase" unique_id=754596767]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="DefenseLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBase" unique_id=301227916]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="SpecialAttackLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBase" unique_id=1768562651]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="SpecialDefenseLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBase" unique_id=964812017]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="SpeedLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBase" unique_id=155089636]
+layout_mode = 2
+text = "150	"
+horizontal_alignment = 1
+
+[node name="SizeLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBase" unique_id=1931049335]
+layout_mode = 2
+text = "3"
+horizontal_alignment = 1
+
+[node name="AttributeBonus" type="VBoxContainer" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable" unique_id=341013858]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBonus" unique_id=688648030]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "Bonus"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBonus" unique_id=1240003376]
+layout_mode = 2
+
+[node name="HpLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBonus" unique_id=2100576831]
+layout_mode = 2
+text = "10"
+horizontal_alignment = 1
+
+[node name="AttackLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBonus" unique_id=1258383696]
+layout_mode = 2
+text = "-"
+horizontal_alignment = 1
+
+[node name="DefenseLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBonus" unique_id=1926823186]
+layout_mode = 2
+text = "-"
+horizontal_alignment = 1
+
+[node name="SpecialAttackLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBonus" unique_id=371998001]
+layout_mode = 2
+text = "-"
+horizontal_alignment = 1
+
+[node name="SpecialDefenseLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBonus" unique_id=1597409897]
+layout_mode = 2
+text = "-"
+horizontal_alignment = 1
+
+[node name="SpeedLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBonus" unique_id=1470426211]
+layout_mode = 2
+text = "-"
+horizontal_alignment = 1
+
+[node name="SizeLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBonus" unique_id=2069497597]
+layout_mode = 2
+text = "-"
+horizontal_alignment = 1
+
+[node name="AttributeTotal" type="VBoxContainer" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable" unique_id=1801051968]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeTotal" unique_id=643714935]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "Total"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeTotal" unique_id=1075058441]
+layout_mode = 2
+
+[node name="HpLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeTotal" unique_id=2014704997]
+layout_mode = 2
+text = "110"
+horizontal_alignment = 1
+
+[node name="AttackLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeTotal" unique_id=131743442]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="DefenseLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeTotal" unique_id=1548885017]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="SpecialAttackLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeTotal" unique_id=373472094]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="SpecialDefenseLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeTotal" unique_id=1160079357]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="SpeedLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeTotal" unique_id=1077901281]
+layout_mode = 2
+text = "150"
+horizontal_alignment = 1
+
+[node name="SizeLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeTotal" unique_id=431980382]
+layout_mode = 2
+text = "3"
+horizontal_alignment = 1
+
+[node name="DescriptionContainer" type="PanelContainer" parent="MarginContainer/InfoGrid" unique_id=751465375]
+material = ExtResource("2_oaf66")
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_oaf66")
+
+[node name="DescriptionLabel" type="RichTextLabel" parent="MarginContainer/InfoGrid/DescriptionContainer" unique_id=1171620025]
+unique_name_in_owner = true
+material = SubResource("CanvasItemMaterial_jx1ty")
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_type_variation = &"TextPanel"
+text = "It's Auteru"
+fit_content = true
+
+[node name="EquipmentContainer" type="VBoxContainer" parent="MarginContainer/InfoGrid" unique_id=128099648]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EquipmentHeader" type="Label" parent="MarginContainer/InfoGrid/EquipmentContainer" unique_id=258349750]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "Equipment"
+
+[node name="TechniquesList" type="ItemList" parent="MarginContainer/InfoGrid/EquipmentContainer" unique_id=1138018999]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DebugLabel" type="RichTextLabel" parent="MarginContainer/InfoGrid/EquipmentContainer/TechniquesList" unique_id=981255472]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 48
+text = "Big Hammer"
+fit_content = true
+
+[node name="TechniquesContainer" type="VBoxContainer" parent="MarginContainer/InfoGrid" unique_id=1262783470]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TechniquesHeader" type="Label" parent="MarginContainer/InfoGrid/TechniquesContainer" unique_id=1516792955]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "Techniques"
+
+[node name="TechniquesList" type="ItemList" parent="MarginContainer/InfoGrid/TechniquesContainer" unique_id=1758939365]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DebugLabel" type="RichTextLabel" parent="MarginContainer/InfoGrid/TechniquesContainer/TechniquesList" unique_id=2085488044]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 48
+text = "- Reckless Charge
+- Cheer
+- Solar Wind
+- Forge"
+fit_content = true
