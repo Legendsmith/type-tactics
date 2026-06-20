@@ -1,7 +1,67 @@
 [gd_scene format=3 uid="uid://gwsvkadrrijx"]
 
 [ext_resource type="Script" uid="uid://bw03ybtcixv3l" path="res://world/battle_stage.gd" id="1_k7dgi"]
+[ext_resource type="Script" uid="uid://bjyqbyjm06je" path="res://entities/unit.gd" id="2_qiwng"]
+[ext_resource type="Script" uid="uid://btssfmuejunjh" path="res://scripts/battle_technique.gd" id="3_2lwrw"]
+[ext_resource type="Resource" uid="uid://bq6cc08n6066e" path="res://data/battletechnique_frost.tres" id="4_no2cn"]
+[ext_resource type="Script" uid="uid://c34hg3m3adnqv" path="res://ui/debug_hp_bar.gd" id="5_no2cn"]
+[ext_resource type="Script" uid="uid://b3xsgaerdumvh" path="res://world/test_manager.gd" id="6_uvr5w"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2lwrw"]
+size = Vector2(64, 128)
 
 [node name="BattleStage" type="Node2D" unique_id=257154894]
 script = ExtResource("1_k7dgi")
 interface_scene = "uid://dysomavkjoi23"
+
+[node name="UnitA" type="Node2D" parent="." unique_id=1754656512]
+position = Vector2(-399, 10)
+script = ExtResource("2_qiwng")
+unit_name = "Combatant B"
+types = Array[StringName]([&"ice"])
+base_techniques = Array[ExtResource("3_2lwrw")]([ExtResource("4_no2cn")])
+
+[node name="Sprite2D" type="Sprite2D" parent="UnitA" unique_id=159607150]
+texture = SubResource("PlaceholderTexture2D_2lwrw")
+
+[node name="ProgressBar" type="ProgressBar" parent="UnitA" unique_id=670393002]
+custom_minimum_size = Vector2(128, 24)
+offset_left = -60.0
+offset_top = 83.0
+offset_right = 68.0
+offset_bottom = 110.0
+max_value = 1.0
+script = ExtResource("5_no2cn")
+
+[node name="UnitB" type="Node2D" parent="." unique_id=752905555]
+position = Vector2(345, -14)
+script = ExtResource("2_qiwng")
+unit_name = "Combatant B"
+
+[node name="Sprite2D2" type="Sprite2D" parent="UnitB" unique_id=1620495772]
+texture = SubResource("PlaceholderTexture2D_2lwrw")
+
+[node name="ProgressBar2" type="ProgressBar" parent="UnitB" unique_id=1969000889]
+custom_minimum_size = Vector2(128, 24)
+offset_left = -53.0
+offset_top = 81.0
+offset_right = 75.0
+offset_bottom = 108.0
+max_value = 1.0
+script = ExtResource("5_no2cn")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1878710175]
+
+[node name="BattleManager" type="Node" parent="." unique_id=248434062 node_paths=PackedStringArray("actor", "target")]
+script = ExtResource("6_uvr5w")
+actor = NodePath("../UnitA")
+target = NodePath("../UnitB")
+
+[node name="Button" type="Button" parent="." unique_id=1379099937]
+offset_left = -41.0
+offset_top = -221.0
+offset_right = 45.0
+offset_bottom = -190.0
+text = "Take Turn"
+
+[connection signal="pressed" from="Button" to="BattleManager" method="on_take_turn"]

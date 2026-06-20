@@ -1,7 +1,7 @@
 class_name Unit
 extends Node
 signal recalculate_bonus
-
+signal damage_recieved
 const MIN_MODIFIER:int = -6
 const MAX_MODIFIER:int = 6
 const UNIT_GROUP := &"units"
@@ -14,23 +14,46 @@ class TurnAction:
 	var technique:BattleTechnique
 	var target:Variant
 	var owner:Unit
+	func _init(init_technique=null) -> void:
+		technique = init_technique
+	func activate():
+		if is_instance_valid(target) and target.is_inside_tree():
+			technique.activate(owner,target,CombatMechanics.charge_usage(technique,owner.types))
 
 @export var unit_name:String = "Combatant"
 @export var types:Array[StringName] = []
 @export var base_techniques:Array[BattleTechnique]
 
-@export var attribute_base:PackedInt32Array = [0,0,0,0,0,0,0]
+@export var attribute_base:PackedInt32Array = [100,100,100,100,100,100,100]
 @export var attribute_bonus:PackedInt32Array = [0,0,0,0,0,0,0]
 @export var attribute_modifier:PackedInt32Array = [0,0,0,0,0,0,0]
 
-@export var hp:int
+@export var hp:int:
+	set(new):
+		if new < hp:
+			damage_recieved.emit()
+			print_debug("%s recieved %s damage" % [self.name,hp-new])
+		hp = clampi(new,0, get_attribute(Attribute.HP))
 
 var technique_charges:Dictionary[BattleTechnique,int]
 
 var next_action:TurnAction
-var default_action = load("uid://dagu5nkeqlqr4")
+var default_action = TurnAction.new(load("uid://dagu5nkeqlqr4"))
 
 var control_type:StringName = &"player"
+
+@export_flags("Targetable", "Active") var battle_flags:int = 11
+
+@warning_ignore_start("integer_division")
+
+
+#region Attributes
+## Get attribute by its enum index. This is the normal way to retrieve an attribute.
+func get_attribute(attribute_idx:Attribute, modified:bool=true) -> int:
+	if modified:
+		return CombatMechanics.calc_attribute(attribute_base[attribute_idx] + attribute_bonus[attribute_idx],attribute_modifier[attribute_idx])
+	else:
+		return attribute_base[attribute_idx] + attribute_bonus[attribute_idx]
 
 ## Unit's attack. Get returns the modified value. Set sets the modifier. Use the attributes array for direct access.
 var attack:int:
@@ -70,9 +93,6 @@ var size:int:
 		attribute_modifier[Attribute.SIZE] = clampi(new_mod,MIN_MODIFIER,MAX_MODIFIER)
 
 
-func _ready():
-	add_to_group(UNIT_GROUP)
-
 func call_bonuses():
 	attribute_bonus.fill(0)
 	recalculate_bonus.emit()
@@ -84,11 +104,30 @@ func serialize_attributes(attribte_array:Array):
 		serialized_dict[Attribute.keys()[i]] = attribte_array[i]
 	return serialized_dict
 
+#endregion 
+#region Setup and Healing/Refresh
+func _ready():
+	add_to_group(UNIT_GROUP)
+
+
 func battle_setup():
 	call_bonuses()
 	get_tree().current_scene.new_turn.connect(on_new_turn)
 	get_tree().current_scene.finalize_turn.connect(on_finalize_turn)
 
+func refresh_hp():
+	hp = CombatMechanics.calc_attribute(attribute_base[Attribute.HP] + attribute_bonus[Attribute.HP],attribute_modifier[Attribute.HP])
+
+func refresh_charges():
+	for tech:BattleTechnique in base_techniques:
+		technique_charges[tech] = tech.max_charges
+
+func full_refresh():
+	refresh_hp()
+	refresh_charges()
+#endregion 
+
+#region Techniques
 func get_technique_uses() -> Dictionary:
 	var technique_usages:Dictionary[BattleTechnique,int]
 	for tech:BattleTechnique in technique_charges:
@@ -105,18 +144,8 @@ func queue_technique(tech:BattleTechnique) -> bool:
 		return true
 	else:
 		return false
-
-func refresh_hp():
-	hp = CombatMechanics.calc_attribute(attribute_base[Attribute.HP] + attribute_bonus[Attribute.HP],attribute_modifier[Attribute.HP])
-
-func refresh_charges():
-	for tech:BattleTechnique in technique_charges.keys():
-		technique_charges[tech] = tech.max_charges
-
-func full_refresh():
-	refresh_hp()
-	refresh_charges()
-
+#endregion
+#region Turns
 func on_new_turn() -> void:
 	next_action = default_action
 
@@ -125,3 +154,8 @@ func on_finalize_turn() -> void:
 		var data:Dictionary = {"alert":GameInterface.Alert.NONE_ACTION,"source":self,"zoom":true}
 		GameManager.game_interface.alert(data)
 		get_tree().current_scene.turn_ready = false
+
+#endregion
+#region Damage
+
+#endregion

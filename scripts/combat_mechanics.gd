@@ -1,5 +1,4 @@
 class_name CombatMechanics
-
 const NOTYPE_CHARGE_USE := 4
 const DUAL_TYPE_CHARGE_USE := 3
 const MONOTYPE_CHARGE_USE := 2
@@ -31,6 +30,8 @@ const ACCURACY: Array = [
 	3.0 / 4.0, 3.0 / 5.0, 3.0 / 6.0,
 ]
 
+@warning_ignore_start("integer_division")
+
 static func calc_attribute(attribute: int, modifier: int) -> int:
 	return int(attribute * MODIFIER[clampi(modifier, -6, 6)])
 
@@ -42,3 +43,5 @@ static func charge_usage(technique: BattleTechnique, types: Array[StringName]) -
 		return DUAL_TYPE_CHARGE_USE
 	else:
 		return NOTYPE_CHARGE_USE
+static func calc_damage(attack:int,defense:int, power:int) -> int:
+	return (attack/defense) * power
