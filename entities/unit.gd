@@ -36,10 +36,9 @@ class TurnAction:
 		hp = clampi(new,0, get_attribute(Attribute.HP))
 
 var technique_charges:Dictionary[BattleTechnique,int]
-
 var next_action:TurnAction
 var default_action = TurnAction.new(load("uid://dagu5nkeqlqr4"))
-
+var active_effects:Array[BattleEffect] = []
 var control_type:StringName = &"player"
 
 @export_flags("Targetable", "Active") var battle_flags:int = 11
@@ -157,5 +156,5 @@ func on_finalize_turn() -> void:
 
 #endregion
 #region Damage
-
+	
 #endregion

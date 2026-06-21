@@ -18,5 +18,6 @@ const NONE_ACTION := "none"
 
 func activate(user:Unit,target:Node, charge_usage:int):
 	var success = effect.execute(user,target)
-	if success or deplete_on_activate: 
+	if success or deplete_on_activate:
 		user.technique_charges[self] -= charge_usage
+	
