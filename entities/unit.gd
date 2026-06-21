@@ -38,7 +38,7 @@ class TurnAction:
 var technique_charges:Dictionary[BattleTechnique,int]
 var next_action:TurnAction
 var default_action = TurnAction.new(load("uid://dagu5nkeqlqr4"))
-var active_effects:Array[BattleEffect] = []
+var active_effects:Dictionary[BattleEffect,int] = {}
 var control_type:StringName = &"player"
 
 @export_flags("Targetable", "Active") var battle_flags:int = 11
@@ -155,6 +155,13 @@ func on_finalize_turn() -> void:
 		get_tree().current_scene.turn_ready = false
 
 #endregion
-#region Damage
+#region Effect Handling
+func execute_new_effect(source:Unit, new_fx:BattleEffect,type:StringName="")->bool:
+	var check:bool = true
+	for entry:BattleEffect in active_effects:
+		check = entry.check(new_fx,type)
+	if check:
+		new_fx.execute(source,self)
+	return check
 	
 #endregion

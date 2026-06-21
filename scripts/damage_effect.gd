@@ -3,6 +3,7 @@ extends BattleEffect
 
 @export var effect_type:StringName = "inflict_damage"
 @export var power:int = 100
+var type:StringName
 @export var base_attribute:Unit.Attribute = Unit.Attribute.ATTACK
 @export var target_attribute:Unit.Attribute = Unit.Attribute.DEFENSE
 

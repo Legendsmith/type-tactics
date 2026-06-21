@@ -45,3 +45,11 @@ static func charge_usage(technique: BattleTechnique, types: Array[StringName]) -
 		return NOTYPE_CHARGE_USE
 static func calc_damage(attack:int,defense:int, power:int) -> int:
 	return (attack/defense) * power
+
+static func process_unit_effects(turn_idx:int, unit:Unit): 
+	for effect:BattleEffectPersistent in unit.active_effects.keys():
+		if effect.lifetime + unit.active_effects[effect] < turn_idx:
+			unit.active_effects.erase(effect)
+		else:
+			effect.tick(unit)
+	
