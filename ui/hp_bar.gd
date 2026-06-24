@@ -12,7 +12,7 @@ func _ready() -> void:
 	await owner.ready
 	max_value = get_parent().get_attribute(Unit.Attribute.HP)
 
-func _process(delta: float) -> void:
+func on_update(hp):
 	value = get_parent().hp
 	add_theme_stylebox_override(&"fill", color_bar(value/max_value))
 

@@ -137,7 +137,7 @@ text = "TYPE/"
 [node name="TypeA" type="RichTextLabel" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/PanelContainer/Types" unique_id=1496997244]
 layout_mode = 2
 bbcode_enabled = true
-text = "[color=green][Life][/color]"
+text = "[color=#99dbff][Air][/color]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -165,6 +165,7 @@ fit_content = true
 scroll_active = false
 
 [node name="AbilityTitle" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/VBoxContainer" unique_id=919394967]
+unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"HeaderMedium"
 theme_override_styles/normal = SubResource("StyleBoxFlat_6ccv2")
@@ -177,6 +178,7 @@ size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_jx1ty")
 
 [node name="AbilityDescription" type="RichTextLabel" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/VBoxContainer/Panel" unique_id=943042129]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 bbcode_enabled = true
@@ -224,39 +226,10 @@ text = "Base"
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBase" unique_id=803255768]
 layout_mode = 2
 
-[node name="HpLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBase" unique_id=1975192318]
+[node name="AttributeBaseLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBase" unique_id=1975192318]
+unique_name_in_owner = true
 layout_mode = 2
 text = "100"
-horizontal_alignment = 1
-
-[node name="AttackLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBase" unique_id=754596767]
-layout_mode = 2
-text = "100"
-horizontal_alignment = 1
-
-[node name="DefenseLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBase" unique_id=301227916]
-layout_mode = 2
-text = "100"
-horizontal_alignment = 1
-
-[node name="SpecialAttackLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBase" unique_id=1768562651]
-layout_mode = 2
-text = "100"
-horizontal_alignment = 1
-
-[node name="SpecialDefenseLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBase" unique_id=964812017]
-layout_mode = 2
-text = "100"
-horizontal_alignment = 1
-
-[node name="SpeedLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBase" unique_id=155089636]
-layout_mode = 2
-text = "150	"
-horizontal_alignment = 1
-
-[node name="SizeLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBase" unique_id=1931049335]
-layout_mode = 2
-text = "3"
 horizontal_alignment = 1
 
 [node name="AttributeBonus" type="VBoxContainer" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable" unique_id=341013858]
@@ -270,39 +243,10 @@ text = "Bonus"
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBonus" unique_id=1240003376]
 layout_mode = 2
 
-[node name="HpLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBonus" unique_id=2100576831]
+[node name="AttributeBonusLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBonus" unique_id=2100576831]
+unique_name_in_owner = true
 layout_mode = 2
 text = "10"
-horizontal_alignment = 1
-
-[node name="AttackLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBonus" unique_id=1258383696]
-layout_mode = 2
-text = "-"
-horizontal_alignment = 1
-
-[node name="DefenseLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBonus" unique_id=1926823186]
-layout_mode = 2
-text = "-"
-horizontal_alignment = 1
-
-[node name="SpecialAttackLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBonus" unique_id=371998001]
-layout_mode = 2
-text = "-"
-horizontal_alignment = 1
-
-[node name="SpecialDefenseLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBonus" unique_id=1597409897]
-layout_mode = 2
-text = "-"
-horizontal_alignment = 1
-
-[node name="SpeedLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBonus" unique_id=1470426211]
-layout_mode = 2
-text = "-"
-horizontal_alignment = 1
-
-[node name="SizeLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBonus" unique_id=2069497597]
-layout_mode = 2
-text = "-"
 horizontal_alignment = 1
 
 [node name="AttributeTotal" type="VBoxContainer" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable" unique_id=1801051968]
@@ -316,39 +260,10 @@ text = "Total"
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeTotal" unique_id=1075058441]
 layout_mode = 2
 
-[node name="HpLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeTotal" unique_id=2014704997]
+[node name="AttributeTotalLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeTotal" unique_id=2014704997]
+unique_name_in_owner = true
 layout_mode = 2
 text = "110"
-horizontal_alignment = 1
-
-[node name="AttackLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeTotal" unique_id=131743442]
-layout_mode = 2
-text = "100"
-horizontal_alignment = 1
-
-[node name="DefenseLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeTotal" unique_id=1548885017]
-layout_mode = 2
-text = "100"
-horizontal_alignment = 1
-
-[node name="SpecialAttackLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeTotal" unique_id=373472094]
-layout_mode = 2
-text = "100"
-horizontal_alignment = 1
-
-[node name="SpecialDefenseLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeTotal" unique_id=1160079357]
-layout_mode = 2
-text = "100"
-horizontal_alignment = 1
-
-[node name="SpeedLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeTotal" unique_id=1077901281]
-layout_mode = 2
-text = "150"
-horizontal_alignment = 1
-
-[node name="SizeLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeTotal" unique_id=431980382]
-layout_mode = 2
-text = "3"
 horizontal_alignment = 1
 
 [node name="DescriptionContainer" type="PanelContainer" parent="MarginContainer/InfoGrid" unique_id=751465375]
@@ -364,7 +279,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"TextPanel"
-text = "It's Auteru"
+text = "It's Auteru!"
 fit_content = true
 
 [node name="EquipmentContainer" type="VBoxContainer" parent="MarginContainer/InfoGrid" unique_id=128099648]
@@ -376,11 +291,12 @@ layout_mode = 2
 theme_type_variation = &"HeaderMedium"
 text = "Equipment"
 
-[node name="TechniquesList" type="ItemList" parent="MarginContainer/InfoGrid/EquipmentContainer" unique_id=1138018999]
+[node name="EquipmentList" type="ItemList" parent="MarginContainer/InfoGrid/EquipmentContainer" unique_id=1138018999]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="DebugLabel" type="RichTextLabel" parent="MarginContainer/InfoGrid/EquipmentContainer/TechniquesList" unique_id=981255472]
+[node name="DebugLabel" type="RichTextLabel" parent="MarginContainer/InfoGrid/EquipmentContainer/EquipmentList" unique_id=981255472]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -388,7 +304,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 48
-text = "Big Hammer"
+text = "Bird Hammer"
 fit_content = true
 
 [node name="TechniquesContainer" type="VBoxContainer" parent="MarginContainer/InfoGrid" unique_id=1262783470]
@@ -416,5 +332,5 @@ theme_override_font_sizes/normal_font_size = 48
 text = "- Reckless Charge
 - Cheer
 - Solar Wind
-- Forge"
+- Sky Strike"
 fit_content = true

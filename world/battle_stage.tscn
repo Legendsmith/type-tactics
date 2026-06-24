@@ -4,7 +4,8 @@
 [ext_resource type="Script" uid="uid://bjyqbyjm06je" path="res://entities/unit.gd" id="2_qiwng"]
 [ext_resource type="Script" uid="uid://btssfmuejunjh" path="res://scripts/battle_technique.gd" id="3_2lwrw"]
 [ext_resource type="Resource" uid="uid://bq6cc08n6066e" path="res://data/battletechnique_frost.tres" id="4_no2cn"]
-[ext_resource type="Script" uid="uid://c34hg3m3adnqv" path="res://ui/debug_hp_bar.gd" id="5_no2cn"]
+[ext_resource type="Script" uid="uid://c34hg3m3adnqv" path="res://ui/hp_bar.gd" id="5_no2cn"]
+[ext_resource type="StyleBox" uid="uid://yclnlc6ykyr3" path="res://ui/hpstyle_green.tres" id="6_j3dxi"]
 [ext_resource type="Script" uid="uid://b3xsgaerdumvh" path="res://world/test_manager.gd" id="6_uvr5w"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2lwrw"]
@@ -15,7 +16,7 @@ script = ExtResource("1_k7dgi")
 interface_scene = "uid://dysomavkjoi23"
 
 [node name="UnitA" type="Node2D" parent="." unique_id=1754656512]
-position = Vector2(-399, 10)
+position = Vector2(-281, 141)
 script = ExtResource("2_qiwng")
 unit_name = "Combatant B"
 types = Array[StringName]([&"ice"])
@@ -32,9 +33,10 @@ offset_right = 68.0
 offset_bottom = 110.0
 max_value = 1.0
 script = ExtResource("5_no2cn")
+metadata/_edit_use_anchors_ = true
 
 [node name="UnitB" type="Node2D" parent="." unique_id=752905555]
-position = Vector2(345, -14)
+position = Vector2(393, -244)
 script = ExtResource("2_qiwng")
 unit_name = "Combatant B"
 
@@ -47,8 +49,10 @@ offset_left = -53.0
 offset_top = 81.0
 offset_right = 75.0
 offset_bottom = 108.0
+theme_override_styles/fill = ExtResource("6_j3dxi")
 max_value = 1.0
 script = ExtResource("5_no2cn")
+metadata/_edit_use_anchors_ = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1878710175]
 
@@ -58,6 +62,7 @@ actor = NodePath("../UnitA")
 target = NodePath("../UnitB")
 
 [node name="Button" type="Button" parent="." unique_id=1379099937]
+z_index = 2
 offset_left = -41.0
 offset_top = -221.0
 offset_right = 45.0

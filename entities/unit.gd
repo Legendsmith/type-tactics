@@ -1,7 +1,8 @@
 class_name Unit
 extends Node
 signal recalculate_bonus
-signal damage_recieved
+signal hp_changed(new_hp:int)
+signal update()
 const MIN_MODIFIER:int = -6
 const MAX_MODIFIER:int = 6
 const UNIT_GROUP := &"units"
@@ -14,7 +15,8 @@ class TurnAction:
 	var technique:BattleTechnique
 	var target:Variant
 	var owner:Unit
-	func _init(init_technique=null) -> void:
+	func _init(init_owner:Unit, init_technique=null) -> void:
+		owner = init_owner
 		technique = init_technique
 	func activate():
 		if is_instance_valid(target) and target.is_inside_tree():
@@ -31,19 +33,19 @@ class TurnAction:
 @export var hp:int:
 	set(new):
 		if new < hp:
-			damage_recieved.emit()
 			print_debug("%s recieved %s damage" % [self.name,hp-new])
+		hp_changed.emit(hp)
 		hp = clampi(new,0, get_attribute(Attribute.HP))
 
 var technique_charges:Dictionary[BattleTechnique,int]
 var next_action:TurnAction
-var default_action = TurnAction.new(load("uid://dagu5nkeqlqr4"))
-var active_effects:Dictionary[BattleEffect,int] = {}
+var active_effects:Dictionary[BattleEffectPersistent,int] = {}
 var control_type:StringName = &"player"
 
 @export_flags("Targetable", "Active") var battle_flags:int = 11
 
 @warning_ignore_start("integer_division")
+@onready var default_action = TurnAction.new(self, load("uid://dagu5nkeqlqr4"))
 
 
 #region Attributes
@@ -135,11 +137,11 @@ func get_technique_uses() -> Dictionary:
 
 func queue_technique(tech:BattleTechnique) -> bool:
 	var charge_usage:int = CombatMechanics.charge_usage(tech,types)
-	var action:TurnAction = TurnAction.new()
+	var action:TurnAction = TurnAction.new(self)
 	if technique_charges[tech] >= charge_usage:
 		action.technique = tech
-		action.owner = self
 		next_action = action
+		update.emit()
 		return true
 	else:
 		return false

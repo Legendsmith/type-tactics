@@ -9,14 +9,13 @@ border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
-border_color = Color(0, 0, 0, 1)
+border_color = Color(0.2, 0.2, 0.2, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [node name="BattleInterface" type="Control" unique_id=1169973163]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,7 +36,6 @@ grow_vertical = 2
 
 [node name="TopUIArea" type="HBoxContainer" parent="VBoxContainer" unique_id=1725570141]
 layout_mode = 2
-size_flags_horizontal = 0
 size_flags_vertical = 3
 
 [node name="MessageBar" type="VBoxContainer" parent="VBoxContainer/TopUIArea" unique_id=1147511216]
@@ -56,6 +54,26 @@ theme = ExtResource("1_dgdf5")
 theme_type_variation = &"AlertButton"
 text = "Alert2"
 
+[node name="FriendlyContainer" type="HBoxContainer" parent="VBoxContainer/TopUIArea" unique_id=1089043450]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/TopUIArea/FriendlyContainer" unique_id=479738350]
+layout_mode = 2
+theme_type_variation = &"WhitePanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TopUIArea/FriendlyContainer/PanelContainer" unique_id=1073694932]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TopUIArea/FriendlyContainer/PanelContainer/MarginContainer" unique_id=1395659112]
+visible = false
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/TopUIArea/FriendlyContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=920574370]
+layout_mode = 2
+
 [node name="BattleBarMargin" type="MarginContainer" parent="VBoxContainer" unique_id=841507245]
 layout_mode = 2
 size_flags_vertical = 8
@@ -69,11 +87,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="MoveList" type="ItemList" parent="VBoxContainer/BattleBarMargin/BattleBar/MessageContainer" unique_id=1439130373]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_dgdf5")
 
 [node name="Messagelabel" type="Label" parent="VBoxContainer/BattleBarMargin/BattleBar/MessageContainer/MoveList" unique_id=1531920678]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -91,37 +111,37 @@ theme_type_variation = &"BattleBarLabel"
 text = "It's Battle time!"
 horizontal_alignment = 1
 
-[node name="PanelContainer" type="MarginContainer" parent="VBoxContainer/BattleBarMargin/BattleBar" unique_id=761303398]
+[node name="Container" type="MarginContainer" parent="VBoxContainer/BattleBarMargin/BattleBar" unique_id=761303398]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_right = 12
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/BattleBarMargin/BattleBar/PanelContainer" unique_id=1885913780]
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/BattleBarMargin/BattleBar/Container" unique_id=1885913780]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_constants/h_separation = 29
 columns = 2
 
-[node name="ButtonFight" type="Button" parent="VBoxContainer/BattleBarMargin/BattleBar/PanelContainer/GridContainer" unique_id=186597241]
+[node name="ButtonFight" type="Button" parent="VBoxContainer/BattleBarMargin/BattleBar/Container/GridContainer" unique_id=186597241]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"BattleActionButton"
 text = "Fight"
 
-[node name="ButtonItem" type="Button" parent="VBoxContainer/BattleBarMargin/BattleBar/PanelContainer/GridContainer" unique_id=664902004]
+[node name="ButtonItem" type="Button" parent="VBoxContainer/BattleBarMargin/BattleBar/Container/GridContainer" unique_id=664902004]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"BattleActionButton"
 text = "Item"
 
-[node name="ButtonTeam" type="Button" parent="VBoxContainer/BattleBarMargin/BattleBar/PanelContainer/GridContainer" unique_id=1680408812]
+[node name="ButtonTeam" type="Button" parent="VBoxContainer/BattleBarMargin/BattleBar/Container/GridContainer" unique_id=1680408812]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"BattleActionButton"
 text = "Team"
 
-[node name="ButtonRun" type="Button" parent="VBoxContainer/BattleBarMargin/BattleBar/PanelContainer/GridContainer" unique_id=1822733284]
+[node name="ButtonRun" type="Button" parent="VBoxContainer/BattleBarMargin/BattleBar/Container/GridContainer" unique_id=1822733284]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"BattleActionButton"

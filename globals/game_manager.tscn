@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://or5hd5dlt0kq"]
 
 [ext_resource type="Script" uid="uid://ccqqqdf13a0it" path="res://globals/game_manager.gd" id="1_dmcod"]
-[ext_resource type="PackedScene" uid="uid://dysomavkjoi23" path="res://ui/battle_interface.tscn" id="2_77tft"]
 
 [sub_resource type="Animation" id="Animation_vmn2j"]
 length = 0.001
@@ -54,5 +53,3 @@ color = Color(0, 0, 0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1586898018]
 libraries/ = SubResource("AnimationLibrary_8cw7n")
-
-[node name="BattleInterface" parent="." unique_id=1169973163 instance=ExtResource("2_77tft")]
