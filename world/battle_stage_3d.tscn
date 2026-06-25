@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://bnmpjfckkxley"]
+
+[ext_resource type="Script" uid="uid://cd6m6swpgvm1v" path="res://world/battlefield_3d.gd" id="1_xq85a"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5f2ge"]
+sky_top_color = Color(0, 0.61674994, 0.9763612, 1)
+sky_horizon_color = Color(0.54546314, 0.32658967, 0.14360926, 1)
+ground_horizon_color = Color(0.52706605, 0.2576923, 1.4439226e-07, 1)
+
+[sub_resource type="Sky" id="Sky_xq85a"]
+sky_material = SubResource("ProceduralSkyMaterial_5f2ge")
+
+[sub_resource type="Environment" id="Environment_4osms"]
+sky = SubResource("Sky_xq85a")
+ambient_light_source = 3
+ambient_light_color = Color(0.36473382, 0.16018811, 0.99999994, 1)
+ambient_light_sky_contribution = 0.85
+
+[sub_resource type="BoxMesh" id="BoxMesh_5f2ge"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_xq85a"]
+
+[sub_resource type="MeshLibrary" id="MeshLibrary_4osms"]
+item/0/name = "boxdefault"
+item/0/mesh = SubResource("BoxMesh_5f2ge")
+item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/mesh_cast_shadow = 1
+item/0/shapes = []
+item/0/navigation_mesh = SubResource("NavigationMesh_xq85a")
+item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/navigation_layers = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2xhks"]
+albedo_color = Color(0.16259888, 0.16259888, 0.16259888, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fgbys"]
+material = SubResource("StandardMaterial3D_2xhks")
+size = Vector2(100, 100)
+
+[node name="BattleStage3d" type="Node3D" unique_id=1722786175]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1731901219]
+environment = SubResource("Environment_4osms")
+
+[node name="GridMap" type="GridMap" parent="." unique_id=1430903106]
+mesh_library = SubResource("MeshLibrary_4osms")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(0, 2, 0, 65535, 2, 0, 65534, 2, 0, 65534, 1, 0, 65535, 1, 0, 0, 1, 0, 0, 3, 0, 65535, 3, 0, 65534, 3, 0, 0, 65534, 0, 65535, 65534, 0, 1, 65534, 0, 65535, 65532, 0, 65535, 65533, 0, 1, 65533, 0, 0, 65532, 0, 0, 65533, 0, 1, 65532, 0)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="PlayerBattlefield3D" type="Node3D" parent="GridMap" unique_id=681897965]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 1.5)
+script = ExtResource("1_xq85a")
+
+[node name="Marker3D1" type="Marker3D" parent="GridMap/PlayerBattlefield3D" unique_id=56468718]
+
+[node name="Marker3D2" type="Marker3D" parent="GridMap/PlayerBattlefield3D" unique_id=1011237662]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="Marker3D3" type="Marker3D" parent="GridMap/PlayerBattlefield3D" unique_id=917781698]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="Marker3D4" type="Marker3D" parent="GridMap/PlayerBattlefield3D" unique_id=994312360]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="Marker3D5" type="Marker3D" parent="GridMap/PlayerBattlefield3D" unique_id=970214177]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+
+[node name="Marker3D6" type="Marker3D" parent="GridMap/PlayerBattlefield3D" unique_id=1986228226]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 1)
+
+[node name="Marker3D7" type="Marker3D" parent="GridMap/PlayerBattlefield3D" unique_id=1022701148]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="Marker3D8" type="Marker3D" parent="GridMap/PlayerBattlefield3D" unique_id=579859256]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 2)
+
+[node name="Marker3D9" type="Marker3D" parent="GridMap/PlayerBattlefield3D" unique_id=826489037]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+
+[node name="EnemyBattlefield3D" type="Node3D" parent="GridMap" unique_id=1574248575]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -1.5)
+
+[node name="Marker3D1" type="Marker3D" parent="GridMap/EnemyBattlefield3D" unique_id=1640338914]
+
+[node name="Marker3D2" type="Marker3D" parent="GridMap/EnemyBattlefield3D" unique_id=596535785]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="Marker3D3" type="Marker3D" parent="GridMap/EnemyBattlefield3D" unique_id=1837371773]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="Marker3D4" type="Marker3D" parent="GridMap/EnemyBattlefield3D" unique_id=923996076]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="Marker3D5" type="Marker3D" parent="GridMap/EnemyBattlefield3D" unique_id=848870338]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+
+[node name="Marker3D6" type="Marker3D" parent="GridMap/EnemyBattlefield3D" unique_id=539000748]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -1)
+
+[node name="Marker3D7" type="Marker3D" parent="GridMap/EnemyBattlefield3D" unique_id=625698055]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="Marker3D8" type="Marker3D" parent="GridMap/EnemyBattlefield3D" unique_id=1355666152]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2)
+
+[node name="Marker3D9" type="Marker3D" parent="GridMap/EnemyBattlefield3D" unique_id=43916763]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=759006064]
+transform = Transform3D(0.88595897, -0.093772374, 0.454184, 0.010496683, 0.9831481, 0.18250865, -0.46364444, -0.15692776, 0.8720134, 2.2569933, 2.4931135, 4.962285)
+current = true
+fov = 70.0
+
+[node name="FloorMesh" type="MeshInstance3D" parent="." unique_id=2028030440]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -29.477106)
+mesh = SubResource("PlaneMesh_fgbys")
+metadata/_edit_lock_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=61147469]

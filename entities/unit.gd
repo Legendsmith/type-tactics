@@ -110,7 +110,6 @@ func serialize_attributes(attribte_array:Array):
 func _ready():
 	add_to_group(UNIT_GROUP)
 
-
 func battle_setup():
 	call_bonuses()
 	get_tree().current_scene.new_turn.connect(on_new_turn)

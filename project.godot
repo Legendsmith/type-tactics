@@ -19,8 +19,8 @@ config/icon="res://icon.svg"
 GUIDE="*uid://p2jwrgjcbexr"
 UnlockableContent="*uid://p3ilsmea4pp7"
 GameManager="*uid://or5hd5dlt0kq"
-Dialogic="*uid://ds2q0uclmolvu"
 GameSettings="*uid://cowb0y3ulunmj"
+Dialogic="*uid://ds2q0uclmolvu"
 
 [dialogic]
 

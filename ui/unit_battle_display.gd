@@ -3,11 +3,6 @@ extends Control
 var unit:Unit:
 	set = set_unit
 
-func _ready() -> void:
-	if unit:
-		await unit.ready
-		on_update()
-
 func set_unit(new_unit:Unit):
 	if is_instance_valid(unit):
 		unit.hp_changed.disconnect(%HpBar.on_update)
@@ -20,7 +15,7 @@ func set_unit(new_unit:Unit):
 	if unit.control_type == Constants.PLAYER_GROUP:
 		%ActionLabel.visible = true
 	unit.update.connect(on_update)
-	
+	on_update()
 
 func on_update():
 	%ActionLabel.text = unit.next_action.technique.technique_name

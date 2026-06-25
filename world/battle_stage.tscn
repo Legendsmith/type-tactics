@@ -60,13 +60,3 @@ metadata/_edit_use_anchors_ = true
 script = ExtResource("6_uvr5w")
 actor = NodePath("../UnitA")
 target = NodePath("../UnitB")
-
-[node name="Button" type="Button" parent="." unique_id=1379099937]
-z_index = 2
-offset_left = -41.0
-offset_top = -221.0
-offset_right = 45.0
-offset_bottom = -190.0
-text = "Take Turn"
-
-[connection signal="pressed" from="Button" to="BattleManager" method="on_take_turn"]

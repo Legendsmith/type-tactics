@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://dysomavkjoi23"]
 
 [ext_resource type="Theme" uid="uid://v0ph6goeqn0u" path="res://data/battle_theme.tres" id="1_dgdf5"]
-[ext_resource type="Script" uid="uid://bv2bx83tgpiji" path="res://ui/game_interface.gd" id="1_f7uk0"]
+[ext_resource type="Script" uid="uid://bdgjrwbguq6de" path="res://ui/battle_interface.gd" id="2_dgdf5"]
+[ext_resource type="PackedScene" uid="uid://d18mrr8fdgs57" path="res://ui/unit_battle_display.tscn" id="3_iqia2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dgdf5"]
 bg_color = Color(1, 1, 1, 1)
@@ -24,7 +25,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 theme = ExtResource("1_dgdf5")
-script = ExtResource("1_f7uk0")
+script = ExtResource("2_dgdf5")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1671671964]
 layout_mode = 1
@@ -34,44 +35,65 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="EnemyContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=2101977935]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+
+[node name="UnitBattleDisplay" parent="VBoxContainer/EnemyContainer" unique_id=1162663328 instance=ExtResource("3_iqia2")]
+layout_mode = 2
+
+[node name="UnitBattleDisplay2" parent="VBoxContainer/EnemyContainer" unique_id=1509232706 instance=ExtResource("3_iqia2")]
+layout_mode = 2
+
+[node name="UnitBattleDisplay3" parent="VBoxContainer/EnemyContainer" unique_id=207267869 instance=ExtResource("3_iqia2")]
+layout_mode = 2
+
 [node name="TopUIArea" type="HBoxContainer" parent="VBoxContainer" unique_id=1725570141]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MessageBar" type="VBoxContainer" parent="VBoxContainer/TopUIArea" unique_id=1147511216]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TopUIArea" unique_id=2045485811]
 layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="AlertBar" type="HBoxContainer" parent="VBoxContainer/TopUIArea/MarginContainer" unique_id=1273560862]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
 alignment = 2
 
-[node name="Alert" type="Button" parent="VBoxContainer/TopUIArea/MessageBar" unique_id=1167145379]
+[node name="Alert" type="Button" parent="VBoxContainer/TopUIArea/MarginContainer/AlertBar" unique_id=1167145379]
 layout_mode = 2
 theme = ExtResource("1_dgdf5")
 theme_type_variation = &"AlertButton"
 text = "Alert!"
 
-[node name="Alert2" type="Button" parent="VBoxContainer/TopUIArea/MessageBar" unique_id=587256413]
+[node name="Alert2" type="Button" parent="VBoxContainer/TopUIArea/MarginContainer/AlertBar" unique_id=587256413]
 layout_mode = 2
 theme = ExtResource("1_dgdf5")
 theme_type_variation = &"AlertButton"
 text = "Alert2"
 
-[node name="FriendlyContainer" type="HBoxContainer" parent="VBoxContainer/TopUIArea" unique_id=1089043450]
+[node name="PlayerContainer" type="VBoxContainer" parent="VBoxContainer/TopUIArea" unique_id=345202133]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 8
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/TopUIArea/FriendlyContainer" unique_id=479738350]
-layout_mode = 2
-theme_type_variation = &"WhitePanel"
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TopUIArea/FriendlyContainer/PanelContainer" unique_id=1073694932]
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TopUIArea/FriendlyContainer/PanelContainer/MarginContainer" unique_id=1395659112]
-visible = false
+[node name="UnitBattleDisplay2" parent="VBoxContainer/TopUIArea/PlayerContainer" unique_id=1099678947 instance=ExtResource("3_iqia2")]
 layout_mode = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/TopUIArea/FriendlyContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=920574370]
+[node name="UnitBattleDisplay3" parent="VBoxContainer/TopUIArea/PlayerContainer" unique_id=1665163923 instance=ExtResource("3_iqia2")]
+layout_mode = 2
+
+[node name="UnitBattleDisplay4" parent="VBoxContainer/TopUIArea/PlayerContainer" unique_id=68260535 instance=ExtResource("3_iqia2")]
 layout_mode = 2
 
 [node name="BattleBarMargin" type="MarginContainer" parent="VBoxContainer" unique_id=841507245]
@@ -82,17 +104,13 @@ size_flags_vertical = 8
 layout_mode = 2
 alignment = 2
 
-[node name="MessageContainer" type="MarginContainer" parent="VBoxContainer/BattleBarMargin/BattleBar" unique_id=713942459]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="MoveList" type="ItemList" parent="VBoxContainer/BattleBarMargin/BattleBar/MessageContainer" unique_id=1439130373]
+[node name="MoveList" type="ItemList" parent="VBoxContainer/BattleBarMargin/BattleBar" unique_id=1439130373]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_dgdf5")
 
-[node name="Messagelabel" type="Label" parent="VBoxContainer/BattleBarMargin/BattleBar/MessageContainer/MoveList" unique_id=1531920678]
+[node name="Messagelabel" type="Label" parent="VBoxContainer/BattleBarMargin/BattleBar/MoveList" unique_id=1531920678]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
