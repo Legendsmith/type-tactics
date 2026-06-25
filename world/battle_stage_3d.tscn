@@ -50,9 +50,20 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="PlayerBattlefield3D" type="Node3D" parent="GridMap" unique_id=681897965]
+[node name="PlayerBattlefield3D" type="Node3D" parent="GridMap" unique_id=681897965 node_paths=PackedStringArray("grid")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 1.5)
 script = ExtResource("1_xq85a")
+grid = {
+Vector2i(0, 0): NodePath("Marker3D1"),
+Vector2i(0, 1): NodePath("Marker3D4"),
+Vector2i(0, 2): NodePath("Marker3D7"),
+Vector2i(1, 0): NodePath("Marker3D2"),
+Vector2i(1, 1): NodePath("Marker3D5"),
+Vector2i(1, 2): NodePath("Marker3D8"),
+Vector2i(2, 0): NodePath("Marker3D3"),
+Vector2i(2, 1): NodePath("Marker3D6"),
+Vector2i(2, 2): NodePath("Marker3D9")
+}
 
 [node name="Marker3D1" type="Marker3D" parent="GridMap/PlayerBattlefield3D" unique_id=56468718]
 
@@ -82,6 +93,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
 
 [node name="EnemyBattlefield3D" type="Node3D" parent="GridMap" unique_id=1574248575]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -1.5)
+script = ExtResource("1_xq85a")
 
 [node name="Marker3D1" type="Marker3D" parent="GridMap/EnemyBattlefield3D" unique_id=1640338914]
 
@@ -118,5 +130,3 @@ fov = 70.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -29.477106)
 mesh = SubResource("PlaneMesh_fgbys")
 metadata/_edit_lock_ = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=61147469]
