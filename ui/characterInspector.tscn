@@ -135,6 +135,7 @@ layout_mode = 2
 text = "TYPE/"
 
 [node name="TypeA" type="RichTextLabel" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/PanelContainer/Types" unique_id=1496997244]
+unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 text = "[color=#99dbff][Air][/color]"
@@ -144,6 +145,7 @@ autowrap_mode = 0
 shortcut_keys_enabled = false
 
 [node name="TypeB" type="RichTextLabel" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/PanelContainer/Types" unique_id=1405021449]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
