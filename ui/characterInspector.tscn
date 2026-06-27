@@ -110,6 +110,7 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 16
 
 [node name="Name" type="RichTextLabel" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer" unique_id=210865473]
+unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"RichHeaderLarge"
 text = "Auteru"
@@ -117,6 +118,7 @@ fit_content = true
 scroll_active = false
 
 [node name="Subtitle" type="RichTextLabel" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer" unique_id=1658306465]
+unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"HeaderMedium"
 text = "Hammer Wielding Hunter"
