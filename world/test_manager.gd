@@ -13,8 +13,3 @@ func on_take_turn():
 	actor.next_action.target = target
 	actor.next_action.activate()
 	actor.on_new_turn()
-
-
-func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if event is InputEventMouseButton:
-		print("area clicked")

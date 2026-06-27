@@ -43,6 +43,7 @@ static func charge_usage(technique: BattleTechnique, types: Array[StringName]) -
 		return DUAL_TYPE_CHARGE_USE
 	else:
 		return NOTYPE_CHARGE_USE
+
 static func calc_damage(attack:int,defense:int, power:int) -> int:
 	return (attack/defense) * power
 
