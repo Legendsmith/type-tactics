@@ -1,62 +1,282 @@
-[gd_scene format=3 uid="uid://gwsvkadrrijx"]
+[gd_scene format=4 uid="uid://gwsvkadrrijx"]
 
 [ext_resource type="Script" uid="uid://bw03ybtcixv3l" path="res://world/battle_stage.gd" id="1_k7dgi"]
-[ext_resource type="Script" uid="uid://bjyqbyjm06je" path="res://entities/unit.gd" id="2_qiwng"]
-[ext_resource type="Script" uid="uid://btssfmuejunjh" path="res://scripts/battle_technique.gd" id="3_2lwrw"]
-[ext_resource type="Resource" uid="uid://bq6cc08n6066e" path="res://data/battletechnique_frost.tres" id="4_no2cn"]
-[ext_resource type="Script" uid="uid://c34hg3m3adnqv" path="res://ui/hp_bar.gd" id="5_no2cn"]
-[ext_resource type="StyleBox" uid="uid://yclnlc6ykyr3" path="res://ui/hpstyle_green.tres" id="6_j3dxi"]
+[ext_resource type="Texture2D" uid="uid://d2qt35eb6apvm" path="res://texture/spritesheet.png" id="3_2lwrw"]
+[ext_resource type="PackedScene" uid="uid://bnmpjfckkxley" path="res://world/battle_stage_3d.tscn" id="4_2lwrw"]
 [ext_resource type="Script" uid="uid://b3xsgaerdumvh" path="res://world/test_manager.gd" id="6_uvr5w"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2lwrw"]
-size = Vector2(64, 128)
+[sub_resource type="ViewportTexture" id="ViewportTexture_no2cn"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_no2cn"]
+texture = ExtResource("3_2lwrw")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+10:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+9:7/0 = 0
+10:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+9:8/0 = 0
+10:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+8:9/0 = 0
+9:9/0 = 0
+10:9/0 = 0
+0:10/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+3:10/0 = 0
+4:10/0 = 0
+5:10/0 = 0
+6:10/0 = 0
+7:10/0 = 0
+8:10/0 = 0
+9:10/0 = 0
+10:10/0 = 0
+0:11/0 = 0
+1:11/0 = 0
+2:11/0 = 0
+3:11/0 = 0
+4:11/0 = 0
+5:11/0 = 0
+6:11/0 = 0
+7:11/0 = 0
+8:11/0 = 0
+9:11/0 = 0
+10:11/0 = 0
+0:12/0 = 0
+1:12/0 = 0
+2:12/0 = 0
+3:12/0 = 0
+4:12/0 = 0
+5:12/0 = 0
+6:12/0 = 0
+7:12/0 = 0
+8:12/0 = 0
+10:12/0 = 0
+0:13/0 = 0
+1:13/0 = 0
+2:13/0 = 0
+3:13/0 = 0
+4:13/0 = 0
+5:13/0 = 0
+6:13/0 = 0
+7:13/0 = 0
+8:13/0 = 0
+9:13/0 = 0
+10:13/0 = 0
+0:14/0 = 0
+1:14/0 = 0
+2:14/0 = 0
+3:14/0 = 0
+4:14/0 = 0
+0:15/0 = 0
+1:15/0 = 0
+2:15/0 = 0
+3:15/0 = 0
+4:15/0 = 0
+5:15/0 = 0
+6:15/0 = 0
+7:15/0 = 0
+8:15/0 = 0
+0:16/0 = 0
+1:16/0 = 0
+2:16/0 = 0
+3:16/0 = 0
+4:16/0 = 0
+5:16/0 = 0
+6:16/0 = 0
+7:16/0 = 0
+8:16/0 = 0
+0:17/0 = 0
+1:17/0 = 0
+2:17/0 = 0
+3:17/0 = 0
+4:17/0 = 0
+5:17/0 = 0
+6:17/0 = 0
+7:17/0 = 0
+8:17/0 = 0
+0:19/0 = 0
+1:19/0 = 0
+2:19/0 = 0
+3:19/0 = 0
+4:19/0 = 0
+5:19/0 = 0
+6:19/0 = 0
+7:19/0 = 0
+8:19/0 = 0
+0:20/0 = 0
+1:20/0 = 0
+2:20/0 = 0
+3:20/0 = 0
+4:20/0 = 0
+5:20/0 = 0
+6:20/0 = 0
+7:20/0 = 0
+8:20/0 = 0
+9:20/0 = 0
+10:20/0 = 0
+0:21/0 = 0
+1:21/0 = 0
+2:21/0 = 0
+3:21/0 = 0
+4:21/0 = 0
+5:21/0 = 0
+6:21/0 = 0
+7:21/0 = 0
+8:21/0 = 0
+9:21/0 = 0
+10:21/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_no2cn"]
+tile_shape = 1
+tile_layout = 4
+tile_size = Vector2i(128, 64)
+sources/2 = SubResource("TileSetAtlasSource_no2cn")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2lwrw"]
+radius = 76.105194
 
 [node name="BattleStage" type="Node2D" unique_id=257154894]
 script = ExtResource("1_k7dgi")
 interface_scene = "uid://dysomavkjoi23"
 
-[node name="UnitA" type="Node2D" parent="." unique_id=1754656512]
-position = Vector2(-281, 141)
-script = ExtResource("2_qiwng")
-unit_name = "Combatant B"
-types = Array[StringName]([&"ice"])
-base_techniques = Array[ExtResource("3_2lwrw")]([ExtResource("4_no2cn")])
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1413354219]
+size = Vector2i(1920, 1080)
 
-[node name="Sprite2D" type="Sprite2D" parent="UnitA" unique_id=159607150]
-texture = SubResource("PlaceholderTexture2D_2lwrw")
+[node name="BattleStage3d" parent="SubViewport" unique_id=1722786175 instance=ExtResource("4_2lwrw")]
 
-[node name="ProgressBar" type="ProgressBar" parent="UnitA" unique_id=670393002]
-custom_minimum_size = Vector2(128, 24)
-offset_left = -60.0
-offset_top = 83.0
-offset_right = 68.0
-offset_bottom = 110.0
-max_value = 1.0
-script = ExtResource("5_no2cn")
-metadata/_edit_use_anchors_ = true
-
-[node name="UnitB" type="Node2D" parent="." unique_id=752905555]
-position = Vector2(393, -244)
-script = ExtResource("2_qiwng")
-unit_name = "Combatant B"
-
-[node name="Sprite2D2" type="Sprite2D" parent="UnitB" unique_id=1620495772]
-texture = SubResource("PlaceholderTexture2D_2lwrw")
-
-[node name="ProgressBar2" type="ProgressBar" parent="UnitB" unique_id=1969000889]
-custom_minimum_size = Vector2(128, 24)
-offset_left = -53.0
-offset_top = 81.0
-offset_right = 75.0
-offset_bottom = 108.0
-theme_override_styles/fill = ExtResource("6_j3dxi")
-max_value = 1.0
-script = ExtResource("5_no2cn")
-metadata/_edit_use_anchors_ = true
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2013584885]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_no2cn")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1878710175]
 
-[node name="BattleManager" type="Node" parent="." unique_id=248434062 node_paths=PackedStringArray("actor", "target")]
+[node name="BattleManager" type="Node" parent="." unique_id=248434062]
 script = ExtResource("6_uvr5w")
-actor = NodePath("../UnitA")
-target = NodePath("../UnitB")
+
+[node name="PlayerGrid" type="TileMapLayer" parent="." unique_id=878440425]
+y_sort_enabled = true
+position = Vector2(-214, 120)
+tile_map_data = PackedByteArray("AAAAAAAAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAIAAgAAAAAAAAD//wAAAgAAAAAAAAD//wEAAgABAAAAAAD//wIAAgACAAAAAAD+/wAAAgAAAAAAAAD+/wEAAgABAAAAAAD+/wIAAgAAAAAAAAA=")
+tile_set = SubResource("TileSet_no2cn")
+
+[node name="Area2D" type="Area2D" parent="PlayerGrid" unique_id=1982164614]
+position = Vector2(62, 110)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerGrid/Area2D" unique_id=1175553460]
+shape = SubResource("CircleShape2D_2lwrw")
+
+[node name="EnemyGrid" type="TileMapLayer" parent="." unique_id=743206578]
+y_sort_enabled = true
+position = Vector2(248, -92)
+tile_map_data = PackedByteArray("AAAAAAAAAgAAAAAAAAAAAAEAAgAFAAAAAAAAAAIAAgAAAAAAAAABAAAAAgAAAAAAAAABAAEAAgAFAAAAAAABAAIAAgAAAAAAAAACAAAAAgAAAAAAAAACAAEAAgAAAAAAAAACAAIAAgAAAAAAAAA=")
+tile_set = SubResource("TileSet_no2cn")
+
+[connection signal="input_event" from="PlayerGrid/Area2D" to="BattleManager" method="_on_area_2d_input_event"]

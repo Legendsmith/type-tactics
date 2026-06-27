@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://b8d6iwhu2wqs0"]
+
+[ext_resource type="Texture2D" uid="uid://blln083a6578n" path="res://texture/heavenly_battle_sprites.png" id="1_ur8wv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oymym"]
+size = Vector3(1, 1.5, 1)
+
+[node name="Unit3d" type="Area3D" unique_id=1642166683]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=669738775]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+visible = false
+shape = SubResource("BoxShape3D_oymym")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=767725284]
+offset = Vector2(0, 128)
+pixel_size = 0.006
+billboard = 2
+texture_filter = 2
+texture = ExtResource("1_ur8wv")
+hframes = 2

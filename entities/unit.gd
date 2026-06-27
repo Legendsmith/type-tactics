@@ -159,10 +159,15 @@ func on_finalize_turn() -> void:
 #region Effect Handling
 func execute_new_effect(source:Unit, new_fx:BattleEffect,type:StringName="")->bool:
 	var check:bool = true
-	for entry:BattleEffect in active_effects:
+	for entry:BattleEffectPersistent in active_effects:
 		check = entry.check(new_fx,type)
+		if not check:
+			break
 	if check:
 		new_fx.execute(source,self)
 	return check
 	
 #endregion
+
+func get_position() -> Variant:
+	return get_parent().get_grid_position()

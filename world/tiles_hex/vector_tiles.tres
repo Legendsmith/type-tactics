@@ -26,7 +26,6 @@ scenes/13/scene = ExtResource("5_adq4t")
 
 [resource]
 tile_shape = 3
-tile_layout = 1
 tile_size = Vector2i(128, 128)
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "white"
