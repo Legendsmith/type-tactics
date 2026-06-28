@@ -140,7 +140,6 @@ text = "TYPE/"
 unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
-text = "[color=#99dbff][Air][/color]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -173,7 +172,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"HeaderMedium"
 theme_override_styles/normal = SubResource("StyleBoxFlat_6ccv2")
-text = "Irrepressible"
+text = "Let Me Solo Her"
 
 [node name="Panel" type="PanelContainer" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/VBoxContainer" unique_id=431570550]
 custom_minimum_size = Vector2(0, 33)
@@ -186,7 +185,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 bbcode_enabled = true
-text = "Clear 1 Status Effect upon [color=LightGreen]Regeneration[/color]"
+text = "[color=red]Last Stand[/color]: Increase all Attributes by 50% and Ignore all negative status effects."
 fit_content = true
 scroll_active = false
 
@@ -333,7 +332,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 48
-text = "- Reckless Charge
+text = "- Explosive Rush
 - Cheer
 - Solar Wind
 - Sky Strike"
