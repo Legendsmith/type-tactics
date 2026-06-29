@@ -37,14 +37,14 @@ script = ExtResource("6_uvr5w")
 
 [node name="PlayerGrid" type="TileMapLayer" parent="." unique_id=878440425]
 y_sort_enabled = true
-position = Vector2(-306, 82)
+position = Vector2(-515, 3)
 scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAIAAAAAAAAAAIAAAAIAAAAAAD//wAAAAAAAAAAAAD//wEAAAAKAAAAAAD//wIAAAAJAAAAAAD+/wAAAAAAAAAAAAD+/wEAAAAJAAAAAAD+/wIAAAAFAAAAAAA=")
 tile_set = ExtResource("4_no2cn")
 
 [node name="EnemyGrid" type="TileMapLayer" parent="." unique_id=743206578]
 y_sort_enabled = true
-position = Vector2(206, -174)
+position = Vector2(-3, -253)
 scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=")
 tile_set = ExtResource("4_no2cn")
