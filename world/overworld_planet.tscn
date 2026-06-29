@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://cceqd487bc2ak"]
+
+[ext_resource type="Script" uid="uid://3h84fkyh76a6" path="res://world/overworld_planet.gd" id="1_p0woi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qm6g0"]
+radius = 128.0
+
+[sub_resource type="Gradient" id="Gradient_vqr3w"]
+offsets = PackedFloat32Array(0.8608696, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wwcdr"]
+gradient = SubResource("Gradient_vqr3w")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Gradient" id="Gradient_7hfu1"]
+offsets = PackedFloat32Array(0, 0.110869564, 0.24375, 0.38333333)
+colors = PackedColorArray(0.61167526, 0.36332756, 0.16587174, 1, 0.122666664, 0.46, 0, 1, 0.122666664, 0.46, 0, 1, 0.12553579, 0.45746422, 0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_p0woi"]
+noise_type = 3
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_r7gin"]
+noise = SubResource("FastNoiseLite_p0woi")
+color_ramp = SubResource("Gradient_7hfu1")
+
+[sub_resource type="Gradient" id="Gradient_3vohx"]
+offsets = PackedFloat32Array(0.2173913, 0.3478261, 0.62391305)
+colors = PackedColorArray(1, 1, 1, 1, 0.77788156, 0.77788156, 0.7778816, 1, 1, 1, 1, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_c1idk"]
+noise_type = 3
+frequency = 0.0179
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_v8spm"]
+noise = SubResource("FastNoiseLite_c1idk")
+color_ramp = SubResource("Gradient_3vohx")
+
+[node name="OverworldPlanet" type="Area2D" unique_id=804912787]
+script = ExtResource("1_p0woi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1573712006]
+visible = false
+shape = SubResource("CircleShape2D_qm6g0")
+
+[node name="PlanetBase" type="Sprite2D" parent="." unique_id=1016447014]
+self_modulate = Color(0, 0.29999995, 1, 1)
+clip_children = 2
+texture = SubResource("GradientTexture2D_wwcdr")
+
+[node name="Land" type="Sprite2D" parent="PlanetBase" unique_id=843479033]
+texture = SubResource("NoiseTexture2D_r7gin")
+
+[node name="Clouds" type="Sprite2D" parent="PlanetBase" unique_id=932338716]
+texture = SubResource("NoiseTexture2D_v8spm")

@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://wo0cqjbi7un3"]
-
-[ext_resource type="PackedScene" uid="uid://cdmpxskr41i5j" path="res://world/tiles_hex/hex.tscn" id="1_i8n37"]
-
-[node name="Hex" unique_id=990413583 instance=ExtResource("1_i8n37")]
-uv = PackedVector2Array(31.999994, -1.9073486e-06, 63.999992, 15.999998, 63.999992, 48, 31.999994, 64, -5.722046e-06, 48, -5.722046e-06, 15.999998)
-terrain = 4
