@@ -1,9 +1,5 @@
 [gd_scene format=3 uid="uid://dkxw47o6iui8r"]
 
-[ext_resource type="PackedScene" uid="uid://cceqd487bc2ak" path="res://world/overworld_planet.tscn" id="1_vqr3w"]
-
 [node name="Overworld" type="Node2D" unique_id=1120571415]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=183223178]
-
-[node name="OverworldPlanet" parent="." unique_id=804912787 instance=ExtResource("1_vqr3w")]
