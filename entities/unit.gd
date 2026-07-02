@@ -15,17 +15,28 @@ class TurnAction:
 	var technique:BattleTechnique
 	var target:Variant
 	var owner:Unit
-	func _init(init_owner:Unit, init_technique=null) -> void:
+	func _init(init_owner:Unit, init_technique=load("uid://dagu5nkeqlqr4")) -> void:
 		owner = init_owner
 		technique = init_technique
-	func activate():
-		if is_instance_valid(target) and target.is_inside_tree():
-			technique.activate(owner,target,CombatMechanics.charge_usage(technique,owner.types))
+	func create_context() -> CombatMechanics.Context:
+		var ctx:CombatMechanics.Context = CombatMechanics.Context.new()
+		ctx.source = owner
+		if target is Vector2i:
+			ctx.target_location = target
+		elif target is Unit:
+			ctx.target_units.append(target)
+		else:
+			target = owner #self target fallback? For now.
+		return ctx
+	func complete_turn():
+		owner.technique_charges[technique] -= CombatMechanics.charge_usage(technique,owner.types)
 
-@export var unit_name:String = "Combatant"
+@export var display_name:String = "Combatant"
+@export var subtitle:String = ""
 @export var types:Array[StringName] = []
 @export var base_techniques:Array[BattleTechnique]
-
+@export var battle_sprite:Texture2D
+@export var ability:UnitAbility
 @export var attribute_base:PackedInt32Array = [100,100,100,100,100,100,100]
 @export var attribute_bonus:PackedInt32Array = [0,0,0,0,0,0,0]
 @export var attribute_modifier:PackedInt32Array = [0,0,0,0,0,0,0]
@@ -34,18 +45,18 @@ class TurnAction:
 	set(new):
 		if new < hp:
 			print_debug("%s recieved %s damage" % [self.name,hp-new])
+		hp = max(0,new)
 		hp_changed.emit(hp)
-		hp = clampi(new,0, get_attribute(Attribute.HP))
 
 var technique_charges:Dictionary[BattleTechnique,int]
-var next_action:TurnAction
 var active_effects:Dictionary[BattleEffectPersistent,int] = {}
-var control_type:StringName = &"player"
+@export var control_type:StringName = Constants.PLAYER_GROUP
 
 @export_flags("Targetable", "Active") var battle_flags:int = 11
 
 @warning_ignore_start("integer_division")
 @onready var default_action = TurnAction.new(self, load("uid://dagu5nkeqlqr4"))
+@onready var next_action:TurnAction = default_action
 
 
 #region Attributes
@@ -155,18 +166,6 @@ func on_finalize_turn() -> void:
 		GameManager.game_interface.alert(data)
 		get_tree().current_scene.turn_ready = false
 
-#endregion
-#region Effect Handling
-func execute_new_effect(source:Unit, new_fx:BattleEffect,type:StringName="")->bool:
-	var check:bool = true
-	for entry:BattleEffectPersistent in active_effects:
-		check = entry.check(new_fx,type)
-		if not check:
-			break
-	if check:
-		new_fx.execute(source,self)
-	return check
-	
 #endregion
 
 func get_position() -> Variant:

@@ -53,4 +53,10 @@ static func process_unit_effects(turn_idx:int, unit:Unit):
 			unit.active_effects.erase(effect)
 		else:
 			effect.tick(unit)
-	
+
+
+class Context:
+	var source:Unit
+	var target_location:Vector2i
+	var target_units:Array[Unit]
+	var effect_params:Dictionary = {&"power":0}
