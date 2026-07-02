@@ -8,7 +8,8 @@ static var hp_style_mid:StyleBox = load("uid://d3rh8oscn2n3y")
 static var hp_style_low:StyleBox = load("uid://b70prt3bdufve")
 
 func on_update(hp):
-	value = get_parent().hp
+	var tween := create_tween()
+	tween.tween_property(self,^"value",hp,1)
 	add_theme_stylebox_override(&"fill", color_bar(value/max_value))
 
 func color_bar(hp_percent:float) -> StyleBox:

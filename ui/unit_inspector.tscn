@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://ctm1dywctee5u"]
+[gd_scene format=3 uid="uid://cjwgaxnrng0jb"]
 
-[ext_resource type="Theme" uid="uid://v0ph6goeqn0u" path="res://data/battle_theme.tres" id="1_owsuq"]
-[ext_resource type="Texture2D" uid="uid://yhbmlpwrnm48" path="res://texture/auteru_portrait.png" id="2_6ccv2"]
-[ext_resource type="Script" uid="uid://bgdb2huhcikeq" path="res://ui/character_inspector.gd" id="2_7ir13"]
-[ext_resource type="Material" uid="uid://bmkuayydt1i7a" path="res://ui/subtract_panel_material.tres" id="2_oaf66"]
+[ext_resource type="Theme" uid="uid://v0ph6goeqn0u" path="res://data/battle_theme.tres" id="1_falrr"]
+[ext_resource type="Script" uid="uid://bgdb2huhcikeq" path="res://ui/unit_inspector.gd" id="2_ukj4q"]
+[ext_resource type="Material" uid="uid://bmkuayydt1i7a" path="res://ui/subtract_panel_material.tres" id="3_2wuvn"]
+[ext_resource type="Texture2D" uid="uid://yhbmlpwrnm48" path="res://texture/auteru_portrait.png" id="4_3tam0"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7ir13"]
 blend_mode = 3
@@ -56,7 +56,7 @@ expand_margin_bottom = 4.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jx1ty"]
 
-[node name="CharacterInspector" type="PanelContainer" unique_id=1385153129]
+[node name="UnitInspector" type="PanelContainer" unique_id=1385153129]
 clip_children = 2
 material = SubResource("CanvasItemMaterial_7ir13")
 anchors_preset = 15
@@ -64,8 +64,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_owsuq")
-script = ExtResource("2_7ir13")
+theme = ExtResource("1_falrr")
+script = ExtResource("2_ukj4q")
 
 [node name="BackgroundColor" type="ColorRect" parent="." unique_id=874090497]
 unique_name_in_owner = true
@@ -83,7 +83,7 @@ layout_mode = 2
 columns = 3
 
 [node name="PortraitContainer" type="PanelContainer" parent="MarginContainer/InfoGrid" unique_id=215513837]
-material = ExtResource("2_oaf66")
+material = ExtResource("3_2wuvn")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -92,11 +92,11 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_oaf66")
 [node name="Portrait" type="TextureRect" parent="MarginContainer/InfoGrid/PortraitContainer" unique_id=1390070212]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("2_6ccv2")
+texture = ExtResource("4_3tam0")
 expand_mode = 5
 
 [node name="MiddleContainer" type="PanelContainer" parent="MarginContainer/InfoGrid" unique_id=1379673243]
-material = ExtResource("2_oaf66")
+material = ExtResource("3_2wuvn")
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7ir13")
 
@@ -270,7 +270,7 @@ text = "110"
 horizontal_alignment = 1
 
 [node name="DescriptionContainer" type="PanelContainer" parent="MarginContainer/InfoGrid" unique_id=751465375]
-material = ExtResource("2_oaf66")
+material = ExtResource("3_2wuvn")
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_oaf66")

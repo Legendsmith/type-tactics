@@ -2,7 +2,6 @@
 
 [ext_resource type="Theme" uid="uid://v0ph6goeqn0u" path="res://data/battle_theme.tres" id="1_dgdf5"]
 [ext_resource type="Script" uid="uid://bdgjrwbguq6de" path="res://ui/battle_interface.gd" id="2_dgdf5"]
-[ext_resource type="PackedScene" uid="uid://d18mrr8fdgs57" path="res://ui/unit_battle_display.tscn" id="3_iqia2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dgdf5"]
 bg_color = Color(1, 1, 1, 1)
@@ -41,15 +40,6 @@ layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 0
 
-[node name="UnitBattleDisplay" parent="VBoxContainer/EnemyContainer" unique_id=1162663328 instance=ExtResource("3_iqia2")]
-layout_mode = 2
-
-[node name="UnitBattleDisplay2" parent="VBoxContainer/EnemyContainer" unique_id=1509232706 instance=ExtResource("3_iqia2")]
-layout_mode = 2
-
-[node name="UnitBattleDisplay3" parent="VBoxContainer/EnemyContainer" unique_id=207267869 instance=ExtResource("3_iqia2")]
-layout_mode = 2
-
 [node name="TopUIArea" type="HBoxContainer" parent="VBoxContainer" unique_id=1725570141]
 layout_mode = 2
 size_flags_vertical = 3
@@ -86,15 +76,6 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 8
-
-[node name="UnitBattleDisplay2" parent="VBoxContainer/TopUIArea/PlayerContainer" unique_id=1099678947 instance=ExtResource("3_iqia2")]
-layout_mode = 2
-
-[node name="UnitBattleDisplay3" parent="VBoxContainer/TopUIArea/PlayerContainer" unique_id=1665163923 instance=ExtResource("3_iqia2")]
-layout_mode = 2
-
-[node name="UnitBattleDisplay4" parent="VBoxContainer/TopUIArea/PlayerContainer" unique_id=68260535 instance=ExtResource("3_iqia2")]
-layout_mode = 2
 
 [node name="BattleBarMargin" type="MarginContainer" parent="VBoxContainer" unique_id=841507245]
 layout_mode = 2
