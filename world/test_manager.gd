@@ -3,6 +3,7 @@ extends Node
 @export var target:Unit
 
 func _ready() -> void:
+	print(CombatMechanics)
 	if actor:
 		actor.full_refresh()
 	if target:

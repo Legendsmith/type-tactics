@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="BattleEffectPersistent" format=3 uid="uid://y72hj2u0tlen"]
+
+[ext_resource type="Script" uid="uid://b5ndkxkr84bsk" path="res://scripts/battle_effect_persistent.gd" id="1_tp8a8"]
+
+[resource]
+script = ExtResource("1_tp8a8")
+metadata/_custom_type_script = "uid://b5ndkxkr84bsk"
