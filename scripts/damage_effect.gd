@@ -20,10 +20,11 @@ func apply(context:CombatMechanics.Context):
 	for target:Unit in context.target_units:
 		print_debug("Attempting to apply damage, from %s to %s" % [context.source,target])
 		var passed:bool = true
+		var damage = CombatMechanics.calc_damage(context.source.get_attribute(base_attribute),target.get_attribute(target_attribute),context.effect_params[&"power"])
+		context.effect_params[&"damage"] = damage
 		for persistent_effect:BattleEffectPersistent in target.active_effects.keys():
 			passed = persistent_effect.effect_interaction(self,context)
 		if passed:
-			var damage = CombatMechanics.calc_damage(context.source.get_attribute(base_attribute),target.get_attribute(target_attribute),context.effect_params[&"power"])
 			print_debug("Damage is: ", damage)
 			target.hp -= damage
 			any_success = true

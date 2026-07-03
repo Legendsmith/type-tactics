@@ -45,8 +45,12 @@ class TurnAction:
 	set(new):
 		if new < hp:
 			print_debug("%s recieved %s damage" % [self.name,hp-new])
-		hp = max(0,new)
+		hp = clampi(new,0,get_attribute(Attribute.HP))
 		hp_changed.emit(hp)
+
+var min_hp:int = 0
+
+
 
 var technique_charges:Dictionary[BattleTechnique,int]
 var active_effects:Dictionary[BattleEffectPersistent,int] = {}
@@ -57,7 +61,6 @@ var active_effects:Dictionary[BattleEffectPersistent,int] = {}
 @warning_ignore_start("integer_division")
 @onready var default_action = TurnAction.new(self, load("uid://dagu5nkeqlqr4"))
 @onready var next_action:TurnAction = default_action
-
 
 #region Attributes
 ## Get attribute by its enum index. This is the normal way to retrieve an attribute.
