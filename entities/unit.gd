@@ -48,6 +48,10 @@ class TurnAction:
 		hp = clampi(new,0,get_attribute(Attribute.HP))
 		hp_changed.emit(hp)
 
+var max_hp:int:
+	get:
+		return get_attribute(Attribute.HP)
+
 var technique_charges:Dictionary[BattleTechnique,int]
 var active_effects:Dictionary[BattleEffectPersistent,int] = {}
 @export var control_type:StringName = Constants.PLAYER_GROUP

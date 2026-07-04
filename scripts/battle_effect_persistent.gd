@@ -11,3 +11,7 @@ extends BattleEffect
 
 func exit(unit:Unit):
 	pass
+
+## For effects that modify other outgoing effects.
+func effect_interaction_source(_new_effect:BattleEffect,_context:CombatMechanics.Context) -> bool:
+	return true
