@@ -48,10 +48,6 @@ class TurnAction:
 		hp = clampi(new,0,get_attribute(Attribute.HP))
 		hp_changed.emit(hp)
 
-var min_hp:int = 0
-
-
-
 var technique_charges:Dictionary[BattleTechnique,int]
 var active_effects:Dictionary[BattleEffectPersistent,int] = {}
 @export var control_type:StringName = Constants.PLAYER_GROUP
@@ -132,6 +128,7 @@ func battle_setup():
 func refresh_hp():
 	hp = CombatMechanics.calc_attribute(attribute_base[Attribute.HP] + attribute_bonus[Attribute.HP],attribute_modifier[Attribute.HP])
 
+## Refreshes all charges in the charges of techniques in the Base Techniques array.
 func refresh_charges():
 	for tech:BattleTechnique in base_techniques:
 		technique_charges[tech] = tech.max_charges
@@ -140,6 +137,14 @@ func full_refresh():
 	refresh_hp()
 	refresh_charges()
 #endregion 
+
+#region Damage
+
+func recieve_damage(damage:int):
+	hp = hp - damage
+
+
+#endregion
 
 #region Techniques
 func get_technique_uses() -> Dictionary:

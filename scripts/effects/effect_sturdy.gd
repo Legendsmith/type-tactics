@@ -1,11 +1,10 @@
 extends BattleEffectPersistent
 
-func effect_interaction(new_effect:BattleEffect,context:CombatMechanics.Context) -> bool:
+func effect_interaction(_new_effect:BattleEffect,_context:CombatMechanics.Context) -> bool:
 	return true
 
-func tick(unit:Unit):
-	if unit.hp == 0:
-		unit.hp = 1
+func tick(_unit:Unit):
+	pass
 
 func apply(context:CombatMechanics.Context) -> bool:
 	for target:Unit in context.target_units:

@@ -19,13 +19,17 @@ func apply(context:CombatMechanics.Context):
 
 	for target:Unit in context.target_units:
 		print_debug("Attempting to apply damage, from %s to %s" % [context.source,target])
+		var min_hp = 0
 		var passed:bool = true
 		var damage = CombatMechanics.calc_damage(context.source.get_attribute(base_attribute),target.get_attribute(target_attribute),context.effect_params[&"power"])
 		context.effect_params[&"damage"] = damage
 		for persistent_effect:BattleEffectPersistent in target.active_effects.keys():
 			passed = persistent_effect.effect_interaction(self,context)
+			# This feels jank af but this is the logic for applying damage so it goes her\e.
+			if persistent_effect.effect_type == &"sturdy" and target.hp == target.get_attribute(Unit.Attribute.HP):
+				min_hp = 1
 		if passed:
 			print_debug("Damage is: ", damage)
-			target.hp -= damage
+			target.hp = max(min_hp,target.hp - damage)
 			any_success = true
 	return any_success
