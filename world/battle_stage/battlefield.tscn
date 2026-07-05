@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cepft2joco8rq" path="res://world/battle_stage/battlefield.gd" id="1_fiqxe"]
 [ext_resource type="Texture2D" uid="uid://d2qt35eb6apvm" path="res://texture/spritesheet.png" id="2_a37b4"]
+[ext_resource type="Script" uid="uid://d308cj71ck56l" path="res://world/battle_stage/test.gd" id="3_a37b4"]
+[ext_resource type="Texture2D" uid="uid://82ak3bp25v1c" path="res://icon.svg" id="3_e5432"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uvr5w"]
 texture = ExtResource("2_a37b4")
@@ -16,6 +18,8 @@ texture_region_size = Vector2i(128, 128)
 7:0/0 = 0
 8:0/0 = 0
 9:0/0 = 0
+9:0/0/terrain_set = 0
+9:0/0/terrain = 0
 10:0/0 = 0
 0:1/0 = 0
 1:1/0 = 0
@@ -127,16 +131,25 @@ tile_shape = 1
 tile_layout = 5
 tile_size = Vector2i(128, 64)
 terrain_set_0/mode = 0
-terrain_set_0/terrain_0/name = "ground 0"
+terrain_set_0/terrain_0/name = "ground"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 terrain_set_0/terrain_1/name = "grass"
 terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
-sources/3 = SubResource("TileSetAtlasSource_uvr5w")
+custom_data_layer_0/name = "custom_data"
+custom_data_layer_0/type = 27
+sources/1 = SubResource("TileSetAtlasSource_uvr5w")
 
 [node name="Battlefield" type="Node2D" unique_id=43219959]
 script = ExtResource("1_fiqxe")
+dimensions = Vector2i(6, 5)
 
 [node name="TerrainLayer" type="TileMapLayer" parent="." unique_id=1059616104]
-tile_map_data = PackedByteArray("AAD+////AwAJAAAAAAD/////AwAJAAAAAAAAAP//AwAJAAAAAAAAAAAAAwAJAAAAAAAAAAEAAwAJAAAAAAD//wEAAwAJAAAAAAD+/wEAAwAJAAAAAAD+/wAAAwAJAAAAAAD//wAAAwAJAAAAAAA=")
+position = Vector2(-96, -176)
+tile_map_data = PackedByteArray("AAAAAAAAAQAJAAAAAAABAAAAAQAJAAAAAAABAAEAAQAJAAAAAAAAAAEAAQAJAAAAAAABAAIAAQAJAAAAAAAAAAIAAQAJAAAAAAABAAMAAQAJAAAAAAAAAAMAAQAJAAAAAAABAAQAAQAJAAAAAAAAAAQAAQAJAAAAAAACAAQAAQAJAAAAAAACAAMAAQAJAAAAAAACAAIAAQAJAAAAAAACAAEAAQAJAAAAAAACAAAAAQAJAAAAAAADAAQAAQAJAAAAAAADAAMAAQAJAAAAAAADAAIAAQAJAAAAAAADAAEAAQAJAAAAAAADAAAAAQAJAAAAAAAEAAQAAQAJAAAAAAAEAAMAAQAJAAAAAAAEAAIAAQAJAAAAAAAEAAEAAQAJAAAAAAAEAAAAAQAJAAAAAAAFAAQAAQAJAAAAAAAFAAMAAQAJAAAAAAAFAAIAAQAJAAAAAAAFAAEAAQAJAAAAAAAFAAAAAQAJAAAAAAA=")
 tile_set = SubResource("TileSet_4ilqg")
 navigation_enabled = false
+
+[node name="Test" type="Sprite2D" parent="." unique_id=1866966156]
+scale = Vector2(0.328125, 0.328125)
+texture = ExtResource("3_e5432")
+script = ExtResource("3_a37b4")
