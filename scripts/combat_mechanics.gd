@@ -57,8 +57,23 @@ static func calc_damage(attack:int,defense:int, power:int) -> int:
 
 static func process_unit_effects(turn_idx:int, unit:Unit): 
 	for effect:BattleEffectPersistent in unit.active_effects.keys():
+		effect.tick(unit)
 		if effect.lifetime + unit.active_effects[effect] < turn_idx:
+			effect.exit(unit) #cleanup
 			unit.active_effects.erase(effect)
-		else:
-			effect.tick(unit)
+			
+
+class Context:
+	var source:Unit
+	var target_location:Vector2i
+	var target_units:Array[Unit]
+	var effect_params:Dictionary = {&"power":0,&"min_hp":0}
 	
+	func duplicate() ->Context:
+		var copy:Context = Context.new()
+		copy.source = source
+		copy.target_location = target_location
+		copy.target_units = target_units
+		copy.effect_params = effect_params.duplicate()
+		return copy
+
