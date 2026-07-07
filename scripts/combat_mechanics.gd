@@ -5,7 +5,15 @@ const MONOTYPE_CHARGE_USE := 2
 
 
 enum TargetTypes {
-	SELF,NOT_SELF,ENEMY,ALLY,TILE,ANY
+	UNDEFINED = 0,
+	SELF = 1,
+	ENEMY = 2,
+	ALLY = 4,
+	TILE = 8,
+	
+	# Combination masks
+	NOT_SELF = ENEMY | ALLY | TILE,
+	ANY = SELF | ENEMY | ALLY | TILE,
 }
 
 ## Attribute modifier scale, ranges from -6 to +6.

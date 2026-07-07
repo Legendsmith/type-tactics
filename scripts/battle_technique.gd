@@ -10,11 +10,13 @@ const NONE_ACTION := "none"
 ## actual uses are half this.
 @export var max_charges: int = 8
 @export var tags:Array[StringName] = []
-@export var valid_target:CombatMechanics.TargetTypes
+@export_flags("Self", "Enemy", "Ally", "Tile", "Any:15") 
+var valid_target: int
 @export var effect:BattleEffect
 ## Depletes a charge when the move activates, regardless of if it hits. If false it only depletes a charge if it hits.
 @export var deplete_on_activate:bool = true
 
+@export var pattern: AttackPatternResource
 
 func activate(user:Unit,target:Node, charge_usage:int):
 	var success:bool = target.execute_new_effect(user, effect, type)
