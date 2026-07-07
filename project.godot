@@ -20,6 +20,7 @@ GUIDE="*uid://p2jwrgjcbexr"
 UnlockableContent="*uid://p3ilsmea4pp7"
 GameManager="*uid://or5hd5dlt0kq"
 GameSettings="*uid://cowb0y3ulunmj"
+Dialogic="*uid://ds2q0uclmolvu"
 
 [dialogic]
 
@@ -39,7 +40,7 @@ project/assembly_name="type-tactics"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/guide/plugin.cfg", "res://addons/scene_reference/plugin.cfg", "res://addons/unlockable_content/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/guide/plugin.cfg", "res://addons/scene_reference/plugin.cfg", "res://addons/unlockable_content/plugin.cfg")
 
 [file_customization]
 
