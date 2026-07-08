@@ -1,6 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://v0ph6goeqn0u"]
 
-[ext_resource type="FontFile" uid="uid://iydw2xhpferi" path="res://data/ByteBounce.ttf" id="1_0yory"]
+[ext_resource type="FontFile" uid="uid://iydw2xhpferi" path="res://ui/ByteBounce.ttf" id="1_afb8y"]
+[ext_resource type="StyleBox" uid="uid://0kwysfv4rmwc" path="res://ui/mon_panel_white.tres" id="2_ch8y1"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0yory"]
 size = Vector2(24, 24)
@@ -38,18 +39,6 @@ expand_margin_right = 12.0
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_0yory"]
 thickness = 4
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dgdf5"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.2, 0.2, 0.2, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0yory"]
 content_margin_left = 4.0
 
@@ -60,20 +49,8 @@ content_margin_left = 4.0
 thickness = 4
 vertical = true
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0yory"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.2, 0.2, 0.2, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
 [resource]
-default_font = ExtResource("1_0yory")
+default_font = ExtResource("1_afb8y")
 default_font_size = 48
 AlertButton/base_type = &"Button"
 AlertButton/colors/font_color = Color(1, 0.8156863, 0.14509805, 1)
@@ -102,16 +79,16 @@ HeaderMedium/constants/shadow_offset_y = 1
 HeaderMedium/constants/shadow_outline_size = 4
 HeaderMedium/font_sizes/font_size = 60
 HeaderSmall/font_sizes/font_size = 40
-ItemList/fonts/font = ExtResource("1_0yory")
+ItemList/fonts/font = ExtResource("1_afb8y")
 Label/colors/font_outline_color = Color(0, 0, 0, 1)
 Label/colors/font_shadow_color = Color(0, 0, 0, 1)
 Label/constants/shadow_outline_size = 1
-Label/fonts/font = ExtResource("1_0yory")
+Label/fonts/font = ExtResource("1_afb8y")
 MarginContainer/constants/margin_bottom = 8
 MarginContainer/constants/margin_left = 8
 MarginContainer/constants/margin_right = 8
 MarginContainer/constants/margin_top = 8
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_dgdf5")
+PanelContainer/styles/panel = ExtResource("2_ch8y1")
 RichHeaderLarge/base_type = &"RichTextLabel"
 RichHeaderLarge/colors/font_shadow_color = Color(0, 0, 0, 1)
 RichHeaderLarge/constants/outline_size = 8
@@ -155,4 +132,4 @@ RichTextLabel/styles/focus = SubResource("StyleBoxEmpty_0yory")
 RichTextLabel/styles/normal = SubResource("StyleBoxEmpty_henaf")
 VSeparator/styles/separator = SubResource("StyleBoxLine_henaf")
 WhitePanel/base_type = &"PanelContainer"
-WhitePanel/styles/panel = SubResource("StyleBoxFlat_0yory")
+WhitePanel/styles/panel = ExtResource("2_ch8y1")

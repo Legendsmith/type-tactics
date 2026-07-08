@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dysomavkjoi23"]
 
-[ext_resource type="Theme" uid="uid://v0ph6goeqn0u" path="res://data/battle_theme.tres" id="1_dgdf5"]
+[ext_resource type="Theme" uid="uid://v0ph6goeqn0u" path="res://ui/battle_theme.tres" id="1_dgdf5"]
 [ext_resource type="Script" uid="uid://bdgjrwbguq6de" path="res://ui/battle_interface.gd" id="2_dgdf5"]
 [ext_resource type="PackedScene" uid="uid://d18mrr8fdgs57" path="res://ui/unit_battle_display.tscn" id="3_iqia2"]
 

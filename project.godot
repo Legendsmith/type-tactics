@@ -26,7 +26,12 @@ Dialogic="*uid://ds2q0uclmolvu"
 
 directories/dch_directory={}
 directories/dtl_directory={}
-layout/style_directory={}
+layout/style_directory={
+"dialogic_style_mon": "res://ui/dialogic_style_mon.tres",
+"dialogic_style_vn": "res://ui/dialogic_style_vn.tres"
+}
+layout/style_list=["res://ui/dialogic_style_mon.tres", "res://ui/dialogic_style_vn.tres"]
+layout/default_style=""
 
 [display]
 

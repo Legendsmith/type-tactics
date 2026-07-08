@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://iydw2xhpferi"
-path="res://.godot/imported/ByteBounce.ttf-7551f17155ef365cb2c5333b32d878ee.fontdata"
+path="res://.godot/imported/ByteBounce.ttf-8e22c21a2aeb9e30dd2313b9014920b7.fontdata"
 
 [deps]
 
-source_file="res://data/ByteBounce.ttf"
-dest_files=["res://.godot/imported/ByteBounce.ttf-7551f17155ef365cb2c5333b32d878ee.fontdata"]
+source_file="res://ui/ByteBounce.ttf"
+dest_files=["res://.godot/imported/ByteBounce.ttf-8e22c21a2aeb9e30dd2313b9014920b7.fontdata"]
 
 [params]
 
