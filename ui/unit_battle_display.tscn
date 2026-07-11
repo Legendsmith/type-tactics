@@ -27,6 +27,7 @@ text = "Unit Name "
 [node name="HpBar" type="ProgressBar" parent="MarginContainer/VBoxContainer" unique_id=1643199614]
 unique_name_in_owner = true
 layout_mode = 2
+value = 100.0
 script = ExtResource("2_iiolx")
 
 [node name="ActionLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1145498791]
