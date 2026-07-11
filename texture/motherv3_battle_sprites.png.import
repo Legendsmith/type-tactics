@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmij6o28vnanc"
-path="res://.godot/imported/v_front.png-e762c565da443c711d1bcef7d8c6aac3.ctex"
+uid="uid://ew77vei43c3t"
+path="res://.godot/imported/motherv3_battle_sprites.png-022f321b14e1dfe8e26452ce6dd86feb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://texture/v_front.png"
-dest_files=["res://.godot/imported/v_front.png-e762c565da443c711d1bcef7d8c6aac3.ctex"]
+source_file="res://texture/motherv3_battle_sprites.png"
+dest_files=["res://.godot/imported/motherv3_battle_sprites.png-022f321b14e1dfe8e26452ce6dd86feb.ctex"]
 
 [params]
 

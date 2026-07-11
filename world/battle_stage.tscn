@@ -18,24 +18,22 @@ size = Vector2i(1920, 1080)
 
 [node name="BattleStage3d" parent="SubViewport" unique_id=1722786175 instance=ExtResource("4_2lwrw")]
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=2013584885]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -256.0
-offset_top = -256.0
-offset_right = 256.0
-offset_bottom = 256.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = SubResource("ViewportTexture_no2cn")
+[node name="BattleManager" type="Node" parent="." unique_id=248434062 node_paths=PackedStringArray("actor", "target")]
+script = ExtResource("6_uvr5w")
+actor = NodePath("")
+target = NodePath("")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1878710175]
 
-[node name="BattleManager" type="Node" parent="." unique_id=248434062]
-script = ExtResource("6_uvr5w")
+[node name="Background" type="TextureRect" parent="Camera2D" unique_id=2013584885]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("ViewportTexture_no2cn")
 
 [node name="PlayerGrid" type="TileMapLayer" parent="." unique_id=878440425]
 y_sort_enabled = true

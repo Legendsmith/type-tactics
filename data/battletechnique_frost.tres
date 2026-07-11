@@ -1,12 +1,11 @@
 [gd_resource type="Resource" script_class="BattleTechnique" format=3 uid="uid://bq6cc08n6066e"]
 
 [ext_resource type="Script" uid="uid://3afacnxn3fx0" path="res://scripts/damage_effect.gd" id="1_abxml"]
+[ext_resource type="Script" uid="uid://cq6gmkksbsde2" path="res://scripts/battle_effect.gd" id="1_netv3"]
 [ext_resource type="Script" uid="uid://btssfmuejunjh" path="res://scripts/battle_technique.gd" id="2_netv3"]
 
-[sub_resource type="Resource" id="Resource_rdu4e"]
+[sub_resource type="Resource" id="Resource_tv7n6"]
 script = ExtResource("1_abxml")
-power = 90
-target_attribute = 4
 metadata/_custom_type_script = "uid://3afacnxn3fx0"
 
 [resource]
@@ -15,5 +14,5 @@ technique_name = "Frost"
 type = &"ice"
 max_charges = 16
 valid_target = 2
-effect = SubResource("Resource_rdu4e")
+effects = Array[ExtResource("1_netv3")]([SubResource("Resource_tv7n6")])
 metadata/_custom_type_script = "uid://btssfmuejunjh"
