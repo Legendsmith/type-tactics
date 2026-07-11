@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bm03ut2gnfrq8"]
+
+[ext_resource type="Script" uid="uid://duwkf4lo44nmy" path="res://entities/battle_unit.gd" id="1_p502v"]
+
+[node name="BattleUnit" type="Node2D" unique_id=48206841]
+script = ExtResource("1_p502v")
+
+[node name="MainSprite" type="Sprite2D" parent="." unique_id=2112092373]
+unique_name_in_owner = true
+offset = Vector2(0, -256)
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=679686447]
