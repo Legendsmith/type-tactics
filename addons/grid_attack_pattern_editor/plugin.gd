@@ -9,7 +9,7 @@ func _enter_tree() -> void:
 	dock.title = "Patern Editor"
 	dock.default_slot = EditorDock.DOCK_SLOT_BOTTOM
 	
-	grid_editor = preload("uid://b2tqdxd22yotc").new()
+	#grid_editor = preload("uid://b2tqdxd22yotc").new()
 	dock.add_child(grid_editor)
 	
 	add_dock(dock)
