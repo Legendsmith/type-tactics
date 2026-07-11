@@ -5,7 +5,15 @@ const MONOTYPE_CHARGE_USE := 2
 
 
 enum TargetTypes {
-	SELF,NOT_SELF,ENEMY,ALLY,TILE,ANY
+	UNDEFINED = 0,
+	SELF = 1,
+	ENEMY = 2,
+	ALLY = 4,
+	TILE = 8,
+	
+	# Combination masks
+	NOT_SELF = ENEMY | ALLY | TILE,
+	ANY = SELF | ENEMY | ALLY | TILE,
 }
 
 ## Attribute modifier scale, ranges from -6 to +6.
@@ -55,9 +63,17 @@ static func process_unit_effects(turn_idx:int, unit:Unit):
 			unit.active_effects.erase(effect)
 			
 
-
 class Context:
 	var source:Unit
 	var target_location:Vector2i
 	var target_units:Array[Unit]
 	var effect_params:Dictionary = {&"power":0,&"min_hp":0}
+	
+	func duplicate() ->Context:
+		var copy:Context = Context.new()
+		copy.source = source
+		copy.target_location = target_location
+		copy.target_units = target_units
+		copy.effect_params = effect_params.duplicate()
+		return copy
+

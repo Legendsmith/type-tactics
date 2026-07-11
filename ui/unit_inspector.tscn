@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cjwgaxnrng0jb"]
 
-[ext_resource type="Theme" uid="uid://v0ph6goeqn0u" path="res://data/battle_theme.tres" id="1_falrr"]
+[ext_resource type="Theme" uid="uid://v0ph6goeqn0u" path="res://ui/battle_theme.tres" id="1_owsuq"]
 [ext_resource type="Script" uid="uid://bgdb2huhcikeq" path="res://ui/unit_inspector.gd" id="2_ukj4q"]
 [ext_resource type="Material" uid="uid://bmkuayydt1i7a" path="res://ui/subtract_panel_material.tres" id="3_2wuvn"]
 [ext_resource type="Texture2D" uid="uid://yhbmlpwrnm48" path="res://texture/auteru_portrait.png" id="4_3tam0"]

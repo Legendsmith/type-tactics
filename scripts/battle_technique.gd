@@ -16,6 +16,7 @@ const NONE_ACTION := "none"
 ## Depletes a charge when the move activates, regardless of if it hits. If false it only depletes a charge if it hits.
 @export var deplete_on_activate:bool = true
 
+@export var pattern: AttackPatternResource
 
 func activate(context:CombatMechanics.Context):
 	#var success:bool = target.execute_new_effect(user, effect, type)
