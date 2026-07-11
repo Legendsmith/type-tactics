@@ -3,11 +3,7 @@
 [ext_resource type="Script" uid="uid://bw03ybtcixv3l" path="res://world/battle_stage.gd" id="1_k7dgi"]
 [ext_resource type="PackedScene" uid="uid://bnmpjfckkxley" path="res://world/battle_stage_3d.tscn" id="4_2lwrw"]
 [ext_resource type="TileSet" uid="uid://cse736qvne48i" path="res://world/isometric_tiles.tres" id="4_no2cn"]
-[ext_resource type="Script" uid="uid://8ka0wxflf8t4" path="res://entities/unit_2d.gd" id="5_uvr5w"]
-[ext_resource type="PackedScene" uid="uid://d4gnc7iekxly7" path="res://entities/unit_motherv3.tscn" id="6_j3dxi"]
 [ext_resource type="Script" uid="uid://b3xsgaerdumvh" path="res://world/test_manager.gd" id="6_uvr5w"]
-[ext_resource type="Script" uid="uid://btssfmuejunjh" path="res://scripts/battle_technique.gd" id="7_rs6bi"]
-[ext_resource type="Resource" uid="uid://bq6cc08n6066e" path="res://data/battletechnique_frost.tres" id="8_7xtgq"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_no2cn"]
 viewport_path = NodePath("SubViewport")
@@ -24,8 +20,8 @@ size = Vector2i(1920, 1080)
 
 [node name="BattleManager" type="Node" parent="." unique_id=248434062 node_paths=PackedStringArray("actor", "target")]
 script = ExtResource("6_uvr5w")
-actor = NodePath("../PlayerGrid/Motherv3/Unit")
-target = NodePath("../EnemyGrid/Motherv3/Unit")
+actor = NodePath("")
+target = NodePath("")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1878710175]
 
@@ -46,35 +42,9 @@ scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAIAAAAAAAAAAIAAAAIAAAAAAD//wAAAAAAAAAAAAD//wEAAAAKAAAAAAD//wIAAAAJAAAAAAD+/wAAAAAAAAAAAAD+/wEAAAAJAAAAAAD+/wIAAAAFAAAAAAA=")
 tile_set = ExtResource("4_no2cn")
 
-[node name="Motherv3" type="Node2D" parent="PlayerGrid" unique_id=799298724]
-position = Vector2(120.5, 68.5)
-script = ExtResource("5_uvr5w")
-
-[node name="Unit" parent="PlayerGrid/Motherv3" unique_id=1066319700 instance=ExtResource("6_j3dxi")]
-base_techniques = Array[ExtResource("7_rs6bi")]([ExtResource("8_7xtgq")])
-hp = 100
-
-[node name="Sprite2D" type="Sprite2D" parent="PlayerGrid/Motherv3" unique_id=999032260]
-scale = Vector2(0.25, 0.25)
-offset = Vector2(0, -256)
-hframes = 2
-
 [node name="EnemyGrid" type="TileMapLayer" parent="." unique_id=743206578]
 y_sort_enabled = true
 position = Vector2(-3, -253)
 scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=")
 tile_set = ExtResource("4_no2cn")
-
-[node name="Motherv3" type="Node2D" parent="EnemyGrid" unique_id=908095624]
-position = Vector2(129, 60.5)
-script = ExtResource("5_uvr5w")
-
-[node name="Unit" parent="EnemyGrid/Motherv3" unique_id=1996543693 instance=ExtResource("6_j3dxi")]
-hp = 100
-control_type = &"opponent"
-
-[node name="Sprite2D" type="Sprite2D" parent="EnemyGrid/Motherv3" unique_id=764901454]
-scale = Vector2(0.25, 0.25)
-offset = Vector2(0, -256)
-hframes = 2
