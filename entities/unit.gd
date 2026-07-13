@@ -6,6 +6,7 @@ signal update()
 const MIN_MODIFIER:int = -6
 const MAX_MODIFIER:int = 6
 const UNIT_GROUP := &"units"
+const MAX_EQUIP:int = 2
 
 enum Attribute {
 	HP, ATTACK, DEFENSE, SPECIAL_ATTACK, SPECIAL_DEFENSE, SPEED, SIZE
@@ -15,7 +16,7 @@ class TurnAction:
 	var technique:BattleTechnique
 	var target:Variant
 	var owner:Unit
-	func _init(init_owner:Unit, init_technique=load("uid://dagu5nkeqlqr4")) -> void:
+	func _init(init_owner:Unit, init_technique=load("uid://dagu5nkeqlqr4")) -> void: ## init technique should be none technique.
 		owner = init_owner
 		technique = init_technique
 	func create_context() -> CombatMechanics.Context:
@@ -40,6 +41,9 @@ class TurnAction:
 @export var attribute_base:PackedInt32Array = [100,100,100,100,100,100,100]
 @export var attribute_bonus:PackedInt32Array = [0,0,0,0,0,0,0]
 @export var attribute_modifier:PackedInt32Array = [0,0,0,0,0,0,0]
+@export var equipped_items:Array[EquipItem]
+var _max_equip:int = 2
+var dirty_attributes:bool = false
 
 @export var hp:int:
 	set(new):
@@ -111,18 +115,34 @@ var size:int:
 func call_bonuses():
 	attribute_bonus.fill(0)
 	recalculate_bonus.emit()
+	for item:EquipItem in equipped_items: ## Equipped items
+		var ctx:=CombatMechanics.Context.new()
+		ctx.target_units[0] = self
+		item.battle_start_effect.apply(ctx)
 
+func equip_item(item:EquipItem)->bool:
+	if equipped_items.size() >= _max_equip:
+		return false
+	else:
+		equipped_items.append(item)
+		item.on_equip(self)
+		return true
 
-func serialize_attributes(attribte_array:Array):
+func unequip_item(item:EquipItem):
+	item.on_unequip(self)
+	equipped_items.erase(item)
+
+func serialize_attributes(attribute_array:Array):
 	var serialized_dict:Dictionary = {}
-	for i in range(0,7):
-		serialized_dict[Attribute.keys()[i]] = attribte_array[i]
+	for i in range(attribute_array.size()):
+		serialized_dict[Attribute.keys()[i]] = attribute_array[i]
 	return serialized_dict
 
 #endregion 
-#region Setup and Healing/Refresh
+#region Setup, Items and Healing/Refresh
 func _ready():
 	add_to_group(UNIT_GROUP)
+
 
 func battle_setup():
 	call_bonuses()
@@ -146,7 +166,6 @@ func full_refresh():
 
 func recieve_damage(damage:int):
 	hp = hp - damage
-
 
 #endregion
 

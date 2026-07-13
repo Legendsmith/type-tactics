@@ -8,3 +8,4 @@ extends Resource
 @export var ability:Resource
 @export var base_techniques:Array[BattleTechnique]
 @export var attribute_base:PackedInt32Array = [100,100,100,100,100,100,100]
+@export var max_equip:int = 2

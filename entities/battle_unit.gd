@@ -1,7 +1,8 @@
 extends Unit
 
 func create_from_unit_def(def:UnitDef) -> void:
-	unit_name = def.unit_name
+	display_name = def.unit_name
+	_max_equip = def.max_equip
 	%MainSprite.texture = def.sprite
 	types = def.types
 	#ability = def.ability

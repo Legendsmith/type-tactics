@@ -1,5 +1,5 @@
 class_name EquipItem
-extends Node
+extends Resource
 ## Where can this be worn?
 @export var valid_locations:Array[StringName]
 ## Bonuses, if any
@@ -9,19 +9,20 @@ extends Node
 
 @export var battle_start_effect:Resource
 
-func setup():
-	owner.recalculate_bonus.connect()
-	owner.known_moves.append_array(granted_techniques)
+func on_equip(unit:Unit):
+	unit.recalculate_bonus.connect(apply_bonus)
+	unit.known_moves.append_array(granted_techniques)
 
-func apply_bonus():
+func apply_bonus(unit:Unit):
 	for key:Unit.Attribute in bonuses.keys():
-		owner.attribute_bonus[key] += bonuses[key]
+		unit.attribute_bonus[key] += bonuses[key]
 
-func apply_technique():
+func apply_technique(unit:Unit):
 	for tech:BattleTechnique in granted_techniques:
-		owner.technique_charges[tech] = tech.max_charges
+		unit.technique_charges[tech] = tech.max_charges
 
-func unequip(unit:Unit = owner):
+func on_unequip(unit:Unit):
 	for tech:BattleTechnique in granted_techniques:
 		if tech not in unit.base_techniques:
 			unit.technique_charges.erase(tech)
+		unit.recalculate_bonus.disconnect(apply_bonus)
