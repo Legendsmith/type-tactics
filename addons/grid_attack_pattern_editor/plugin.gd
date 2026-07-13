@@ -6,10 +6,11 @@ var grid_editor: Control
 
 func _enter_tree() -> void:
 	dock = EditorDock.new()
-	dock.title = "Patern Editor"
+	dock.title = "Pattern Editor"
 	dock.default_slot = EditorDock.DOCK_SLOT_BOTTOM
 	
 	#grid_editor = preload("uid://b2tqdxd22yotc").new()
+	grid_editor = preload("uid://qpom6ss73rdr").instantiate()
 	dock.add_child(grid_editor)
 	
 	add_dock(dock)

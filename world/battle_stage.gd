@@ -21,4 +21,3 @@ func add_unit(unit:Unit):
 	new_turn.connect(unit.on_new_turn)
 	finalize_turn.connect(unit.on_finalize_turn)
 	unit_added.emit(unit)
-
