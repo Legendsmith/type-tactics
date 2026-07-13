@@ -31,22 +31,24 @@ mouse_filter = 2
 texture = SubResource("ViewportTexture_no2cn")
 
 [node name="PlayerBattlefield" type="Node2D" parent="." unique_id=2005277955]
-position = Vector2(-515, 3)
+position = Vector2(-192, 96)
 scale = Vector2(2, 2)
 script = ExtResource("4_uvr5w")
 
 [node name="TerrainLayer" type="TileMapLayer" parent="PlayerBattlefield" unique_id=878440425]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAIAAAAAAAAAAIAAAAIAAAAAAD//wAAAAAAAAAAAAD//wEAAAAKAAAAAAD//wIAAAAJAAAAAAD+/wAAAAAAAAAAAAD+/wEAAAAJAAAAAAD+/wIAAAAFAAAAAAA=")
+position = Vector2(-64, -96)
+tile_map_data = PackedByteArray("AAAAAAAAAAACAAAAAAAAAAEAAAACAAAAAAAAAAIAAAAGAAAAAAACAAIAAAAGAAAAAAACAAEAAAADAAAAAAACAAAAAAADAAAAAAABAAIAAAAHAAAAAAABAAEAAAACAAAAAAABAAAAAAAHAAAAAAA=")
 tile_set = ExtResource("4_no2cn")
 
 [node name="EnemyBattlefield" type="Node2D" parent="." unique_id=1348137018]
-position = Vector2(-3, -253)
+position = Vector2(320, -160)
 scale = Vector2(2, 2)
 script = ExtResource("4_uvr5w")
 rank_orientation = 1
 
-[node name="EnemyGrid" type="TileMapLayer" parent="EnemyBattlefield" unique_id=743206578]
+[node name="TerrainLayer" type="TileMapLayer" parent="EnemyBattlefield" unique_id=743206578]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=")
+position = Vector2(-64, -96)
+tile_map_data = PackedByteArray("AAAAAAEAAAADAAAAAAAAAAIAAAAKAAAAAAABAAAAAAAIAAAAAAABAAEAAAAEAAAAAAABAAIAAAAHAAAAAAACAAAAAAAFAAAAAAACAAEAAAACAAAAAAACAAIAAAAHAAAAAAAAAAAAAAAHAAAAAAA=")
 tile_set = ExtResource("4_no2cn")
