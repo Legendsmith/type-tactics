@@ -14,9 +14,9 @@ const DEFAULT_TERRAIN: int = 0
 @warning_ignore("unused_private_class_variable")
 @export_tool_button("Redraw terrain") var _redraw_terrain_handler = redraw_terrain
 
-## Sets the direction that files are oriented, by default they are oriented from left to right.
+## Sets the direction that files (columns, x) are oriented, by default they are oriented from left to right.
 @export var file_orientation := Orientations.LOW_TO_HIGH
-## Sets the direction that files are oriented, by default they are oriented from top to bottom.
+## Sets the direction that ranks (rows, y) are oriented, by default they are oriented from top to bottom.
 @export var rank_orientation := Orientations.LOW_TO_HIGH
 ## Sets the dimension for the field
 @export var dimensions: Vector2i = Vector2i(3, 3): set = set_dimensions
