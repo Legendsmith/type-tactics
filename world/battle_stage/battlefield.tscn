@@ -1,9 +1,7 @@
 [gd_scene format=4 uid="uid://63nhp58ivalt"]
 
 [ext_resource type="Script" uid="uid://cepft2joco8rq" path="res://world/battle_stage/battlefield.gd" id="1_fiqxe"]
-[ext_resource type="Texture2D" uid="uid://d2qt35eb6apvm" path="res://texture/spritesheet.png" id="2_a37b4"]
-[ext_resource type="Script" uid="uid://d308cj71ck56l" path="res://world/battle_stage/test.gd" id="3_a37b4"]
-[ext_resource type="Texture2D" uid="uid://82ak3bp25v1c" path="res://icon.svg" id="3_e5432"]
+[ext_resource type="Texture2D" uid="uid://d2qt35eb6apvm" path="res://texture/terrain_spritesheet.png" id="2_a37b4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uvr5w"]
 texture = ExtResource("2_a37b4")
@@ -148,8 +146,3 @@ position = Vector2(-96, -176)
 tile_map_data = PackedByteArray("AAAAAAAAAQAJAAAAAAABAAAAAQAJAAAAAAABAAEAAQAJAAAAAAAAAAEAAQAJAAAAAAABAAIAAQAJAAAAAAAAAAIAAQAJAAAAAAABAAMAAQAJAAAAAAAAAAMAAQAJAAAAAAABAAQAAQAJAAAAAAAAAAQAAQAJAAAAAAACAAQAAQAJAAAAAAACAAMAAQAJAAAAAAACAAIAAQAJAAAAAAACAAEAAQAJAAAAAAACAAAAAQAJAAAAAAADAAQAAQAJAAAAAAADAAMAAQAJAAAAAAADAAIAAQAJAAAAAAADAAEAAQAJAAAAAAADAAAAAQAJAAAAAAAEAAQAAQAJAAAAAAAEAAMAAQAJAAAAAAAEAAIAAQAJAAAAAAAEAAEAAQAJAAAAAAAEAAAAAQAJAAAAAAAFAAQAAQAJAAAAAAAFAAMAAQAJAAAAAAAFAAIAAQAJAAAAAAAFAAEAAQAJAAAAAAAFAAAAAQAJAAAAAAA=")
 tile_set = SubResource("TileSet_4ilqg")
 navigation_enabled = false
-
-[node name="Test" type="Sprite2D" parent="." unique_id=1866966156]
-scale = Vector2(0.328125, 0.328125)
-texture = ExtResource("3_e5432")
-script = ExtResource("3_a37b4")
