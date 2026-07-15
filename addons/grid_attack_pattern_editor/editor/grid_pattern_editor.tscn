@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://qpom6ss73rdr"]
+
+[ext_resource type="Script" uid="uid://b2tqdxd22yotc" path="res://addons/grid_attack_pattern_editor/editor/grid_pattern_editor.gd" id="1_i102m"]
+[ext_resource type="Script" uid="uid://dlqcljtn3uk2i" path="res://addons/grid_attack_pattern_editor/editor/grid_canvas.gd" id="2_uuxkw"]
+
+[node name="GridPatternEditor" type="VBoxContainer" unique_id=1665357556]
+custom_minimum_size = Vector2(0, 160)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i102m")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2062079551]
+layout_mode = 2
+
+[node name="CenterButton" type="Button" parent="HBoxContainer" unique_id=1393630716]
+layout_mode = 2
+text = "Center"
+
+[node name="Button" type="Button" parent="HBoxContainer" unique_id=2114040677]
+layout_mode = 2
+text = "Reset Zoom"
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer" unique_id=1029081277]
+layout_mode = 2
+
+[node name="ZoomLabel" type="Label" parent="HBoxContainer" unique_id=1271684987]
+layout_mode = 2
+text = "Zoom:"
+
+[node name="ZoomText" type="Label" parent="HBoxContainer" unique_id=1654774066]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1444550615]
+clip_children = 2
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridCanvas" type="Control" parent="PanelContainer" unique_id=2726886]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("2_uuxkw")
+
+[connection signal="pressed" from="HBoxContainer/CenterButton" to="PanelContainer/GridCanvas" method="center_on_origin"]
+[connection signal="pressed" from="HBoxContainer/Button" to="PanelContainer/GridCanvas" method="reset_zoom"]
+[connection signal="zoom_changed" from="PanelContainer/GridCanvas" to="." method="_on_grid_canvas_zoom_changed"]
