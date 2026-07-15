@@ -2,8 +2,19 @@
 
 [ext_resource type="Script" uid="uid://duwkf4lo44nmy" path="res://entities/battle_unit.gd" id="1_p502v"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_5mdms"]
+radius = 24.0
+
 [node name="BattleUnit" type="Node2D" unique_id=48206841]
 script = ExtResource("1_p502v")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=392208899]
+collision_layer = 4
+collision_mask = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1658820889]
+shape = SubResource("CircleShape2D_5mdms")
 
 [node name="MainSprite" type="Sprite2D" parent="." unique_id=2112092373]
 unique_name_in_owner = true

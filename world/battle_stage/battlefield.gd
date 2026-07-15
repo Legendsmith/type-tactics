@@ -97,8 +97,11 @@ func set_dimensions(value: Vector2i) -> void:
 
 ## Forces the terrain layer to be reconstructed based on it's current dimensions.
 func redraw_terrain() -> void:
-	if not terrain_layer.tile_set:
-		push_warning("No tileset used in the terrain layer.")
+	if terrain_layer:
+		if not terrain_layer.tile_set:
+			push_warning("No tileset used in the terrain layer.")
+			return
+	else:
 		return
 	
 	terrain_layer.clear()
@@ -120,3 +123,11 @@ func redraw_terrain() -> void:
 	var center := (top_left + bottom_right) * 0.5
 	
 	terrain_layer.position = -center + (OFFSET * Vector2(terrain_layer.tile_set.tile_size))
+
+func get_target_at_map_position(pos:Vector2i):
+	var query:PhysicsPointQueryParameters2D = PhysicsPointQueryParameters2D.new()
+	query.collide_with_areas = true
+	query.collide_with_bodies = false
+	query.position = get_tile_center_global_position(pos.x,pos.y)
+	var query_result = World2D.direct_space_state.intersect_point(query)
+	return query_result

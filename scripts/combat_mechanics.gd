@@ -2,6 +2,7 @@ class_name CombatMechanics
 const NOTYPE_CHARGE_USE := 4
 const DUAL_TYPE_CHARGE_USE := 3
 const MONOTYPE_CHARGE_USE := 2
+const TARGET_GROUP:StringName = &"target_group"
 
 
 enum TargetTypes {
