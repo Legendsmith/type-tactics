@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://b8x4jkf3bwppg"]
+
+[ext_resource type="Theme" uid="uid://v0ph6goeqn0u" path="res://ui/battle_theme.tres" id="1_5w52n"]
+[ext_resource type="Script" uid="uid://k0ueybp0qowp" path="res://ui/technique_inspector.gd" id="2_gsuk2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ccv2"]
+bg_color = Color(1, 1, 1, 0.26666668)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+expand_margin_left = 4.0
+expand_margin_right = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jx1ty"]
+bg_color = Color(1, 1, 1, 0.4)
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_5mdms"]
+size = Vector2(32, 32)
+
+[node name="TechniqueInspector" type="VBoxContainer" unique_id=795868039]
+theme = ExtResource("1_5w52n")
+theme_override_constants/separation = 0
+script = ExtResource("2_gsuk2")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1480782953]
+layout_mode = 2
+theme_type_variation = &"RichHeaderSmall"
+text = "TECHNIQUE"
+fit_content = true
+scroll_active = false
+
+[node name="TechniqueNameLabel" type="Label" parent="." unique_id=1153391044]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ccv2")
+text = "Technique Name"
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=639670200]
+custom_minimum_size = Vector2(0, 33)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_jx1ty")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1238772025]
+layout_mode = 2
+
+[node name="PowerLabel" type="Label" parent="Panel/VBoxContainer" unique_id=1161714924]
+unique_name_in_owner = true
+layout_mode = 2
+text = "POWER:"
+
+[node name="Types" type="HBoxContainer" parent="Panel/VBoxContainer" unique_id=842647806]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Types" unique_id=1833598651]
+layout_mode = 2
+text = "TYPE/"
+
+[node name="TagsContainer" type="BoxContainer" parent="Panel/VBoxContainer" unique_id=1217142560]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/TagsContainer" unique_id=900933433]
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_5mdms")
+
+[node name="DescriptionLabel" type="RichTextLabel" parent="Panel/VBoxContainer" unique_id=1381760264]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+bbcode_enabled = true
+fit_content = true
+scroll_active = false

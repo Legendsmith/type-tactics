@@ -1,5 +1,7 @@
 class_name EquipItem
 extends Resource
+## Name of this Item
+@export var display_name:String
 ## Where can this be worn?
 @export var valid_locations:Array[StringName]
 ## Bonuses, if any

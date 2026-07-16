@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://k1k0vkmn1qws"]
 
-[ext_resource type="Theme" uid="uid://v0ph6goeqn0u" path="res://data/battle_theme.tres" id="1_falrr"]
+[ext_resource type="Theme" uid="uid://v0ph6goeqn0u" path="res://ui/battle_theme.tres" id="1_falrr"]
 [ext_resource type="Script" uid="uid://bgdb2huhcikeq" path="res://ui/unit_inspector.gd" id="2_ukj4q"]
 [ext_resource type="Material" uid="uid://bmkuayydt1i7a" path="res://ui/subtract_panel_material.tres" id="3_2wuvn"]
 [ext_resource type="Texture2D" uid="uid://yhbmlpwrnm48" path="res://texture/auteru_portrait.png" id="4_3tam0"]
@@ -246,10 +246,27 @@ text = "Bonus"
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBonus" unique_id=1240003376]
 layout_mode = 2
 
-[node name="AttributeBonusLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBonus" unique_id=2100576831]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBonus" unique_id=1232203762]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+
+[node name="AttributeBonusLabel" type="Label" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBonus/HBoxContainer" unique_id=2100576831]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 0
 text = "10"
+horizontal_alignment = 1
+
+[node name="AttributeModifierLabel" type="RichTextLabel" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable/AttributeBonus/HBoxContainer" unique_id=1472313107]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 horizontal_alignment = 1
 
 [node name="AttributeTotal" type="VBoxContainer" parent="MarginContainer/InfoGrid/MiddleContainer/MarginContainer/StatsContainer/AttributeTable" unique_id=1801051968]
@@ -299,17 +316,6 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="DebugLabel" type="RichTextLabel" parent="MarginContainer/InfoGrid/EquipmentContainer/EquipmentList" unique_id=981255472]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 48
-text = "Bird Hammer"
-fit_content = true
-
 [node name="TechniquesContainer" type="VBoxContainer" parent="MarginContainer/InfoGrid" unique_id=1262783470]
 layout_mode = 2
 size_flags_vertical = 3
@@ -323,17 +329,3 @@ text = "Techniques"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="DebugLabel" type="RichTextLabel" parent="MarginContainer/InfoGrid/TechniquesContainer/TechniquesList" unique_id=2085488044]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 48
-text = "- Explosive Rush
-- Cheer
-- Solar Wind
-- Sky Strike"
-fit_content = true
