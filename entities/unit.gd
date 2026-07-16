@@ -1,5 +1,5 @@
 class_name Unit
-extends Node
+extends Node2D
 signal recalculate_bonus
 signal hp_changed(new_hp:int)
 signal update()
@@ -146,9 +146,17 @@ func _ready():
 
 
 func battle_setup():
+	if not get_parent() is Battlefield:
+		return
 	call_bonuses()
 	get_tree().current_scene.new_turn.connect(on_new_turn)
 	get_tree().current_scene.finalize_turn.connect(on_finalize_turn)
+	$Area2D.body_entered.connect(func():
+		add_to_group(CombatMechanics.TARGET_GROUP)
+	)
+	$Area2D.body_exited.connect(func():
+		remove_from_group(CombatMechanics.TARGET_GROUP)
+	)
 
 func refresh_hp():
 	hp = CombatMechanics.calc_attribute(attribute_base[Attribute.HP] + attribute_bonus[Attribute.HP],attribute_modifier[Attribute.HP])
@@ -200,5 +208,22 @@ func on_finalize_turn() -> void:
 
 #endregion
 
-func get_position() -> Variant:
-	return get_parent().get_grid_position()
+func create_from_unit_def(def:UnitDef) -> Unit:
+	unit_definition=def
+	display_name = def.unit_name
+	_max_equip = def.max_equip
+	%MainSprite.texture = def.sprite
+	types = def.types
+	#ability = def.ability
+	base_techniques = def.base_techniques.duplicate()
+	attribute_base = def.attribute_base.duplicate()
+	return self
+
+func battle_animation(animation_name:StringName) -> AnimationPlayer:
+	if not get_parent() is Battlefield:
+		return
+	$AnimationPlayer.play(animation_name)
+	return $AnimationPlayer
+
+func _exit_tree() -> void:
+	remove_from_group(CombatMechanics.TARGET_GROUP)

@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://bm03ut2gnfrq8"]
 
-[ext_resource type="Script" uid="uid://duwkf4lo44nmy" path="res://entities/battle_unit.gd" id="1_p502v"]
+[ext_resource type="Script" uid="uid://bjyqbyjm06je" path="res://entities/unit.gd" id="1_fbx1y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5mdms"]
 radius = 24.0
 
 [node name="BattleUnit" type="Node2D" unique_id=48206841]
-script = ExtResource("1_p502v")
+script = ExtResource("1_fbx1y")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=392208899]
 collision_layer = 4
