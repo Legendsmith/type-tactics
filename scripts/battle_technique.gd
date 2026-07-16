@@ -7,6 +7,7 @@ const NONE_ACTION := "none"
 @export var icon:Texture2D
 @export var display_name:String = ""
 @export var technique_name:String
+@export var description:String
 @export var type: StringName = &""
 ## actual uses are half this.
 @export var max_charges: int = 8
