@@ -32,6 +32,7 @@ class TurnAction:
 	func complete_turn():
 		owner.technique_charges[technique] -= CombatMechanics.charge_usage(technique,owner.types)
 
+@export var unit_definition:UnitDef
 @export var display_name:String = "Combatant"
 @export var subtitle:String = ""
 @export var types:Array[StringName] = []

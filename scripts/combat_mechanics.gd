@@ -3,6 +3,7 @@ const NOTYPE_CHARGE_USE := 4
 const DUAL_TYPE_CHARGE_USE := 3
 const MONOTYPE_CHARGE_USE := 2
 const TARGET_GROUP:StringName = &"target_group"
+const UNIT_LAYER:int = 1 << 3 #Layer 4. Layer # has to be -1 
 
 
 enum TargetTypes {

@@ -129,5 +129,6 @@ func get_target_at_map_position(pos:Vector2i):
 	query.collide_with_areas = true
 	query.collide_with_bodies = false
 	query.position = get_tile_center_global_position(pos.x,pos.y)
-	var query_result = World2D.direct_space_state.intersect_point(query)
+	query.collision_mask = CombatMechanics.UNIT_LAYER
+	var query_result = get_world_2d().direct_space_state.intersect_point(query)
 	return query_result

@@ -3,7 +3,7 @@ extends Node
 signal finalize_turn
 signal new_turn
 signal unit_added(unit:Unit)
-enum Side {ENEMY,PLAYER}
+
 @export_custom(0,"scene") var interface_scene:String
 
 var turn_ready:bool = false
@@ -18,7 +18,7 @@ func configure_interface():
 	GameManager.add_child(interface)
 
 
-func add_unit(unit:Unit,unit_position:Vector2i,side:int=Side.ENEMY):
+func add_unit(unit:Unit,unit_position:Vector2i,side:int=CombatMechanics.Side.ENEMY):
 	var target_side:Battlefield = %PlayerBattlefield if side else %EnemyBattlefield
 	target_side.add_child(unit)
 	unit.global_position = target_side.get_tile_center_global_position(unit_position.x,unit_position.y)
