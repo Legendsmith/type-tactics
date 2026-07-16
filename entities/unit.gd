@@ -149,8 +149,8 @@ func battle_setup():
 	if not get_parent() is Battlefield:
 		return
 	call_bonuses()
-	get_tree().current_scene.new_turn.connect(on_new_turn)
-	get_tree().current_scene.finalize_turn.connect(on_finalize_turn)
+	#get_tree().current_scene.new_turn.connect(on_new_turn)
+	#get_tree().current_scene.finalize_turn.connect(on_finalize_turn)
 	$Area2D.body_entered.connect(func():
 		add_to_group(CombatMechanics.TARGET_GROUP)
 	)

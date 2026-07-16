@@ -5,3 +5,4 @@ extends Resource
 @export var items:Array[Array]
 @export var deployment:Array[Vector2i]
 @export var behaviour_tree:BehaviorTree
+@export var control:StringName = Constants.ENEMY_GROUP
