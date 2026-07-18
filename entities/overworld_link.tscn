@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://uvaiawhyxdnc"]
+
+[ext_resource type="Script" uid="uid://cf0an46q0sorx" path="res://entities/overworld_link.gd" id="1_g715i"]
+[ext_resource type="PackedScene" uid="uid://cb50uu7l62pct" path="res://entities/overworld_path_follow.tscn" id="2_1wdai"]
+
+[sub_resource type="Curve2D" id="Curve2D_5mdms"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 121, 0)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cixdc"]
+size = Vector2(16, 16)
+
+[node name="OverworldLink" type="Path2D" unique_id=260179008]
+curve = SubResource("Curve2D_5mdms")
+script = ExtResource("1_g715i")
+
+[node name="NavigationLinkPlayer" type="NavigationLink2D" parent="." unique_id=1309468564]
+
+[node name="NavigationLinkEnemy" type="NavigationLink2D" parent="." unique_id=2100918945]
+
+[node name="EntranceA" type="Area2D" parent="." unique_id=2125442937]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EntranceA" unique_id=1927199993]
+shape = SubResource("RectangleShape2D_cixdc")
+
+[node name="EntranceB" type="Area2D" parent="." unique_id=935435302]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EntranceB" unique_id=1298055178]
+shape = SubResource("RectangleShape2D_cixdc")
+
+[node name="ExitA" type="Marker2D" parent="." unique_id=490164282]
+
+[node name="ExitB" type="Marker2D" parent="." unique_id=912833035]
+
+[node name="OverworldPathFollow" parent="." unique_id=458908817 instance=ExtResource("2_1wdai")]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=1047324969]
