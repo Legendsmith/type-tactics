@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://cjoxn1k758grn"]
+
+[ext_resource type="Script" uid="uid://dhbtoe3ikjkfw" path="res://ui/HoldActionTexture/hold_action_control.gd" id="1_d5gid"]
+[ext_resource type="Script" path="res://addons/ActionIcon/ActionIcon.gd" id="2_mxoey"]
+[ext_resource type="Texture2D" uid="uid://wdq6lglpbk31" path="res://ui/HoldActionTexture/default_progress_texture.tres" id="2_pihgr"]
+
+[node name="HoldActionTexture" type="HBoxContainer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -101.0
+offset_top = -64.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 16
+script = ExtResource("1_d5gid")
+action_name = &""
+
+[node name="Container" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Container"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ActionIcon" type="TextureRect" parent="Container/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("2_mxoey")
+metadata/_custom_type_script = "uid://dy2f1q0donibk"
+
+[node name="ProgressBar" type="TextureProgressBar" parent="Container"]
+unique_name_in_owner = true
+layout_mode = 2
+fill_mode = 4
+texture_progress = ExtResource("2_pihgr")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Skip"
