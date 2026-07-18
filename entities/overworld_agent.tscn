@@ -5,11 +5,15 @@
 [ext_resource type="Script" uid="uid://bpdxt6fs7mmyh" path="res://scripts/navigation_agent_2d.gd" id="2_wa1af"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5mdms"]
+bounce = 0.1
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_bh32s"]
 size = Vector2(16, 24)
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_bh32s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5mdms"]
+radius = 8.0
 
 [node name="OverworldAgent" type="RigidBody2D" unique_id=1303149982]
 physics_material_override = SubResource("PhysicsMaterial_5mdms")
@@ -34,3 +38,6 @@ script = ExtResource("2_wa1af")
 [node name="BTPlayer" type="BTPlayer" parent="." unique_id=1790084948]
 behavior_tree = ExtResource("2_doktv")
 blackboard_plan = SubResource("BlackboardPlan_bh32s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1326332625]
+shape = SubResource("CircleShape2D_5mdms")

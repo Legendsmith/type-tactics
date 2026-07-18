@@ -5,9 +5,6 @@
 [ext_resource type="TileSet" uid="uid://dn3s62ubhi6rv" path="res://world/16px_world_tile.tres" id="2_wwcdr"]
 [ext_resource type="PackedScene" uid="uid://8ievdkdx8ig7" path="res://entities/overworld_agent.tscn" id="4_v8spm"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_cixdc"]
-radius = 8.0
-
 [node name="Overworld" type="Node2D" unique_id=1120571415 node_paths=PackedStringArray("player_faction_goal", "enemy_faction_goal")]
 y_sort_enabled = true
 script = ExtResource("1_3vohx")
@@ -25,9 +22,6 @@ metadata/_edit_lock_ = true
 [node name="OverworldAgent" parent="." unique_id=1303149982 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
 position = Vector2(113, 163)
 target = NodePath("../Marker2D")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OverworldAgent" unique_id=2038680]
-shape = SubResource("CircleShape2D_cixdc")
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1468444458]
 position = Vector2(294, 108)
