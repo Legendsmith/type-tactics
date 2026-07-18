@@ -26,17 +26,37 @@ var tick_offset: int = 0
 @onready var nav_agent: NavigationAgent2D = %NavigationAgent2D
 @onready var bt_player: BTPlayer = $BTPlayer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var attack_raycast:ShapeCast2D = $AttackRaycast
 
 func _ready() -> void:
 	tick_offset = randi() % Engine.physics_ticks_per_second
 	calculate_overworld_power()
 	refresh_hp()
 	nav_agent.waypoint_reached.connect(think.unbind(1))
+	nav_agent.navigation_layers = 0
+	nav_agent.avoidance_layers = 0
+	nav_agent.avoidance_mask = 0
+	nav_agent.set_navigation_layer_value(1,true)
+	if faction == Constants.PLAYER_GROUP:
+		nav_agent.set_avoidance_layer_value(Overworld.NAV_LAYER_PLAYER,true)
+		nav_agent.set_avoidance_mask_value(Overworld.NAV_LAYER_PLAYER,true)
+	else:
+		nav_agent.set_avoidance_layer_value(Overworld.NAV_LAYER_ENEMY,true)
+		nav_agent.set_avoidance_mask_value(Overworld.NAV_LAYER_ENEMY,true)
+
 	_setup_bt_player()
+	var physlayers:Dictionary = Constants.get_physics_layers(faction)
+	#collision_mask = 0
+	#collision_layer = 0
+	set_collision_layer_value(physlayers["self"],true)
+	attack_raycast.collision_mask = 0
+	attack_raycast.set_collision_mask_value(physlayers["target"],true)
 
 func refresh_hp():
 	var hp: int = 1
 	if not team:
+		overworld_hp = 100
+		max_overworld_hp = 100
 		return
 	for unit: UnitDef in team.units:
 		hp += unit.attribute_base[Unit.Attribute.HP]
@@ -45,8 +65,8 @@ func refresh_hp():
 
 
 func calculate_overworld_power():
-	overworld_atk = 0
-	overworld_def = 0
+	overworld_atk = 100
+	overworld_def = 100
 
 	if overworld_hp <= 0 or not team:
 		return
@@ -58,20 +78,32 @@ func calculate_overworld_power():
 func recieve_damage(_attacker:OverworldAgent,atk:int,delta):
 	overworld_hp -= randi_range(DMG_LOW,DMG_HIGH) * (atk/overworld_def) * delta
 	if overworld_hp <= 0:
-		set_deferred(&"monitorable",false)
-		set_deferred(&"monitoring",false)
+		process_mode = Node.PROCESS_MODE_DISABLED
+		
 		
 
 func _physics_process(delta) -> void:
 	bt_delta += delta
+	attack_raycast.target_position = desired_velocity.normalized() * 4
+	attack_raycast.position = desired_velocity.normalized() * 8
 	if bt_delta > MAX_BT_DELTA and not thinking:
 		print_debug("Backup think")
 		think()
-	#
-	#var bodies:Array[Node2D] = get_colliding_bodies()
-	#for target in bodies:
-	#		if target.faction != faction:
-	#			target.recieve_damage(self,overworld_atk/bodies.size(),delta)
+	
+
+	if attack_raycast.is_colliding():
+			var _target:Node2D = attack_raycast.get_collider(0)
+			if _target.faction != faction:
+				linear_damp = 16
+				desired_velocity = Vector2.ZERO
+				
+				print_debug("Attacking: ", _target)
+				_target.recieve_damage(self,overworld_atk,delta)
+			else:
+				linear_damp = 1
+	else:
+		linear_damp = 1
+	modulate = (Color.WHITE *(float(overworld_hp)/max_overworld_hp)) + Color(0,0,0,1)
 
 func move(velocity:Vector2):
 	if (Engine.get_physics_frames() + tick_offset) % (skip_frames + 1) == 0: # Only run this every skip frames.
@@ -104,6 +136,7 @@ func _setup_bt_player():
 	bt_player.updated.connect(bt_status)
 	animation_player.animation_finished.connect(think.unbind(1)) # Call BT player when we finish an animation
 	#nav_agent.navigation_finished.connect(think)
+	await get_tree().current_scene.ready
 	bt_player.set_active(true)
 	bt_player.update(1.0 / Engine.physics_ticks_per_second) # Update since it's manual.
 	#damage_recieved.connect(think.unbind(1))

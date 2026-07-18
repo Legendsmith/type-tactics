@@ -94,7 +94,8 @@ camera_drag={
 2d_physics/layer_2="Obstacle"
 2d_navigation/layer_2="water"
 2d_physics/layer_3="Interaction"
-2d_physics/layer_4="Unit"
+2d_physics/layer_4="Unit-OvwrldPlyr"
+2d_physics/layer_5="OvwrldEnemy"
 
 [physics]
 

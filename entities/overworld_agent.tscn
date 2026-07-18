@@ -12,12 +12,16 @@ size = Vector2(16, 24)
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_bh32s"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5mdms"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_c1idk"]
 radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cixdc"]
+radius = 4.0
 
 [node name="OverworldAgent" type="RigidBody2D" unique_id=1303149982]
 physics_material_override = SubResource("PhysicsMaterial_5mdms")
 lock_rotation = true
+max_contacts_reported = 12
 linear_damp = 1.0
 script = ExtResource("1_vwlud")
 
@@ -27,10 +31,9 @@ offset = Vector2(0, -8)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=494286539]
 unique_name_in_owner = true
+path_desired_distance = 2.0
 path_postprocessing = 1
-simplify_path = true
-simplify_epsilon = 16.0
-debug_enabled = true
+simplify_epsilon = 4.0
 script = ExtResource("2_wa1af")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1930298928]
@@ -40,4 +43,11 @@ behavior_tree = ExtResource("2_doktv")
 blackboard_plan = SubResource("BlackboardPlan_bh32s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1326332625]
-shape = SubResource("CircleShape2D_5mdms")
+shape = SubResource("CircleShape2D_c1idk")
+
+[node name="AttackRaycast" type="ShapeCast2D" parent="." unique_id=329866897]
+visible = false
+shape = SubResource("CircleShape2D_cixdc")
+target_position = Vector2(0, 4)
+max_results = 1
+collision_mask = 0
