@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dmyi7p3p5vuq8" path="res://ui/credits/credits.gd" id="1_hfqo3"]
 [ext_resource type="Script" uid="uid://dk70t1sstylvo" path="res://ui/credits/link_pill.gd" id="2_b6jqh"]
 [ext_resource type="Texture2D" uid="uid://dd4apwa5i0ojd" path="res://ui/logos/x_logo.svg" id="2_q8t8k"]
+[ext_resource type="Texture2D" uid="uid://wg8r5dl80cid" path="res://ui/logos/soundcloud.svg" id="8_twsdw"]
 [ext_resource type="Theme" uid="uid://bcqmvnph6rqj1" path="res://ui/credits/credits_theme.tres" id="11_d7n5t"]
 [ext_resource type="PackedScene" uid="uid://cjoxn1k758grn" path="res://ui/HoldActionTexture/hold_action_control.tscn" id="11_pdd3v"]
 [ext_resource type="Texture2D" uid="uid://dpmek475emycw" path="res://ui/logos/twitch_flat_purple.svg" id="13_borvj"]
@@ -964,12 +965,12 @@ theme_type_variation = &"CreditLine"
 text = "Composer - Battle Music"
 autowrap_mode = 2
 
-[node name="ClayRow2" type="HBoxContainer" parent="CreditsContainer/MusicCredit/VBoxContainer" unique_id=786387617]
+[node name="toasterRow" type="HBoxContainer" parent="CreditsContainer/MusicCredit/VBoxContainer" unique_id=786387617]
 layout_mode = 2
 theme = ExtResource("11_d7n5t")
 theme_type_variation = &"CreditRow"
 
-[node name="PersonInfo" type="HFlowContainer" parent="CreditsContainer/MusicCredit/VBoxContainer/ClayRow2" unique_id=421617998]
+[node name="PersonInfo" type="HFlowContainer" parent="CreditsContainer/MusicCredit/VBoxContainer/toasterRow" unique_id=421617998]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -978,13 +979,38 @@ theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 alignment = 2
 
-[node name="PersonLabel" type="Label" parent="CreditsContainer/MusicCredit/VBoxContainer/ClayRow2/PersonInfo" unique_id=273866299]
+[node name="PersonLabel" type="Label" parent="CreditsContainer/MusicCredit/VBoxContainer/toasterRow/PersonInfo" unique_id=273866299]
 layout_mode = 2
 theme = ExtResource("11_d7n5t")
 theme_type_variation = &"CreditLine"
-text = "toasterbathllc"
+text = "BXSSM3LT"
 
-[node name="Involvement" type="Label" parent="CreditsContainer/MusicCredit/VBoxContainer/ClayRow2" unique_id=2014936151]
+[node name="LinkPill" type="PanelContainer" parent="CreditsContainer/MusicCredit/VBoxContainer/toasterRow/PersonInfo" unique_id=1700757888]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("11_d7n5t")
+theme_override_styles/panel = SubResource("StyleBoxFlat_q8t8k")
+script = ExtResource("2_b6jqh")
+link = "https://on.soundcloud.com/KMnESEYUcbnqsA3MjY"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CreditsContainer/MusicCredit/VBoxContainer/toasterRow/PersonInfo/LinkPill" unique_id=1464019130]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+
+[node name="TextureRect" type="TextureRect" parent="CreditsContainer/MusicCredit/VBoxContainer/toasterRow/PersonInfo/LinkPill/HBoxContainer" unique_id=1924039284]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+texture = ExtResource("8_twsdw")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CreditsContainer/MusicCredit/VBoxContainer/toasterRow/PersonInfo/LinkPill/HBoxContainer" unique_id=1579912461]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+theme_override_font_sizes/font_size = 16
+text = "BXSSM3LT"
+
+[node name="Involvement" type="Label" parent="CreditsContainer/MusicCredit/VBoxContainer/toasterRow" unique_id=2014936151]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -1536,9 +1562,6 @@ metadata/_edit_use_anchors_ = true
 [node name="HoldSkipControl" parent="MarginContainer" unique_id=1703750069 instance=ExtResource("11_pdd3v")]
 layout_mode = 2
 hold_time = 5.0
-
-[node name="ActionIcon" parent="MarginContainer/HoldSkipControl/Container/MarginContainer" index="0"]
-action_name = &"ui_accept"
 
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_credits"]
 [connection signal="completed_holding_action" from="MarginContainer/HoldSkipControl" to="." method="_on_skip_requested"]
