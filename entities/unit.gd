@@ -16,7 +16,7 @@ class TurnAction:
 	var technique:BattleTechnique
 	var target:Variant
 	var owner:Unit
-	func _init(init_owner:Unit, init_technique=load("uid://dagu5nkeqlqr4")) -> void: ## init technique should be none technique.
+	func _init(init_owner:Unit, init_technique=load("uid://dagu5nkeqlqr4")) -> void: ## init technique default is none.
 		owner = init_owner
 		technique = init_technique
 	func create_context() -> CombatMechanics.Context:

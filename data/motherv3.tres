@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://btssfmuejunjh" path="res://scripts/battle_technique.gd" id="1_bjo8y"]
 [ext_resource type="Script" uid="uid://bwf3wwv84lr8q" path="res://scripts/unit_def.gd" id="2_ep416"]
+[ext_resource type="Script" uid="uid://cqggivyif4ut8" path="res://scripts/equip_item.gd" id="2_l3i76"]
 [ext_resource type="Texture2D" uid="uid://ew77vei43c3t" path="res://texture/motherv3_battle_sprites.png" id="3_ep416"]
 
 [resource]
@@ -9,4 +10,5 @@ script = ExtResource("2_ep416")
 unit_name = "MOTHERv3"
 twitch_name = "motherv3"
 sprite = ExtResource("3_ep416")
+attribute_base = [100, 95, 100, 95, 100, 100, 100]
 metadata/_custom_type_script = "uid://bwf3wwv84lr8q"

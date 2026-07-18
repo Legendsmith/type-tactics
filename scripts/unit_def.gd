@@ -11,3 +11,5 @@ extends Resource
 @export var attribute_base:PackedInt32Array = [100,100,100,100,100,100,100]
 @export var max_equip:int = 2
 @export var description:String
+@export var default_desired_rank:int = 0
+@export var equipment:Array[EquipItem] = []

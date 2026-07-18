@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="EquipItem" format=3 uid="uid://cmf34gy8bf545"]
+
+[ext_resource type="Script" uid="uid://btssfmuejunjh" path="res://scripts/battle_technique.gd" id="1_irfew"]
+[ext_resource type="Script" uid="uid://cqggivyif4ut8" path="res://scripts/equip_item.gd" id="2_n53ar"]
+
+[resource]
+script = ExtResource("2_n53ar")
+metadata/_custom_type_script = "uid://cqggivyif4ut8"
