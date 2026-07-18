@@ -614,12 +614,12 @@ theme = ExtResource("11_d7n5t")
 theme_type_variation = &"CreditLine"
 text = "Lead Artist"
 
-[node name="midnight" type="HBoxContainer" parent="CreditsContainer/ArtCredits/VBoxContainer" unique_id=1501088712]
+[node name="MidnighRow" type="HBoxContainer" parent="CreditsContainer/ArtCredits/VBoxContainer" unique_id=1501088712]
 layout_mode = 2
 theme = ExtResource("11_d7n5t")
 theme_type_variation = &"CreditRow"
 
-[node name="PersonInfo" type="HFlowContainer" parent="CreditsContainer/ArtCredits/VBoxContainer/midnight" unique_id=1993486260]
+[node name="PersonInfo" type="HFlowContainer" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnighRow" unique_id=1993486260]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -628,13 +628,13 @@ theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 alignment = 2
 
-[node name="PersonLabel" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/midnight/PersonInfo" unique_id=1885507621]
+[node name="PersonLabel" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnighRow/PersonInfo" unique_id=1885507621]
 layout_mode = 2
 theme = ExtResource("11_d7n5t")
 theme_type_variation = &"CreditLine"
 text = "Midnight Novae"
 
-[node name="LinkPill" type="PanelContainer" parent="CreditsContainer/ArtCredits/VBoxContainer/midnight/PersonInfo" unique_id=1810400677]
+[node name="LinkPill" type="PanelContainer" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnighRow/PersonInfo" unique_id=1810400677]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("11_d7n5t")
@@ -642,24 +642,24 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_q8t8k")
 script = ExtResource("2_b6jqh")
 link = "https://x.com/midnightnovae"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CreditsContainer/ArtCredits/VBoxContainer/midnight/PersonInfo/LinkPill" unique_id=361005865]
+[node name="HBoxContainer" type="HBoxContainer" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnighRow/PersonInfo/LinkPill" unique_id=361005865]
 layout_mode = 2
 theme = ExtResource("11_d7n5t")
 
-[node name="TextureRect" type="TextureRect" parent="CreditsContainer/ArtCredits/VBoxContainer/midnight/PersonInfo/LinkPill/HBoxContainer" unique_id=917935367]
+[node name="TextureRect" type="TextureRect" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnighRow/PersonInfo/LinkPill/HBoxContainer" unique_id=917935367]
 layout_mode = 2
 theme = ExtResource("11_d7n5t")
 texture = ExtResource("2_q8t8k")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/midnight/PersonInfo/LinkPill/HBoxContainer" unique_id=794771832]
+[node name="Label" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnighRow/PersonInfo/LinkPill/HBoxContainer" unique_id=794771832]
 layout_mode = 2
 theme = ExtResource("11_d7n5t")
 theme_override_font_sizes/font_size = 16
 text = "@Midnightnovae"
 
-[node name="LinkPill2" type="PanelContainer" parent="CreditsContainer/ArtCredits/VBoxContainer/midnight/PersonInfo" unique_id=307434523]
+[node name="LinkPill2" type="PanelContainer" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnighRow/PersonInfo" unique_id=307434523]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("11_d7n5t")
@@ -667,30 +667,83 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_q8t8k")
 script = ExtResource("2_b6jqh")
 link = "https://www.twitch.tv/m1dn1ghtnovae"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CreditsContainer/ArtCredits/VBoxContainer/midnight/PersonInfo/LinkPill2" unique_id=366379261]
+[node name="HBoxContainer" type="HBoxContainer" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnighRow/PersonInfo/LinkPill2" unique_id=366379261]
 layout_mode = 2
 theme = ExtResource("11_d7n5t")
 
-[node name="TextureRect" type="TextureRect" parent="CreditsContainer/ArtCredits/VBoxContainer/midnight/PersonInfo/LinkPill2/HBoxContainer" unique_id=847120489]
+[node name="TextureRect" type="TextureRect" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnighRow/PersonInfo/LinkPill2/HBoxContainer" unique_id=847120489]
 layout_mode = 2
 theme = ExtResource("11_d7n5t")
 texture = ExtResource("13_borvj")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/midnight/PersonInfo/LinkPill2/HBoxContainer" unique_id=754629665]
+[node name="Label" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnighRow/PersonInfo/LinkPill2/HBoxContainer" unique_id=754629665]
 layout_mode = 2
 theme = ExtResource("11_d7n5t")
 theme_override_font_sizes/font_size = 16
 text = "M1DN1GHTNOVAE"
 
-[node name="Involvement" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/midnight" unique_id=1414167424]
+[node name="Involvement" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnighRow" unique_id=1414167424]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 theme = ExtResource("11_d7n5t")
 theme_type_variation = &"CreditLine"
 text = "Battle Sprites"
+
+[node name="EletheosRow" type="HBoxContainer" parent="CreditsContainer/ArtCredits/VBoxContainer" unique_id=793516313]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+theme_type_variation = &"CreditRow"
+
+[node name="PersonInfo" type="HFlowContainer" parent="CreditsContainer/ArtCredits/VBoxContainer/EletheosRow" unique_id=817559437]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("11_d7n5t")
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+alignment = 2
+
+[node name="PersonLabel" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/EletheosRow/PersonInfo" unique_id=1968536275]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+theme_type_variation = &"CreditLine"
+text = "Eletheos"
+
+[node name="LinkPill" type="PanelContainer" parent="CreditsContainer/ArtCredits/VBoxContainer/EletheosRow/PersonInfo" unique_id=837398911]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("11_d7n5t")
+theme_override_styles/panel = SubResource("StyleBoxFlat_q8t8k")
+script = ExtResource("2_b6jqh")
+link = "https://x.com/eletheos"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CreditsContainer/ArtCredits/VBoxContainer/EletheosRow/PersonInfo/LinkPill" unique_id=765408219]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+
+[node name="TextureRect" type="TextureRect" parent="CreditsContainer/ArtCredits/VBoxContainer/EletheosRow/PersonInfo/LinkPill/HBoxContainer" unique_id=2126461919]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+texture = ExtResource("2_q8t8k")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/EletheosRow/PersonInfo/LinkPill/HBoxContainer" unique_id=1923446417]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+theme_override_font_sizes/font_size = 16
+text = "@eletheos"
+
+[node name="Involvement" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/EletheosRow" unique_id=419190655]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("11_d7n5t")
+theme_type_variation = &"CreditLine"
+text = "Overworld Sprites"
 
 [node name="CrusaderRow" type="HBoxContainer" parent="CreditsContainer/ArtCredits/VBoxContainer" unique_id=1406471927]
 layout_mode = 2
