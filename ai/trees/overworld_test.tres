@@ -1,0 +1,45 @@
+[gd_resource type="BehaviorTree" format=3 uid="uid://ck48v1fnwsw0p"]
+
+[ext_resource type="Script" uid="uid://c74kpk7kpqsjw" path="res://ai/tasks/set_pos_to_node_position.gd" id="1_ih2uh"]
+[ext_resource type="Script" uid="uid://c44jpq62epxcs" path="res://ai/tasks/movement/pathfind_position.gd" id="2_d2quf"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_j5063"]
+var/pos/name = &"pos"
+var/pos/type = 5
+var/pos/value = Vector2(0, 0)
+var/pos/hint = 0
+var/pos/hint_string = ""
+var/target/name = &"target"
+var/target/type = 24
+var/target/hint = 0
+var/target/hint_string = ""
+var/speed/name = &"speed"
+var/speed/type = 3
+var/speed/value = 0.0
+var/speed/hint = 0
+var/speed/hint_string = ""
+var/distance/name = &"distance"
+var/distance/type = 3
+var/distance/value = 0.0
+var/distance/hint = 0
+var/distance/hint_string = ""
+
+[sub_resource type="BTAction" id="BTAction_q7exg"]
+script = ExtResource("1_ih2uh")
+
+[sub_resource type="BTAction" id="BTAction_pdewr"]
+script = ExtResource("2_d2quf")
+nav_agent = NodePath("NavigationAgent2D")
+
+[sub_resource type="BTSequence" id="BTSequence_ih2uh"]
+children = [SubResource("BTAction_q7exg"), SubResource("BTAction_pdewr")]
+
+[sub_resource type="BTWait" id="BTWait_ih2uh"]
+duration = 0.1
+
+[sub_resource type="BTSelector" id="BTSelector_d2quf"]
+children = [SubResource("BTSequence_ih2uh"), SubResource("BTWait_ih2uh")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_j5063")
+root_task = SubResource("BTSelector_d2quf")
