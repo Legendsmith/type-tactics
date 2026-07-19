@@ -8,8 +8,8 @@ func _ready():
 	collision_layer=0
 	collision_mask=0
 	monitorable = false
-	set_collision_mask_value(4,true)
-	set_collision_mask_value(5,true)
+	#set_collision_mask_value(4,true)
+	#set_collision_mask_value(5,true)
 	body_entered.connect(teleport)
 	body_exited.connect(reset_exception)
 	var link:NavigationLink2D = NavigationLink2D.new()

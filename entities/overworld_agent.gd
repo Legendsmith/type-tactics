@@ -21,7 +21,7 @@ var max_overworld_hp: int = 0
 var bt_delta: float = 0
 var thinking: bool = false
 var tick_offset: int = 0
-@export_range(0, 60, 1) var skip_frames: int = 4
+@export_range(0, 60, 1) var skip_frames: int = 8
 
 @onready var nav_agent: NavigationAgent2D = %NavigationAgent2D
 @onready var bt_player: BTPlayer = $BTPlayer
@@ -33,24 +33,16 @@ func _ready() -> void:
 	calculate_overworld_power()
 	refresh_hp()
 	nav_agent.waypoint_reached.connect(think.unbind(1))
-	nav_agent.navigation_layers = 0
-	nav_agent.avoidance_layers = 0
-	nav_agent.avoidance_mask = 0
-	nav_agent.set_navigation_layer_value(1,true)
-	if faction == Constants.PLAYER_GROUP:
-		nav_agent.set_avoidance_layer_value(Overworld.NAV_LAYER_PLAYER,true)
-		nav_agent.set_avoidance_mask_value(Overworld.NAV_LAYER_PLAYER,true)
-	else:
-		nav_agent.set_avoidance_layer_value(Overworld.NAV_LAYER_ENEMY,true)
-		nav_agent.set_avoidance_mask_value(Overworld.NAV_LAYER_ENEMY,true)
-
+	configure_physics(faction)
 	_setup_bt_player()
-	var physlayers:Dictionary = Constants.get_physics_layers(faction)
-	#collision_mask = 0
-	#collision_layer = 0
-	set_collision_layer_value(physlayers["self"],true)
-	attack_raycast.collision_mask = 0
-	attack_raycast.set_collision_mask_value(physlayers["target"],true)
+
+func configure_physics(_faction:StringName):
+	var faction_def:Factions.Faction = Factions.faction_list[_faction]
+	collision_layer = faction_def.physics_layer
+	collision_mask = faction_def.physics_mask
+	nav_agent.navigation_layers = faction_def.nav_layer
+	nav_agent.avoidance_layers = faction_def.avoid_own
+	nav_agent.avoidance_mask = faction_def.avoid_own
 
 func refresh_hp():
 	var hp: int = 1
@@ -89,7 +81,6 @@ func _physics_process(delta) -> void:
 	if bt_delta > MAX_BT_DELTA and not thinking:
 		print_debug("Backup think")
 		think()
-	
 
 	if attack_raycast.is_colliding():
 			var _target:Node2D = attack_raycast.get_collider(0)
@@ -106,8 +97,9 @@ func _physics_process(delta) -> void:
 	modulate = (Color.WHITE *(float(overworld_hp)/max_overworld_hp)) + Color(0,0,0,1)
 
 func move(velocity:Vector2):
-	if (Engine.get_physics_frames() + tick_offset) % (skip_frames + 1) == 0: # Only run this every skip frames.
-		linear_velocity = velocity
+	apply_central_force(velocity)
+	#if (Engine.get_physics_frames() + tick_offset) % (skip_frames + 1) == 0: # Only run this every skip frames.
+	#	linear_velocity = velocity
 
 #region BehaviorTree
 ## Call the BT player for update.

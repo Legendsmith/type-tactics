@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://fm052b1hdoak" path="res://texture/overworld_tileset_grass.png" id="1_7q665"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wa1af"]
-friction = 0.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_7q665"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -400,8 +399,8 @@ texture = ExtResource("1_7q665")
 9:15/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_fyhhh")
 
 [resource]
-physics_layer_0/collision_layer = 1
-physics_layer_0/collision_mask = 255
+physics_layer_0/collision_layer = 0
+physics_layer_0/collision_mask = 252
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_wa1af")
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_wwcdr")
