@@ -99,6 +99,7 @@ camera_drag={
 
 [physics]
 
+2d/physics_engine="Rapier2D"
 3d/physics_engine="Jolt Physics"
 2d/default_gravity_vector=Vector2(0, 0)
 
