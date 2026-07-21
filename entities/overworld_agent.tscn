@@ -2,13 +2,171 @@
 
 [ext_resource type="Script" uid="uid://dc7f00nn2or5n" path="res://entities/overworld_agent.gd" id="1_vwlud"]
 [ext_resource type="BehaviorTree" uid="uid://ck48v1fnwsw0p" path="res://ai/trees/overworld_test.tres" id="2_doktv"]
+[ext_resource type="Texture2D" uid="uid://wrepbvafkaji" path="res://texture/catastrobean_overworld.png" id="2_rglla"]
 [ext_resource type="Script" uid="uid://bpdxt6fs7mmyh" path="res://scripts/navigation_agent_2d.gd" id="2_wa1af"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5mdms"]
 bounce = 0.1
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_bh32s"]
-size = Vector2(16, 24)
+[sub_resource type="Animation" id="Animation_e6f0k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_sr7o8"]
+resource_name = "idle_0"
+length = 0.0333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_wa1af"]
+resource_name = "idle"
+length = 0.0333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_2hde2"]
+resource_name = "idle_2"
+length = 0.0333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_2enr3"]
+resource_name = "idle_3"
+length = 0.0333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_rglla"]
+resource_name = "move_0"
+length = 0.19979999999999998
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 0]
+}
+
+[sub_resource type="Animation" id="Animation_ntp6h"]
+resource_name = "move_1"
+length = 0.19979999999999998
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [4, 5, 3]
+}
+
+[sub_resource type="Animation" id="Animation_ag7yx"]
+resource_name = "move_2"
+length = 0.19979999999999998
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [7, 8, 6]
+}
+
+[sub_resource type="Animation" id="Animation_kgu0o"]
+resource_name = "move_3"
+length = 0.19979999999999998
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [10, 11, 9]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rglla"]
+_data = {
+&"RESET": SubResource("Animation_e6f0k"),
+&"idle_0": SubResource("Animation_sr7o8"),
+&"idle_1": SubResource("Animation_wa1af"),
+&"idle_2": SubResource("Animation_2hde2"),
+&"idle_3": SubResource("Animation_2enr3"),
+&"move_0": SubResource("Animation_rglla"),
+&"move_1": SubResource("Animation_ntp6h"),
+&"move_2": SubResource("Animation_ag7yx"),
+&"move_3": SubResource("Animation_kgu0o")
+}
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_bh32s"]
 
@@ -26,17 +184,31 @@ linear_damp = 1.0
 script = ExtResource("1_vwlud")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=232210474]
-texture = SubResource("PlaceholderTexture2D_bh32s")
-offset = Vector2(0, -8)
+position = Vector2(0, 1)
+texture = ExtResource("2_rglla")
+offset = Vector2(0, -16)
+hframes = 3
+vframes = 4
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=494286539]
 unique_name_in_owner = true
-path_desired_distance = 2.0
+path_desired_distance = 16.0
 path_postprocessing = 1
-simplify_epsilon = 4.0
+simplify_epsilon = 2.0
+avoidance_enabled = true
+radius = 8.0
+neighbor_distance = 16.0
+max_neighbors = 6
+debug_enabled = true
+debug_use_custom = true
 script = ExtResource("2_wa1af")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1930298928]
+libraries/ = SubResource("AnimationLibrary_rglla")
+next/move_0 = &"idle_0"
+next/move_1 = &"idle_1"
+next/move_2 = &"idle_2"
+next/move_3 = &"move_3"
 
 [node name="BTPlayer" type="BTPlayer" parent="." unique_id=1790084948]
 behavior_tree = ExtResource("2_doktv")
@@ -46,7 +218,6 @@ blackboard_plan = SubResource("BlackboardPlan_bh32s")
 shape = SubResource("CircleShape2D_c1idk")
 
 [node name="AttackRaycast" type="ShapeCast2D" parent="." unique_id=329866897]
-visible = false
 shape = SubResource("CircleShape2D_cixdc")
 target_position = Vector2(0, 4)
 max_results = 1

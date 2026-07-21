@@ -6,28 +6,12 @@ var master_phys:int = 0
 var master_attack:int = 0
 var master_avoid:int = 0
 
-class Faction:
-	extends Resource
-	var name: String
-	#physics
-	## Physics layer for our guys
-	var physics_layer: int
-	## Physics mask for our guys and attacks
-	var physics_mask: int
-	## Physics layer for our attacks
-	var attack_layer: int
-	## Physics layer for our defenses (shields, etc)
-	var defense_mask:int 
-	#navigation
-	var nav_layer: int
-	var avoid_own: int
-	var avoid_enemy: int
 
 func _init():
 	var fac_defs:Dictionary = load_faction_definitions()
 	# if mods ever happen code inserted here can add them to the definition dictionary
 	build_faction_data(fac_defs)
-	
+
 
 func load_faction_definitions() ->Dictionary:
 	var faction_data = JSON.parse_string(
@@ -68,3 +52,21 @@ func build_faction_data(faction_data:Dictionary) -> void:
 		faction.physics_mask = master_phys & ~faction.physics_layer # Take the master bitmask (all used phys layers) and just remove our layer from it. This is done by performing a NOT  
 		faction.defense_mask = master_attack & ~faction.attack_layer # Take the master bitmask for all attacks (all used attack phys layers) and remove our attack layer from it.
 		faction.avoid_enemy = master_avoid & ~faction.avoid_own # Remove our avoidance layer from the master avoidance bitmask and remove ours again.
+
+
+class Faction:
+	extends Resource
+	var name: String
+	#physics
+	## Physics layer for our guys
+	var physics_layer: int
+	## Physics mask for our guys and attacks
+	var physics_mask: int
+	## Physics layer for our attacks
+	var attack_layer: int
+	## Physics layer for our defenses (shields, etc)
+	var defense_mask:int 
+	#navigation
+	var nav_layer: int
+	var avoid_own: int
+	var avoid_enemy: int

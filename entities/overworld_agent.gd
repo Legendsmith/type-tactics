@@ -1,6 +1,7 @@
 class_name OverworldAgent
 extends RigidBody2D
 
+
 const DMG_LOW:int = 40
 const DMG_HIGH:int = 85
 const MAX_BT_DELTA:float = 4.0
@@ -13,10 +14,10 @@ const MAX_BT_DELTA:float = 4.0
 @export var target:Node2D
 var desired_velocity:Vector2 = Vector2.ZERO
 
-var overworld_atk: int = 0
-var overworld_def: int = 0
-var overworld_hp: int = 0
-var max_overworld_hp: int = 0
+var overworld_atk: int = 95
+var overworld_def: int = 100
+var overworld_hp: int = 100
+var max_overworld_hp: int = 100
 
 var bt_delta: float = 0
 var thinking: bool = false
@@ -30,7 +31,6 @@ var tick_offset: int = 0
 
 func _ready() -> void:
 	tick_offset = randi() % Engine.physics_ticks_per_second
-	calculate_overworld_power()
 	refresh_hp()
 	nav_agent.waypoint_reached.connect(think.unbind(1))
 	configure_physics(faction)
@@ -43,29 +43,14 @@ func configure_physics(_faction:StringName):
 	nav_agent.navigation_layers = faction_def.nav_layer
 	nav_agent.avoidance_layers = faction_def.avoid_own
 	nav_agent.avoidance_mask = faction_def.avoid_own
+	attack_raycast.collision_mask = faction_def.physics_mask
 
 func refresh_hp():
-	var hp: int = 1
-	if not team:
-		overworld_hp = 100
-		max_overworld_hp = 100
-		return
-	for unit: UnitDef in team.units:
-		hp += unit.attribute_base[Unit.Attribute.HP]
-	overworld_hp = hp
-	max_overworld_hp = hp
-
+	overworld_hp = max_overworld_hp
 
 func calculate_overworld_power():
-	overworld_atk = 100
-	overworld_def = 100
+	pass
 
-	if overworld_hp <= 0 or not team:
-		return
-	for unit: UnitDef in team.units:
-		overworld_atk += unit.attribute_base[Unit.Attribute.ATTACK] + unit.attribute_base[Unit.Attribute.SPECIAL_ATTACK]
-		overworld_def += unit.attribute_base[Unit.Attribute.DEFENSE] + unit.attribute_base[Unit.Attribute.SPECIAL_DEFENSE]
-	
 
 func recieve_damage(_attacker:OverworldAgent,atk:int,delta):
 	overworld_hp -= randi_range(DMG_LOW,DMG_HIGH) * (atk/overworld_def) * delta
@@ -98,6 +83,7 @@ func _physics_process(delta) -> void:
 
 func move(velocity:Vector2):
 	apply_central_force(velocity)
+	animation_player.play("move_"+str(Constants.get_direction_index(velocity)),-1,linear_velocity.length()/max_speed)
 	#if (Engine.get_physics_frames() + tick_offset) % (skip_frames + 1) == 0: # Only run this every skip frames.
 	#	linear_velocity = velocity
 

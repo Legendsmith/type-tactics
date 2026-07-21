@@ -8,6 +8,7 @@ const TURN_SPEED_FLOOR_COEFFICIENT:float = 0.1
 func _ready():
 	velocity_computed.connect(on_velocity_computed)
 	process_mode = PROCESS_MODE_DISABLED
+	debug_path_custom_color = Color(randf_range(0.2,1),randf_range(0.2,1),randf_range(0.2,1))
 
 func activate(position:Vector2):
 	#agent.linear_damp = agent.linear_damp_max*0.1 # Set damp low so the agent can move well.

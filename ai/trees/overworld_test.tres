@@ -20,7 +20,7 @@ var/speed/hint = 0
 var/speed/hint_string = ""
 var/distance/name = &"distance"
 var/distance/type = 3
-var/distance/value = 0.0
+var/distance/value = 48.0
 var/distance/hint = 0
 var/distance/hint_string = ""
 
