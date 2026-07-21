@@ -53,6 +53,7 @@ enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/grid
 
 folder_colors={
 "res://addons/": "gray",
+"res://ai/": "blue",
 "res://data/": "pink",
 "res://entities/": "teal",
 "res://globals/": "purple",

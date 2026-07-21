@@ -17,8 +17,8 @@ static var path_follower:PackedScene = load("uid://cb50uu7l62pct")
 func _ready() -> void:
 	navigation_link_player = configure_navigation_link($NavigationLinkPlayer)
 	navigation_link_enemy = configure_navigation_link($NavigationLinkEnemy)
-	navigation_link_player.set_navigation_layer_value(Overworld.NAV_LAYER_PLAYER,true)
-	navigation_link_enemy.set_navigation_layer_value(Overworld.NAV_LAYER_ENEMY,true)
+	#navigation_link_player.set_navigation_layer_value(Overworld.NAV_LAYER_PLAYER,true)
+	#navigation_link_enemy.set_navigation_layer_value(Overworld.NAV_LAYER_ENEMY,true)
 	$ExitArea.position = curve.get_point_position(curve.point_count-1)
 	
 func configure_navigation_link(nav_link:NavigationLink2D) ->NavigationLink2D:

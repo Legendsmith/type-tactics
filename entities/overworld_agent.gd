@@ -6,11 +6,10 @@ const DMG_LOW:int = 40
 const DMG_HIGH:int = 85
 const MAX_BT_DELTA:float = 4.0
 
-@export var team: TeamDef
 @export var faction: StringName = Constants.ENEMY_GROUP
 @export var goal: StringName = &"move"
-@export var speed:float = 100
-@export var max_speed:float = 100
+@export var speed:float = 64
+@export var max_speed:float = 64
 @export var target:Node2D
 var desired_velocity:Vector2 = Vector2.ZERO
 
@@ -34,7 +33,12 @@ func _ready() -> void:
 	refresh_hp()
 	nav_agent.waypoint_reached.connect(think.unbind(1))
 	configure_physics(faction)
-	_setup_bt_player()
+	if NavigationServer2D.map_is_active(get_world_2d().get_navigation_map()):
+		_setup_bt_player()
+	else:
+		print_debug("Awaiting NavigationServer")
+		await NavigationServer2D.map_changed
+		_setup_bt_player()
 
 func configure_physics(_faction:StringName):
 	var faction_def:Factions.Faction = Factions.faction_list[_faction]
@@ -64,16 +68,14 @@ func _physics_process(delta) -> void:
 	attack_raycast.target_position = desired_velocity.normalized() * 4
 	attack_raycast.position = desired_velocity.normalized() * 8
 	if bt_delta > MAX_BT_DELTA and not thinking:
-		print_debug("Backup think")
+		#print_debug("Backup think")
 		think()
-
 	if attack_raycast.is_colliding():
 			var _target:Node2D = attack_raycast.get_collider(0)
 			if _target.faction != faction:
 				linear_damp = 16
 				desired_velocity = Vector2.ZERO
-				
-				print_debug("Attacking: ", _target)
+				#print_debug("Attacking: ", _target)
 				_target.recieve_damage(self,overworld_atk,delta)
 			else:
 				linear_damp = 1
@@ -100,6 +102,9 @@ func think():
 				break
 			else:
 				await get_tree().physics_frame
+
+#func _draw() -> void:
+#	draw_line(Vector2.ZERO,desired_velocity,nav_agent.debug_path_custom_color)
 
 func bt_status(status:BT.Status):
 	thinking = false # not thinking anymore.

@@ -89,7 +89,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_rglla"]
 resource_name = "move_0"
-length = 0.19979999999999998
+length = 0.1998
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -106,7 +106,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_ntp6h"]
 resource_name = "move_1"
-length = 0.19979999999999998
+length = 0.1998
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -123,7 +123,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_ag7yx"]
 resource_name = "move_2"
-length = 0.19979999999999998
+length = 0.1998
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -140,7 +140,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_kgu0o"]
 resource_name = "move_3"
-length = 0.19979999999999998
+length = 0.1998
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -199,7 +199,6 @@ avoidance_enabled = true
 radius = 8.0
 neighbor_distance = 16.0
 max_neighbors = 6
-debug_enabled = true
 debug_use_custom = true
 script = ExtResource("2_wa1af")
 
@@ -212,6 +211,7 @@ next/move_3 = &"move_3"
 
 [node name="BTPlayer" type="BTPlayer" parent="." unique_id=1790084948]
 behavior_tree = ExtResource("2_doktv")
+update_mode = 2
 blackboard_plan = SubResource("BlackboardPlan_bh32s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1326332625]

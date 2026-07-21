@@ -1,5 +1,6 @@
 [gd_resource type="BehaviorTree" format=3 uid="uid://ck48v1fnwsw0p"]
 
+[ext_resource type="Script" uid="uid://drh0so1ambcaf" path="res://ai/tasks/movement/follow_flow_field.gd" id="1_d2quf"]
 [ext_resource type="Script" uid="uid://c74kpk7kpqsjw" path="res://ai/tasks/set_pos_to_node_position.gd" id="1_ih2uh"]
 [ext_resource type="Script" uid="uid://c44jpq62epxcs" path="res://ai/tasks/movement/pathfind_position.gd" id="2_d2quf"]
 
@@ -24,15 +25,21 @@ var/distance/value = 48.0
 var/distance/hint = 0
 var/distance/hint_string = ""
 
-[sub_resource type="BTAction" id="BTAction_q7exg"]
+[sub_resource type="BTAction" id="BTAction_ih2uh"]
+script = ExtResource("1_d2quf")
+nav_agent = NodePath("NavigationAgent2D")
+
+[sub_resource type="BTAction" id="BTAction_d2quf"]
+_enabled = false
 script = ExtResource("1_ih2uh")
 
-[sub_resource type="BTAction" id="BTAction_pdewr"]
+[sub_resource type="BTAction" id="BTAction_q7exg"]
+_enabled = false
 script = ExtResource("2_d2quf")
 nav_agent = NodePath("NavigationAgent2D")
 
 [sub_resource type="BTSequence" id="BTSequence_ih2uh"]
-children = [SubResource("BTAction_q7exg"), SubResource("BTAction_pdewr")]
+children = [SubResource("BTAction_ih2uh"), SubResource("BTAction_d2quf"), SubResource("BTAction_q7exg")]
 
 [sub_resource type="BTWait" id="BTWait_ih2uh"]
 duration = 0.1

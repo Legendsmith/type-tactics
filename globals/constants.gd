@@ -11,8 +11,11 @@ const PHYS_TERRAIN := 1
 const PHYS_HAZARD := 2
 const PHYS_INTERACT := 3
 const FACTION_PHYSLAYER_OFFSET := 4
+# NAVIGATION
 const NAV_LAYER_ALL := 1
 const AVOIDANCE_OFFSET := 0
+const FLOW_FIELD_GROUP := &"flow_field_target"
+
 
 #static var equip_item_none = load("uid://cmf34gy8bf545")
 
