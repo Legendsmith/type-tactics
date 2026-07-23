@@ -36,7 +36,7 @@ func reset_exception(body:Node2D):
 	if body in exceptions:
 		exceptions.erase.call_deferred(body)
 
-func check_contested(faction:StringName,destination:int):
+func check_contested(faction:StringName,_destination:int):
 	contested =false
 	request_contested.emit(faction)
 

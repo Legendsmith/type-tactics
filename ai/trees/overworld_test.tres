@@ -27,7 +27,6 @@ var/distance/hint_string = ""
 
 [sub_resource type="BTAction" id="BTAction_ih2uh"]
 script = ExtResource("1_d2quf")
-nav_agent = NodePath("NavigationAgent2D")
 
 [sub_resource type="BTAction" id="BTAction_d2quf"]
 _enabled = false

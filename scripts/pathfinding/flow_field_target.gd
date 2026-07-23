@@ -5,7 +5,7 @@ extends Marker2D
 	set(new):
 		debug_draw=new
 		queue_redraw()
-
+@export var goal_faction_name:StringName = Constants.PLAYER_GROUP
 var flow_field:FlowField
 var flow_field_ready:bool = false
 

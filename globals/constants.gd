@@ -15,8 +15,6 @@ const FACTION_PHYSLAYER_OFFSET := 4
 const NAV_LAYER_ALL := 1
 const AVOIDANCE_OFFSET := 0
 const FLOW_FIELD_GROUP := &"flow_field_target"
-
-
 #static var equip_item_none = load("uid://cmf34gy8bf545")
 
 
@@ -26,3 +24,7 @@ static func get_direction_index(input_vector: Vector2) -> int:
 	if angle < 0:
 		angle += 2 * PI
 	return int((angle + PI/SPRITE_DIR) / SPRITE_DIR_COEF) % SPRITE_DIR
+
+static func teleport(body:RigidBody2D,global_position:Vector2):
+	PhysicsServer2D.body_set_state(body.get_rid(),PhysicsServer2D.BODY_STATE_TRANSFORM,Transform2D.IDENTITY.translated(global_position))
+	body.reset_physics_interpolation()

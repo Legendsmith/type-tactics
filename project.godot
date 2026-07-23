@@ -24,6 +24,10 @@ Dialogic="*uid://ds2q0uclmolvu"
 SaveSystem="*uid://obs3nso70vxb"
 Factions="*uid://c1ev4athehupm"
 
+[debug]
+
+gdscript/warnings/integer_division=0
+
 [dialogic]
 
 directories/dch_directory={}

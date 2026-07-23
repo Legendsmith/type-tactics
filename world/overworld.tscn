@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://8ievdkdx8ig7" path="res://entities/overworld_agent.tscn" id="4_v8spm"]
 [ext_resource type="Script" uid="uid://cdgbctc4n4whq" path="res://scripts/pathfinding/flow_field_target.gd" id="5_v8spm"]
 [ext_resource type="Script" uid="uid://bggp67gib3ths" path="res://world/teleport_area_random.gd" id="6_27a4x"]
+[ext_resource type="Script" uid="uid://c7xde0gu12giy" path="res://scripts/debug_spawner.gd" id="7_1jn2r"]
+[ext_resource type="Script" uid="uid://dsj0pbh1pq15n" path="res://world/debug_spatial_map_indicator.gd" id="8_jdvmi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5mdms"]
 size = Vector2(32, 32)
@@ -15,8 +17,10 @@ y_sort_enabled = true
 script = ExtResource("1_3vohx")
 player_faction_goal = NodePath("TileMapLayer/PlayerGoal")
 enemy_faction_goal = NodePath("TileMapLayer/EnemyGoal")
+interface_scene = "uid://dn2qdyhps5xut"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=183223178]
+process_mode = 3
 position = Vector2(330, 145)
 zoom = Vector2(4, 4)
 script = ExtResource("1_vqr3w")
@@ -35,376 +39,10 @@ script = ExtResource("5_v8spm")
 position = Vector2(119, 69)
 script = ExtResource("5_v8spm")
 
-[node name="PlayerAlly" parent="." unique_id=1303149982 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(940, 258)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly2" parent="." unique_id=1243938970 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(922, 335)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly3" parent="." unique_id=915693463 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(881, 418)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly4" parent="." unique_id=1128548857 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(839, 470)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly5" parent="." unique_id=205999169 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(779, 516)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly6" parent="." unique_id=230951566 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(733, 527)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly7" parent="." unique_id=928158109 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(642, 526)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly8" parent="." unique_id=1731935036 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(614, 569)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly9" parent="." unique_id=587470932 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(658, 577)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly10" parent="." unique_id=1137590348 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(714, 529)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly11" parent="." unique_id=1579104898 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(731, 572)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly12" parent="." unique_id=1859226738 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(649, 612)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly13" parent="." unique_id=505488315 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(649, 612)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly14" parent="." unique_id=958123568 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(1022, 421)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly15" parent="." unique_id=337372464 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(981, 504)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly16" parent="." unique_id=1640754859 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(939, 556)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly17" parent="." unique_id=1082080776 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(879, 602)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly18" parent="." unique_id=739678039 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(833, 613)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly19" parent="." unique_id=411465322 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(742, 612)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly20" parent="." unique_id=1805927859 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(714, 655)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly21" parent="." unique_id=889121573 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(758, 663)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly22" parent="." unique_id=1658608263 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(814, 615)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly23" parent="." unique_id=1494297061 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(831, 658)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly24" parent="." unique_id=1827710467 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(749, 698)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly25" parent="." unique_id=1018075147 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(749, 698)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly26" parent="." unique_id=1556189042 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(542, 541)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly27" parent="." unique_id=1403798143 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(501, 624)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly28" parent="." unique_id=1139400925 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(459, 676)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly29" parent="." unique_id=14212717 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(399, 722)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly30" parent="." unique_id=1474282503 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(353, 733)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly31" parent="." unique_id=1062017646 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(262, 732)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly32" parent="." unique_id=1943486193 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(234, 775)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly33" parent="." unique_id=1771899205 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(278, 783)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly34" parent="." unique_id=508983751 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(334, 735)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly35" parent="." unique_id=1020198094 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(351, 778)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly36" parent="." unique_id=1242357469 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(269, 818)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly37" parent="." unique_id=1510435841 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(269, 818)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly38" parent="." unique_id=490498743 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(589, 382)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly39" parent="." unique_id=863787230 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(548, 465)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly40" parent="." unique_id=2048050459 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(506, 517)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly41" parent="." unique_id=889979838 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(446, 563)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly42" parent="." unique_id=212395819 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(400, 574)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly43" parent="." unique_id=1049802374 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(309, 573)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly44" parent="." unique_id=298880880 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(281, 616)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly45" parent="." unique_id=297653958 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(325, 624)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly46" parent="." unique_id=437304577 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(381, 576)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly47" parent="." unique_id=182975510 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(398, 619)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly48" parent="." unique_id=1226144458 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(316, 659)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly49" parent="." unique_id=1238290663 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(316, 659)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly50" parent="." unique_id=2062084980 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(851, 473)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly51" parent="." unique_id=1348204602 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(810, 556)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly52" parent="." unique_id=1817651047 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(768, 608)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly53" parent="." unique_id=66250226 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(708, 654)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly54" parent="." unique_id=856185202 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(662, 665)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly55" parent="." unique_id=349521959 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(571, 664)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly56" parent="." unique_id=802421317 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(543, 707)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly57" parent="." unique_id=1364813958 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(587, 715)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly58" parent="." unique_id=55935566 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(643, 667)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly59" parent="." unique_id=2070672440 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(660, 710)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly60" parent="." unique_id=342832652 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(578, 750)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
-[node name="PlayerAlly61" parent="." unique_id=1231538459 node_paths=PackedStringArray("target") instance=ExtResource("4_v8spm")]
-position = Vector2(578, 750)
-collision_layer = 0
-faction = &"player"
-target = NodePath("../TileMapLayer/PlayerGoal")
-
 [node name="TeleportArea" type="Area2D" parent="." unique_id=788008963 node_paths=PackedStringArray("destinations", "destination")]
 position = Vector2(295, 67)
 collision_layer = 0
-collision_mask = 16
+collision_mask = 248
 script = ExtResource("6_27a4x")
 destinations = [NodePath("../Marker2D"), NodePath("../Marker2D2"), NodePath("../Marker2D3"), NodePath("../Marker2D4"), NodePath("../Marker2D5"), NodePath("../Marker2D6"), NodePath("../Marker2D7")]
 destination = NodePath("../Marker2D")
@@ -433,3 +71,20 @@ position = Vector2(133, 600)
 
 [node name="Marker2D7" type="Marker2D" parent="." unique_id=741179438]
 position = Vector2(142, 492)
+
+[node name="DebugSpawner" type="Node" parent="." unique_id=71486030 node_paths=PackedStringArray("spawn_points")]
+unique_name_in_owner = true
+script = ExtResource("7_1jn2r")
+spawn_points = [NodePath("../Marker2D"), NodePath("../Marker2D2"), NodePath("../Marker2D3"), NodePath("../Marker2D4"), NodePath("../Marker2D5"), NodePath("../Marker2D6"), NodePath("../Marker2D7")]
+entity = ExtResource("4_v8spm")
+
+[node name="OverworldAgent" parent="." unique_id=1303149982 instance=ExtResource("4_v8spm")]
+position = Vector2(335.30273, 132.39073)
+faction = &"opponent"
+goal = &"move"
+speed = 64.0
+max_speed = 64.0
+skip_frames = 8
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1022463215]
+script = ExtResource("8_jdvmi")

@@ -50,7 +50,6 @@ const ACCURACY: Array = [
 	3.0 / 4.0, 3.0 / 5.0, 3.0 / 6.0,
 ]
 
-@warning_ignore_start("integer_division")
 
 static func calc_attribute(attribute: int, modifier: int) -> int:
 	return int(attribute * MODIFIER[clampi(modifier, -6, 6)])

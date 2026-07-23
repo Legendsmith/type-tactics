@@ -5,43 +5,33 @@ extends NavigationAgent2D
 
 const MAX_LINEAR_DAMP:float = 4.0
 
-var use_flow_field=false
-var flow_field:FlowField
+
 const TURN_SPEED_FLOOR_COEFFICIENT:float = 0.1
 
 func _ready():
 	velocity_computed.connect(on_velocity_computed)
 	process_mode = PROCESS_MODE_DISABLED
+	set_physics_process(false)
 	debug_path_custom_color = Color(randf_range(0.2,1),randf_range(0.2,1),randf_range(0.2,1))
 
 func activate(position:Vector2):
 	#agent.linear_damp = agent.linear_damp_max*0.1 # Set damp low so the agent can move well.
 	process_mode = PROCESS_MODE_INHERIT
+	set_physics_process(true)
 	target_position = position
-	use_flow_field=false
+	agent.use_flow_field=false
 	get_next_path_position()
 	#print_debug("Activate pathfinding for ", agent.name)
 
-func activate_flow_field(position:Vector2,target_flow_field:FlowField):
-	flow_field = target_flow_field
-	if not flow_field.flow_field_ready:
-		await flow_field.field_ready
-	target_position = position
-	process_mode = PROCESS_MODE_INHERIT
-	flow_field = target_flow_field
-	use_flow_field = true
-	get_next_path_position()
 
 func _physics_process(_delta: float) -> void:
-	if is_navigation_finished() or is_target_reached():
-		finish()
-	elif follow_flow_field():
-		if agent.desired_velocity.is_zero_approx():
+	if (Engine.get_physics_frames() + agent.tick_offset) % (agent.skip_frames + 1) == 0:
+		if is_navigation_finished():
+			finish()
+		else:
 			pathfind()
-	else:
-		pathfind()
-		#agent.linear_damp = move_toward(agent.linear_damp,Agent.MIN_LINEAR_DAMP,agent.takeoff_time * delta)
-		agent.move(agent.desired_velocity)
+			#agent.linear_damp = move_toward(agent.linear_damp,Agent.MIN_LINEAR_DAMP,agent.takeoff_time * delta)
+			agent.move(agent.desired_velocity)
 
 func pathfind():
 	var next_pos = get_next_path_position()
@@ -51,7 +41,7 @@ func pathfind():
 		set_velocity(desired_velocity)
 	else:
 		agent.desired_velocity = desired_velocity
-
+	
 
 func on_velocity_computed(safe_velocity:Vector2):
 	agent.desired_velocity = safe_velocity
@@ -60,17 +50,6 @@ func finish():
 		#agent.think() # call the behaviour tree when we're done.
 		#agent.linear_damp = agent.linear_damp_max
 		process_mode = PROCESS_MODE_DISABLED
+		set_physics_process(false)
 		agent.desired_velocity = Vector2.ZERO 
 		#print_debug("finished pathfinding")
-
-func follow_flow_field() -> bool:
-	if use_flow_field:
-		var dir=flow_field.get_direction(agent.global_position)
-		if dir == Vector2.ZERO:
-			return false
-		agent.desired_velocity = dir * min(distance_to_target(),max_speed)
-		agent.linear_damp = MAX_LINEAR_DAMP * flow_field.get_move_multiplier(flow_field.get_grid_coords(agent.global_position))
-		agent.move(dir * min(distance_to_target(),max_speed))
-		return true
-	else:
-		return false

@@ -1,10 +1,8 @@
-extends Node
+extends MainScene2D
 
 signal finalize_turn
 signal new_turn
 signal unit_added(unit:Unit)
-
-@export_custom(0,"scene") var interface_scene:String
 
 static var battle_unit:PackedScene = load("uid://bm03ut2gnfrq8")
 
@@ -16,13 +14,10 @@ var units_enemy:Dictionary[Unit,CombatMechanics.UnitStatus]
 
 
 func _ready():
-	configure_interface()
+	super()
 	get_tree().call_group(Unit.UNIT_GROUP,&"battle_setup")
 
-func configure_interface():
-	var interface:Control = load(interface_scene).instantiate()
-	GameManager.game_interface = interface
-	GameManager.add_child(interface)
+
 
 func deploy_team(team:TeamDef):
 	var side = team.control

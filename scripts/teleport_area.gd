@@ -22,5 +22,4 @@ func _ready():
 
 
 func teleport(body:RigidBody2D):
-	PhysicsServer2D.body_set_state(body.get_rid(),PhysicsServer2D.BODY_STATE_TRANSFORM,Transform2D.IDENTITY.translated(destination.global_position))
-	body.reset_physics_interpolation()
+	Constants.teleport(body,destination.global_position)

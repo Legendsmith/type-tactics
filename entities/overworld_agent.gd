@@ -1,7 +1,6 @@
 class_name OverworldAgent
 extends RigidBody2D
 
-
 const DMG_LOW:int = 40
 const DMG_HIGH:int = 85
 const MAX_BT_DELTA:float = 4.0
@@ -21,14 +20,25 @@ var max_overworld_hp: int = 100
 var bt_delta: float = 0
 var thinking: bool = false
 var tick_offset: int = 0
+
+var spatial_hash:Object
+
 @export_range(0, 60, 1) var skip_frames: int = 8
 
 @onready var nav_agent: NavigationAgent2D = %NavigationAgent2D
 @onready var bt_player: BTPlayer = $BTPlayer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var attack_raycast:ShapeCast2D = $AttackRaycast
+
+
+var use_flow_field=false
+var flow_field:FlowField
 
 func _ready() -> void:
+	spatial_hash.update()
+	GameManager.request_hashmap_near.connect(spatial_hash.on_request_hashmap_near)
+	add_to_group("overworld_agents")
+	if not target:
+		target = get_tree().get_first_node_in_group(Constants.FLOW_FIELD_GROUP)
 	tick_offset = randi() % Engine.physics_ticks_per_second
 	refresh_hp()
 	nav_agent.waypoint_reached.connect(think.unbind(1))
@@ -47,7 +57,7 @@ func configure_physics(_faction:StringName):
 	nav_agent.navigation_layers = faction_def.nav_layer
 	nav_agent.avoidance_layers = faction_def.avoid_own
 	nav_agent.avoidance_mask = faction_def.avoid_own
-	attack_raycast.collision_mask = faction_def.physics_mask
+
 
 func refresh_hp():
 	overworld_hp = max_overworld_hp
@@ -65,22 +75,13 @@ func recieve_damage(_attacker:OverworldAgent,atk:int,delta):
 
 func _physics_process(delta) -> void:
 	bt_delta += delta
-	attack_raycast.target_position = desired_velocity.normalized() * 4
-	attack_raycast.position = desired_velocity.normalized() * 8
+	if (Engine.get_physics_frames() + tick_offset) % (skip_frames + 1) == 0:
+		if use_flow_field:
+			follow_flow_field()
 	if bt_delta > MAX_BT_DELTA and not thinking:
 		#print_debug("Backup think")
 		think()
-	if attack_raycast.is_colliding():
-			var _target:Node2D = attack_raycast.get_collider(0)
-			if _target.faction != faction:
-				linear_damp = 16
-				desired_velocity = Vector2.ZERO
-				#print_debug("Attacking: ", _target)
-				_target.recieve_damage(self,overworld_atk,delta)
-			else:
-				linear_damp = 1
-	else:
-		linear_damp = 1
+		spatial_hash.update()
 	modulate = (Color.WHITE *(float(overworld_hp)/max_overworld_hp)) + Color(0,0,0,1)
 
 func move(velocity:Vector2):
@@ -124,3 +125,23 @@ func _setup_bt_player():
 	bt_player.update(1.0 / Engine.physics_ticks_per_second) # Update since it's manual.
 	#damage_recieved.connect(think.unbind(1))
 #endregion
+
+
+func activate_flow_field(target_flow_field:FlowField):
+	use_flow_field = true
+	flow_field = target_flow_field
+
+
+func follow_flow_field() -> void:
+	var distance:float = global_position.distance_to(target.global_position)
+	var dir=flow_field.get_direction(global_position)
+	desired_velocity = dir * min(distance,max_speed)
+	#agent.linear_damp = MAX_LINEAR_DAMP * flow_field.get_move_multiplier(flow_field.get_grid_coords(agent.global_position))
+	move(desired_velocity*(skip_frames+1))
+
+## Spatial Hash related
+func _exit_tree() -> void:
+	spatial_hash.free()
+
+func _enter_tree() -> void:
+	spatial_hash = SpatialHash.new(self)

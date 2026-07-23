@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://dn2qdyhps5xut"]
+
+[ext_resource type="Script" uid="uid://c4d4gbnkqbnun" path="res://ui/overworld_interface.gd" id="1_xp8vc"]
+
+[node name="OverworldInterface" type="Control" unique_id=1479163122]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_xp8vc")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1272906313]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -66.0
+offset_right = 189.0
+grow_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer" unique_id=565048450]
+layout_mode = 2
+
+[node name="AgentSpawnButton" type="CheckButton" parent="MarginContainer/HFlowContainer" unique_id=170043950]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Agent Spawning"
+
+[node name="AgentCountLabel" type="Label" parent="MarginContainer/HFlowContainer" unique_id=1123964272]
+layout_mode = 2
+text = "Agents:"
+
+[node name="AgentCountBox" type="SpinBox" parent="MarginContainer/HFlowContainer" unique_id=1945703414]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 2048.0
+allow_greater = true
+editable = false

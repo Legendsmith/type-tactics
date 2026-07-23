@@ -1,5 +1,5 @@
 class_name FlowField
-
+@warning_ignore("unused_signal")
 signal field_ready
 
 const allow_diagonals:= true

@@ -173,15 +173,17 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_c1idk"]
 radius = 8.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_cixdc"]
-radius = 4.0
-
 [node name="OverworldAgent" type="RigidBody2D" unique_id=1303149982]
 physics_material_override = SubResource("PhysicsMaterial_5mdms")
 lock_rotation = true
 max_contacts_reported = 12
 linear_damp = 1.0
 script = ExtResource("1_vwlud")
+faction = null
+goal = null
+speed = null
+max_speed = null
+skip_frames = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=232210474]
 position = Vector2(0, 1)
@@ -216,9 +218,3 @@ blackboard_plan = SubResource("BlackboardPlan_bh32s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1326332625]
 shape = SubResource("CircleShape2D_c1idk")
-
-[node name="AttackRaycast" type="ShapeCast2D" parent="." unique_id=329866897]
-shape = SubResource("CircleShape2D_cixdc")
-target_position = Vector2(0, 4)
-max_results = 1
-collision_mask = 0

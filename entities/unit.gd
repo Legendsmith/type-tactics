@@ -63,7 +63,6 @@ var active_effects:Dictionary[BattleEffectPersistent,int] = {}
 
 @export_flags("Targetable", "Active") var battle_flags:int = 11
 
-@warning_ignore_start("integer_division")
 @onready var default_action = TurnAction.new(self, load("uid://dagu5nkeqlqr4"))
 @onready var next_action:TurnAction = default_action
 
