@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dolfu67eapian"]
+
+[ext_resource type="PackedScene" uid="uid://8ievdkdx8ig7" path="res://entities/overworld_agent.tscn" id="1_12anv"]
+[ext_resource type="Texture2D" uid="uid://cqln0cpwdg7ow" path="res://texture/demenishiki_overworld.png" id="2_ue5ww"]
+
+[node name="OverworldAgentDemenishki" unique_id=1303149982 instance=ExtResource("1_12anv")]
+
+[node name="Sprite2D" parent="." index="0" unique_id=232210474]
+texture = ExtResource("2_ue5ww")

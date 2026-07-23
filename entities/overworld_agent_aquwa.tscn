@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cgtrb2a580edl"]
+
+[ext_resource type="PackedScene" uid="uid://8ievdkdx8ig7" path="res://entities/overworld_agent.tscn" id="1_5jev5"]
+[ext_resource type="Texture2D" uid="uid://bwrekqj4e3jxj" path="res://texture/aquwa_overworld.png" id="2_8yqmr"]
+
+[node name="OverworldAgentAquwa" unique_id=1303149982 instance=ExtResource("1_5jev5")]
+
+[node name="Sprite2D" parent="." index="0" unique_id=232210474]
+texture = ExtResource("2_8yqmr")

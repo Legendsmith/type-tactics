@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://5b3pp5ymgirl"]
+
+[ext_resource type="PackedScene" uid="uid://8ievdkdx8ig7" path="res://entities/overworld_agent.tscn" id="1_cskfj"]
+[ext_resource type="Texture2D" uid="uid://bl6r3mwpgm0q7" path="res://texture/gary_trooper_overworld.png" id="2_rf0kt"]
+
+[node name="OverworldAgentGarytrooper" unique_id=1303149982 instance=ExtResource("1_cskfj")]
+
+[node name="Sprite2D" parent="." index="0" unique_id=232210474]
+texture = ExtResource("2_rf0kt")
