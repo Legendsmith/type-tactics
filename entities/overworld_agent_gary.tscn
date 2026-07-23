@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://boqykmfv1k6wh"]
+
+[ext_resource type="PackedScene" uid="uid://8ievdkdx8ig7" path="res://entities/overworld_agent.tscn" id="1_8axed"]
+
+[node name="OverworldAgentGary" unique_id=1303149982 instance=ExtResource("1_8axed")]
+faction = &"player"

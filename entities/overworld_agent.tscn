@@ -22,6 +22,34 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_w1n0g"]
+resource_name = "hurt"
+length = 0.36669999999999997
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.16666667, 0.26666668, 0.3667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_sr7o8"]
 resource_name = "idle_0"
@@ -158,6 +186,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rglla"]
 _data = {
 &"RESET": SubResource("Animation_e6f0k"),
+&"hurt": SubResource("Animation_w1n0g"),
 &"idle_0": SubResource("Animation_sr7o8"),
 &"idle_1": SubResource("Animation_wa1af"),
 &"idle_2": SubResource("Animation_2hde2"),
@@ -179,11 +208,6 @@ lock_rotation = true
 max_contacts_reported = 12
 linear_damp = 1.0
 script = ExtResource("1_vwlud")
-faction = null
-goal = null
-speed = null
-max_speed = null
-skip_frames = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=232210474]
 position = Vector2(0, 1)

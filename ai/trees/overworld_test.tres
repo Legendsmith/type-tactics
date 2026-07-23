@@ -24,27 +24,57 @@ var/distance/type = 3
 var/distance/value = 48.0
 var/distance/hint = 0
 var/distance/hint_string = ""
+var/action/name = &"action"
+var/action/type = 21
+var/action/value = &""
+var/action/hint = 0
+var/action/hint_string = ""
+
+[sub_resource type="BBVariant" id="BBVariant_x8r13"]
+resource_name = "attack"
+saved_value = &"attack"
+type = 21
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_ih2uh"]
+variable = &"action"
+value = SubResource("BBVariant_x8r13")
+
+[sub_resource type="BTAction" id="BTAction_d2quf"]
+script = ExtResource("1_ih2uh")
+
+[sub_resource type="BTAction" id="BTAction_q7exg"]
+script = ExtResource("2_d2quf")
+nav_agent = NodePath("NavigationAgent2D")
+
+[sub_resource type="BTSequence" id="BTSequence_x8r13"]
+children = [SubResource("BTCheckVar_ih2uh"), SubResource("BTAction_d2quf"), SubResource("BTAction_q7exg")]
+
+[sub_resource type="BBVariant" id="BBVariant_d2quf"]
+resource_name = "move"
+saved_value = &"move"
+type = 21
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_q7exg"]
+variable = &"action"
+value = SubResource("BBVariant_d2quf")
+
+[sub_resource type="BBNode" id="BBNode_x8r13"]
+resource_name = "."
+saved_value = NodePath(".")
+
+[sub_resource type="BTCallMethod" id="BTCallMethod_ih2uh"]
+node = SubResource("BBNode_x8r13")
+method = &"get_goal"
+result_var = &"target"
 
 [sub_resource type="BTAction" id="BTAction_ih2uh"]
 script = ExtResource("1_d2quf")
 
-[sub_resource type="BTAction" id="BTAction_d2quf"]
-_enabled = false
-script = ExtResource("1_ih2uh")
-
-[sub_resource type="BTAction" id="BTAction_q7exg"]
-_enabled = false
-script = ExtResource("2_d2quf")
-nav_agent = NodePath("NavigationAgent2D")
-
 [sub_resource type="BTSequence" id="BTSequence_ih2uh"]
-children = [SubResource("BTAction_ih2uh"), SubResource("BTAction_d2quf"), SubResource("BTAction_q7exg")]
-
-[sub_resource type="BTWait" id="BTWait_ih2uh"]
-duration = 0.1
+children = [SubResource("BTCheckVar_q7exg"), SubResource("BTCallMethod_ih2uh"), SubResource("BTAction_ih2uh")]
 
 [sub_resource type="BTSelector" id="BTSelector_d2quf"]
-children = [SubResource("BTSequence_ih2uh"), SubResource("BTWait_ih2uh")]
+children = [SubResource("BTSequence_x8r13"), SubResource("BTSequence_ih2uh")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_j5063")

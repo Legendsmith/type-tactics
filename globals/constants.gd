@@ -15,7 +15,9 @@ const FACTION_PHYSLAYER_OFFSET := 4
 const NAV_LAYER_ALL := 1
 const AVOIDANCE_OFFSET := 0
 const FLOW_FIELD_GROUP := &"flow_field_target"
-#static var equip_item_none = load("uid://cmf34gy8bf545")
+
+# OVERWORLD
+const OVERWORLD_BATTLE_TICK:float = 0.8
 
 
 static func get_direction_index(input_vector: Vector2) -> int:

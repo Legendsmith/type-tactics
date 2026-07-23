@@ -8,6 +8,9 @@
 [ext_resource type="Script" uid="uid://bggp67gib3ths" path="res://world/teleport_area_random.gd" id="6_27a4x"]
 [ext_resource type="Script" uid="uid://c7xde0gu12giy" path="res://scripts/debug_spawner.gd" id="7_1jn2r"]
 [ext_resource type="Script" uid="uid://dsj0pbh1pq15n" path="res://world/debug_spatial_map_indicator.gd" id="8_jdvmi"]
+[ext_resource type="PackedScene" uid="uid://bi5kasl0oud8u" path="res://entities/overworld_agent_crusader.tscn" id="8_k5kre"]
+[ext_resource type="PackedScene" uid="uid://boqykmfv1k6wh" path="res://entities/overworld_agent_gary.tscn" id="10_fscby"]
+[ext_resource type="Script" uid="uid://cfqrbe5b87mbm" path="res://scripts/overworld_battle.gd" id="11_mmdhr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5mdms"]
 size = Vector2(32, 32)
@@ -32,11 +35,11 @@ tile_set = ExtResource("2_wwcdr")
 metadata/_edit_lock_ = true
 
 [node name="PlayerGoal" type="Marker2D" parent="TileMapLayer" unique_id=1468444458]
-position = Vector2(295, 72)
+position = Vector2(192, 208)
 script = ExtResource("5_v8spm")
 
 [node name="EnemyGoal" type="Marker2D" parent="TileMapLayer" unique_id=1459542203]
-position = Vector2(119, 69)
+position = Vector2(432, 208)
 script = ExtResource("5_v8spm")
 
 [node name="TeleportArea" type="Area2D" parent="." unique_id=788008963 node_paths=PackedStringArray("destinations", "destination")]
@@ -78,13 +81,16 @@ script = ExtResource("7_1jn2r")
 spawn_points = [NodePath("../Marker2D"), NodePath("../Marker2D2"), NodePath("../Marker2D3"), NodePath("../Marker2D4"), NodePath("../Marker2D5"), NodePath("../Marker2D6"), NodePath("../Marker2D7")]
 entity = ExtResource("4_v8spm")
 
-[node name="OverworldAgent" parent="." unique_id=1303149982 instance=ExtResource("4_v8spm")]
-position = Vector2(335.30273, 132.39073)
-faction = &"opponent"
-goal = &"move"
-speed = 64.0
-max_speed = 64.0
-skip_frames = 8
-
 [node name="Node2D" type="Node2D" parent="." unique_id=1022463215]
+visible = false
 script = ExtResource("8_jdvmi")
+
+[node name="OverworldAgentCrusader" parent="." unique_id=1303149982 instance=ExtResource("8_k5kre")]
+position = Vector2(249.53458, 169.52054)
+
+[node name="OverworldAgentGary" parent="." unique_id=1809232163 instance=ExtResource("10_fscby")]
+position = Vector2(438.45078, 185.71335)
+
+[node name="Node2D2" type="Node2D" parent="." unique_id=821134245]
+position = Vector2(331.52676, 187.25552)
+script = ExtResource("11_mmdhr")
