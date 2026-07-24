@@ -15,7 +15,7 @@ const FACTION_PHYSLAYER_OFFSET := 4
 const NAV_LAYER_ALL := 1
 const AVOIDANCE_OFFSET := 0
 const FLOW_FIELD_GROUP := &"flow_field_target"
-
+const SPATIAL_HASH_SIZE := 512
 # OVERWORLD
 const OVERWORLD_BATTLE_TICK:float = 0.8
 

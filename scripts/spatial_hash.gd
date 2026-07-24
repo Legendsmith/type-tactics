@@ -1,7 +1,7 @@
 class_name SpatialHash
 extends Object
 
-const SPATIAL_HASH_SIZE := 512
+
 const NEAR_MAP: Array[Vector2i] = [
 	Vector2i(-1, -1), Vector2i(0, -1), Vector2i(1, -1),
 	Vector2i(0, -1), Vector2i(0, 0), Vector2i(0, 1),
@@ -21,7 +21,7 @@ func update() -> void:
 ## Updates the spatial hash location of the agent.
 func update_hash(forced: bool = false) -> void:
 	var position: Vector2 = agent.global_position
-	var new_hash: Vector2i = Vector2i(position / SPATIAL_HASH_SIZE)
+	var new_hash: Vector2i = Vector2i(position / Constants.SPATIAL_HASH_SIZE)
 	if new_hash == hash_location and not forced:
 		return
 	var new_near: Array = NEAR_MAP.map(func(vec:Vector2i)->Vector2i: return vec + new_hash)
