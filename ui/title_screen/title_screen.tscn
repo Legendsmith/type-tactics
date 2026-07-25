@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://dea4j22alycht"]
+
+[ext_resource type="Theme" uid="uid://d2rlegeqi7jag" path="res://ui/title_screen/title_screen_theme.tres" id="1_ffat2"]
+[ext_resource type="Script" uid="uid://dqochfbav61o3" path="res://ui/title_screen/title_screen.gd" id="2_72buf"]
+
+[node name="TitleScreen" type="Control" unique_id=1050843240]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ffat2")
+script = ExtResource("2_72buf")
+
+[node name="Background" type="SubViewportContainer" parent="." unique_id=1994614095]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="Background" unique_id=646994918]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=826096385]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.5
+offset_top = -67.5
+offset_right = 107.5
+offset_bottom = 67.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 64
+
+[node name="Label" type="Label" parent="VBoxContainer2" unique_id=1430088110]
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+text = "Type Tactics project"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2" unique_id=538425451]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="ContinueButton" type="Button" parent="VBoxContainer2/VBoxContainer" unique_id=602557681]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TitleButton"
+text = "Continue"
+
+[node name="NewGameButton" type="Button" parent="VBoxContainer2/VBoxContainer" unique_id=715458058]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TitleButton"
+text = "New Game"
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer2/VBoxContainer" unique_id=433062394]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TitleButton"
+text = "Settings"
+
+[node name="CreditsButton" type="Button" parent="VBoxContainer2/VBoxContainer" unique_id=794981099]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TitleButton"
+text = "Credits"
+
+[node name="ExitButton" type="Button" parent="VBoxContainer2/VBoxContainer" unique_id=537427712]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TitleButton"
+text = "Exit"
+
+[node name="ButtonPressedStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=862425170]
+unique_name_in_owner = true
+bus = &"Sfx"
+
+[node name="ButtonHighlightedStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=337504869]
+unique_name_in_owner = true
+bus = &"Sfx"
