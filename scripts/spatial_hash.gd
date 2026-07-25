@@ -14,6 +14,8 @@ var hash_near: Array[Vector2i]
 
 func _init(_agent:Node2D) -> void:
 	agent = _agent
+	SpatialMap.request_hashmap_near.connect(on_request_hashmap_near)
+	SpatialMap.request_hashmap_near_filter.connect(on_request_hashmap_near_filter)
 
 func update() -> void:
 	update_hash.call_deferred()
