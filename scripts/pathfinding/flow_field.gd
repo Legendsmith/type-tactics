@@ -50,11 +50,11 @@ func build(_origin: Vector2i):
 								if not field.has(point):
 									active_points.append(point)
 									# the new point has a value of the current point + 1
-									field[point]= field[active_point] + sqrt(abs(x) + abs(y)) + flow_cost * point.distance_to(origin)
+									field[point]= field[active_point] + sqrt(abs(x) + abs(y)) + flow_cost * point.distance_squared_to(origin)
 								else:
 									# if this point is already part of the flow field choose
 									# the lowest value
-									field[point]= min(field[point], field[active_point] + sqrt(abs(x) + abs(y))) + flow_cost * point.distance_to(origin)
+									field[point]= min(field[point], field[active_point] + sqrt(abs(x) + abs(y))) + flow_cost * point.distance_squared_to(origin)
 								
 		# remove this point from the active points list
 		active_points.remove_at(0)
