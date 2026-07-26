@@ -5,6 +5,7 @@ const SPRITE_DIR_COEF:float = PI/(SPRITE_DIR/2.0)
 const SPRITE_H_BIAS:float = 0.84
 
 # Physics and game interactions
+const PLAYER_ENTITY := &"player_ent"
 const PLAYER_GROUP := &"player"
 const ENEMY_GROUP := &"opponent"
 const PHYS_TERRAIN := 1

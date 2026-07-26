@@ -3,16 +3,12 @@
 [ext_resource type="Script" uid="uid://e51y4ebwfmom" path="res://world/overworld.gd" id="1_3vohx"]
 [ext_resource type="Script" uid="uid://bssxn87alhafy" path="res://scripts/debug_camera.gd" id="1_vqr3w"]
 [ext_resource type="TileSet" uid="uid://dn3s62ubhi6rv" path="res://world/16px_world_tile.tres" id="2_wwcdr"]
-[ext_resource type="PackedScene" uid="uid://8ievdkdx8ig7" path="res://entities/overworld_agent.tscn" id="4_v8spm"]
 [ext_resource type="Script" uid="uid://cdgbctc4n4whq" path="res://scripts/pathfinding/flow_field_target.gd" id="5_v8spm"]
 [ext_resource type="Script" uid="uid://bggp67gib3ths" path="res://world/teleport_area_random.gd" id="6_27a4x"]
 [ext_resource type="Script" uid="uid://c7xde0gu12giy" path="res://scripts/debug_spawner.gd" id="7_1jn2r"]
 [ext_resource type="Script" uid="uid://dsj0pbh1pq15n" path="res://world/debug_spatial_map_indicator.gd" id="8_jdvmi"]
-[ext_resource type="PackedScene" uid="uid://bi5kasl0oud8u" path="res://entities/overworld_agent_crusader.tscn" id="8_k5kre"]
 [ext_resource type="PackedScene" uid="uid://boqykmfv1k6wh" path="res://entities/overworld_agent_gary.tscn" id="10_fscby"]
-[ext_resource type="Script" uid="uid://cfqrbe5b87mbm" path="res://scripts/overworld_battle.gd" id="11_mmdhr"]
-[ext_resource type="PackedScene" uid="uid://dolfu67eapian" path="res://entities/overworld_agent_demenishki.tscn" id="12_vhtjd"]
-[ext_resource type="PackedScene" uid="uid://qhp5yiutnkkm" path="res://entities/overworld_agent_sulia.tscn" id="13_33iqb"]
+[ext_resource type="PackedScene" uid="uid://chxqmaptib7am" path="res://entities/overworld_player.tscn" id="14_33iqb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5mdms"]
 size = Vector2(32, 32)
@@ -24,9 +20,11 @@ player_faction_goal = NodePath("TileMapLayer/PlayerGoal")
 enemy_faction_goal = NodePath("TileMapLayer/EnemyGoal")
 interface_scene = "uid://dn2qdyhps5xut"
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=183223178]
+[node name="OverworldPlayer" parent="." unique_id=1005182913 instance=ExtResource("14_33iqb")]
+position = Vector2(317, 270)
+
+[node name="Camera2D" type="Camera2D" parent="OverworldPlayer" unique_id=183223178]
 process_mode = 3
-position = Vector2(330, 145)
 zoom = Vector2(4, 4)
 script = ExtResource("1_vqr3w")
 
@@ -42,6 +40,7 @@ script = ExtResource("5_v8spm")
 [node name="EnemyGoal" type="Marker2D" parent="TileMapLayer" unique_id=1459542203]
 position = Vector2(432, 208)
 script = ExtResource("5_v8spm")
+goal_faction_name = &"opponent"
 
 [node name="TeleportArea" type="Area2D" parent="." unique_id=788008963 node_paths=PackedStringArray("destinations", "destination")]
 position = Vector2(295, 67)
@@ -80,14 +79,11 @@ position = Vector2(142, 492)
 unique_name_in_owner = true
 script = ExtResource("7_1jn2r")
 spawn_points = [NodePath("../Marker2D"), NodePath("../Marker2D2"), NodePath("../Marker2D3"), NodePath("../Marker2D4"), NodePath("../Marker2D5"), NodePath("../Marker2D6"), NodePath("../Marker2D7")]
-entity = ExtResource("4_v8spm")
+entity = ExtResource("10_fscby")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1022463215]
 visible = false
 script = ExtResource("8_jdvmi")
-
-[node name="OverworldAgentCrusader" parent="." unique_id=1303149982 instance=ExtResource("8_k5kre")]
-position = Vector2(249.53458, 169.52054)
 
 [node name="OverworldAgentGary" parent="." unique_id=1809232163 instance=ExtResource("10_fscby")]
 position = Vector2(438.45078, 185.71335)
@@ -108,15 +104,3 @@ max_contacts_reported = 12
 [node name="OverworldAgentGary5" parent="." unique_id=298114885 instance=ExtResource("10_fscby")]
 position = Vector2(384, 218)
 max_contacts_reported = 12
-
-[node name="OverworldAgentDemenishki" parent="." unique_id=1206871393 instance=ExtResource("12_vhtjd")]
-position = Vector2(231, 195)
-max_contacts_reported = 12
-
-[node name="OverworldAgentSulia" parent="." unique_id=1154720675 instance=ExtResource("13_33iqb")]
-position = Vector2(258, 207)
-max_contacts_reported = 12
-
-[node name="Battle" type="Node2D" parent="." unique_id=821134245]
-position = Vector2(331.52676, 187.25552)
-script = ExtResource("11_mmdhr")

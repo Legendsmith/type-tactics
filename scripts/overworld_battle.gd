@@ -34,6 +34,7 @@ func build_query(key:StringName):
 	q.shape = shape
 	q.transform = Transform2D.IDENTITY.translated(self.global_position)
 	q.collision_mask = faction.physics_layer
+	q.exclude = [get_tree().get_first_node_in_group(Constants.PLAYER_ENTITY).get_rid()] # need this so player ent won't get mind controlled
 	physics_query[key] = q
 
 func _tick():
