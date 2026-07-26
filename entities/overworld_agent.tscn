@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://bpdxt6fs7mmyh" path="res://scripts/navigation_agent_2d.gd" id="2_wa1af"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5mdms"]
-bounce = 0.1
+bounce = 0.2
 
 [sub_resource type="Animation" id="Animation_e6f0k"]
 length = 0.001
@@ -20,7 +20,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [1]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -37,7 +37,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_w1n0g"]
 resource_name = "hurt"
-length = 0.36669999999999997
+length = 0.3667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -129,7 +129,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.06666667, 0.13333334),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [1, 2, 0]
+"values": [2, 1, 0]
 }
 
 [sub_resource type="Animation" id="Animation_ntp6h"]
@@ -163,7 +163,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.06666667, 0.13333334),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [7, 8, 6]
+"values": [8, 7, 6]
 }
 
 [sub_resource type="Animation" id="Animation_kgu0o"]
@@ -205,7 +205,7 @@ radius = 8.0
 [node name="OverworldAgent" type="RigidBody2D" unique_id=1303149982]
 physics_material_override = SubResource("PhysicsMaterial_5mdms")
 lock_rotation = true
-max_contacts_reported = 12
+max_contacts_reported = 1
 linear_damp = 1.0
 script = ExtResource("1_vwlud")
 
@@ -215,6 +215,7 @@ texture = ExtResource("2_rglla")
 offset = Vector2(0, -16)
 hframes = 3
 vframes = 4
+frame = 1
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=494286539]
 unique_name_in_owner = true
@@ -229,6 +230,7 @@ debug_use_custom = true
 script = ExtResource("2_wa1af")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1930298928]
+deterministic = true
 libraries/ = SubResource("AnimationLibrary_rglla")
 next/move_0 = &"idle_0"
 next/move_1 = &"idle_1"

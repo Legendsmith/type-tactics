@@ -17,8 +17,9 @@ const AVOIDANCE_OFFSET := 0
 const FLOW_FIELD_GROUP := &"flow_field_target"
 const SPATIAL_HASH_SIZE := 512
 # OVERWORLD
-const OVERWORLD_BATTLE_TICK:float = 0.8
-
+const OVERWORLD_BATTLE_TICK:float = 0.5
+const OVERWORLD_DAMAGE_VARIANCE:float = 0.85
+const OVERWORLD_MAX_ATTACK_CHARGE:float = 0.5
 
 static func get_direction_index(input_vector: Vector2) -> int:
 	var biased_vector:Vector2 = Vector2(input_vector.x, input_vector.y * SPRITE_H_BIAS) #bias to horizontal by reducing the vertical slightly.

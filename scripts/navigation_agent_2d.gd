@@ -31,7 +31,6 @@ func _physics_process(_delta: float) -> void:
 		else:
 			pathfind()
 			#agent.linear_damp = move_toward(agent.linear_damp,Agent.MIN_LINEAR_DAMP,agent.takeoff_time * delta)
-			agent.move(agent.desired_velocity)
 
 func pathfind():
 	var next_pos = get_next_path_position()
@@ -41,6 +40,7 @@ func pathfind():
 		set_velocity(desired_velocity)
 	else:
 		agent.desired_velocity = desired_velocity
+		agent.move(agent.desired_velocity)
 	
 
 func on_velocity_computed(safe_velocity:Vector2):

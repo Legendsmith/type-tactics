@@ -50,7 +50,7 @@ func on_area_entered(area:Area2D):
 
 func attack_other(target:OverworldPathFollow,delta:float):
 	for passenger:OverworldAgent in passengers:
-		target.passengers.pick_random().recieve_damage(passenger,passenger.overworld_atk,delta)
+		target.passengers.pick_random().recieve_damage(passenger,passenger.overworld_pwr,delta)
 
 
 func start_transport():
