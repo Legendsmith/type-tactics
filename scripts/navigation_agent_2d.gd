@@ -17,6 +17,7 @@ func _ready():
 func activate(position:Vector2):
 	#agent.linear_damp = agent.linear_damp_max*0.1 # Set damp low so the agent can move well.
 	process_mode = PROCESS_MODE_INHERIT
+	agent.linear_damp = 1
 	set_physics_process(true)
 	target_position = position
 	agent.use_flow_field=false
@@ -30,6 +31,8 @@ func _physics_process(_delta: float) -> void:
 			finish()
 		else:
 			pathfind()
+			agent.move(agent.desired_velocity)
+			agent.animation_player.play("move_"+str(Constants.get_direction_index(agent.desired_velocity)),-1,agent.desired_velocity.length_squared()/(max_speed*max_speed))
 			#agent.linear_damp = move_toward(agent.linear_damp,Agent.MIN_LINEAR_DAMP,agent.takeoff_time * delta)
 
 func pathfind():
@@ -40,15 +43,14 @@ func pathfind():
 		set_velocity(desired_velocity)
 	else:
 		agent.desired_velocity = desired_velocity
-		agent.move(agent.desired_velocity)
 	
 
 func on_velocity_computed(safe_velocity:Vector2):
 	agent.desired_velocity = safe_velocity
 
 func finish():
-		#agent.think() # call the behaviour tree when we're done.
-		#agent.linear_damp = agent.linear_damp_max
+		agent.think() # call the behaviour tree when we're done.
+		agent.linear_damp = 16
 		process_mode = PROCESS_MODE_DISABLED
 		set_physics_process(false)
 		agent.desired_velocity = Vector2.ZERO 

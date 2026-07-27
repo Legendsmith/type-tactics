@@ -9,7 +9,11 @@ func _ready() -> void:
 	tick_offset = 1
 	refresh_hp()
 	configure_physics(faction)
-	_setup_bt_player()
+	bt_player.blackboard.bind_var_to_property(&"target", self , &"target", true)
+	bt_player.blackboard.bind_var_to_property(&"action", self , &"action", true)
+	bt_player.blackboard.set_var(&"faction", faction) # Set faction
+	bt_player.blackboard.set_var(&"max_speed", max_speed)
+	bt_player.blackboard.set_var(&"speed", max_speed)
 
 
 func _physics_process(delta) -> void:

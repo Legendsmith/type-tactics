@@ -208,6 +208,7 @@ lock_rotation = true
 max_contacts_reported = 1
 linear_damp = 1.0
 script = ExtResource("1_vwlud")
+max_speed = 192.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=232210474]
 position = Vector2(0, 1)

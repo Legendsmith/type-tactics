@@ -4,14 +4,9 @@
 [ext_resource type="Script" uid="uid://bssxn87alhafy" path="res://scripts/debug_camera.gd" id="1_vqr3w"]
 [ext_resource type="TileSet" uid="uid://dn3s62ubhi6rv" path="res://world/16px_world_tile.tres" id="2_wwcdr"]
 [ext_resource type="Script" uid="uid://cdgbctc4n4whq" path="res://scripts/pathfinding/flow_field_target.gd" id="5_v8spm"]
-[ext_resource type="Script" uid="uid://bggp67gib3ths" path="res://world/teleport_area_random.gd" id="6_27a4x"]
-[ext_resource type="Script" uid="uid://c7xde0gu12giy" path="res://scripts/debug_spawner.gd" id="7_1jn2r"]
-[ext_resource type="Script" uid="uid://dsj0pbh1pq15n" path="res://world/debug_spatial_map_indicator.gd" id="8_jdvmi"]
-[ext_resource type="PackedScene" uid="uid://boqykmfv1k6wh" path="res://entities/overworld_agent_gary.tscn" id="10_fscby"]
+[ext_resource type="PackedScene" uid="uid://6s6d5quk7p6h" path="res://entities/overworld_agent_nekrolina.tscn" id="10_mmdhr"]
+[ext_resource type="PackedScene" uid="uid://cgtrb2a580edl" path="res://entities/overworld_agent_aquwa.tscn" id="11_o8rck"]
 [ext_resource type="PackedScene" uid="uid://chxqmaptib7am" path="res://entities/overworld_player.tscn" id="14_33iqb"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5mdms"]
-size = Vector2(32, 32)
 
 [node name="Overworld" type="Node2D" unique_id=1120571415 node_paths=PackedStringArray("player_faction_goal", "enemy_faction_goal")]
 y_sort_enabled = true
@@ -21,7 +16,7 @@ enemy_faction_goal = NodePath("TileMapLayer/EnemyGoal")
 interface_scene = "uid://dn2qdyhps5xut"
 
 [node name="OverworldPlayer" parent="." unique_id=1005182913 instance=ExtResource("14_33iqb")]
-position = Vector2(317, 270)
+position = Vector2(296, 88)
 
 [node name="Camera2D" type="Camera2D" parent="OverworldPlayer" unique_id=183223178]
 process_mode = 3
@@ -42,65 +37,14 @@ position = Vector2(432, 208)
 script = ExtResource("5_v8spm")
 goal_faction_name = &"opponent"
 
-[node name="TeleportArea" type="Area2D" parent="." unique_id=788008963 node_paths=PackedStringArray("destinations", "destination")]
-position = Vector2(295, 67)
-collision_layer = 0
-collision_mask = 248
-script = ExtResource("6_27a4x")
-destinations = [NodePath("../Marker2D"), NodePath("../Marker2D2"), NodePath("../Marker2D3"), NodePath("../Marker2D4"), NodePath("../Marker2D5"), NodePath("../Marker2D6"), NodePath("../Marker2D7")]
-destination = NodePath("../Marker2D")
-metadata/_custom_type_script = "uid://cburu6b4ckehs"
+[node name="OverworldAgentNekrolina" parent="." unique_id=1303149982 node_paths=PackedStringArray("target") instance=ExtResource("10_mmdhr")]
+position = Vector2(529.25134, 385)
+max_speed = 64.0
+target = NodePath("../OverworldAgentAquwa")
+skip_frames = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportArea" unique_id=520617184]
-shape = SubResource("RectangleShape2D_5mdms")
-
-[node name="Marker2D" type="Marker2D" parent="." unique_id=334415926]
-position = Vector2(216, 594)
-
-[node name="Marker2D2" type="Marker2D" parent="." unique_id=1364539293]
-position = Vector2(717, 387)
-
-[node name="Marker2D3" type="Marker2D" parent="." unique_id=271205390]
-position = Vector2(755, 484)
-
-[node name="Marker2D4" type="Marker2D" parent="." unique_id=1235689489]
-position = Vector2(474, 516)
-
-[node name="Marker2D5" type="Marker2D" parent="." unique_id=751414612]
-position = Vector2(233, 504)
-
-[node name="Marker2D6" type="Marker2D" parent="." unique_id=1229127463]
-position = Vector2(133, 600)
-
-[node name="Marker2D7" type="Marker2D" parent="." unique_id=741179438]
-position = Vector2(142, 492)
-
-[node name="DebugSpawner" type="Node" parent="." unique_id=71486030 node_paths=PackedStringArray("spawn_points")]
-unique_name_in_owner = true
-script = ExtResource("7_1jn2r")
-spawn_points = [NodePath("../Marker2D"), NodePath("../Marker2D2"), NodePath("../Marker2D3"), NodePath("../Marker2D4"), NodePath("../Marker2D5"), NodePath("../Marker2D6"), NodePath("../Marker2D7")]
-entity = ExtResource("10_fscby")
-
-[node name="Node2D" type="Node2D" parent="." unique_id=1022463215]
-visible = false
-script = ExtResource("8_jdvmi")
-
-[node name="OverworldAgentGary" parent="." unique_id=1809232163 instance=ExtResource("10_fscby")]
-position = Vector2(438.45078, 185.71335)
-max_contacts_reported = 12
-
-[node name="OverworldAgentGary2" parent="." unique_id=1273249679 instance=ExtResource("10_fscby")]
-position = Vector2(412, 220)
-max_contacts_reported = 12
-
-[node name="OverworldAgentGary3" parent="." unique_id=369229257 instance=ExtResource("10_fscby")]
-position = Vector2(408, 154)
-max_contacts_reported = 12
-
-[node name="OverworldAgentGary4" parent="." unique_id=1519702603 instance=ExtResource("10_fscby")]
-position = Vector2(391, 177)
-max_contacts_reported = 12
-
-[node name="OverworldAgentGary5" parent="." unique_id=298114885 instance=ExtResource("10_fscby")]
-position = Vector2(384, 218)
-max_contacts_reported = 12
+[node name="OverworldAgentAquwa" parent="." unique_id=58187252 node_paths=PackedStringArray("target") instance=ExtResource("11_o8rck")]
+position = Vector2(474, 405.13617)
+max_speed = 64.0
+target = NodePath("../OverworldPlayer")
+skip_frames = 4
