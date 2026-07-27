@@ -20,7 +20,7 @@ func _enter() -> void:
 	target_position = pos
 	var distance:float = blackboard.get_var(target_distance_var, approach_distance_default, false)
 	_nav_agent.target_desired_distance = distance
-	_nav_agent.max_speed = blackboard.get_var(speed_var,agent.max_speed)
+	_nav_agent.max_speed = blackboard.get_var(speed_var,agent.speed)
 	_nav_agent.activate(target_position)
 	#if agent.global_position.distance_squared_to(target_position) > distance * distance:
 	#	_nav_agent.activate(target_position)
