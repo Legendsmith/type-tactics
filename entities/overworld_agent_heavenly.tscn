@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bwfqj8sdid7lw"]
+
+[ext_resource type="PackedScene" uid="uid://8ievdkdx8ig7" path="res://entities/overworld_agent.tscn" id="1_jm2ww"]
+[ext_resource type="Texture2D" uid="uid://ovbahkkvlrwn" path="res://texture/heavenly_overworld.png" id="2_qmc0o"]
+
+[node name="OverworldAgentHeavenly" unique_id=1303149982 instance=ExtResource("1_jm2ww")]
+overworld_pwr = 110
+overworld_atk = 110
+overworld_hp = 200.0
+max_overworld_hp = 200
+
+[node name="Sprite2D" parent="." index="0" unique_id=232210474]
+texture = ExtResource("2_qmc0o")

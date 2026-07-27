@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dxa3vx7bm1d2q"]
+
+[ext_resource type="PackedScene" uid="uid://8ievdkdx8ig7" path="res://entities/overworld_agent.tscn" id="1_u1qoj"]
+[ext_resource type="Texture2D" uid="uid://fak2vmjy3537" path="res://texture/auteru_overworld.png" id="2_sesql"]
+
+[node name="OverworldAgentAuteru" unique_id=1303149982 instance=ExtResource("1_u1qoj")]
+
+[node name="Sprite2D" parent="." index="0" unique_id=232210474]
+texture = ExtResource("2_sesql")
