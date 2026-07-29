@@ -1,0 +1,188 @@
+[gd_scene format=3 uid="uid://bx2ds5egaym3g"]
+
+[ext_resource type="Theme" uid="uid://d2rlegeqi7jag" path="res://ui/title_screen/title_screen_theme.tres" id="1_hrs25"]
+[ext_resource type="Script" uid="uid://evg6pbg06fiv" path="res://ui/settings/settings.gd" id="2_fayoa"]
+
+[node name="Settings" type="Control" unique_id=1940317372]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hrs25")
+script = ExtResource("2_fayoa")
+
+[node name="TabContainer" type="TabContainer" parent="." unique_id=444074348]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hrs25")
+current_tab = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Gamplay" type="Control" parent="TabContainer" unique_id=1872537284]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="GameplaySettingsContainer" type="VBoxContainer" parent="TabContainer/Gamplay" unique_id=1587589166]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -20.0
+offset_right = 300.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextSpeedContainer" type="HBoxContainer" parent="TabContainer/Gamplay/GameplaySettingsContainer" unique_id=120248790]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Gamplay/GameplaySettingsContainer/TextSpeedContainer" unique_id=98390104]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Text Speed"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Gamplay/GameplaySettingsContainer/TextSpeedContainer" unique_id=178756402]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="TextSpeedSlider" type="HSlider" parent="TabContainer/Gamplay/GameplaySettingsContainer/TextSpeedContainer/HBoxContainer" unique_id=899092298]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+max_value = 4.0
+rounded = true
+scrollable = false
+tick_count = 5
+ticks_on_borders = true
+ticks_position = 3
+
+[node name="TextSpeedLabel" type="Label" parent="TabContainer/Gamplay/GameplaySettingsContainer/TextSpeedContainer/HBoxContainer" unique_id=383940595]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "instant"
+horizontal_alignment = 2
+
+[node name="BattleAnimationSpeedContainer" type="HBoxContainer" parent="TabContainer/Gamplay/GameplaySettingsContainer" unique_id=423734025]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Gamplay/GameplaySettingsContainer/BattleAnimationSpeedContainer" unique_id=448021841]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Battle Animation Speed"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Gamplay/GameplaySettingsContainer/BattleAnimationSpeedContainer" unique_id=1443963793]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="BattleAnimationSlider" type="HSlider" parent="TabContainer/Gamplay/GameplaySettingsContainer/BattleAnimationSpeedContainer/HBoxContainer" unique_id=532595679]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+max_value = 4.0
+rounded = true
+scrollable = false
+tick_count = 5
+ticks_on_borders = true
+ticks_position = 3
+
+[node name="BattleAnimationSpeedLabel" type="Label" parent="TabContainer/Gamplay/GameplaySettingsContainer/BattleAnimationSpeedContainer/HBoxContainer" unique_id=1365925551]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "instant"
+horizontal_alignment = 2
+
+[node name="AutoRunContainer" type="HBoxContainer" parent="TabContainer/Gamplay/GameplaySettingsContainer" unique_id=737989888]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Gamplay/GameplaySettingsContainer/AutoRunContainer" unique_id=2035091423]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Auto Run"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Gamplay/GameplaySettingsContainer/AutoRunContainer" unique_id=684995959]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Gamplay/GameplaySettingsContainer/AutoRunContainer/HBoxContainer" unique_id=1133662933]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+alignment = 1
+
+[node name="AutoRunOffButton" type="Button" parent="TabContainer/Gamplay/GameplaySettingsContainer/AutoRunContainer/HBoxContainer/HBoxContainer" unique_id=1236811796]
+layout_mode = 2
+text = "off"
+
+[node name="AutoRunOnButton" type="Button" parent="TabContainer/Gamplay/GameplaySettingsContainer/AutoRunContainer/HBoxContainer/HBoxContainer" unique_id=1701116882]
+layout_mode = 2
+text = "on"
+
+[node name="Control" type="Control" parent="TabContainer/Gamplay/GameplaySettingsContainer/AutoRunContainer/HBoxContainer" unique_id=1434800664]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Graphics" type="Control" parent="TabContainer" unique_id=1452566831]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Audio" type="Control" parent="TabContainer" unique_id=1768963764]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Control" type="Control" parent="TabContainer" unique_id=1806708968]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=400913120]
+visible = false
+layout_mode = 0
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=225047328]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Text Speed"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer" unique_id=298703136]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="TextSpeedSlider" type="HSlider" parent="HBoxContainer/HBoxContainer" unique_id=296190135]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+max_value = 4.0
+rounded = true
+scrollable = false
+tick_count = 5
+ticks_on_borders = true
+ticks_position = 3
+
+[node name="TextSpeedLabel" type="Label" parent="HBoxContainer/HBoxContainer" unique_id=841596936]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "instant"
+horizontal_alignment = 2
+
+[node name="OffButton" type="Button" parent="." unique_id=519832184]
+visible = false
+layout_mode = 0
+text = "off"
