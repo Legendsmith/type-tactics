@@ -32,6 +32,11 @@ var/action/type = 21
 var/action/value = &""
 var/action/hint = 0
 var/action/hint_string = ""
+var/retreat_threshold/name = &"retreat_threshold"
+var/retreat_threshold/type = 3
+var/retreat_threshold/value = 0.0
+var/retreat_threshold/hint = 0
+var/retreat_threshold/hint_string = ""
 
 [sub_resource type="BBVariant" id="BBVariant_x8r13"]
 resource_name = "attack"
@@ -145,9 +150,12 @@ children = [SubResource("BTInvert_hknjq"), SubResource("BTSetVar_7n44i")]
 [sub_resource type="BTProbability" id="BTProbability_usyuo"]
 children = [SubResource("BTSequence_0tue6")]
 
+[sub_resource type="BTSelector" id="BTSelector_hknjq"]
+children = [SubResource("BTProbability_usyuo")]
+
 [sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_usyuo"]
 custom_name = "Far Distance Speed Boost"
-children = [SubResource("BTProbability_usyuo")]
+children = [SubResource("BTSelector_hknjq")]
 
 [sub_resource type="BBVariant" id="BBVariant_hknjq"]
 resource_name = "48.0"
@@ -181,6 +189,10 @@ children = [SubResource("BTSequence_kou5i"), SubResource("BTDynamicSequence_hknj
 custom_name = "Follow Player"
 children = [SubResource("BTCheckVar_kou5i"), SubResource("BTAction_5f00d"), SubResource("BTSelector_5f00d")]
 
+[sub_resource type="BTSequence" id="BTSequence_dulym"]
+custom_name = "Retreat if Low"
+_enabled = false
+
 [sub_resource type="BTAction" id="BTAction_7n44i"]
 script = ExtResource("4_pdewr")
 
@@ -192,7 +204,7 @@ custom_name = "Look at Player (Default)"
 children = [SubResource("BTAction_7n44i"), SubResource("BTAction_usyuo")]
 
 [sub_resource type="BTSelector" id="BTSelector_d2quf"]
-children = [SubResource("BTSequence_x8r13"), SubResource("BTSequence_ih2uh"), SubResource("BTSequence_usyuo"), SubResource("BTSequence_fg2y1")]
+children = [SubResource("BTSequence_x8r13"), SubResource("BTSequence_ih2uh"), SubResource("BTSequence_usyuo"), SubResource("BTSequence_dulym"), SubResource("BTSequence_fg2y1")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_j5063")
