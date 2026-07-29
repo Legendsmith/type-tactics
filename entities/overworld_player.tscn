@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://8ievdkdx8ig7" path="res://entities/overworld_agent.tscn" id="1_gip2u"]
 [ext_resource type="Script" uid="uid://cc3xn7y4o1b3c" path="res://entities/overworld_player.gd" id="2_j0qpx"]
-[ext_resource type="Texture2D" uid="uid://bl6r3mwpgm0q7" path="res://texture/gary_trooper_overworld.png" id="3_yq8ob"]
+[ext_resource type="Texture2D" uid="uid://043nm6p37q5j" path="res://texture/fufu_overworld.png" id="3_i50hu"]
 [ext_resource type="Script" uid="uid://vavyj8qgewah" path="res://scripts/player_control_hsm.gd" id="4_i50hu"]
 [ext_resource type="Script" uid="uid://cup7fhcqha4mh" path="res://scripts/states/idle_state.gd" id="5_cfbtd"]
 [ext_resource type="Script" uid="uid://cd0nk7g74l2mw" path="res://scripts/states/move_state.gd" id="6_pbd16"]
@@ -15,7 +15,7 @@ max_speed = 128.0
 skip_frames = 0
 
 [node name="Sprite2D" parent="." index="0" unique_id=232210474]
-texture = ExtResource("3_yq8ob")
+texture = ExtResource("3_i50hu")
 
 [node name="LimboHSM" type="LimboHSM" parent="." index="5" unique_id=1466617916]
 script = ExtResource("4_i50hu")
