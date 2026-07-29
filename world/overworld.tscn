@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bssxn87alhafy" path="res://scripts/debug_camera.gd" id="1_vqr3w"]
 [ext_resource type="TileSet" uid="uid://dn3s62ubhi6rv" path="res://world/16px_world_tile.tres" id="2_wwcdr"]
 [ext_resource type="Script" uid="uid://cdgbctc4n4whq" path="res://scripts/pathfinding/flow_field_target.gd" id="5_v8spm"]
+[ext_resource type="PackedScene" uid="uid://ha33f144hwtg" path="res://entities/overworld_agent_motherv3.tscn" id="8_jdvmi"]
 [ext_resource type="PackedScene" uid="uid://6s6d5quk7p6h" path="res://entities/overworld_agent_nekrolina.tscn" id="10_mmdhr"]
 [ext_resource type="PackedScene" uid="uid://cgtrb2a580edl" path="res://entities/overworld_agent_aquwa.tscn" id="11_o8rck"]
 [ext_resource type="PackedScene" uid="uid://chxqmaptib7am" path="res://entities/overworld_player.tscn" id="14_33iqb"]
@@ -48,3 +49,7 @@ position = Vector2(474, 405.13617)
 max_speed = 64.0
 target = NodePath("../OverworldPlayer")
 skip_frames = 4
+
+[node name="OverworldAgentMotherV3" parent="." unique_id=1833870378 instance=ExtResource("8_jdvmi")]
+position = Vector2(229, 92)
+action = &"look"

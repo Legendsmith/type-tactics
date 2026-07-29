@@ -50,6 +50,7 @@ script = ExtResource("2_d2quf")
 nav_agent = NodePath("NavigationAgent2D")
 
 [sub_resource type="BTSequence" id="BTSequence_x8r13"]
+custom_name = "Attack"
 children = [SubResource("BTCheckVar_ih2uh"), SubResource("BTAction_d2quf"), SubResource("BTAction_q7exg")]
 
 [sub_resource type="BBVariant" id="BBVariant_d2quf"]
@@ -74,6 +75,7 @@ result_var = &"target"
 script = ExtResource("1_d2quf")
 
 [sub_resource type="BTSequence" id="BTSequence_ih2uh"]
+custom_name = "Move to goal"
 children = [SubResource("BTCheckVar_q7exg"), SubResource("BTCallMethod_ih2uh"), SubResource("BTAction_ih2uh")]
 
 [sub_resource type="BBVariant" id="BBVariant_dulym"]
@@ -117,11 +119,15 @@ operation = 4
 script = ExtResource("6_hknjq")
 
 [sub_resource type="BTSequence" id="BTSequence_kou5i"]
+custom_name = "Stand If Close"
 children = [SubResource("BTCondition_dulym"), SubResource("BTSetVar_5f00d"), SubResource("BTSetVar_0tue6"), SubResource("BTAction_kou5i")]
 
 [sub_resource type="BTCondition" id="BTCondition_hknjq"]
 script = ExtResource("5_dulym")
-distance_min = 512.0
+distance_max = 512.0
+
+[sub_resource type="BTInvert" id="BTInvert_hknjq"]
+children = [SubResource("BTCondition_hknjq")]
 
 [sub_resource type="BBVariant" id="BBVariant_5f00d"]
 resource_name = "$max_speed"
@@ -134,12 +140,13 @@ variable = &"speed"
 value = SubResource("BBVariant_5f00d")
 
 [sub_resource type="BTSequence" id="BTSequence_0tue6"]
-children = [SubResource("BTCondition_hknjq"), SubResource("BTSetVar_7n44i")]
+children = [SubResource("BTInvert_hknjq"), SubResource("BTSetVar_7n44i")]
 
 [sub_resource type="BTProbability" id="BTProbability_usyuo"]
 children = [SubResource("BTSequence_0tue6")]
 
 [sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_usyuo"]
+custom_name = "Far Distance Speed Boost"
 children = [SubResource("BTProbability_usyuo")]
 
 [sub_resource type="BBVariant" id="BBVariant_hknjq"]
@@ -167,13 +174,25 @@ custom_name = "Movement"
 children = [SubResource("BTAlwaysSucceed_usyuo"), SubResource("BTSetVar_dulym"), SubResource("BTAction_hknjq"), SubResource("BTAction_0tue6"), SubResource("BTAction_dulym")]
 
 [sub_resource type="BTSelector" id="BTSelector_5f00d"]
+custom_name = "Stand or Follow"
 children = [SubResource("BTSequence_kou5i"), SubResource("BTDynamicSequence_hknjq")]
 
 [sub_resource type="BTSequence" id="BTSequence_usyuo"]
+custom_name = "Follow Player"
 children = [SubResource("BTCheckVar_kou5i"), SubResource("BTAction_5f00d"), SubResource("BTSelector_5f00d")]
 
+[sub_resource type="BTAction" id="BTAction_7n44i"]
+script = ExtResource("4_pdewr")
+
+[sub_resource type="BTAction" id="BTAction_usyuo"]
+script = ExtResource("6_hknjq")
+
+[sub_resource type="BTSequence" id="BTSequence_fg2y1"]
+custom_name = "Look at Player (Default)"
+children = [SubResource("BTAction_7n44i"), SubResource("BTAction_usyuo")]
+
 [sub_resource type="BTSelector" id="BTSelector_d2quf"]
-children = [SubResource("BTSequence_x8r13"), SubResource("BTSequence_ih2uh"), SubResource("BTSequence_usyuo")]
+children = [SubResource("BTSequence_x8r13"), SubResource("BTSequence_ih2uh"), SubResource("BTSequence_usyuo"), SubResource("BTSequence_fg2y1")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_j5063")
