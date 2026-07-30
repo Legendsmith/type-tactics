@@ -42,6 +42,8 @@ position = Vector2(-64, -96)
 tile_map_data = PackedByteArray("AAAAAAAAAAACAAAAAAAAAAEAAAACAAAAAAAAAAIAAAAGAAAAAAACAAIAAAAGAAAAAAACAAEAAAADAAAAAAACAAAAAAADAAAAAAABAAIAAAAHAAAAAAABAAEAAAACAAAAAAABAAAAAAAHAAAAAAA=")
 tile_set = ExtResource("4_no2cn")
 
+[node name="Team" type="Node" parent="PlayerBattlefield" unique_id=551652807]
+
 [node name="EnemyBattlefield" type="Node2D" parent="." unique_id=1348137018]
 unique_name_in_owner = true
 position = Vector2(320, -160)

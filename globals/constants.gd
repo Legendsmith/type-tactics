@@ -1,8 +1,36 @@
 class_name Constants
+
+#region Physics & Groups
+
+const PLAYER_ENTITY := &"player_ent"
 const PLAYER_GROUP := &"player"
 const ENEMY_GROUP := &"opponent"
+const PHYS_TERRAIN := 1
+const PHYS_HAZARD := 2
+const PHYS_INTERACT := 3
+const FACTION_PHYSLAYER_OFFSET := 4
 
-#region Adio Bus Information
+#endregion
+
+#region Overworld
+
+const OVERWORLD_BATTLE_TICK:float = 0.5
+const OVERWORLD_DAMAGE_VARIANCE:float = 0.85
+const OVERWORLD_MAX_ATTACK_CHARGE:float = 0.5
+
+#endregion
+
+#region Navigation
+
+const NAV_LAYER_ALL := 1
+const AVOIDANCE_OFFSET := 0
+const FLOW_FIELD_GROUP := &"flow_field_target"
+const SPATIAL_HASH_SIZE := 512
+
+#endregion
+
+
+#region Audio Bus Information
 
 const MASTER_BUS: StringName = &"Master"
 const MUSIC_BUS: StringName = &"Music"

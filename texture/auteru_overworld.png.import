@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://copacrldsv5ao"
-path="res://.godot/imported/crusader_sprite.png-1f1bd4657735d759ed64029180873bcf.ctex"
+uid="uid://fak2vmjy3537"
+path="res://.godot/imported/auteru_overworld.png-8da1ad0442f9c4dd074b2fc8d5121189.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://texture/crusader_sprite.png"
-dest_files=["res://.godot/imported/crusader_sprite.png-1f1bd4657735d759ed64029180873bcf.ctex"]
+source_file="res://texture/auteru_overworld.png"
+dest_files=["res://.godot/imported/auteru_overworld.png-8da1ad0442f9c4dd074b2fc8d5121189.ctex"]
 
 [params]
 

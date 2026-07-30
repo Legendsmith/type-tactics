@@ -1,0 +1,248 @@
+[gd_scene format=3 uid="uid://8ievdkdx8ig7"]
+
+[ext_resource type="Script" uid="uid://dc7f00nn2or5n" path="res://entities/overworld_agent.gd" id="1_vwlud"]
+[ext_resource type="BehaviorTree" uid="uid://ck48v1fnwsw0p" path="res://ai/trees/overworld_test.tres" id="2_doktv"]
+[ext_resource type="Texture2D" uid="uid://wrepbvafkaji" path="res://texture/catastrobean_overworld.png" id="2_rglla"]
+[ext_resource type="Script" uid="uid://bpdxt6fs7mmyh" path="res://scripts/navigation_agent_2d.gd" id="2_wa1af"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5mdms"]
+bounce = 0.5
+
+[sub_resource type="Animation" id="Animation_e6f0k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_w1n0g"]
+resource_name = "hurt"
+length = 0.3667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.16666667, 0.26666668, 0.3667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sr7o8"]
+resource_name = "idle_0"
+length = 0.0333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_wa1af"]
+resource_name = "idle"
+length = 0.0333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_2hde2"]
+resource_name = "idle_2"
+length = 0.0333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_2enr3"]
+resource_name = "idle_3"
+length = 0.0333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+
+[sub_resource type="Animation" id="Animation_rglla"]
+resource_name = "move_0"
+length = 0.3996
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1334, 0.2666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_ntp6h"]
+resource_name = "move_1"
+length = 0.3996
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1334, 0.2666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [4, 5, 3]
+}
+
+[sub_resource type="Animation" id="Animation_ag7yx"]
+resource_name = "move_2"
+length = 0.3996
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1334, 0.2666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [8, 7, 6]
+}
+
+[sub_resource type="Animation" id="Animation_kgu0o"]
+resource_name = "move_3"
+length = 0.3996
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1334, 0.2666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [10, 11, 9]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rglla"]
+_data = {
+&"RESET": SubResource("Animation_e6f0k"),
+&"hurt": SubResource("Animation_w1n0g"),
+&"idle_0": SubResource("Animation_sr7o8"),
+&"idle_1": SubResource("Animation_wa1af"),
+&"idle_2": SubResource("Animation_2hde2"),
+&"idle_3": SubResource("Animation_2enr3"),
+&"move_0": SubResource("Animation_rglla"),
+&"move_1": SubResource("Animation_ntp6h"),
+&"move_2": SubResource("Animation_ag7yx"),
+&"move_3": SubResource("Animation_kgu0o")
+}
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_bh32s"]
+var/distance/name = &"distance"
+var/distance/type = 3
+var/distance/value = 128.0
+var/distance/hint = 0
+var/distance/hint_string = ""
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c1idk"]
+radius = 8.0
+
+[node name="OverworldAgent" type="RigidBody2D" unique_id=1303149982]
+physics_material_override = SubResource("PhysicsMaterial_5mdms")
+lock_rotation = true
+max_contacts_reported = 1
+linear_damp = 1.0
+script = ExtResource("1_vwlud")
+max_speed = 192.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=232210474]
+position = Vector2(0, 1)
+texture = ExtResource("2_rglla")
+offset = Vector2(0, -16)
+hframes = 3
+vframes = 4
+frame = 1
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=494286539]
+unique_name_in_owner = true
+path_desired_distance = 64.0
+path_postprocessing = 1
+simplify_path = true
+simplify_epsilon = 2.0
+avoidance_enabled = true
+radius = 8.0
+neighbor_distance = 256.0
+debug_use_custom = true
+script = ExtResource("2_wa1af")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1930298928]
+deterministic = true
+libraries/ = SubResource("AnimationLibrary_rglla")
+next/move_0 = &"idle_0"
+next/move_1 = &"idle_1"
+next/move_2 = &"idle_2"
+next/move_3 = &"move_3"
+
+[node name="BTPlayer" type="BTPlayer" parent="." unique_id=1790084948]
+behavior_tree = ExtResource("2_doktv")
+update_mode = 2
+blackboard_plan = SubResource("BlackboardPlan_bh32s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1326332625]
+shape = SubResource("CircleShape2D_c1idk")

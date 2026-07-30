@@ -1,13 +1,30 @@
-[gd_scene format=4 uid="uid://dkxw47o6iui8r"]
+[gd_scene format=3 uid="uid://dkxw47o6iui8r"]
 
+[ext_resource type="Script" uid="uid://e51y4ebwfmom" path="res://world/overworld.gd" id="1_3vohx"]
 [ext_resource type="Script" uid="uid://bssxn87alhafy" path="res://scripts/debug_camera.gd" id="1_vqr3w"]
-[ext_resource type="TileSet" uid="uid://dn3s62ubhi6rv" path="res://world/16px_world_tile.tres" id="2_wwcdr"]
+[ext_resource type="Script" uid="uid://cdgbctc4n4whq" path="res://scripts/pathfinding/flow_field_target.gd" id="5_v8spm"]
+[ext_resource type="PackedScene" uid="uid://chxqmaptib7am" path="res://entities/overworld_player.tscn" id="14_33iqb"]
 
-[node name="Overworld" type="Node2D" unique_id=1120571415]
+[node name="Overworld" type="Node2D" unique_id=1120571415 node_paths=PackedStringArray("player_faction_goal", "enemy_faction_goal")]
+y_sort_enabled = true
+script = ExtResource("1_3vohx")
+player_faction_goal = NodePath("PlayerGoal")
+enemy_faction_goal = NodePath("EnemyGoal")
+interface_scene = "uid://dn2qdyhps5xut"
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=183223178]
+[node name="PlayerGoal" type="Marker2D" parent="." unique_id=1468444458]
+position = Vector2(296, 64)
+script = ExtResource("5_v8spm")
+
+[node name="EnemyGoal" type="Marker2D" parent="." unique_id=1459542203]
+position = Vector2(432, 208)
+script = ExtResource("5_v8spm")
+goal_faction_name = &"opponent"
+
+[node name="OverworldPlayer" parent="." unique_id=1005182913 instance=ExtResource("14_33iqb")]
+position = Vector2(241, 135)
+
+[node name="Camera2D" type="Camera2D" parent="OverworldPlayer" unique_id=183223178]
+process_mode = 3
+zoom = Vector2(4, 4)
 script = ExtResource("1_vqr3w")
-
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=302258804]
-tile_map_data = PackedByteArray("AAAFAAUAAAAAAAAAAAAGAAUAAAAAAAAAAAAHAAUAAAAAAAAAAAARAAUAAAAAAAAAAAATAAUAAAAAAAAAAAASAAUAAAAAAAAAAAAQAAUAAAAAAAAAAAAQAAYAAAAAAAAAAAARAAYAAAAAAAAAAAASAAYAAAAAAAAAAAATAAYAAAAAAAAAAAAFAAYAAAAAAAAAAAAGAAYAAAAAAAAAAAAHAAYAAAAAAAAAAAAIAAYAAAAAAAAAAAAIAAUAAAAAAAAAAAAJAAIAAAAAAAAAAAAJAAMAAAAAAAAAAAAJAAQAAAAAAAAAAAAJAAUAAAAAAAAAAAAJAAYAAAAAAAAAAAAJAAcAAAAAAAAAAAAIAAcAAAAAAAAAAAAHAAcAAAAAAAAAAAAGAAcAAAAAAAAAAAAFAAcAAAAAAAAAAAAQAAcAAAAAAAAAAAARAAcAAAAAAAAAAAASAAcAAAAAAAAAAAATAAcAAAAAAAAAAAAUAAcAAAAAAAAAAAAUAAYAAAAAAAAAAAAUAAUAAAAAAAAAAAAUAAQAAAAAAAAAAAAUAAMAAAAAAAAAAAAUAAIAAAAAAAAAAAAMAAQAAAAAAAAAAAANAAQAAAAAAAAAAAANAAUAAAAAAAAAAAAMAAUAAAAAAAAAAAASAAQAAAAAAAwAAAAHAAQAAAAAAAwAAAA=")
-tile_set = ExtResource("2_wwcdr")

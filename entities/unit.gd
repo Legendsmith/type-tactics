@@ -16,7 +16,7 @@ class TurnAction:
 	var technique:BattleTechnique
 	var target:Variant
 	var owner:Unit
-	func _init(init_owner:Unit, init_technique=load("uid://dagu5nkeqlqr4")) -> void: ## init technique should be none technique.
+	func _init(init_owner:Unit, init_technique=load("uid://dagu5nkeqlqr4")) -> void: ## init technique default is none.
 		owner = init_owner
 		technique = init_technique
 	func create_context() -> CombatMechanics.Context:
@@ -63,7 +63,6 @@ var active_effects:Dictionary[BattleEffectPersistent,int] = {}
 
 @export_flags("Targetable", "Active") var battle_flags:int = 11
 
-@warning_ignore_start("integer_division")
 @onready var default_action = TurnAction.new(self, load("uid://dagu5nkeqlqr4"))
 @onready var next_action:TurnAction = default_action
 
@@ -149,8 +148,8 @@ func battle_setup():
 	if not get_parent() is Battlefield:
 		return
 	call_bonuses()
-	get_tree().current_scene.new_turn.connect(on_new_turn)
-	get_tree().current_scene.finalize_turn.connect(on_finalize_turn)
+	#get_tree().current_scene.new_turn.connect(on_new_turn)
+	#get_tree().current_scene.finalize_turn.connect(on_finalize_turn)
 	$Area2D.body_entered.connect(func():
 		add_to_group(CombatMechanics.TARGET_GROUP)
 	)

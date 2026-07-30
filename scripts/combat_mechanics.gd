@@ -5,6 +5,16 @@ const MONOTYPE_CHARGE_USE := 2
 const TARGET_GROUP:StringName = &"target_group"
 const UNIT_LAYER:int = 1 << 3 #Layer 4. Layer # has to be -1 
 
+enum Result { 
+	PLAYER_WIN,
+	PLAYER_LOSE,
+	DRAW
+}
+enum UnitStatus {
+	INCAP,
+	RETREAT,
+	ACTIVE
+}
 
 enum TargetTypes {
 	UNDEFINED = 0,
@@ -40,7 +50,6 @@ const ACCURACY: Array = [
 	3.0 / 4.0, 3.0 / 5.0, 3.0 / 6.0,
 ]
 
-@warning_ignore_start("integer_division")
 
 static func calc_attribute(attribute: int, modifier: int) -> int:
 	return int(attribute * MODIFIER[clampi(modifier, -6, 6)])

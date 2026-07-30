@@ -132,3 +132,6 @@ func get_target_at_map_position(pos:Vector2i):
 	query.collision_mask = CombatMechanics.UNIT_LAYER
 	var query_result = get_world_2d().direct_space_state.intersect_point(query)
 	return query_result
+
+func get_next_free_file(rank:int)->int:
+	return 0
