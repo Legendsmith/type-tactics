@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://ha33f144hwtg"]
-
-[ext_resource type="PackedScene" uid="uid://8ievdkdx8ig7" path="res://entities/overworld_agent.tscn" id="1_f5383"]
-[ext_resource type="Texture2D" uid="uid://grvmc1agdcbh" path="res://texture/motherv3_overworld.png" id="2_61121"]
-
-[node name="OverworldAgentMotherv3" unique_id=1303149982 instance=ExtResource("1_f5383")]
-
-[node name="Sprite2D" parent="." index="0" unique_id=232210474]
-texture = ExtResource("2_61121")

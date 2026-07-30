@@ -5,19 +5,6 @@
 [ext_resource type="Script" uid="uid://bssxn87alhafy" path="res://scripts/debug_camera.gd" id="3_dfsuq"]
 [ext_resource type="TileSet" uid="uid://dn3s62ubhi6rv" path="res://world/16px_world_tile.tres" id="4_ctdg0"]
 [ext_resource type="Script" uid="uid://cdgbctc4n4whq" path="res://scripts/pathfinding/flow_field_target.gd" id="5_it6pe"]
-[ext_resource type="PackedScene" uid="uid://6s6d5quk7p6h" path="res://entities/overworld_agent_nekrolina.tscn" id="6_7s1vv"]
-[ext_resource type="PackedScene" uid="uid://8ievdkdx8ig7" path="res://entities/overworld_agent.tscn" id="7_j6rig"]
-[ext_resource type="Resource" uid="uid://ctexwjurtwaub" path="res://data/unitdef_fenari.tres" id="8_suo2e"]
-[ext_resource type="PackedScene" uid="uid://cgtrb2a580edl" path="res://entities/overworld_agent_aquwa.tscn" id="9_xp2me"]
-[ext_resource type="PackedScene" uid="uid://ha33f144hwtg" path="res://entities/overworld_agent_motherv3.tscn" id="10_fi5ja"]
-[ext_resource type="PackedScene" uid="uid://boqykmfv1k6wh" path="res://entities/overworld_agent_gary.tscn" id="11_cbcq4"]
-[ext_resource type="PackedScene" uid="uid://dxa3vx7bm1d2q" path="res://entities/overworld_agent_auteru.tscn" id="12_dtywf"]
-[ext_resource type="PackedScene" uid="uid://bi5kasl0oud8u" path="res://entities/overworld_agent_crusader.tscn" id="13_2r2fa"]
-[ext_resource type="PackedScene" uid="uid://dolfu67eapian" path="res://entities/overworld_agent_demenishki.tscn" id="14_ewqvk"]
-[ext_resource type="PackedScene" uid="uid://bwfqj8sdid7lw" path="res://entities/overworld_agent_heavenly.tscn" id="15_msmxf"]
-[ext_resource type="PackedScene" uid="uid://bdqj4daa5gehx" path="res://entities/overworld_agent_pipislayer.tscn" id="16_y8fjy"]
-[ext_resource type="PackedScene" uid="uid://qhp5yiutnkkm" path="res://entities/overworld_agent_sulia.tscn" id="17_p2gsd"]
-[ext_resource type="Resource" uid="uid://cj8hoacv50gle" path="res://data/unitdef_beepers.tres" id="18_pkv4w"]
 
 [node name="Overworld" type="Node2D" unique_id=1120571415 node_paths=PackedStringArray("player_faction_goal", "enemy_faction_goal")]
 y_sort_enabled = true
@@ -47,65 +34,3 @@ script = ExtResource("5_it6pe")
 position = Vector2(432, 208)
 script = ExtResource("5_it6pe")
 goal_faction_name = &"opponent"
-
-[node name="OverworldAgentNekrolina" parent="." unique_id=1303149982 node_paths=PackedStringArray("target") instance=ExtResource("6_7s1vv")]
-position = Vector2(577, 327)
-action = &"follow"
-target = NodePath("../OverworldAgentAquwa")
-skip_frames = 4
-
-[node name="OverworldAgentFenari" parent="." unique_id=567454966 instance=ExtResource("7_j6rig")]
-position = Vector2(490, 536)
-action = &"follow"
-unit_def = ExtResource("8_suo2e")
-
-[node name="OverworldAgentAquwa" parent="." unique_id=58187252 node_paths=PackedStringArray("target") instance=ExtResource("9_xp2me")]
-position = Vector2(337, 430)
-action = &"follow"
-target = NodePath("../OverworldPlayer")
-skip_frames = 4
-
-[node name="OverworldAgentMotherV3" parent="." unique_id=1833870378 instance=ExtResource("10_fi5ja")]
-position = Vector2(278, 573)
-action = &"follow"
-
-[node name="OverworldAgentGary" parent="." unique_id=514599938 instance=ExtResource("11_cbcq4")]
-position = Vector2(615, 681)
-action = &"follow"
-
-[node name="OverworldAgentGary2" parent="." unique_id=710386203 instance=ExtResource("11_cbcq4")]
-position = Vector2(558, 384)
-action = &"follow"
-
-[node name="OverworldAgentGary3" parent="." unique_id=1254746914 instance=ExtResource("11_cbcq4")]
-position = Vector2(662, 437)
-action = &"follow"
-
-[node name="OverworldAgentAuteru" parent="." unique_id=636053693 instance=ExtResource("12_dtywf")]
-position = Vector2(674, 289)
-action = &"follow"
-
-[node name="OverworldAgentCrusader" parent="." unique_id=1478852737 instance=ExtResource("13_2r2fa")]
-position = Vector2(406, 479)
-action = &"follow"
-
-[node name="OverworldAgentDemenishki" parent="." unique_id=973104482 instance=ExtResource("14_ewqvk")]
-position = Vector2(338, 314)
-action = &"follow"
-
-[node name="OverworldAgentHeavenly" parent="." unique_id=1167849105 instance=ExtResource("15_msmxf")]
-position = Vector2(532, 298)
-action = &"follow"
-
-[node name="OverworldAgentPipislayer" parent="." unique_id=1503386932 instance=ExtResource("16_y8fjy")]
-position = Vector2(520, 401)
-action = &"follow"
-
-[node name="OverworldAgentSulia" parent="." unique_id=1082633482 instance=ExtResource("17_p2gsd")]
-position = Vector2(590, 231)
-action = &"follow"
-
-[node name="OverworldAgentBeepers" parent="." unique_id=1859360730 instance=ExtResource("7_j6rig")]
-position = Vector2(332, 502)
-action = &"follow"
-unit_def = ExtResource("18_pkv4w")

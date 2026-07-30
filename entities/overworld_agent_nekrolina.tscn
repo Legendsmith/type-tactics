@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://6s6d5quk7p6h"]
-
-[ext_resource type="PackedScene" uid="uid://8ievdkdx8ig7" path="res://entities/overworld_agent.tscn" id="1_ydade"]
-[ext_resource type="Texture2D" uid="uid://c4qbicvvfyboo" path="res://texture/nekrolina_overworld.png" id="2_xfjde"]
-
-[node name="OverworldAgentNekrolina" unique_id=1303149982 instance=ExtResource("1_ydade")]
-
-[node name="Sprite2D" parent="." index="0" unique_id=232210474]
-texture = ExtResource("2_xfjde")
