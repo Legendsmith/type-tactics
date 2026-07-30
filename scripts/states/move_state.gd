@@ -17,7 +17,7 @@ func _update(delta: float) -> void:
 		#agent.linear_velocity = agent.desired_velocity * target_speed
 		#agent.move(agent.desired_velocity * target_speed,delta * acceleration)
 		agent.animation_player.clear_queue()
-		agent.animation_player.play(animation+str(Constants.get_direction_index(agent.desired_velocity)))
-		agent.animation_player.queue("idle_"+str(Constants.get_direction_index(agent.desired_velocity)))
+		agent.animation_player.play(animation+str(OverworldAgent.get_direction_index(agent.desired_velocity)))
+		agent.animation_player.queue("idle_"+str(OverworldAgent.get_direction_index(agent.desired_velocity)))
 	else:
 		dispatch(EVENT_FINISHED)

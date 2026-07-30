@@ -71,9 +71,9 @@ func battle(attacker:Array[Dictionary],defender:Array[Dictionary]):
 		if agent.global_position.distance_squared_to(target.global_position) > ATK_RANGE:
 			#agent.move(agent.desired_velocity,Engine.physics_ticks_per_second/Constants.OVERWORLD_BATTLE_TICK)
 			agent.linear_velocity = direction * agent.speed
-			agent.animation_player.play("move_"+str(Constants.get_direction_index(direction)),-1,1)
+			agent.animation_player.play("move_"+str(OverworldAgent.get_direction_index(direction)),-1,1)
 			continue
-		agent.animation_player.play("move_"+str(Constants.get_direction_index(direction)),-1,3)
+		agent.animation_player.play("move_"+str(OverworldAgent.get_direction_index(direction)),-1,3)
 		agent.linear_velocity = agent.global_position - target.global_position
 			
 		#target.recieve_damage(agent,agent.overworld_pwr,1)

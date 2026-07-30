@@ -25,4 +25,4 @@ func spawn():
 	var new_ent:Node2D = entity.instantiate()
 	get_tree().current_scene.add_child(new_ent)
 	new_ent.global_position = spawn_position
-	Constants.teleport(new_ent,spawn_position)
+	OverworldAgent.teleport(new_ent,spawn_position)

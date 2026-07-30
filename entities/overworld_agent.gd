@@ -3,6 +3,11 @@ extends RigidBody2D
 const MAX_BT_DELTA:float = 4.0
 signal inflicted_damage(who:Node2D,amount:int,damage_target:Node2D)
 
+const SPRITE_DIR:int = 4
+const SPRITE_DIR_COEF:float = PI/(SPRITE_DIR/2.0)
+const SPRITE_H_BIAS:float = 0.84
+
+
 @export var faction: StringName = Constants.ENEMY_GROUP
 @export var action: StringName = &"move":
 	set=set_action
@@ -175,7 +180,7 @@ func follow_flow_field() -> void:
 	desired_velocity = dir * min(distance,speed)
 	#agent.linear_damp = MAX_LINEAR_DAMP * flow_field.get_move_multiplier(flow_field.get_grid_coords(agent.global_position))
 	move(desired_velocity)
-	animation_player.play("move_"+str(Constants.get_direction_index(dir)),-1,max(0.25,linear_velocity.length_squared()/(max_speed*max_speed)))
+	animation_player.play("move_"+str(OverworldAgent.get_direction_index(dir)),-1,max(0.25,linear_velocity.length_squared()/(max_speed*max_speed)))
 
 ## Spatial Hash related
 func _exit_tree() -> void:
@@ -192,3 +197,14 @@ func get_goal() ->Node2D:
 	else:
 		goal = get_tree().current_scene.enemy_faction_goal
 	return goal
+
+static func get_direction_index(input_vector: Vector2) -> int:
+	var biased_vector:Vector2 = Vector2(input_vector.x, input_vector.y * SPRITE_H_BIAS) #bias to horizontal by reducing the vertical slightly.
+	var angle:float = biased_vector.angle()
+	if angle < 0:
+		angle += 2 * PI
+	return int((angle + PI/SPRITE_DIR) / SPRITE_DIR_COEF) % SPRITE_DIR
+
+static func teleport(body:RigidBody2D,global_position:Vector2):
+	PhysicsServer2D.body_set_state(body.get_rid(),PhysicsServer2D.BODY_STATE_TRANSFORM,Transform2D.IDENTITY.translated(global_position))
+	body.reset_physics_interpolation()

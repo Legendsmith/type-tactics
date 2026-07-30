@@ -32,7 +32,7 @@ func _physics_process(_delta: float) -> void:
 		else:
 			pathfind()
 			agent.move(agent.desired_velocity)
-			agent.animation_player.play("move_"+str(Constants.get_direction_index(agent.desired_velocity)),-1,agent.desired_velocity.length_squared()/(max_speed*max_speed))
+			agent.animation_player.play("move_"+str(OverworldAgent.get_direction_index(agent.desired_velocity)),-1,agent.desired_velocity.length_squared()/(max_speed*max_speed))
 			#agent.linear_damp = move_toward(agent.linear_damp,Agent.MIN_LINEAR_DAMP,agent.takeoff_time * delta)
 
 func pathfind():
@@ -49,7 +49,7 @@ func on_velocity_computed(safe_velocity:Vector2):
 	agent.desired_velocity = safe_velocity
 
 func finish():
-	agent.animation_player.play("idle_"+str(Constants.get_direction_index(agent.desired_velocity)))
+	agent.animation_player.play("idle_"+str(OverworldAgent.get_direction_index(agent.desired_velocity)))
 	agent.think() # call the behaviour tree when we're done.
 	agent.linear_damp = 16
 	process_mode = PROCESS_MODE_DISABLED
