@@ -8,7 +8,7 @@ func _enter() -> void:
 
 func _update(delta: float) -> void:
 	super(delta)
-	var target_point:Vector2 = agent.get_local_mouse_position()
-	agent.animation_player.play(animation+str(Constants.get_direction_index(target_point)))
+	#var target_point:Vector2 = agent.get_local_mouse_position()
+	#agent.animation_player.play(animation+str(Constants.get_direction_index(target_point)))
 	if agent.desired_velocity:
 		dispatch(&"move")

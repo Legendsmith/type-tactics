@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://bpdxt6fs7mmyh" path="res://scripts/navigation_agent_2d.gd" id="2_wa1af"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5mdms"]
-bounce = 0.2
+bounce = 0.5
 
 [sub_resource type="Animation" id="Animation_e6f0k"]
 length = 0.001
@@ -117,8 +117,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_rglla"]
 resource_name = "move_0"
-length = 0.1998
-loop_mode = 1
+length = 0.3996
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -126,7 +125,7 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.13333334),
+"times": PackedFloat32Array(0, 0.1334, 0.2666),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [2, 1, 0]
@@ -134,8 +133,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_ntp6h"]
 resource_name = "move_1"
-length = 0.1998
-loop_mode = 1
+length = 0.3996
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -143,7 +141,7 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.13333334),
+"times": PackedFloat32Array(0, 0.1334, 0.2666),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [4, 5, 3]
@@ -151,8 +149,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_ag7yx"]
 resource_name = "move_2"
-length = 0.1998
-loop_mode = 1
+length = 0.3996
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -160,7 +157,7 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.13333334),
+"times": PackedFloat32Array(0, 0.1334, 0.2666),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [8, 7, 6]
@@ -168,8 +165,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_kgu0o"]
 resource_name = "move_3"
-length = 0.1998
-loop_mode = 1
+length = 0.3996
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -177,7 +173,7 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.13333334),
+"times": PackedFloat32Array(0, 0.1334, 0.2666),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [10, 11, 9]
@@ -198,6 +194,11 @@ _data = {
 }
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_bh32s"]
+var/distance/name = &"distance"
+var/distance/type = 3
+var/distance/value = 128.0
+var/distance/hint = 0
+var/distance/hint_string = ""
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c1idk"]
 radius = 8.0
@@ -220,13 +221,13 @@ frame = 1
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=494286539]
 unique_name_in_owner = true
-path_desired_distance = 16.0
+path_desired_distance = 64.0
 path_postprocessing = 1
+simplify_path = true
 simplify_epsilon = 2.0
 avoidance_enabled = true
 radius = 8.0
-neighbor_distance = 16.0
-max_neighbors = 6
+neighbor_distance = 256.0
 debug_use_custom = true
 script = ExtResource("2_wa1af")
 

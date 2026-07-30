@@ -16,7 +16,7 @@ var desired_velocity:Vector2 = Vector2.ZERO
 @export var overworld_def: int = 100
 @export var overworld_hp: float = 100
 @export var max_overworld_hp: int = 100
-
+@export var unit_def:UnitDef
 var damage_inflicted:float = 0
 #var attack_charge:float = 0
 
@@ -36,6 +36,13 @@ var flow_field:FlowField
 
 func _ready() -> void:
 	spatial_hash.update()
+	if unit_def:
+		overworld_atk = unit_def.attribute_base[Unit.Attribute.ATTACK]
+		overworld_def = unit_def.attribute_base[Unit.Attribute.DEFENSE]
+		overworld_hp = unit_def.attribute_base[Unit.Attribute.HP]
+		max_speed = unit_def.get_modified_overworld_speed()
+		$Sprite2D.texture = unit_def.overworld_sprite
+		name = "OverWorldAgent" + unit_def.twitch_name.capitalize()
 	
 	GameManager.request_hashmap_near.connect(spatial_hash.on_request_hashmap_near)
 	add_to_group("overworld_agents")
@@ -57,14 +64,15 @@ func set_action(new_action:StringName):
 func configure_physics(_faction:StringName):
 	var faction_def:Factions.Faction = Factions.faction_list[_faction]
 	collision_layer = faction_def.physics_layer
-	collision_mask = faction_def.physics_mask
+	collision_mask = faction_def.physics_mask | collision_layer
 	nav_agent.navigation_layers = faction_def.nav_layer
 	nav_agent.avoidance_layers = faction_def.avoid_own
-	nav_agent.avoidance_mask = faction_def.avoid_own
+	nav_agent.avoidance_mask = Factions.master_avoid
 
 
 func refresh_hp():
 	overworld_hp = max_overworld_hp
+
 
 func calculate_overworld_attributes():
 	pass
@@ -91,7 +99,7 @@ func _physics_process(delta) -> void:
 		var contact_count = get_contact_count()
 		for i:int in range(contact_count):
 			var contact_target:Node2D = get_colliding_bodies()[i]
-			if contact_target is TileMapLayer:
+			if contact_target is TileMapLayer or contact_target.faction == faction:
 				continue
 			var roll:float = randf_range(Constants.OVERWORLD_DAMAGE_VARIANCE,1)
 			var dmg:float = contact_target.recieve_damage(self,overworld_pwr*roll,delta)
@@ -162,7 +170,7 @@ func follow_flow_field() -> void:
 	desired_velocity = dir * min(distance,speed)
 	#agent.linear_damp = MAX_LINEAR_DAMP * flow_field.get_move_multiplier(flow_field.get_grid_coords(agent.global_position))
 	move(desired_velocity)
-	animation_player.play("move_"+str(Constants.get_direction_index(dir)),-1,linear_velocity.length_squared()/(max_speed*max_speed))
+	animation_player.play("move_"+str(Constants.get_direction_index(dir)),-1,max(0.25,linear_velocity.length_squared()/(max_speed*max_speed)))
 
 ## Spatial Hash related
 func _exit_tree() -> void:

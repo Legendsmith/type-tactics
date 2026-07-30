@@ -13,6 +13,7 @@ mouse_filter = 1
 script = ExtResource("1_xp8vc")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1272906313]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
