@@ -37,13 +37,7 @@ var flow_field:FlowField
 func _ready() -> void:
 	spatial_hash.update()
 	if unit_def:
-		overworld_atk = unit_def.attribute_base[Unit.Attribute.ATTACK]
-		overworld_def = unit_def.attribute_base[Unit.Attribute.DEFENSE]
-		overworld_hp = unit_def.attribute_base[Unit.Attribute.HP]
-		max_speed = unit_def.get_modified_overworld_speed()
-		$Sprite2D.texture = unit_def.overworld_sprite
-		name = "OverWorldAgent" + unit_def.twitch_name.capitalize()
-	
+		load_unit_definition(unit_def)
 	GameManager.request_hashmap_near.connect(spatial_hash.on_request_hashmap_near)
 	add_to_group("overworld_agents")
 	tick_offset = randi() % Engine.physics_ticks_per_second
@@ -56,6 +50,17 @@ func _ready() -> void:
 		#print_debug("Awaiting NavigationServer")
 		await NavigationServer2D.map_changed
 		_setup_bt_player()
+
+
+func load_unit_definition(unit_definition:UnitDef):
+	unit_def = unit_definition
+	overworld_pwr = unit_def.get_overworld_power()
+	overworld_atk = unit_def.attribute_base[Unit.Attribute.ATTACK]
+	overworld_def = unit_def.attribute_base[Unit.Attribute.DEFENSE]
+	overworld_hp = unit_def.attribute_base[Unit.Attribute.HP]
+	max_speed = unit_def.get_modified_overworld_speed()
+	$Sprite2D.texture = unit_def.overworld_sprite
+	name = "OverworldAgent%" + unit_def.unit_name.capitalize()
 
 func set_action(new_action:StringName):
 	action = new_action

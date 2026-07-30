@@ -7,7 +7,8 @@
 
 [resource]
 script = ExtResource("3_bswpm")
-unit_name = "Fenari"
+display_name = "Fenari"
+unit_name = "fenari"
 twitch_name = "fenari"
 overworld_sprite = ExtResource("3_v2g8v")
 metadata/_custom_type_script = "uid://bwf3wwv84lr8q"

@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource("4_235lq")
-unit_name = "Nekrolina"
+display_name = "Nekrolina"
+unit_name = "nekrolina"
 twitch_name = "nekrolina"
 overworld_sprite = ExtResource("3_ai6f0")
-attribute_base = PackedInt32Array(100, 100, 100, 100, 100, 100, 100)

@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource("4_5gxnk")
-unit_name = "Pipislayer"
+display_name = "Pipislayer"
+unit_name = "pipislayer"
 twitch_name = "pipislayer"
 overworld_sprite = ExtResource("3_mpxhg")
-attribute_base = PackedInt32Array(100, 100, 100, 100, 100, 100, 100)

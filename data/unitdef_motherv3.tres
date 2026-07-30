@@ -8,7 +8,8 @@
 
 [resource]
 script = ExtResource("2_ep416")
-unit_name = "MOTHERv3"
+display_name = "MOTHERv3"
+unit_name = "motherv3"
 twitch_name = "motherv3"
 sprite = ExtResource("3_ep416")
 overworld_sprite = ExtResource("3_8kcrb")

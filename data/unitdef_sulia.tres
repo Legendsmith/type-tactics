@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource("4_mlgpf")
-unit_name = "Sulia"
-twitch_name = "sulia"
+display_name = "Sulia"
+unit_name = "sulia"
+twitch_name = "suliadh"
 overworld_sprite = ExtResource("3_wr87f")
-attribute_base = PackedInt32Array(100, 100, 100, 100, 100, 100, 100)

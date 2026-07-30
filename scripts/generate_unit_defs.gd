@@ -26,7 +26,8 @@ func generate_unit_defs_from_names():
 		if FileAccess.file_exists(SAVE_DIRECTORY.path_join("unitdef_%s.tres" % unit_name)):
 			continue
 		var unit:UnitDef = UnitDef.new()
-		unit.unit_name = unit_name.capitalize()
+		unit.display_name = unit_name.capitalize()
+		unit.unit_name = unit_name
 		unit.twitch_name = unit_name
 		unit.overworld_sprite = name_list[unit_name]
 		generated_resources.append(unit)

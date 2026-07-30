@@ -7,6 +7,7 @@
 
 [resource]
 script = ExtResource("3_ip55r")
+display_name = "Beepers"
 unit_name = "Beepers"
 twitch_name = "beepers"
 overworld_sprite = ExtResource("3_yqnfv")
