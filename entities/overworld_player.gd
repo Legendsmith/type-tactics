@@ -3,6 +3,8 @@ extends OverworldAgent
 
 func _ready() -> void:
 	spatial_hash.update()
+	if unit_def:
+		load_unit_definition(unit_def)
 	GameManager.request_hashmap_near.connect(spatial_hash.on_request_hashmap_near)
 	add_to_group(Constants.PLAYER_ENTITY)
 	add_to_group("overworld_agents")
