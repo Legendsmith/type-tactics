@@ -16,9 +16,8 @@ size = Vector2(16, 16)
 curve = SubResource("Curve2D_5mdms")
 script = ExtResource("1_g715i")
 
-[node name="NavigationLinkPlayer" type="NavigationLink2D" parent="." unique_id=1309468564]
-
-[node name="NavigationLinkEnemy" type="NavigationLink2D" parent="." unique_id=2100918945]
+[node name="NavigationLink" type="NavigationLink2D" parent="." unique_id=1309468564]
+navigation_layers = 3
 
 [node name="EntranceA" type="Area2D" parent="." unique_id=2125442937]
 
@@ -35,5 +34,3 @@ shape = SubResource("RectangleShape2D_cixdc")
 [node name="ExitB" type="Marker2D" parent="." unique_id=912833035]
 
 [node name="OverworldPathFollow" parent="." unique_id=458908817 instance=ExtResource("2_1wdai")]
-
-[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=1047324969]

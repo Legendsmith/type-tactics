@@ -3,73 +3,46 @@ extends TileMapLayer
 var flow_field_x:FlowField
 var flow_field_y:FlowField
 var hash_location:Vector2i
-var connections_right:Array[Vector2i]
-var connections_down:Array[Vector2i]
-var connections_left:Array[Vector2i]
-var connections_up:Array[Vector2i]
+## direction
+var connections:Dictionary[Vector2i,PackedVector2Array]
+var global_hashmap_connections:Array[Vector2i]
 var avg_flow_cost:float = 0
-
-func get_connections(direction:Vector2i)->Array[Vector2i]:
-	match direction:
-		Vector2i.RIGHT:
-			return connections_right
-		Vector2i.DOWN:
-			return connections_down
-		Vector2i.LEFT:
-			return connections_left
-		Vector2i.UP:
-			return connections_up
-		_:
-			return []
 
 
 func _ready() -> void:
 	hash_location = Vector2i(global_position / Constants.SPATIAL_HASH_SIZE)
 	SpatialMap.map[hash_location] = self
 	generate_directions()
-	build_connections()
+	SpatialMap.link_request.connect(connect_link)
 	process_mode = Node.PROCESS_MODE_DISABLED
+
+
+
+func connect_link(link:Node2D,coordinates_start:Vector2,coordinates_end:Vector2):
+	var local_start:Vector2 = to_local(coordinates_start)
+	var local_end:Vector2 = to_local(coordinates_end)
+	var local_coords:Vector2i
+	var direction:Vector2i
+	var destination:Vector2i
+	if get_used_rect().has_point(local_start):
+		local_coords = local_start
+		destination = Vector2i(coordinates_end / Constants.SPATIAL_HASH_SIZE)
+		direction = ((coordinates_start/Constants.SPATIAL_HASH_SIZE).direction_to(coordinates_end/ Constants.SPATIAL_HASH_SIZE)).snappedf(1)
+	elif get_used_rect().has_point(local_end):
+		local_coords = local_end
+		destination = Vector2i(coordinates_start / Constants.SPATIAL_HASH_SIZE)
+		direction = ((coordinates_end/Constants.SPATIAL_HASH_SIZE).direction_to(coordinates_start / Constants.SPATIAL_HASH_SIZE)).snappedf(1)
+	else:
+		return
+	global_hashmap_connections.append(destination)
+	connections.get_or_add(direction,PackedVector2Array([])).append(local_coords)
+
+
 
 
 func generate_directions():
 	flow_field_x = build(&"x",&"y")
 	flow_field_y = build(&"y",&"x")
-
-
-func build_connections():
-	var rect:Rect2i = get_used_rect()
-	connections_right = build_edge(Vector2i(rect.end.x,0),Vector2i.DOWN,rect.size.y) # take the end (rightmost) column and iterate down i
-	connections_down = build_edge(Vector2i(0,rect.end.y,),Vector2i.RIGHT,rect.size.x)
-	connections_left = build_edge(rect.position,Vector2i.DOWN,rect.size.y)
-	connections_up = build_edge(rect.position,Vector2i.RIGHT,rect.size.x)
-
-## Check if two of these tilemaplayers share a pathable point.
-func check_connections(with:TileMapLayer,direction:Vector2i) -> Array[Vector2i]:
-	var connections:Array[Vector2i] = []
-	var with_edge:Array[Vector2i] = with.get_connections(direction * -1) # flip the direction.
-	# Check if there's even a direction there. If either array is empty, there's no common direction.
-	if  not get_connections(direction).size() or not with_edge.size():
-		return []
-	# if the highest n is less than the least n, there's no connection. Uses abs direction to zero the nonrelevant x/y component.
-	if get_connections(direction).back() * direction.abs() > with_edge.front() * direction.abs():
-		for point:Vector2i in get_connections(direction):
-			if point in with_edge:
-				connections.append(point)
-		return connections
-	else:
-		return []
-
-
-func build_edge(start:Vector2i,direction:Vector2i,dimension_size:int)->Array[Vector2i]:
-	var edge_array:Array[Vector2i] = []
-	for i:int in range(0,dimension_size):
-		var point = (direction * i) + start # get the point by multiplying the direction vector by the step.
-		var cell:TileData = get_cell_tile_data(point)
-		if cell and cell.has_custom_data("flow_cost"):
-			var flow_cost:float = cell.get_custom_data("flow_cost")
-			if flow_cost > 0:
-				edge_array.append(point)
-	return edge_array
 
 
 func build(direction:StringName,orthogonal:StringName):
