@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UnitDef" format=3 uid="uid://cj8hoacv50gle"]
+
+[ext_resource type="Script" uid="uid://btssfmuejunjh" path="res://scripts/battle_technique.gd" id="1_h71m3"]
+[ext_resource type="Script" uid="uid://cqggivyif4ut8" path="res://scripts/equip_item.gd" id="2_yqnfv"]
+[ext_resource type="Script" uid="uid://bwf3wwv84lr8q" path="res://scripts/unit_def.gd" id="3_ip55r"]
+[ext_resource type="Texture2D" uid="uid://w5mu34yhp1cb" path="res://texture/beepers_overworld.png" id="3_yqnfv"]
+
+[resource]
+script = ExtResource("3_ip55r")
+display_name = "Beepers"
+unit_name = "Beepers"
+twitch_name = "beepers"
+overworld_sprite = ExtResource("3_yqnfv")
+metadata/_custom_type_script = "uid://bwf3wwv84lr8q"

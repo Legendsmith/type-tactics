@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UnitDef" format=3 uid="uid://nx3vkkl6potm"]
+
+[ext_resource type="Script" uid="uid://btssfmuejunjh" path="res://scripts/battle_technique.gd" id="1_tth5s"]
+[ext_resource type="Script" uid="uid://cqggivyif4ut8" path="res://scripts/equip_item.gd" id="2_a6vw7"]
+[ext_resource type="Texture2D" uid="uid://fak2vmjy3537" path="res://texture/auteru_overworld.png" id="3_r6d6x"]
+[ext_resource type="Script" uid="uid://bwf3wwv84lr8q" path="res://scripts/unit_def.gd" id="4_04cu5"]
+
+[resource]
+script = ExtResource("4_04cu5")
+display_name = "Auteru"
+unit_name = "Auteru"
+twitch_name = "auteru"
+overworld_sprite = ExtResource("3_r6d6x")

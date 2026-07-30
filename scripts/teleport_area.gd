@@ -22,4 +22,4 @@ func _ready():
 
 
 func teleport(body:RigidBody2D):
-	Constants.teleport(body,destination.global_position)
+	OverworldAgent.teleport(body,destination.global_position)

@@ -10,7 +10,7 @@ extends BTAction
 ## Variable that stores desired speed (float)
 @export var speed_var := &"speed"
 
-@export var approach_distance_default: float = 16.0
+@export var approach_distance_default: float = 64.0
 
 
 ## How close should the agent be to the target position to return SUCCESS.

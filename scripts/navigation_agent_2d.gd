@@ -17,6 +17,7 @@ func _ready():
 func activate(position:Vector2):
 	#agent.linear_damp = agent.linear_damp_max*0.1 # Set damp low so the agent can move well.
 	process_mode = PROCESS_MODE_INHERIT
+	agent.linear_damp = 2
 	set_physics_process(true)
 	target_position = position
 	agent.use_flow_field=false
@@ -30,8 +31,9 @@ func _physics_process(_delta: float) -> void:
 			finish()
 		else:
 			pathfind()
-			#agent.linear_damp = move_toward(agent.linear_damp,Agent.MIN_LINEAR_DAMP,agent.takeoff_time * delta)
 			agent.move(agent.desired_velocity)
+			agent.animation_player.play("move_"+str(OverworldAgent.get_direction_index(agent.desired_velocity)),-1,agent.desired_velocity.length_squared()/(max_speed*max_speed))
+			#agent.linear_damp = move_toward(agent.linear_damp,Agent.MIN_LINEAR_DAMP,agent.takeoff_time * delta)
 
 func pathfind():
 	var next_pos = get_next_path_position()
@@ -47,9 +49,10 @@ func on_velocity_computed(safe_velocity:Vector2):
 	agent.desired_velocity = safe_velocity
 
 func finish():
-		#agent.think() # call the behaviour tree when we're done.
-		#agent.linear_damp = agent.linear_damp_max
-		process_mode = PROCESS_MODE_DISABLED
-		set_physics_process(false)
-		agent.desired_velocity = Vector2.ZERO 
-		#print_debug("finished pathfinding")
+	agent.animation_player.play("idle_"+str(OverworldAgent.get_direction_index(agent.desired_velocity)))
+	agent.think() # call the behaviour tree when we're done.
+	agent.linear_damp = 16
+	process_mode = PROCESS_MODE_DISABLED
+	set_physics_process(false)
+	agent.desired_velocity = Vector2.ZERO 
+	#print_debug("finished pathfinding")
