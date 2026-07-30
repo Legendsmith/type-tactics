@@ -16,6 +16,7 @@ static var path_follower:PackedScene = load("uid://cb50uu7l62pct")
 func _ready() -> void:
 	navigation_link = configure_navigation_link($NavigationLink)
 	$ExitArea.position = curve.get_point_position(curve.point_count-1)
+	SpatialMap.link_request.emit(self,to_global(curve.get_point_position(0)),curve.get_point_position(curve.point_count-1))
 	
 func configure_navigation_link(nav_link:NavigationLink2D) ->NavigationLink2D:
 	nav_link.navigation_layers = Constants.NAV_LAYER_ALL
