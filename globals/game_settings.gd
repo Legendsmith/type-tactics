@@ -25,7 +25,7 @@ var window_mode: DisplayServer.WindowMode = DisplayServer.WINDOW_MODE_FULLSCREEN
 ## Determines what strategy of VSync is used. If VSync is used, target_fps is ignored.
 var vsync_mode: DisplayServer.VSyncMode = DisplayServer.VSYNC_ADAPTIVE: set = set_vsync_mode
 ## Determines how often the engine attempt to draw frames per second. When set to 0, no artificial cap is set. 
-##When making use of any VSync strategy, this property has no effect.
+## When making use of any VSync strategy, this property has no effect.
 var target_fps: int = 60: set = set_target_fps
 
 # Audio
@@ -78,7 +78,13 @@ func save_settings() -> Error:
 	config.set_value(SECTION_AUDIO, "sfx_volume", sfx_volume)
 	config.set_value(SECTION_AUDIO, "character_voice_volume", character_voice_volume)
 	
-	return config.save(CONFIG_PATH)
+	var result: Error = config.save(CONFIG_PATH)
+	if result == OK:
+		print("Succesfully saved settings to: '%s'" % ProjectSettings.globalize_path(CONFIG_PATH))
+	else:
+		push_error("Failed to save user settings to '%s'. Error code (%d): '%s'" % [ProjectSettings.globalize_path(CONFIG_PATH), result, error_string(result)])
+	
+	return result
 
 
 ## Sets the speed at which text gets revealed in dialog. 

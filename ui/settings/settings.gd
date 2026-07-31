@@ -1,3 +1,4 @@
+@tool
 extends Control
 
 ## The time in seconds between when a 
@@ -28,46 +29,20 @@ const SAVE_DEBOUNCE_TIME: float = 1.0
 @onready var character_voice_volume_slider: HSlider = %CharacterVoiceVolumeSlider
 #endregion
 
-#FIXME: this doesn't appear correctly in the editor due to not being registered in the global class list
-@export var _text_speed_options: Array[SpeedOption] = [
-	SpeedOption.new(1.0, &"ts_slow"),
-	SpeedOption.new(3.0, &"ts_normal"),
-	SpeedOption.new(6.0, &"ts_fast"),
-	SpeedOption.new(9.0, &"ts_faster"),
-	SpeedOption.new(0.0, &"ts_instant"),
-]
+var _text_speed_values: Array[float] = []
+var _text_speed_labels: Array[StringName] = []
 
-@export var _battle_animation_speed_options: Array[SpeedOption] = [
-	SpeedOption.new(1.0, &"ts_normal"),
-	SpeedOption.new(3.0, &"ts_fast"),
-	SpeedOption.new(4.0, &"ts_faster"),
-	SpeedOption.new(0.0, &"ts_instant"),
-]
-
-@export var _window_mode_map: Array[DisplayServer.WindowMode] = [
-	DisplayServer.WindowMode.WINDOW_MODE_WINDOWED,
-	DisplayServer.WindowMode.WINDOW_MODE_FULLSCREEN,
-]
-
-@export var _vsync_mode_map: Array[DisplayServer.VSyncMode] = [
-	DisplayServer.VSyncMode.VSYNC_DISABLED,
-	DisplayServer.VSyncMode.VSYNC_ADAPTIVE,
-	DisplayServer.VSyncMode.VSYNC_MAILBOX,
-]
-
-
-var _save_debounce_timer: Timer
-
-
-func _init() -> void:
-	_save_debounce_timer = Timer.new()
-	_save_debounce_timer.name = &"SaveDebounceTimer"
-	_save_debounce_timer.wait_time = SAVE_DEBOUNCE_TIME
-	_save_debounce_timer.timeout.connect(GameSettings.save_settings)
-	add_child(_save_debounce_timer, false, INTERNAL_MODE_BACK)
+var _save_debounce_timer: Timer = Timer.new()
 
 
 func _ready() -> void:
+	add_child(_save_debounce_timer, false)
+	
+	_save_debounce_timer.one_shot = true
+	_save_debounce_timer.name = &"SaveDebounceTimer"
+	_save_debounce_timer.wait_time = SAVE_DEBOUNCE_TIME
+	_save_debounce_timer.timeout.connect(GameSettings.save_settings)
+	
 	_setup_controls()
 	_initialize_values()
 	_setup_signals()
@@ -75,39 +50,58 @@ func _ready() -> void:
 
 ## Builds and modifies control nodes at runtime before first showing the settings scene.
 func _setup_controls() -> void:
-	text_speed_slider.max_value = _text_speed_options.size()
-	text_speed_slider.tick_count = _text_speed_options.size()
+	text_speed_slider.step = 1.0
+	text_speed_slider.min_value = 0.0
+	text_speed_slider.max_value = _text_speed_values.size() - 1
+	text_speed_slider.tick_count = _text_speed_values.size()
 
-#TODO: populate all controls with the vaues from teh game settings
+
 ## Populates the control nodes with the current vaues stored in the game settings.
 func _initialize_values() -> void:
-	if GameSettings.text_speed_modifier == 0:
-		var fastest_option: SpeedOption = _text_speed_options.back()
-
-		text_speed_slider.set_value_no_signal(fastest_option.value)
-		text_speed_label.text = tr(fastest_option.translation_key)
+	var text_speed_option: int = _text_speed_values.find_custom(is_equal_approx.bind(GameSettings.text_speed_modifier))
+	if text_speed_option == -1:
+		push_warning("text speed option not found, displaying first option")
+		text_speed_option = 0
+	
+	text_speed_slider.set_value_no_signal(text_speed_option)
+	text_speed_label.text = tr(_text_speed_labels[text_speed_option])
+	
+	#TODO: initialize battle animation speed
+	
+	auto_run_disabled_button.set_pressed_no_signal(not GameSettings.auto_run_enabled)
+	auto_run_enabled_button.set_pressed_no_signal(GameSettings.auto_run_enabled)
+	
+	vibration_strength_slider.set_value_no_signal(GameSettings.vibration_strength)
+	
+	
+	window_mode_options.select(window_mode_options.get_item_index(GameSettings.window_mode))
+	vsync_mode_options.select(vsync_mode_options.get_item_index(GameSettings.vsync_mode))
+	target_fps_options.select(target_fps_options.get_item_index(GameSettings.target_fps))
+	
+	
+	master_volume_slider.set_value_no_signal(GameSettings.master_volume)
+	music_volume_slider.set_value_no_signal(GameSettings.music_volume)
+	sfx_volume_slider.set_value_no_signal(GameSettings.sfx_volume)
+	character_voice_volume_slider.set_value_no_signal(GameSettings.character_voice_volume)
+	
+	if GameSettings.vsync_mode == DisplayServer.VSyncMode.VSYNC_DISABLED:
+		target_fps_options.disabled = false
 	else:
-		var selected_index: int = _text_speed_options.find_custom(func (v: int) -> bool:
-			return v == GameSettings.text_speed_modifier
-		)
-		var option: SpeedOption = _text_speed_options[selected_index] if selected_index != -1 else _text_speed_options.front()
-
-		text_speed_slider.set_value_no_signal(option.value)
-		text_speed_label.text = tr(option.translation_key)
+		target_fps_options.disabled = true
 
 
 ## Connects the signals from the control nodes in order to react to the changes in the settings
 func _setup_signals() -> void:
 	text_speed_slider.value_changed.connect(_on_text_speed_changed)
-	battle_animation_slider.value_changed.connect(_on_battle_animation_changed)
+	# battle_animation_slider.value_changed.connect(_on_battle_animation_changed)
 	auto_run_disabled_button.pressed.connect(_on_auto_run_disabled_pressed)
 	auto_run_enabled_button.pressed.connect(_on_auto_run_enabled_pressed)
-	vibration_strength_slider.changed.connect(_on_vibration_strength_changed)
-
+	vibration_strength_slider.value_changed.connect(_on_vibration_strength_changed)
+	
 	window_mode_options.item_selected.connect(_on_window_mode_selected)
 	vsync_mode_options.item_selected.connect(_on_vsync_mode_selected)
 	target_fps_options.item_selected.connect(_on_target_fps_selected)
-
+	
 	master_volume_slider.value_changed.connect(_on_master_volume_changed)
 	music_volume_slider.value_changed.connect(_on_music_volume_changed)
 	sfx_volume_slider.value_changed.connect(_on_sfx_volume_changed)
@@ -121,19 +115,13 @@ func queue_save() -> void:
 #region Callbacks
 
 func _on_text_speed_changed(value: int) -> void:
-	var selected_option: SpeedOption = _text_speed_options[value]
-
-	text_speed_label.text = tr(selected_option.translation_key)
-	GameSettings.set_text_speed_modifier(selected_option.value)
+	text_speed_label.text = tr(_text_speed_labels[value])
+	GameSettings.text_speed_modifier = _text_speed_values[value]
 	queue_save()
 
 
-func _on_battle_animation_changed(value: int) -> void:
-	var selected_option: SpeedOption = _battle_animation_speed_options[value]
-
-	battle_animation_speed_label.text = tr(selected_option.translation_key)
-	GameSettings.set_battle_animation_speed(selected_option.value)
-	queue_save()
+# func _on_battle_animation_changed(value: int) -> void:
+# 	queue_save()
 
 
 func _on_auto_run_disabled_pressed() -> void:
@@ -152,14 +140,18 @@ func _on_vibration_strength_changed(value: float) -> void:
 
 
 func _on_window_mode_selected(index: int) -> void:
-	var mode_id: int = window_mode_options.get_item_id(index)
-	GameSettings.window_mode = _window_mode_map[mode_id]
+	GameSettings.window_mode = window_mode_options.get_item_id(index) as DisplayServer.WindowMode
 	queue_save()
 
 
 func _on_vsync_mode_selected(index: int) -> void:
-	var mode_id: int = vsync_mode_options.get_item_id(index)
-	GameSettings.vsync_mode = _vsync_mode_map[mode_id]
+	GameSettings.vsync_mode = vsync_mode_options.get_item_id(index) as DisplayServer.VSyncMode
+	
+	if GameSettings.vsync_mode == DisplayServer.VSyncMode.VSYNC_DISABLED:
+		target_fps_options.disabled = false
+	else:
+		target_fps_options.disabled = true
+	
 	queue_save()
 
 
@@ -190,11 +182,69 @@ func _on_character_voice_volume_changed(value) -> void:
 #endregion
 
 
-#FIXME: this doesn't work, instead use a 
-class SpeedOption extends Resource:
-	@export_range(0.0, 999.0, 0.1, "or_greater", "hide_control") var value: float
-	@export var translation_key: StringName
+#region Custom Property List
+func _get_property_list() -> Array[Dictionary]:
+	var props: Array[Dictionary] = []
+	
+	props.append({
+		"name": "text_speed_options/count",
+		"type": TYPE_INT,
+		"usage": PROPERTY_USAGE_DEFAULT,
+	})
+	
+	for i in _text_speed_values.size():
+		props.append({
+			"name": "text_speed_options/%d/value" % i,
+			"type": TYPE_FLOAT,
+		})
+	
+		props.append({
+			"name": "text_speed_options/%d/translation_key" % i,
+			"type": TYPE_STRING_NAME,
+		})
+	
+	return props
 
-	func _init(v: float, tk: StringName) -> void:
-		value = v
-		translation_key = tk
+func _get(property: StringName) -> Variant:
+	var parts: PackedStringArray = property.split('/')
+	
+	if parts[0] == "text_speed_options":
+		if parts[1] == "count":
+			return _text_speed_values.size()
+		
+		else:
+			var index: int = int(parts[1])
+	
+			if parts[2] == "value":
+				return _text_speed_values[index]
+			elif parts[2] == "translation_key":
+				return _text_speed_labels[index]
+	
+	return null
+
+
+func _set(property: StringName, value: Variant) -> bool:
+	var parts: PackedStringArray = property.split('/')
+	
+	if parts[0] == "text_speed_options":
+		if parts[1] == "count":
+			_text_speed_values.resize(value)
+			_text_speed_labels.resize(value)
+			notify_property_list_changed()
+			return true
+		
+		else:
+			var index: int = int(parts[1])
+	
+			if parts[2] == "value":
+				_text_speed_values[index] = value
+			elif parts[2] == "translation_key":
+				_text_speed_labels[index] = value
+	
+	return false
+
+
+# func _property_can_revert(property: StringName) -> bool:
+# 	return false
+
+#endregion

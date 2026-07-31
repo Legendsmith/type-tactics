@@ -15,6 +15,17 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_fayoa")
 script = ExtResource("2_fayoa")
+text_speed_options/count = 5
+text_speed_options/0/value = 1.0
+text_speed_options/0/translation_key = &"ts_slow"
+text_speed_options/1/value = 3.0
+text_speed_options/1/translation_key = &"ts_normal"
+text_speed_options/2/value = 6.0
+text_speed_options/2/translation_key = &"ts_fast"
+text_speed_options/3/value = 9.0
+text_speed_options/3/translation_key = &"ts_faster"
+text_speed_options/4/value = 0.0
+text_speed_options/4/translation_key = &"ts_instant"
 
 [node name="TabContainer" type="TabContainer" parent="." unique_id=444074348]
 layout_mode = 1
@@ -81,6 +92,7 @@ text = "instant"
 horizontal_alignment = 1
 
 [node name="BattleAnimationSpeedContainer" type="HBoxContainer" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer" unique_id=423734025]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer/BattleAnimationSpeedContainer" unique_id=448021841]
@@ -153,30 +165,29 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_fayoa")
 text = "Enabled"
 
-[node name="BattleAnimationSpeedContainer2" type="HBoxContainer" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer" unique_id=752723141]
+[node name="VibrationStrengthContainer" type="HBoxContainer" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer" unique_id=752723141]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer/BattleAnimationSpeedContainer2" unique_id=585738192]
+[node name="Label" type="Label" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer/VibrationStrengthContainer" unique_id=585738192]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Vibration Strength"
 horizontal_alignment = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer/BattleAnimationSpeedContainer2" unique_id=603053366]
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer/VibrationStrengthContainer" unique_id=603053366]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="VibrationStrengthSlider" type="HSlider" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer/BattleAnimationSpeedContainer2/HBoxContainer" unique_id=253481993]
+[node name="VibrationStrengthSlider" type="HSlider" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer/VibrationStrengthContainer/HBoxContainer" unique_id=253481993]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 2.5
-max_value = 4.0
-rounded = true
+max_value = 1.0
+step = 0.001
 scrollable = false
-tick_count = 5
 ticks_on_borders = true
 ticks_position = 3
 
@@ -229,7 +240,7 @@ item_count = 2
 popup/item_0/text = "Windowed"
 popup/item_0/id = 0
 popup/item_1/text = "Fullscreen"
-popup/item_1/id = 1
+popup/item_1/id = 3
 
 [node name="WindowResolutionContainer2" type="HBoxContainer" parent="TabContainer/Graphics/MarginContainer/GraphicsSettingsContainer" unique_id=871293690]
 visible = false
@@ -326,21 +337,21 @@ item_count = 9
 popup/item_0/text = "Uncapped"
 popup/item_0/id = 0
 popup/item_1/text = "30"
-popup/item_1/id = 1
+popup/item_1/id = 30
 popup/item_2/text = "60"
-popup/item_2/id = 2
+popup/item_2/id = 60
 popup/item_3/text = "75"
-popup/item_3/id = 3
+popup/item_3/id = 75
 popup/item_4/text = "100"
-popup/item_4/id = 4
+popup/item_4/id = 100
 popup/item_5/text = "120"
-popup/item_5/id = 5
+popup/item_5/id = 120
 popup/item_6/text = "144"
-popup/item_6/id = 6
+popup/item_6/id = 144
 popup/item_7/text = "200"
-popup/item_7/id = 7
+popup/item_7/id = 200
 popup/item_8/text = "240"
-popup/item_8/id = 8
+popup/item_8/id = 240
 
 [node name="Audio" type="Control" parent="TabContainer" unique_id=1768963764]
 visible = false
@@ -381,6 +392,8 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+max_value = 1.0
+step = 0.001
 
 [node name="MusicVolumeContainer" type="HBoxContainer" parent="TabContainer/Audio/MarginContainer/AudioSettingsContainer" unique_id=1683926916]
 layout_mode = 2
@@ -401,6 +414,8 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+max_value = 1.0
+step = 0.001
 
 [node name="SfxVolumeContainer" type="HBoxContainer" parent="TabContainer/Audio/MarginContainer/AudioSettingsContainer" unique_id=462513041]
 layout_mode = 2
@@ -421,6 +436,8 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+max_value = 1.0
+step = 0.001
 
 [node name="CharacterVoiceVolumeContainer4" type="HBoxContainer" parent="TabContainer/Audio/MarginContainer/AudioSettingsContainer" unique_id=13200198]
 layout_mode = 2
@@ -441,6 +458,8 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+max_value = 1.0
+step = 0.001
 
 [node name="Controls" type="Control" parent="TabContainer" unique_id=1806708968]
 visible = false
