@@ -11,7 +11,7 @@ var config: ConfigFile = ConfigFile.new()
 
 # Gameplay
 ## Modifies how quickly text gets revealed in dialog. When set to 0, text gets instantly revealed.
-var text_speed_modifier: int = 1: set = set_text_speed_modifier
+var text_speed_modifier: float = 1: set = set_text_speed_modifier
 ## Indicates how fast batle animations are playing.
 var battle_animation_speed: float = 1.0: set = set_battle_animation_speed
 ## Indicates if the player character is automatically running by default.
@@ -83,11 +83,11 @@ func save_settings() -> Error:
 
 ## Sets the speed at which text gets revealed in dialog. 
 ## When set to 0, text is displayed instantly
-func set_text_speed_modifier(modifier: int) -> void:
+func set_text_speed_modifier(modifier: float) -> void:
 	const BASE_REVEAL_TIME: float = 0.1
-	text_speed_modifier = maxi(0, modifier)
+	text_speed_modifier = maxf(0.0, modifier)
 	
-	Dialogic.Settings.text_speed = 0.0 if modifier == 0 else BASE_REVEAL_TIME / modifier
+	Dialogic.Settings.text_speed = 0.0 if modifier == 0.0 else BASE_REVEAL_TIME / modifier
 
 # TODO: Current implementation is a prediction for how it's used. 
 # 		When it's actually used, please revisit this.
