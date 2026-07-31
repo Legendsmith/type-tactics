@@ -36,6 +36,10 @@ var _save_debounce_timer: Timer = Timer.new()
 
 
 func _ready() -> void:
+	# Don't do anything stupid while inside the editor
+	if Engine.is_editor_hint():
+		return
+	
 	add_child(_save_debounce_timer, false)
 	
 	_save_debounce_timer.one_shot = true
