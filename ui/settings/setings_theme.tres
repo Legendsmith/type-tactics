@@ -1,0 +1,11 @@
+[gd_resource type="Theme" format=3 uid="uid://3wclxr72g4rm"]
+
+[ext_resource type="FontFile" uid="uid://iydw2xhpferi" path="res://ui/ByteBounce.ttf" id="1_o7m0l"]
+
+[resource]
+default_font = ExtResource("1_o7m0l")
+default_font_size = 32
+TitleButton/base_type = &"Button"
+TitleButton/font_sizes/font_size = 64
+TitleLabel/base_type = &"Label"
+TitleLabel/font_sizes/font_size = 128

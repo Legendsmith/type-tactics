@@ -1,0 +1,467 @@
+[gd_scene format=3 uid="uid://bx2ds5egaym3g"]
+
+[ext_resource type="Theme" uid="uid://3wclxr72g4rm" path="res://ui/settings/setings_theme.tres" id="1_fayoa"]
+[ext_resource type="Theme" uid="uid://d2rlegeqi7jag" path="res://ui/title_screen/title_screen_theme.tres" id="1_hrs25"]
+[ext_resource type="Script" uid="uid://evg6pbg06fiv" path="res://ui/settings/settings.gd" id="2_fayoa"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_fayoa"]
+
+[node name="Settings" type="Control" unique_id=1940317372]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_fayoa")
+script = ExtResource("2_fayoa")
+text_speed_options/count = 5
+text_speed_options/0/value = 1.0
+text_speed_options/0/translation_key = &"ts_slow"
+text_speed_options/1/value = 3.0
+text_speed_options/1/translation_key = &"ts_normal"
+text_speed_options/2/value = 6.0
+text_speed_options/2/translation_key = &"ts_fast"
+text_speed_options/3/value = 9.0
+text_speed_options/3/translation_key = &"ts_faster"
+text_speed_options/4/value = 0.0
+text_speed_options/4/translation_key = &"ts_instant"
+
+[node name="TabContainer" type="TabContainer" parent="." unique_id=444074348]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hrs25")
+current_tab = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Gamplay" type="Control" parent="TabContainer" unique_id=1872537284]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Gamplay" unique_id=148868422]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_right = 300
+metadata/_edit_use_anchors_ = true
+
+[node name="GameplaySettingsContainer" type="VBoxContainer" parent="TabContainer/Gamplay/MarginContainer" unique_id=1587589166]
+layout_mode = 2
+alignment = 1
+
+[node name="TextSpeedContainer" type="HBoxContainer" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer" unique_id=120248790]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer/TextSpeedContainer" unique_id=98390104]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Text Speed"
+horizontal_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer/TextSpeedContainer" unique_id=178756402]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="TextSpeedSlider" type="HSlider" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer/TextSpeedContainer/HBoxContainer" unique_id=899092298]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 2.5
+max_value = 4.0
+rounded = true
+scrollable = false
+tick_count = 5
+ticks_on_borders = true
+ticks_position = 3
+
+[node name="TextSpeedLabel" type="Label" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer/TextSpeedContainer/HBoxContainer" unique_id=383940595]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "instant"
+horizontal_alignment = 1
+
+[node name="BattleAnimationSpeedContainer" type="HBoxContainer" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer" unique_id=423734025]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer/BattleAnimationSpeedContainer" unique_id=448021841]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Battle Animation Speed"
+horizontal_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer/BattleAnimationSpeedContainer" unique_id=1443963793]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="BattleAnimationSlider" type="HSlider" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer/BattleAnimationSpeedContainer/HBoxContainer" unique_id=532595679]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 2.5
+max_value = 4.0
+rounded = true
+scrollable = false
+tick_count = 5
+ticks_on_borders = true
+ticks_position = 3
+
+[node name="BattleAnimationSpeedLabel" type="Label" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer/BattleAnimationSpeedContainer/HBoxContainer" unique_id=1365925551]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "instant"
+horizontal_alignment = 1
+
+[node name="AutoRunContainer" type="HBoxContainer" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer" unique_id=737989888]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer/AutoRunContainer" unique_id=2035091423]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Auto Run"
+horizontal_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer/AutoRunContainer" unique_id=684995959]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+alignment = 1
+
+[node name="Control" type="Control" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer/AutoRunContainer/HBoxContainer" unique_id=1434800664]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer/AutoRunContainer/HBoxContainer" unique_id=1133662933]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="AutoRunDisabledButton" type="Button" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer/AutoRunContainer/HBoxContainer/HBoxContainer" unique_id=1236811796]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_fayoa")
+text = "Disabled"
+
+[node name="AutoRunEnabledButton" type="Button" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer/AutoRunContainer/HBoxContainer/HBoxContainer" unique_id=1701116882]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_fayoa")
+text = "Enabled"
+
+[node name="VibrationStrengthContainer" type="HBoxContainer" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer" unique_id=752723141]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer/VibrationStrengthContainer" unique_id=585738192]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Vibration Strength"
+horizontal_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer/VibrationStrengthContainer" unique_id=603053366]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="VibrationStrengthSlider" type="HSlider" parent="TabContainer/Gamplay/MarginContainer/GameplaySettingsContainer/VibrationStrengthContainer/HBoxContainer" unique_id=253481993]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 2.5
+max_value = 1.0
+step = 0.001
+scrollable = false
+ticks_on_borders = true
+ticks_position = 3
+
+[node name="Graphics" type="Control" parent="TabContainer" unique_id=1452566831]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Graphics" unique_id=1157183854]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_right = 300
+metadata/_edit_use_anchors_ = true
+
+[node name="GraphicsSettingsContainer" type="VBoxContainer" parent="TabContainer/Graphics/MarginContainer" unique_id=20783811]
+layout_mode = 2
+alignment = 1
+
+[node name="WindowModeContainer" type="HBoxContainer" parent="TabContainer/Graphics/MarginContainer/GraphicsSettingsContainer" unique_id=1100498892]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Graphics/MarginContainer/GraphicsSettingsContainer/WindowModeContainer" unique_id=725041576]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Window Mode"
+horizontal_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Graphics/MarginContainer/GraphicsSettingsContainer/WindowModeContainer" unique_id=1291821612]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Spacer" type="Control" parent="TabContainer/Graphics/MarginContainer/GraphicsSettingsContainer/WindowModeContainer/HBoxContainer" unique_id=1138925565]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 2.5
+
+[node name="WindowModeOptions" type="OptionButton" parent="TabContainer/Graphics/MarginContainer/GraphicsSettingsContainer/WindowModeContainer/HBoxContainer" unique_id=2048336593]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 1
+item_count = 2
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 3
+
+[node name="WindowResolutionContainer2" type="HBoxContainer" parent="TabContainer/Graphics/MarginContainer/GraphicsSettingsContainer" unique_id=871293690]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Graphics/MarginContainer/GraphicsSettingsContainer/WindowResolutionContainer2" unique_id=1723190209]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Window Mode"
+horizontal_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Graphics/MarginContainer/GraphicsSettingsContainer/WindowResolutionContainer2" unique_id=610801568]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Spacer" type="Control" parent="TabContainer/Graphics/MarginContainer/GraphicsSettingsContainer/WindowResolutionContainer2/HBoxContainer" unique_id=498729353]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 2.5
+
+[node name="WindowResolutionOptions" type="OptionButton" parent="TabContainer/Graphics/MarginContainer/GraphicsSettingsContainer/WindowResolutionContainer2/HBoxContainer" unique_id=1178389826]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 1
+item_count = 2
+popup/item_0/text = "16:9"
+popup/item_0/id = 0
+popup/item_0/separator = true
+popup/item_1/text = "1920 x 108"
+popup/item_1/id = 1
+
+[node name="VsyncModeContainer" type="HBoxContainer" parent="TabContainer/Graphics/MarginContainer/GraphicsSettingsContainer" unique_id=1535935509]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Graphics/MarginContainer/GraphicsSettingsContainer/VsyncModeContainer" unique_id=1231873549]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "VSync Mode"
+horizontal_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Graphics/MarginContainer/GraphicsSettingsContainer/VsyncModeContainer" unique_id=1687854160]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Spacer" type="Control" parent="TabContainer/Graphics/MarginContainer/GraphicsSettingsContainer/VsyncModeContainer/HBoxContainer" unique_id=894051199]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 2.5
+
+[node name="VSyncModeOptions" type="OptionButton" parent="TabContainer/Graphics/MarginContainer/GraphicsSettingsContainer/VsyncModeContainer/HBoxContainer" unique_id=1055401069]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 3
+popup/item_0/text = "Disabled"
+popup/item_0/id = 0
+popup/item_1/text = "Enabled"
+popup/item_1/id = 2
+popup/item_2/text = "Mailbox"
+popup/item_2/id = 3
+
+[node name="TargetFpsContainer" type="HBoxContainer" parent="TabContainer/Graphics/MarginContainer/GraphicsSettingsContainer" unique_id=78284755]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Graphics/MarginContainer/GraphicsSettingsContainer/TargetFpsContainer" unique_id=2044498117]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Target FPS"
+horizontal_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Graphics/MarginContainer/GraphicsSettingsContainer/TargetFpsContainer" unique_id=844718708]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Spacer" type="Control" parent="TabContainer/Graphics/MarginContainer/GraphicsSettingsContainer/TargetFpsContainer/HBoxContainer" unique_id=1710380949]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 2.5
+
+[node name="TargetFpsOptions" type="OptionButton" parent="TabContainer/Graphics/MarginContainer/GraphicsSettingsContainer/TargetFpsContainer/HBoxContainer" unique_id=1621765482]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 9
+popup/item_0/text = "Uncapped"
+popup/item_0/id = 0
+popup/item_1/text = "30"
+popup/item_1/id = 30
+popup/item_2/text = "60"
+popup/item_2/id = 60
+popup/item_3/text = "75"
+popup/item_3/id = 75
+popup/item_4/text = "100"
+popup/item_4/id = 100
+popup/item_5/text = "120"
+popup/item_5/id = 120
+popup/item_6/text = "144"
+popup/item_6/id = 144
+popup/item_7/text = "200"
+popup/item_7/id = 200
+popup/item_8/text = "240"
+popup/item_8/id = 240
+
+[node name="Audio" type="Control" parent="TabContainer" unique_id=1768963764]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Audio" unique_id=289706992]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_right = 300
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioSettingsContainer" type="VBoxContainer" parent="TabContainer/Audio/MarginContainer" unique_id=801668395]
+layout_mode = 2
+alignment = 1
+
+[node name="MasterVolumeContainer" type="HBoxContainer" parent="TabContainer/Audio/MarginContainer/AudioSettingsContainer" unique_id=1350258862]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Audio/MarginContainer/AudioSettingsContainer/MasterVolumeContainer" unique_id=1335764955]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Master"
+horizontal_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Audio/MarginContainer/AudioSettingsContainer/MasterVolumeContainer" unique_id=1820844182]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="MasterVolumeSlider" type="HSlider" parent="TabContainer/Audio/MarginContainer/AudioSettingsContainer/MasterVolumeContainer/HBoxContainer" unique_id=1582987082]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.001
+
+[node name="MusicVolumeContainer" type="HBoxContainer" parent="TabContainer/Audio/MarginContainer/AudioSettingsContainer" unique_id=1683926916]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Audio/MarginContainer/AudioSettingsContainer/MusicVolumeContainer" unique_id=1419636740]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Music"
+horizontal_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Audio/MarginContainer/AudioSettingsContainer/MusicVolumeContainer" unique_id=78489198]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="MusicVolumeSlider" type="HSlider" parent="TabContainer/Audio/MarginContainer/AudioSettingsContainer/MusicVolumeContainer/HBoxContainer" unique_id=647206357]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.001
+
+[node name="SfxVolumeContainer" type="HBoxContainer" parent="TabContainer/Audio/MarginContainer/AudioSettingsContainer" unique_id=462513041]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Audio/MarginContainer/AudioSettingsContainer/SfxVolumeContainer" unique_id=1578469345]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Sound Effects"
+horizontal_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Audio/MarginContainer/AudioSettingsContainer/SfxVolumeContainer" unique_id=606986869]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="SfxVolumeSlider" type="HSlider" parent="TabContainer/Audio/MarginContainer/AudioSettingsContainer/SfxVolumeContainer/HBoxContainer" unique_id=1926967030]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.001
+
+[node name="CharacterVoiceVolumeContainer4" type="HBoxContainer" parent="TabContainer/Audio/MarginContainer/AudioSettingsContainer" unique_id=13200198]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Audio/MarginContainer/AudioSettingsContainer/CharacterVoiceVolumeContainer4" unique_id=1997703324]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Character Voices"
+horizontal_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Audio/MarginContainer/AudioSettingsContainer/CharacterVoiceVolumeContainer4" unique_id=649834545]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="CharacterVoiceVolumeSlider" type="HSlider" parent="TabContainer/Audio/MarginContainer/AudioSettingsContainer/CharacterVoiceVolumeContainer4/HBoxContainer" unique_id=910536182]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.001
+
+[node name="Controls" type="Control" parent="TabContainer" unique_id=1806708968]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
