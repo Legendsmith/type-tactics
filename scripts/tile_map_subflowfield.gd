@@ -1,10 +1,9 @@
 extends TileMapLayer
 
-var flow_field_x:FlowField
-var flow_field_y:FlowField
+var direction_flowfields:Dictionary[Vector2i,FlowField]
 var hash_location:Vector2i
 ## direction
-var connections:Dictionary[Vector2i,PackedVector2Array]
+var connections:Dictionary[Vector2i,Vector2i]
 var global_hashmap_connections:Array[Vector2i]
 var avg_flow_cost:float = 0
 
@@ -38,29 +37,21 @@ func connect_link(link:Node2D,coordinates_start:Vector2,coordinates_end:Vector2)
 	connections.get_or_add(direction,PackedVector2Array([])).append(local_coords)
 
 
-
-
 func generate_directions():
-	flow_field_x = build(&"x",&"y")
-	flow_field_y = build(&"y",&"x")
+	
+	
 
 
-func build(direction:StringName,orthogonal:StringName):
+func build(direction:Vector2i):
 	var field:Dictionary[Vector2i,float] = {}
 	var rect:Rect2i = get_used_rect()
 	# Get the lower right, this is the destination of the flowfield as it is positive X & Y.
-	var origin = rect.end
 	var active_points: Array[Vector2i]= []
-	active_points.resize(origin[orthogonal])
-	# build rightmost column
-	for i:int in range(0,origin[orthogonal]):
-		var point = Vector2i(rect.end[direction],i)
-		var cell:TileData = get_cell_tile_data(point)
-		if cell and cell.has_custom_data("flow_cost"):
-			var flow_cost:float = cell.get_custom_data("flow_cost")
-			if flow_cost > 0:
-				active_points[i] = point
-				field[point]=0.0
+	var origins:Array[Vector2i]
+	for link_position:Vector2 in connections[direction]:
+		var point:Vector2i = local_to_map(link_position)
+		active_points.append(point)
+		field[point] = 0.0
 
 	while not active_points.is_empty():
 		# Remove this point from the active point list.
@@ -74,14 +65,16 @@ func build(direction:StringName,orthogonal:StringName):
 					if rect.has_point(point):
 						var cell:TileData = get_cell_tile_data(point)
 						if cell and cell.has_custom_data("flow_cost"):
-							var flow_cost:float = cell.get_custom_data("flow_cost")
-							var distance_to_origin:float = abs(active_point[direction]-origin[direction])
+							#var flow_cost:float = cell.get_custom_data("flow_cost")
+							#var distance_to_origin:float = abs(active_point[direction]-origin[direction])
 							if flow_cost > 0 and not field.has(point):
 								active_points.append(point)
-								field[point]= field[active_point] + sqrt(abs(x) + abs(y)) + flow_cost * distance_to_origin
+								field[point]= field[active_point] + sqrt(abs(x) + abs(y))
 							elif flow_cost > 0:
-								field[point]= min(field[point], field[active_point] + sqrt(abs(x) + abs(y))) + flow_cost * distance_to_origin
+								field[point]= min(field[point], field[active_point] + sqrt(abs(x) + abs(y)))
 	return field
+
+
 
 func get_direction_flowfield(direction:Vector2):
 	match direction:
