@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="UnitAbility" format=3 uid="uid://bmnnsv1yw4tvi"]
+
+[ext_resource type="Script" uid="uid://df67p5wc1s1rw" path="res://scripts/unit_ability.gd" id="1_aktuh"]
+
+[resource]
+script = ExtResource("1_aktuh")
+ability_name = "Apex Movement"
+metadata/_custom_type_script = "uid://df67p5wc1s1rw"
