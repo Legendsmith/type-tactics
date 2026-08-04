@@ -2,7 +2,9 @@ extends Node
 @warning_ignore_start("unused_signal")
 signal request_hashmap_near(list: Array, coordinates: Vector2i)
 signal request_hashmap_near_filter(list: Array, coordinates: Vector2i, method: StringName, method_value: Variant)
+# Used to activate entities near this part of the map, usually when the player approaches.
 signal activate_grid(coordinates:Vector2i)
+signal link_request(from:Vector2,to:Vector2,bidirectional:bool)
 
 var astar:AStar2D = AStar2D.new()
 var last_astar_idx:int = 0
@@ -18,5 +20,5 @@ func on_activate_grid(coordinates:Vector2i):
 	astar.add_point(last_astar_idx,coordinates,1)
 	last_astar_idx +=1
 
-func link_grid(from:Vector2,to:Vector2,bidirection:bool=true):
+func on_link_request(from:Vector2,to:Vector2,bidirectional:bool=true):
 	pass
