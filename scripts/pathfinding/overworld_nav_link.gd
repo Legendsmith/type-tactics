@@ -1,0 +1,1 @@
+extends NavigationLink2D
