@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UnitDef" format=3 uid="uid://deldbep013wil"]
+
+[ext_resource type="Script" uid="uid://btssfmuejunjh" path="res://scripts/battle_technique.gd" id="1_wh3sy"]
+[ext_resource type="Script" uid="uid://cqggivyif4ut8" path="res://scripts/equip_item.gd" id="2_ejl0h"]
+[ext_resource type="Texture2D" uid="uid://043nm6p37q5j" path="res://texture/fufu_overworld.png" id="3_mnwnl"]
+[ext_resource type="Script" uid="uid://bwf3wwv84lr8q" path="res://scripts/unit_def.gd" id="4_osfoo"]
+
+[resource]
+resource_name = "fufu"
+script = ExtResource("4_osfoo")
+display_name = "Fufu"
+unit_name = "fufu"
+twitch_name = "fufu"
+overworld_sprite = ExtResource("3_mnwnl")

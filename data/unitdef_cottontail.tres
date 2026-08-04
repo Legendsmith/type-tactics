@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UnitDef" format=3 uid="uid://blncpuk61valu"]
+
+[ext_resource type="Script" uid="uid://btssfmuejunjh" path="res://scripts/battle_technique.gd" id="1_jdmgx"]
+[ext_resource type="Script" uid="uid://cqggivyif4ut8" path="res://scripts/equip_item.gd" id="2_yuncy"]
+[ext_resource type="Texture2D" uid="uid://bb3gsd2lmh148" path="res://texture/cottontail_overworld.png" id="3_rotji"]
+[ext_resource type="Script" uid="uid://bwf3wwv84lr8q" path="res://scripts/unit_def.gd" id="4_2203b"]
+
+[resource]
+resource_name = "cottontail"
+script = ExtResource("4_2203b")
+display_name = "Cottontail"
+unit_name = "cottontail"
+twitch_name = "cottontail"
+overworld_sprite = ExtResource("3_rotji")

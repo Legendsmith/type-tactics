@@ -30,6 +30,7 @@ func generate_unit_defs_from_names():
 		unit.unit_name = unit_name
 		unit.twitch_name = unit_name
 		unit.overworld_sprite = name_list[unit_name]
+		unit.resource_name = unit_name
 		generated_resources.append(unit)
 
 
