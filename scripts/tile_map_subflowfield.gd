@@ -6,39 +6,18 @@ var hash_location:Vector2i
 var connections:Dictionary[Vector2i,Vector2i]
 var global_hashmap_connections:Array[Vector2i]
 var avg_flow_cost:float = 0
-
+var astar_point_id:int
 
 func _ready() -> void:
 	hash_location = Vector2i(global_position / Constants.SPATIAL_HASH_SIZE)
 	SpatialMap.map[hash_location] = self
 	generate_directions()
-	SpatialMap.link_request.connect(connect_link)
+	var astar_point_id = SpatialMap.register_astar_point(global_position)
 	process_mode = Node.PROCESS_MODE_DISABLED
 
 
-
-func connect_link(link:Node2D,coordinates_start:Vector2,coordinates_end:Vector2):
-	var local_start:Vector2 = to_local(coordinates_start)
-	var local_end:Vector2 = to_local(coordinates_end)
-	var local_coords:Vector2i
-	var direction:Vector2i
-	var destination:Vector2i
-	if get_used_rect().has_point(local_start):
-		local_coords = local_start
-		destination = Vector2i(coordinates_end / Constants.SPATIAL_HASH_SIZE)
-		direction = ((coordinates_start/Constants.SPATIAL_HASH_SIZE).direction_to(coordinates_end/ Constants.SPATIAL_HASH_SIZE)).snappedf(1)
-	elif get_used_rect().has_point(local_end):
-		local_coords = local_end
-		destination = Vector2i(coordinates_start / Constants.SPATIAL_HASH_SIZE)
-		direction = ((coordinates_end/Constants.SPATIAL_HASH_SIZE).direction_to(coordinates_start / Constants.SPATIAL_HASH_SIZE)).snappedf(1)
-	else:
-		return
-	global_hashmap_connections.append(destination)
-	connections.get_or_add(direction,PackedVector2Array([])).append(local_coords)
-
-
 func generate_directions():
-	
+	pass
 	
 
 

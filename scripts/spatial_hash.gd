@@ -1,6 +1,6 @@
 class_name SpatialHash
 extends Object
-
+signal hash_location_changed(new_location:Vector2i)
 
 const NEAR_MAP: Array[Vector2i] = [
 	Vector2i(-1, -1), Vector2i(0, -1), Vector2i(1, -1),
@@ -28,6 +28,7 @@ func update_hash(forced: bool = false) -> void:
 		return
 	var new_near: Array = NEAR_MAP.map(func(vec:Vector2i)->Vector2i: return vec + new_hash)
 	hash_location = new_hash
+	hash_location_changed.emit(hash_location)
 	hash_near.assign(new_near)
 
 

@@ -2,6 +2,7 @@ class_name OverworldPlayer
 extends OverworldAgent
 
 func _ready() -> void:
+	spatial_hash.hash_location_changed.connect(SpatialMap.on_player_hash_location_changed)
 	spatial_hash.update()
 	if unit_def:
 		load_unit_definition(unit_def)
