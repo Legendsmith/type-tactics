@@ -7,24 +7,27 @@ extends Marker2D
 		queue_redraw()
 @export var goal_faction_name:StringName = Constants.PLAYER_GROUP
 var flow_field:FlowField
-var flow_field_ready:bool = false
+var tile_map:TileMapLayer:
+	set = set_tile_map
 
 func _ready() -> void:
-	if get_parent() is TileMapLayer:
-		add_to_group(Constants.FLOW_FIELD_GROUP)
-		var tile_map:TileMapLayer = get_parent()
-		flow_field = DirectionFlowField.new(tile_map)
-		flow_field.tile_size = tile_map.tile_set.tile_size.x
-		flow_field.build(tile_map.local_to_map(position))
-		if debug_draw:
-			queue_redraw()
-
+	SpatialMap.agent_request_flow_field.connect(on_agent_request_flow_field)
+	add_to_group(Constants.FLOW_FIELD_GROUP)
+	await get_tree().physics_frame
+	SpatialMap.request_tilemap.emit(self, Vector2i(global_position/Constants.SPATIAL_HASH_SIZE))
 
 func get_flow_field_direction(from: Vector2)-> Vector2:
 	if flow_field.rect.has_point(get_grid_coords(from)):
 		return flow_field.get_direction(from)
 	return Vector2.ZERO
 
+
+func set_tile_map(new_tile_map:TileMapLayer):
+	tile_map = new_tile_map
+	flow_field = DirectionFlowField.new(tile_map)
+	flow_field.tile_size = tile_map.tile_set.tile_size.x
+	var tilemap_position:Vector2i= tile_map.local_to_map(tile_map.to_local(global_position))
+	flow_field.build(tilemap_position)
 
 func get_grid_coords(pos: Vector2)-> Vector2i:
 	return flow_field.get_grid_coords(pos)
@@ -36,5 +39,10 @@ func get_direction(from: Vector2)-> Vector2:
 
 
 func _draw() -> void:
-	if debug_draw:
-		flow_field.debug_draw(self,get_parent(),-position)
+	if debug_draw and is_instance_valid(tile_map):
+		flow_field.debug_draw(self,tile_map,tile_map.global_position-global_position)
+
+func on_agent_request_flow_field(agent:OverworldAgent,spatial_hash:Vector2i):
+	if agent.target == self and spatial_hash == tile_map.hash_location:
+		agent.flow_field = flow_field
+	

@@ -144,6 +144,7 @@ move_up={
 2d_physics/layer_2="Hazard"
 2d_navigation/layer_2="water"
 2d_physics/layer_3="Interaction"
+2d_physics/layer_4="Player"
 
 [physics]
 

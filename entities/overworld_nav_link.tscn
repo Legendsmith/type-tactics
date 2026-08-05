@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dvw52vl726m40"]
+
+[ext_resource type="Script" uid="uid://cb6f4noosbskb" path="res://entities/overworld_nav_link.gd" id="1_e532w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5mdms"]
+size = Vector2(24, 24)
+
+[node name="OverworldNavLink" type="NavigationLink2D" unique_id=1131875512]
+bidirectional = false
+navigation_layers = 7
+script = ExtResource("1_e532w")
+
+[node name="StartArea" type="Area2D" parent="." unique_id=1338557718]
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartArea" unique_id=60998928]
+shape = SubResource("RectangleShape2D_5mdms")
+
+[node name="EndDestination" type="Marker2D" parent="." unique_id=297463620]

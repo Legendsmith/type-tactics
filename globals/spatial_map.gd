@@ -8,7 +8,9 @@ signal request_hashmap_near_filter(list: Array, coordinates: Vector2i, method: S
 # Used to activate entities near this part of the map, usually when the player approaches.
 signal activate_grid(coordinates:Vector2i)
 signal request_astar_links()
-signal request_hashmap_tilemap(requester:Node)
+signal request_tilemap(requester:Node,coordinates:Vector2i)
+signal activate_flow_path(faction:StringName,spatial_hash:Vector2i)
+signal agent_request_flow_field(agent:OverworldAgent,spatial_hash:Vector2i)
 
 var astar:AStar2D = AStar2D.new()
 var last_astar_id:int = 0
@@ -24,7 +26,7 @@ func register_astar_point(coordinates:Vector2) -> int:
 	var hash_position:Vector2i = Vector2i(coordinates/SPATIAL_HASH_SIZE)
 	var closest_existing_id:int = astar.get_closest_point(hash_position)
 	## Check if this point is already in the compressed map, return the id if it is.
-	if Vector2i(astar.get_point_position(closest_existing_id)) == hash_position:
+	if closest_existing_id != -1 and Vector2i(astar.get_point_position(closest_existing_id)) == hash_position:
 		return closest_existing_id
 	else: #If it's not create a new one and 
 		var point_id:int = astar.get_available_point_id()
@@ -40,3 +42,8 @@ func register_astar_link(from:Vector2,to:Vector2,bidirectional:bool=false)->int:
 
 func on_player_hash_location_changed(location:Vector2i):
 	activate_grid.emit(location)
+
+func flow_path_to_destination(faction:StringName, global_destination:Vector2):
+	var hash_destination:Vector2i = Vector2i(global_destination/SPATIAL_HASH_SIZE)
+	activate_flow_path.emit(faction,hash_destination)
+	

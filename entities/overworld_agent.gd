@@ -41,6 +41,7 @@ var flow_field:FlowField
 
 func _ready() -> void:
 	spatial_hash.update()
+	spatial_hash.hash_location_changed.connect(on_hash_location_changed)
 	if unit_def:
 		load_unit_definition(unit_def)
 	GameManager.request_hashmap_near.connect(spatial_hash.on_request_hashmap_near)
@@ -119,15 +120,16 @@ func _physics_process(delta) -> void:
 		#attack_charge = clampf(attack_charge+(delta/5),0,Constants.OVERWORLD_MAX_ATTACK_CHARGE)
 		
 	if (Engine.get_physics_frames() + tick_offset) % (skip_frames + 1) == 0:
+		spatial_hash.update()
 		if use_flow_field:
 			follow_flow_field()
 	if bt_delta > MAX_BT_DELTA and not thinking:
 		#print_debug("Backup think")
-		think()
 		spatial_hash.update()
+		think()
 
 func move(velocity:Vector2,delta_frames:float = skip_frames+1):
-	apply_central_force(velocity*delta_frames)
+	apply_central_force(velocity*(delta_frames+linear_damp))
 	#if (Engine.get_physics_frames() + tick_offset) % (skip_frames + 1) == 0: # Only run this every skip frames.
 	#	linear_velocity = velocity
 
@@ -151,7 +153,7 @@ func think():
 func bt_status(status:BT.Status):
 	thinking = false # not thinking anymore.
 	if status == BT.FAILURE:
-		think()
+		print_debug(name, "experienced behaviour tree failure.")
 
 func _setup_bt_player():
 	bt_player.blackboard.bind_var_to_property(&"target", self , &"target", true)
@@ -172,6 +174,10 @@ func _setup_bt_player():
 func activate_flow_field(target_flow_field:FlowField):
 	use_flow_field = true
 	flow_field = target_flow_field
+
+func on_hash_location_changed(new_location:Vector2i):
+	if use_flow_field:
+		SpatialMap.agent_request_flow_field.emit(self,new_location)
 
 
 func follow_flow_field() -> void:
@@ -205,6 +211,8 @@ static func get_direction_index(input_vector: Vector2) -> int:
 		angle += 2 * PI
 	return int((angle + PI/SPRITE_DIR) / SPRITE_DIR_COEF) % SPRITE_DIR
 
-static func teleport(body:RigidBody2D,global_position:Vector2):
-	PhysicsServer2D.body_set_state(body.get_rid(),PhysicsServer2D.BODY_STATE_TRANSFORM,Transform2D.IDENTITY.translated(global_position))
+static func teleport(body:RigidBody2D,new_global_position:Vector2):
+	PhysicsServer2D.body_set_state(body.get_rid(),PhysicsServer2D.BODY_STATE_TRANSFORM,Transform2D.IDENTITY.translated(new_global_position))
 	body.reset_physics_interpolation()
+	body.on_hash_location_changed(Vector2i(new_global_position/Constants.SPATIAL_HASH_SIZE))
+	body.think()

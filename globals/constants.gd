@@ -9,6 +9,8 @@ const PHYS_TERRAIN := 1
 const PHYS_HAZARD := 2
 const PHYS_INTERACT := 3
 const FACTION_PHYSLAYER_OFFSET := 4
+const PLAYER_PHYSICS_LAYER:= 3
+const AGENT_MAX_LINEAR_DAMP := 4.0
 
 #endregion
 
@@ -17,7 +19,8 @@ const FACTION_PHYSLAYER_OFFSET := 4
 const OVERWORLD_BATTLE_TICK:float = 0.5
 const OVERWORLD_DAMAGE_VARIANCE:float = 0.85
 const OVERWORLD_MAX_ATTACK_CHARGE:float = 0.5
-
+const OVERWORLD_PHYSICS_QUERY_SHAPE_RESOURCE:String = "uid://diaqls5q1pn3"
+const OVERWORLD_CONGESTION_EASE:float = -2.0
 #endregion
 
 #region Navigation

@@ -3,7 +3,7 @@ extends NavigationAgent2D
 @export var velocity_ease:float = 0.5
 @onready var agent:Node2D = get_parent()
 
-const MAX_LINEAR_DAMP:float = 4.0
+const MAX_LINEAR_DAMP := Constants.AGENT_MAX_LINEAR_DAMP
 
 
 const TURN_SPEED_FLOOR_COEFFICIENT:float = 0.1
