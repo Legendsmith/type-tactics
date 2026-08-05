@@ -8,6 +8,8 @@ signal request_hashmap_near_filter(list: Array, coordinates: Vector2i, method: S
 # Used to activate entities near this part of the map, usually when the player approaches.
 signal activate_grid(coordinates:Vector2i)
 signal request_astar_links()
+signal request_hashmap_tilemap(requester:Node)
+
 var astar:AStar2D = AStar2D.new()
 var last_astar_id:int = 0
 
@@ -26,7 +28,7 @@ func register_astar_point(coordinates:Vector2) -> int:
 		return closest_existing_id
 	else: #If it's not create a new one and 
 		var point_id:int = astar.get_available_point_id()
-		astar.add_point(point_id,coordinates/SPATIAL_HASH_SIZE,1)
+		astar.add_point(point_id,hash_position,1)
 		last_astar_id = point_id
 		return point_id
 
