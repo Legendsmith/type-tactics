@@ -1,6 +1,6 @@
 class_name OverworldAgent
 extends RigidBody2D
-const MAX_BT_DELTA:float = 4.0
+const MAX_BT_DELTA:float = 2.0
 signal inflicted_damage(who:Node2D,amount:int,damage_target:Node2D)
 
 const SPRITE_DIR:int = 4
@@ -158,6 +158,7 @@ func bt_status(status:BT.Status):
 func _setup_bt_player():
 	bt_player.blackboard.bind_var_to_property(&"target", self , &"target", true)
 	bt_player.blackboard.bind_var_to_property(&"action", self , &"action", true)
+	bt_player.blackboard.bind_var_to_property(&"skip_frames", self , &"skip_frames", true)
 	bt_player.blackboard.set_var(&"faction", faction) # Set faction
 	bt_player.blackboard.set_var(&"max_speed", max_speed)
 	bt_player.blackboard.set_var(&"speed", max_speed)

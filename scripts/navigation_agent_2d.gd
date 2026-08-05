@@ -17,7 +17,7 @@ func _ready():
 func activate(position:Vector2):
 	#agent.linear_damp = agent.linear_damp_max*0.1 # Set damp low so the agent can move well.
 	process_mode = PROCESS_MODE_INHERIT
-	agent.linear_damp = 2
+	agent.linear_damp = 1
 	set_physics_process(true)
 	target_position = position
 	agent.use_flow_field=false
@@ -26,14 +26,13 @@ func activate(position:Vector2):
 
 
 func _physics_process(_delta: float) -> void:
-	if (Engine.get_physics_frames() + agent.tick_offset) % (agent.skip_frames + 1) == 0:
-		if is_navigation_finished():
-			finish()
-		else:
-			pathfind()
-			agent.move(agent.desired_velocity)
-			agent.animation_player.play("move_"+str(OverworldAgent.get_direction_index(agent.desired_velocity)),-1,agent.desired_velocity.length_squared()/(max_speed*max_speed))
-			#agent.linear_damp = move_toward(agent.linear_damp,Agent.MIN_LINEAR_DAMP,agent.takeoff_time * delta)
+	if is_navigation_finished():
+		finish()
+	elif (Engine.get_physics_frames() + agent.tick_offset) % (agent.skip_frames + 1) == 0:
+		pathfind()
+		agent.move(agent.desired_velocity)
+		agent.animation_player.play("move_"+str(OverworldAgent.get_direction_index(agent.desired_velocity)),-1,agent.desired_velocity.length_squared()/(max_speed*max_speed))
+		#agent.linear_damp = move_toward(agent.linear_damp,Agent.MIN_LINEAR_DAMP,agent.takeoff_time * delta)
 
 func pathfind():
 	var next_pos = get_next_path_position()

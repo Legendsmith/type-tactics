@@ -6,7 +6,7 @@ func _setup():
 	named(&"MoveState")
 
 func _enter() -> void:
-	agent.linear_damp = 1
+	agent.linear_damp = 2
 
 func _update(delta: float) -> void:
 	super(delta)

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UnitDef" format=3 uid="uid://dt6ah0xocthr5"]
+
+[ext_resource type="Script" uid="uid://btssfmuejunjh" path="res://scripts/battle_technique.gd" id="1_tuoh0"]
+[ext_resource type="Script" uid="uid://cqggivyif4ut8" path="res://scripts/equip_item.gd" id="2_wiaki"]
+[ext_resource type="Texture2D" uid="uid://m05a76soirye" path="res://texture/bao_overworld.png" id="3_00yt6"]
+[ext_resource type="Script" uid="uid://bwf3wwv84lr8q" path="res://scripts/unit_def.gd" id="4_scv3v"]
+
+[resource]
+resource_name = "bao"
+script = ExtResource("4_scv3v")
+display_name = "Bao"
+unit_name = "bao"
+twitch_name = "bao"
+overworld_sprite = ExtResource("3_00yt6")

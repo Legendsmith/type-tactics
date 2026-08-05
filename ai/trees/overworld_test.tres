@@ -103,13 +103,19 @@ type = 21
 variable = &"action"
 value = SubResource("BBVariant_dulym")
 
-[sub_resource type="BTAction" id="BTAction_5f00d"]
-script = ExtResource("4_pdewr")
-
 [sub_resource type="BTCondition" id="BTCondition_dulym"]
 script = ExtResource("5_dulym")
 distance_min = 16.0
-distance_max = 128.0
+distance_max = 64.0
+
+[sub_resource type="BBVariant" id="BBVariant_usyuo"]
+resource_name = "8"
+saved_value = 8
+type = 2
+
+[sub_resource type="BTSetVar" id="BTSetVar_fg2y1"]
+variable = &"skip_frames"
+value = SubResource("BBVariant_usyuo")
 
 [sub_resource type="BBVariant" id="BBVariant_kou5i"]
 resource_name = "$max_speed"
@@ -136,11 +142,20 @@ script = ExtResource("6_hknjq")
 
 [sub_resource type="BTSequence" id="BTSequence_kou5i"]
 custom_name = "Stand If Close"
-children = [SubResource("BTCondition_dulym"), SubResource("BTSetVar_5f00d"), SubResource("BTSetVar_0tue6"), SubResource("BTAction_kou5i")]
+children = [SubResource("BTCondition_dulym"), SubResource("BTSetVar_fg2y1"), SubResource("BTSetVar_5f00d"), SubResource("BTSetVar_0tue6"), SubResource("BTAction_kou5i")]
+
+[sub_resource type="BBVariant" id="BBVariant_f56ys"]
+resource_name = "4"
+saved_value = 4
+type = 2
+
+[sub_resource type="BTSetVar" id="BTSetVar_tb43h"]
+variable = &"skip_frames"
+value = SubResource("BBVariant_f56ys")
 
 [sub_resource type="BBVariant" id="BBVariant_hknjq"]
-resource_name = "128.0"
-saved_value = 128.0
+resource_name = "32.0"
+saved_value = 32.0
 type = 3
 
 [sub_resource type="BTSetVar" id="BTSetVar_dulym"]
@@ -193,7 +208,7 @@ nav_agent = NodePath("NavigationAgent2D")
 
 [sub_resource type="BTDynamicSequence" id="BTDynamicSequence_hknjq"]
 custom_name = "Movement"
-children = [SubResource("BTSetVar_dulym"), SubResource("BTAlwaysSucceed_usyuo"), SubResource("BTAction_fg2y1"), SubResource("BTAction_0tue6")]
+children = [SubResource("BTSetVar_tb43h"), SubResource("BTSetVar_dulym"), SubResource("BTAlwaysSucceed_usyuo"), SubResource("BTAction_fg2y1"), SubResource("BTAction_0tue6")]
 
 [sub_resource type="BTDynamicSelector" id="BTDynamicSelector_dulym"]
 custom_name = "Stand or Follow"
@@ -201,7 +216,7 @@ children = [SubResource("BTSequence_kou5i"), SubResource("BTDynamicSequence_hknj
 
 [sub_resource type="BTSequence" id="BTSequence_5f00d"]
 custom_name = "Follow Player"
-children = [SubResource("BTCheckVar_kou5i"), SubResource("BTAction_5f00d"), SubResource("BTDynamicSelector_dulym")]
+children = [SubResource("BTCheckVar_kou5i"), SubResource("BTDynamicSelector_dulym")]
 
 [sub_resource type="BTSequence" id="BTSequence_dulym"]
 custom_name = "Retreat if Low"
