@@ -20,7 +20,7 @@ const OVERWORLD_BATTLE_TICK:float = 0.5
 const OVERWORLD_DAMAGE_VARIANCE:float = 0.85
 const OVERWORLD_MAX_ATTACK_CHARGE:float = 0.5
 const OVERWORLD_PHYSICS_QUERY_SHAPE_RESOURCE:String = "uid://diaqls5q1pn3"
-const OVERWORLD_CONGESTION_EASE:float = -2.0
+const OVERWORLD_TRAFFIC_EASE:float = -2.0
 #endregion
 
 #region Navigation

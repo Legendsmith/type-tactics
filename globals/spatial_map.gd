@@ -1,6 +1,7 @@
 extends Node
 @warning_ignore_start("unused_signal")
 
+const MAP_UPDATE_INTERVAL := 2.2
 const SPATIAL_HASH_SIZE = Constants.SPATIAL_HASH_SIZE
 
 signal request_hashmap_near(list: Array, coordinates: Vector2i)
@@ -14,9 +15,13 @@ signal agent_request_flow_field(agent:OverworldAgent,spatial_hash:Vector2i)
 
 var astar:AStar2D = AStar2D.new()
 var last_astar_id:int = 0
+var update_timer:Timer
 
 func _ready() -> void:
-	pass
+	update_timer = Timer.new()
+	update_timer.wait_time = MAP_UPDATE_INTERVAL
+	update_timer.autostart = true
+	add_child(update_timer)
 
 func reset_map():
 	astar = AStar2D.new()
