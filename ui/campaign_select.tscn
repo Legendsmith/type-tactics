@@ -1,0 +1,209 @@
+[gd_scene format=3 uid="uid://dn7yyypoxhesl"]
+
+[ext_resource type="Script" uid="uid://d2y0pj05ekpwm" path="res://ui/campaign_select.gd" id="1_jl2j2"]
+[ext_resource type="FontFile" uid="uid://iydw2xhpferi" path="res://ui/ByteBounce.ttf" id="1_pkcqa"]
+[ext_resource type="Texture2D" uid="uid://dcllknuy0rs0j" path="res://texture/campaign_select_fufu.png" id="2_kytx0"]
+[ext_resource type="Material" uid="uid://ctpabk6eorw2s" path="res://ui/canvasitem_multiply.tres" id="3_h1uhm"]
+[ext_resource type="Texture2D" uid="uid://p348t3b6v0w8" path="res://texture/campaign_select_crusader.png" id="3_kytx0"]
+[ext_resource type="Texture2D" uid="uid://duspdn7b60fte" path="res://texture/campaign_select_auteru.png" id="4_h1uhm"]
+[ext_resource type="Resource" uid="uid://bjr687jm77f84" path="res://data/unitdef_crusader.tres" id="7_rqlqe"]
+[ext_resource type="Resource" uid="uid://deldbep013wil" path="res://data/unitdef_fufu.tres" id="8_ldm55"]
+[ext_resource type="Resource" uid="uid://nx3vkkl6potm" path="res://data/unitdef_auteru.tres" id="9_u8jpo"]
+[ext_resource type="Texture2D" uid="uid://b0myovs236vjp" path="res://texture/campaign_select_gata.png" id="10_aelmw"]
+[ext_resource type="Resource" uid="uid://c7s8be61kkr4" path="res://data/unitdef_gata.tres" id="10_u8jpo"]
+[ext_resource type="Resource" uid="uid://buuup837csiv0" path="res://data/unitdef_midnightnovae.tres" id="11_3w8t2"]
+[ext_resource type="Texture2D" uid="uid://b8jocrrfg5yr8" path="res://texture/campaign_select_midnightnovae.png" id="11_tg36y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cixdc"]
+bg_color = Color(0.09943332, 0.085499994, 0.19, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kytx0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5mdms"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svo4y"]
+bg_color = Color(0.512, 0.5717333, 0.64, 1)
+
+[sub_resource type="Theme" id="Theme_cixdc"]
+Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("1_pkcqa")
+CampaignButton/base_type = &"Button"
+CampaignButton/font_sizes/font_size = 72
+CampaignButton/styles/disabled = SubResource("StyleBoxFlat_cixdc")
+CampaignButton/styles/focus = SubResource("StyleBoxEmpty_kytx0")
+CampaignButton/styles/hover = SubResource("StyleBoxEmpty_5mdms")
+CampaignButton/styles/hover_pressed = SubResource("StyleBoxFlat_svo4y")
+CampaignButton/styles/normal = SubResource("StyleBoxFlat_svo4y")
+CampaignButton/styles/pressed = SubResource("StyleBoxFlat_svo4y")
+CampaignButtonFlat/base_type = &"Button"
+CampaignButtonFlat/font_sizes/font_size = 72
+FoldableContainer/font_sizes/font_size = 90
+FoldableContainer/fonts/font = ExtResource("1_pkcqa")
+Label/font_sizes/font_size = 90
+Label/fonts/font = ExtResource("1_pkcqa")
+
+[sub_resource type="FoldableGroup" id="FoldableGroup_rqlqe"]
+resource_name = "CampaignSelectAccordion"
+
+[sub_resource type="InputEventKey" id="InputEventKey_pkcqa"]
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_pkcqa"]
+events = [SubResource("InputEventKey_pkcqa")]
+
+[node name="CampaignSelect" type="Control" unique_id=1162155355]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_cixdc")
+script = ExtResource("1_jl2j2")
+
+[node name="AccordionContainer" type="VBoxContainer" parent="." unique_id=1534956494]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ChooseYourCampaign" type="FoldableContainer" parent="AccordionContainer" unique_id=1342163689]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+title = "CHOOSE YOUR CAMPAIGN"
+title_alignment = 1
+title_position = 1
+foldable_group = SubResource("FoldableGroup_rqlqe")
+
+[node name="CampaignTextureGrid" type="GridContainer" parent="AccordionContainer/ChooseYourCampaign" unique_id=645990513]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 3
+
+[node name="TextureCrusader" type="TextureRect" parent="AccordionContainer/ChooseYourCampaign/CampaignTextureGrid" unique_id=84642589]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("3_kytx0")
+expand_mode = 3
+stretch_mode = 6
+
+[node name="TextureFufu" type="TextureRect" parent="AccordionContainer/ChooseYourCampaign/CampaignTextureGrid" unique_id=466013700]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_kytx0")
+expand_mode = 3
+stretch_mode = 6
+
+[node name="TextureAuteru" type="TextureRect" parent="AccordionContainer/ChooseYourCampaign/CampaignTextureGrid" unique_id=1910457682]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("4_h1uhm")
+expand_mode = 3
+stretch_mode = 6
+
+[node name="CampaignButtonGrid" type="GridContainer" parent="AccordionContainer/ChooseYourCampaign" unique_id=1245559554]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+columns = 3
+
+[node name="ButtonCrusader" type="Button" parent="AccordionContainer/ChooseYourCampaign/CampaignButtonGrid" unique_id=1050603555]
+material = ExtResource("3_h1uhm")
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_type_variation = &"CampaignButton"
+metadata/player_unit_def = ExtResource("7_rqlqe")
+
+[node name="ButtonFufu" type="Button" parent="AccordionContainer/ChooseYourCampaign/CampaignButtonGrid" unique_id=339495271]
+material = ExtResource("3_h1uhm")
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_type_variation = &"CampaignButton"
+metadata/player_unit_def = ExtResource("8_ldm55")
+
+[node name="ButtonAuteru" type="Button" parent="AccordionContainer/ChooseYourCampaign/CampaignButtonGrid" unique_id=338494892]
+material = ExtResource("3_h1uhm")
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_type_variation = &"CampaignButton"
+disabled = true
+metadata/player_unit_def = ExtResource("9_u8jpo")
+
+[node name="Extras" type="FoldableContainer" parent="AccordionContainer" unique_id=1204940429]
+unique_name_in_owner = true
+layout_mode = 2
+folded = true
+title = "Extras"
+title_alignment = 1
+title_position = 1
+foldable_group = SubResource("FoldableGroup_rqlqe")
+
+[node name="ExtrasTextureGrid" type="GridContainer" parent="AccordionContainer/Extras" unique_id=629832992]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+columns = 2
+
+[node name="TextureGata" type="TextureRect" parent="AccordionContainer/Extras/ExtrasTextureGrid" unique_id=720033018]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("10_aelmw")
+expand_mode = 3
+stretch_mode = 6
+
+[node name="TextureMidnigtNovae" type="TextureRect" parent="AccordionContainer/Extras/ExtrasTextureGrid" unique_id=1186162818]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("11_tg36y")
+expand_mode = 3
+stretch_mode = 6
+
+[node name="ExtrasButtonGrid" type="GridContainer" parent="AccordionContainer/Extras" unique_id=1349047966]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+columns = 2
+
+[node name="ButtonPlayAsGata" type="Button" parent="AccordionContainer/Extras/ExtrasButtonGrid" unique_id=1457424496]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_type_variation = &"CampaignButtonFlat"
+text = "Eletheos"
+metadata/player_unit_def = ExtResource("10_u8jpo")
+
+[node name="ButtonPlayAsMidnightNovae" type="Button" parent="AccordionContainer/Extras/ExtrasButtonGrid" unique_id=2018302041]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_type_variation = &"CampaignButtonFlat"
+text = "MidnightNovae"
+metadata/player_unit_def = ExtResource("11_3w8t2")
+
+[node name="BackButton" type="Button" parent="." unique_id=1407666684]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -25.0
+grow_horizontal = 0
+grow_vertical = 0
+shortcut = SubResource("Shortcut_pkcqa")
+text = "Back"

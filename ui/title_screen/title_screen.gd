@@ -1,5 +1,7 @@
 extends Control
 
+@export_custom(0,"scene") var new_game_scene:String = "uid://dn7yyypoxhesl"
+
 @onready var continue_button: Button = %ContinueButton
 @onready var new_game_button: Button = %NewGameButton
 @onready var settings_button: Button = %SettingsButton
@@ -11,7 +13,7 @@ extends Control
 
 var _play_highlight_queued: bool = false
 
-func _init() -> void:
+func _ready() -> void:
 	setup_signals()
 
 func setup_signals() -> void:
@@ -39,7 +41,7 @@ func _on_continue_pressed() -> void:
 	pass
 
 func _on_new_game_pressed() -> void:
-	pass
+	GameManager.change_scene(new_game_scene,"instant")
 
 func _on_settings_pressed() -> void:
 	pass

@@ -9,7 +9,7 @@ extends BattleEffect
 ## End of turn ability tick. For effects such as DoTs this is when they should deal damage.
 @abstract func tick(unit:Unit)
 
-func exit(unit:Unit):
+func exit(_unit:Unit):
 	pass
 
 ## For effects that modify other outgoing effects.
