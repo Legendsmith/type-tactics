@@ -22,10 +22,9 @@ func build(_origin: Vector2i):
 						cached_directions[key]= Vector2(neighbor - key).normalized()
 	flow_field_ready=true
 	field_ready.emit()
-	print_debug("Directional Flow Field ready!")
 
 func get_direction(from: Vector2)-> Vector2:
-	var grid_coords: Vector2i= get_grid_coords(from)
+	var grid_coords: Vector2i= get_grid_coords(tile_map.to_local(from))
 	if not cached_directions.has(grid_coords):
 		return Vector2.ZERO
 	return cached_directions[grid_coords]

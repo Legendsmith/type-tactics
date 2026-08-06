@@ -2,6 +2,7 @@ class_name OverworldPlayer
 extends OverworldAgent
 
 func _ready() -> void:
+	spatial_hash.hash_location_changed.connect(SpatialMap.on_player_hash_location_changed)
 	spatial_hash.update()
 	if unit_def:
 		load_unit_definition(unit_def)
@@ -11,6 +12,7 @@ func _ready() -> void:
 	tick_offset = 1
 	refresh_hp()
 	configure_physics(faction)
+	collision_layer = collision_layer | (1 << Constants.PLAYER_PHYSICS_LAYER)
 	bt_player.blackboard.bind_var_to_property(&"target", self , &"target", true)
 	bt_player.blackboard.bind_var_to_property(&"action", self , &"action", true)
 	bt_player.blackboard.set_var(&"faction", faction) # Set faction
@@ -29,3 +31,6 @@ func recieve_damage(_attacker:OverworldAgent,_power:int,_delta:float) -> float:
 
 func move(velocity:Vector2,_delta_frames:float = skip_frames+1):
 	apply_central_force(velocity)
+
+func think():
+	pass
