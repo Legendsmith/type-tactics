@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="type-tactics"
-run/main_scene="uid://ijvsnyqbif14"
+run/main_scene="uid://dea4j22alycht"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
