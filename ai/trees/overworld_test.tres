@@ -79,7 +79,7 @@ result_var = &"target"
 
 [sub_resource type="BTAction" id="BTAction_ih2uh"]
 script = ExtResource("1_d2quf")
-tolerance = 32.0
+tolerance = 32
 
 [sub_resource type="BBVariant" id="BBVariant_0tue6"]
 resource_name = "look"
