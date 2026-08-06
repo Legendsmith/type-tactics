@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://bsc2ixvr42giw"]
+
+[ext_resource type="Script" uid="uid://c2v0f85vrvsnk" path="res://ui/pause_menu.gd" id="1_ejwgg"]
+[ext_resource type="Script" uid="uid://bbbjrr5noss60" path="res://ui/confirmation_button.gd" id="3_fob5h"]
+
+[sub_resource type="Gradient" id="Gradient_avurv"]
+offsets = PackedFloat32Array(0.875, 1)
+colors = PackedColorArray(0.030600004, 0.04304999, 0.18, 0.5294118, 0.61, 0.94150007, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_npydk"]
+gradient = SubResource("Gradient_avurv")
+width = 512
+height = 512
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[node name="PauseMenu" type="Control" unique_id=1677720938]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_ejwgg")
+
+[node name="PauseOverlayTexture" type="NinePatchRect" parent="." unique_id=201445954]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_npydk")
+patch_margin_left = 64
+patch_margin_top = 64
+patch_margin_right = 64
+patch_margin_bottom = 64
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=276059700]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.5
+offset_top = -81.5
+offset_right = 87.5
+offset_bottom = 81.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=417432010]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1591744678]
+layout_mode = 2
+
+[node name="PauseLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=592684472]
+layout_mode = 2
+size_flags_vertical = 0
+theme_type_variation = &"HeaderLarge"
+text = "GAME PAUSED"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1642562608]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Resume"
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1502752855]
+layout_mode = 2
+
+[node name="MainMenuButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=735183150]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Main Menu"
+script = ExtResource("3_fob5h")
+
+[node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1607351309]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit"
+script = ExtResource("3_fob5h")
+confirm_text = "Really Quit?"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="confirmed_press" from="PanelContainer/MarginContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_confirmed_press"]
+[connection signal="confirmed_press" from="PanelContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_confirmed_press"]

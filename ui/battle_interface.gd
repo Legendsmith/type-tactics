@@ -12,3 +12,7 @@ func on_unit_added(new_unit:Unit):
 	else:
 		%EnemyContainer.add_child(new_display)
 	new_display.set_unit(new_unit)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action(&"pause_game"):
+		get_tree().paused = !get_tree().paused

@@ -1,5 +1,9 @@
 class_name Constants
 
+#region Program Navigation
+
+const MAIN_MENU:String = "uid://dea4j22alycht"
+
 #region Physics & Groups
 
 const PLAYER_ENTITY := &"player_ent"

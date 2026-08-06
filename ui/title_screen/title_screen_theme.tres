@@ -2,8 +2,21 @@
 
 [ext_resource type="FontFile" uid="uid://iydw2xhpferi" path="res://ui/ByteBounce.ttf" id="1_rpvl8"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7wre"]
+bg_color = Color(0.0696, 0.4694133, 0.58, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rpvl8"]
+bg_color = Color(0.53333336, 0.81960785, 0.88235295, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a7efe"]
+bg_color = Color(0.53333336, 0.81960785, 0.88235295, 1)
+
 [resource]
 default_font = ExtResource("1_rpvl8")
+Button/font_sizes/font_size = 32
+Button/styles/hover = SubResource("StyleBoxFlat_t7wre")
+Button/styles/hover_pressed = SubResource("StyleBoxFlat_rpvl8")
+Button/styles/pressed = SubResource("StyleBoxFlat_a7efe")
 TitleButton/base_type = &"Button"
 TitleButton/font_sizes/font_size = 64
 TitleLabel/base_type = &"Label"
