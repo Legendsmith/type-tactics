@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bsc2ixvr42giw"]
 
 [ext_resource type="Script" uid="uid://c2v0f85vrvsnk" path="res://ui/pause_menu.gd" id="1_ejwgg"]
+[ext_resource type="FontFile" uid="uid://iydw2xhpferi" path="res://ui/ByteBounce.ttf" id="3_avurv"]
 [ext_resource type="Script" uid="uid://bbbjrr5noss60" path="res://ui/confirmation_button.gd" id="3_fob5h"]
 
 [sub_resource type="Gradient" id="Gradient_avurv"]
@@ -13,6 +14,21 @@ width = 512
 height = 512
 fill = 2
 fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="InputEventKey" id="InputEventKey_fob5h"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="InputEventKey" id="InputEventKey_avurv"]
+device = -1
+keycode = 4194341
+
+[sub_resource type="Shortcut" id="Shortcut_dmcod"]
+events = [SubResource("InputEventKey_fob5h"), SubResource("InputEventKey_avurv")]
+
+[sub_resource type="FontVariation" id="FontVariation_fob5h"]
+base_font = ExtResource("3_avurv")
+variation_transform = Transform2D(1, 0.33, 0, 1, 0, 0)
 
 [node name="PauseMenu" type="Control" unique_id=1677720938]
 process_mode = 2
@@ -38,22 +54,26 @@ patch_margin_top = 64
 patch_margin_right = 64
 patch_margin_bottom = 64
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=276059700]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1750245301]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 14
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -87.5
-offset_top = -81.5
-offset_right = 87.5
-offset_bottom = 81.5
+offset_top = -107.0
+offset_bottom = 107.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+theme_override_constants/separation = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=417432010]
+[node name="PauseLabel" type="Label" parent="VBoxContainer" unique_id=592684472]
+layout_mode = 2
+size_flags_vertical = 0
+theme_type_variation = &"HeaderLarge"
+text = "GAME PAUSED"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=417432010]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -62,37 +82,53 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 12
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1591744678]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer" unique_id=1591744678]
 layout_mode = 2
 
-[node name="PauseLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=592684472]
-layout_mode = 2
-size_flags_vertical = 0
-theme_type_variation = &"HeaderLarge"
-text = "GAME PAUSED"
-horizontal_alignment = 1
-
-[node name="ResumeButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1642562608]
+[node name="ResumeButton" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=1642562608]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../MainMenuButton")
+shortcut = SubResource("Shortcut_dmcod")
 text = "Resume"
 
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1502752855]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=1502752855]
 layout_mode = 2
+size_flags_vertical = 4
 
-[node name="MainMenuButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=735183150]
+[node name="MainMenuButton" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=735183150]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_top = NodePath("../ResumeButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
 text = "Main Menu"
 script = ExtResource("3_fob5h")
 
-[node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1607351309]
+[node name="QuitButton" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=1607351309]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_top = NodePath("../MainMenuButton")
 text = "Quit"
 script = ExtResource("3_fob5h")
 confirm_text = "Really Quit?"
 
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="confirmed_press" from="PanelContainer/MarginContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_confirmed_press"]
-[connection signal="confirmed_press" from="PanelContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_confirmed_press"]
+[node name="NowPlayingLabel" type="Label" parent="VBoxContainer" unique_id=2089396171]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"HeaderSmall"
+theme_override_fonts/font = SubResource("FontVariation_fob5h")
+text = "Music:"
+vertical_alignment = 2
+
+[node name="MusicNowPlayingLabel" type="Label" parent="VBoxContainer" unique_id=551289506]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+theme_type_variation = &"HeaderSmall"
+text = "s"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="confirmed_press" from="VBoxContainer/MarginContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_confirmed_press"]
+[connection signal="confirmed_press" from="VBoxContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_confirmed_press"]

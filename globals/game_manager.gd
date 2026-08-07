@@ -73,20 +73,20 @@ func play_next_in_queue() -> void:
 		music_now_playing.emit(build_attribution_string(next_song))
 
 
-func get_current_music_attribution()-> Dictionary:
+func get_current_music_attribution()-> String:
 	var stream:AudioStream
 	var player:AudioStreamPlayer
-	if current_player.playing and not current_player.stream_paused and current_player.volume_linear > 0.01:
+	if current_player.playing:
 		player = current_player
-	elif next_player.playing and not next_player.stream_paused and current_player.volume_linear > 0.01:
+	elif next_player.playing:
 		player = next_player
 	else: #if nothing's playing, return empty array
-		return {}
+		return ""
 	stream = player.stream
 	if stream is AudioStreamOggVorbis or stream is AudioStreamWAV:
-		return stream.tags
+		return build_attribution_string(stream)
 	else:
-		return {}
+		return ""
 
 
 func set_playlist(playlist:AudioStreamPlaylist):

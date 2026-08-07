@@ -75,8 +75,10 @@ libraries/ = SubResource("AnimationLibrary_8cw7n")
 
 [node name="MusicPlayer1" type="AudioStreamPlayer" parent="." unique_id=1637231766]
 unique_name_in_owner = true
+process_mode = 3
 bus = &"Music"
 
 [node name="MusicPlayer2" type="AudioStreamPlayer" parent="." unique_id=678972927]
 unique_name_in_owner = true
+process_mode = 3
 bus = &"Music"
