@@ -2,6 +2,7 @@ extends CanvasLayer
 @warning_ignore_start("unused_signal")
 signal request_hashmap_near(list: Array, coordinates: Vector2i)
 signal request_hashmap_near_filter(list: Array, coordinates: Vector2i, method: StringName, method_value: Variant)
+signal music_now_playing(attribution:String)
 
 @onready var fade_rect:ColorRect = $Blackout
 @onready var anim:AnimationPlayer = $AnimationPlayer
@@ -9,6 +10,7 @@ var scene_changing:bool = false
 var game_interface:Control
 
 ## Music Variables
+const ARTIST_SEPARATOR:String = ", "
 const DEFAULT_FADE_TIME:float = 1.5
 var music_attribution:Dictionary[String,PackedStringArray]
 
@@ -54,14 +56,13 @@ func change_scene(scene_path: String,transition:StringName=&"fade", clear_interf
 
 #region Music
 
-func _process(_delta: float) -> void:
-	var attribution:Dictionary = get_current_music_attribution()
-	if attribution:
-		%SongLabel.text = attribution["title"]
-		%ArtistLabel.text = attribution["artist"]
+func build_attribution_string(stream:AudioStream) -> String:
+	var tags:Dictionary = stream.tags
+	if tags:
+		return "%s — %s" [tags["title"],ARTIST_SEPARATOR.join([tags.get("composer",""),tags.get("artist","")]).trim_prefix(ARTIST_SEPARATOR).trim_suffix(ARTIST_SEPARATOR)]
 	else:
-		%SongLabel.text = "Nothing"
-		%ArtistLabel.text = "Playing"
+		return ""
+
 
 func play_next_in_queue() -> void:
 	if _playlist.size():
@@ -69,6 +70,7 @@ func play_next_in_queue() -> void:
 		var next_song:AudioStream = _playlist[next_idx]
 		current_player.stream = next_song
 		current_player.play()
+		music_now_playing.emit(build_attribution_string(next_song))
 
 
 func get_current_music_attribution()-> Dictionary:
@@ -87,7 +89,7 @@ func get_current_music_attribution()-> Dictionary:
 		return {}
 
 
-func set_playlist(playlist:AudioStreamPlaylist,play_immediate:bool=false):
+func set_playlist(playlist:AudioStreamPlaylist):
 	_playlist.clear()
 	_playlist.resize(playlist.stream_count)
 	for i:int in range(playlist.stream_count):
@@ -111,6 +113,7 @@ func play_music(new_audio_stream:AudioStream,crossfade:bool=true, clear_playlist
 		current_player.stream = stream
 		current_player.play()
 		fade_in(current_player)
+	music_now_playing.emit(build_attribution_string(stream))
 
  
 func fade_in(player: AudioStreamPlayer,fade_time:float=DEFAULT_FADE_TIME,final_volume:float=1) -> Tween:
@@ -154,6 +157,7 @@ func stop_all_music():
 	for player in [player1, player2]:
 		if player.playing:
 			fade_out(player)
+	music_now_playing.emit("")
 
 
 
