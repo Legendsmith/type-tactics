@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b8x4jkf3bwppg"]
 
-[ext_resource type="Theme" uid="uid://v0ph6goeqn0u" path="res://ui/battle_theme.tres" id="1_5w52n"]
-[ext_resource type="Script" uid="uid://k0ueybp0qowp" path="res://ui/technique_inspector.gd" id="2_gsuk2"]
+[ext_resource type="Theme" uid="uid://v0ph6goeqn0u" path="res://ui/battle_ui/battle_theme.tres" id="1_5w52n"]
+[ext_resource type="Script" uid="uid://k0ueybp0qowp" path="res://ui/inspector/technique_inspector.gd" id="2_gsuk2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ccv2"]
 bg_color = Color(1, 1, 1, 0.26666668)

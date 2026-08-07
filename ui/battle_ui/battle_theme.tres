@@ -1,7 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://v0ph6goeqn0u"]
 
 [ext_resource type="FontFile" uid="uid://iydw2xhpferi" path="res://ui/ByteBounce.ttf" id="1_afb8y"]
-[ext_resource type="StyleBox" uid="uid://0kwysfv4rmwc" path="res://ui/mon_panel_white.tres" id="2_ch8y1"]
+[ext_resource type="StyleBox" uid="uid://0kwysfv4rmwc" path="res://ui/battle_ui/mon_panel_white.tres" id="2_ch8y1"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0yory"]
 size = Vector2(24, 24)

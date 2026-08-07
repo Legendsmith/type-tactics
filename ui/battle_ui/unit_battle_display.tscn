@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://d18mrr8fdgs57"]
 
-[ext_resource type="Theme" uid="uid://v0ph6goeqn0u" path="res://ui/battle_theme.tres" id="1_pijcn"]
-[ext_resource type="Script" uid="uid://4nnika2uecxi" path="res://ui/unit_battle_display.gd" id="1_sh2ke"]
-[ext_resource type="Script" uid="uid://c34hg3m3adnqv" path="res://ui/hp_bar.gd" id="2_iiolx"]
+[ext_resource type="Theme" uid="uid://v0ph6goeqn0u" path="res://ui/battle_ui/battle_theme.tres" id="1_40dyh"]
+[ext_resource type="Script" uid="uid://4nnika2uecxi" path="res://ui/battle_ui/unit_battle_display.gd" id="2_n37rs"]
+[ext_resource type="Script" uid="uid://c34hg3m3adnqv" path="res://ui/battle_ui/hp_bar.gd" id="3_ewsjt"]
 
 [node name="UnitBattleDisplay" type="PanelContainer" unique_id=1162663328]
 custom_minimum_size = Vector2(256, 0)
-theme = ExtResource("1_pijcn")
+theme = ExtResource("1_40dyh")
 theme_type_variation = &"WhitePanel"
-script = ExtResource("1_sh2ke")
+script = ExtResource("2_n37rs")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1075574406]
 layout_mode = 2
@@ -28,7 +28,7 @@ text = "Unit Name "
 unique_name_in_owner = true
 layout_mode = 2
 value = 100.0
-script = ExtResource("2_iiolx")
+script = ExtResource("3_ewsjt")
 
 [node name="ActionLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1145498791]
 unique_name_in_owner = true
