@@ -59,7 +59,7 @@ func change_scene(scene_path: String,transition:StringName=&"fade", clear_interf
 func build_attribution_string(stream:AudioStream) -> String:
 	var tags:Dictionary = stream.tags
 	if tags:
-		return "%s — %s" [tags["title"],ARTIST_SEPARATOR.join([tags.get("composer",""),tags.get("artist","")]).trim_prefix(ARTIST_SEPARATOR).trim_suffix(ARTIST_SEPARATOR)]
+		return "%s — %s" % [tags["title"],ARTIST_SEPARATOR.join([tags.get("composer",""),tags.get("artist","")]).trim_prefix(ARTIST_SEPARATOR).trim_suffix(ARTIST_SEPARATOR)]
 	else:
 		return ""
 
