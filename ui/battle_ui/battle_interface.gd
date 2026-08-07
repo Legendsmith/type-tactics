@@ -14,5 +14,6 @@ func on_unit_added(new_unit:Unit):
 	new_display.set_unit(new_unit)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action(&"pause_game"):
+	if event.is_action_pressed(&"pause_game"):
 		get_tree().paused = !get_tree().paused
+	get_viewport().set_input_as_handled()

@@ -89,6 +89,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../MainMenuButton")
+action_mode = 0
 shortcut = SubResource("Shortcut_dmcod")
 text = "Resume"
 

@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://gwsvkadrrijx"]
 
 [ext_resource type="Script" uid="uid://bw03ybtcixv3l" path="res://world/battle_stage.gd" id="1_k7dgi"]
+[ext_resource type="AudioStream" uid="uid://ddodl7xnoifhc" path="res://audio/claycubed_plan_b.ogg" id="2_no2cn"]
 [ext_resource type="PackedScene" uid="uid://bnmpjfckkxley" path="res://world/battle_stage_3d.tscn" id="4_2lwrw"]
 [ext_resource type="TileSet" uid="uid://cse736qvne48i" path="res://world/isometric_tiles.tres" id="4_no2cn"]
 [ext_resource type="Script" uid="uid://cepft2joco8rq" path="res://world/battle_stage/battlefield.gd" id="4_uvr5w"]
@@ -11,6 +12,7 @@ viewport_path = NodePath("SubViewport")
 [node name="BattleStage" type="Node2D" unique_id=257154894]
 texture_filter = 1
 script = ExtResource("1_k7dgi")
+background_music = ExtResource("2_no2cn")
 interface_scene = "uid://dysomavkjoi23"
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1413354219]
