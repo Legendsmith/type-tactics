@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://or5hd5dlt0kq"]
 
 [ext_resource type="Script" uid="uid://ccqqqdf13a0it" path="res://globals/game_manager.gd" id="1_dmcod"]
-[ext_resource type="AudioStream" uid="uid://cdmmnq2dq8lsf" path="res://audio/audiostream_random_hecksn_explore.tres" id="2_77tft"]
 
 [sub_resource type="Animation" id="Animation_vmn2j"]
 length = 0.001
@@ -76,9 +75,25 @@ libraries/ = SubResource("AnimationLibrary_8cw7n")
 
 [node name="MusicPlayer1" type="AudioStreamPlayer" parent="." unique_id=1637231766]
 unique_name_in_owner = true
-stream = ExtResource("2_77tft")
 bus = &"Music"
 
 [node name="MusicPlayer2" type="AudioStreamPlayer" parent="." unique_id=678972927]
 unique_name_in_owner = true
 bus = &"Music"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2147385298]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+
+[node name="SongLabel" type="Label" parent="HBoxContainer" unique_id=1812077756]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Nothing"
+
+[node name="ArtistLabel" type="Label" parent="HBoxContainer" unique_id=1196873489]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Playing"

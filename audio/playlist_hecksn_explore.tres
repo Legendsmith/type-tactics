@@ -1,0 +1,26 @@
+[gd_resource type="AudioStreamPlaylist" format=3 uid="uid://b3sbne5jtcp5o"]
+
+[ext_resource type="AudioStream" uid="uid://j3yoxnretrtf" path="res://audio/hecksn_a_new_beginning.ogg" id="1_ua0f1"]
+[ext_resource type="AudioStream" uid="uid://bkh3cfm3e7fu7" path="res://audio/hecksn_distant_secrets.ogg" id="2_2cqyi"]
+[ext_resource type="AudioStream" uid="uid://vtyisp8g3rbx" path="res://audio/hecksn_ditching_expectations.ogg" id="3_3hsb3"]
+[ext_resource type="AudioStream" uid="uid://clvei0rqjnyeh" path="res://audio/hecksn_finding_a_way.ogg" id="4_hi0wl"]
+[ext_resource type="AudioStream" uid="uid://cfvsr5s582fpl" path="res://audio/hecksn_immortal_city_lights.ogg" id="5_5vfb8"]
+[ext_resource type="AudioStream" uid="uid://b4gigdcadl07n" path="res://audio/hecksn_jittery_sunset.ogg" id="6_vl4ct"]
+[ext_resource type="AudioStream" uid="uid://dxmjblb5e4430" path="res://audio/hecksn_melodic_wire.ogg" id="7_7dh4c"]
+[ext_resource type="AudioStream" uid="uid://bekxi228l633e" path="res://audio/hecksn_nights_of_admiration.ogg" id="8_rlgqt"]
+[ext_resource type="AudioStream" uid="uid://corhu42wvdb5u" path="res://audio/hecksn_nothing_left_of_home.ogg" id="9_qctuu"]
+[ext_resource type="AudioStream" uid="uid://dmd772r0v3i0x" path="res://audio/hecksn_trapped_in_the_singularity.ogg" id="10_ftudg"]
+
+[resource]
+shuffle = true
+stream_count = 10
+stream_0 = ExtResource("1_ua0f1")
+stream_1 = ExtResource("2_2cqyi")
+stream_2 = ExtResource("3_3hsb3")
+stream_3 = ExtResource("4_hi0wl")
+stream_4 = ExtResource("5_5vfb8")
+stream_5 = ExtResource("6_vl4ct")
+stream_6 = ExtResource("7_7dh4c")
+stream_7 = ExtResource("8_rlgqt")
+stream_8 = ExtResource("9_qctuu")
+stream_9 = ExtResource("10_ftudg")
