@@ -72,3 +72,11 @@ color = Color(0, 0, 0, 1)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1586898018]
 deterministic = true
 libraries/ = SubResource("AnimationLibrary_8cw7n")
+
+[node name="MusicPlayer1" type="AudioStreamPlayer" parent="." unique_id=1637231766]
+unique_name_in_owner = true
+bus = &"Music"
+
+[node name="MusicPlayer2" type="AudioStreamPlayer" parent="." unique_id=678972927]
+unique_name_in_owner = true
+bus = &"Music"

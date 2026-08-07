@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://ijvsnyqbif14"]
 
 [ext_resource type="Script" uid="uid://e51y4ebwfmom" path="res://world/overworld.gd" id="1_1ff6a"]
+[ext_resource type="AudioStream" uid="uid://b3sbne5jtcp5o" path="res://audio/playlist_hecksn_explore.tres" id="2_dyh3o"]
 [ext_resource type="PackedScene" uid="uid://chxqmaptib7am" path="res://entities/overworld_player.tscn" id="2_x4s76"]
 [ext_resource type="Script" uid="uid://bssxn87alhafy" path="res://scripts/debug_camera.gd" id="3_dfsuq"]
 [ext_resource type="TileSet" uid="uid://dn3s62ubhi6rv" path="res://world/16px_world_tile.tres" id="4_ctdg0"]
@@ -16,6 +17,7 @@ y_sort_enabled = true
 script = ExtResource("1_1ff6a")
 player_faction_goal = NodePath("PlayerGoal")
 enemy_faction_goal = NodePath("EnemyGoal")
+background_music = ExtResource("2_dyh3o")
 interface_scene = "uid://dn2qdyhps5xut"
 
 [node name="OverworldPlayer" parent="." unique_id=1005182913 instance=ExtResource("2_x4s76")]
@@ -58,6 +60,7 @@ target = NodePath("../OverworldPlayer")
 unit_def = ExtResource("10_dyh3o")
 
 [node name="PlayerGoal" type="Marker2D" parent="." unique_id=669997728]
+z_index = 2
 position = Vector2(6848, 704)
 gizmo_extents = 256.0
 script = ExtResource("5_it6pe")
