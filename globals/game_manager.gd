@@ -9,7 +9,6 @@ var scene_changing:bool = false
 var game_interface:Control
 
 ## Music Variables
-const ATTRIBUTION_FILEPATH:String = "res://audio/music_attribution.json"
 const DEFAULT_FADE_TIME:float = 1.5
 var music_attribution:Dictionary[String,PackedStringArray]
 
@@ -18,11 +17,16 @@ var music_attribution:Dictionary[String,PackedStringArray]
 
 @onready var current_player: AudioStreamPlayer = player1
 @onready var next_player: AudioStreamPlayer = player2
+
+var _playlist:Array[AudioStream]
+var _playlist_idx:int = -1
+
 var fade_out_tween
 
 func _ready():
 	anim.play("fade",1,-1,true)
-	load_music_attribution()
+	current_player.finished.connect(play_next_in_queue)
+	next_player.finished.connect(play_next_in_queue)
 
 func change_scene(scene_path: String,transition:StringName=&"fade", clear_interface:bool = true,extra_data:Dictionary[StringName,Variant]={}):
 	if not scene_changing:
@@ -47,30 +51,27 @@ func change_scene(scene_path: String,transition:StringName=&"fade", clear_interf
 		scene_changing = false
 		%Blackout.visible=false
 
-			
+
 #region Music
 
 func _process(_delta: float) -> void:
-	var attribution:PackedStringArray = get_current_music_attribution()
+	var attribution:Dictionary = get_current_music_attribution()
 	if attribution:
-		%SongLabel.text = attribution[0]
-		%ArtistLabel.text = attribution[1]
+		%SongLabel.text = attribution["title"]
+		%ArtistLabel.text = attribution["artist"]
 	else:
 		%SongLabel.text = "Nothing"
 		%ArtistLabel.text = "Playing"
-		
 
-func load_music_attribution() -> void:
-	var data:Variant = JSON.parse_string(FileAccess.open(ATTRIBUTION_FILEPATH, FileAccess.READ).get_as_text())
-	if data == null or not data is Dictionary:
-		push_error("Failed to Parse Music Attribution Data!")
-	music_attribution.assign(data)
+func play_next_in_queue() -> void:
+	if _playlist.size():
+		var next_idx:int = wrapi(_playlist_idx+1, 0, _playlist.size())
+		var next_song:AudioStream = _playlist[next_idx]
+		current_player.stream = next_song
+		current_player.play()
 
-func get_music_attribution(music_stream:AudioStream)-> PackedStringArray:
-	var path:String = ResourceUID.path_to_uid(music_stream.resource_path)
-	return music_attribution.get(path,PackedStringArray())
 
-func get_current_music_attribution()-> PackedStringArray:
+func get_current_music_attribution()-> Dictionary:
 	var stream:AudioStream
 	var player:AudioStreamPlayer
 	if current_player.playing and not current_player.stream_paused and current_player.volume_linear > 0.01:
@@ -78,23 +79,39 @@ func get_current_music_attribution()-> PackedStringArray:
 	elif next_player.playing and not next_player.stream_paused and current_player.volume_linear > 0.01:
 		player = next_player
 	else: #if nothing's playing, return empty array
-		return PackedStringArray()
+		return {}
 	stream = player.stream
-	return get_music_attribution(stream)
-
-
-func play_music(new_audio_stream:AudioStream):
-	if current_player.playing:
-		crossfade_to(new_audio_stream)
+	if stream is AudioStreamOggVorbis or stream is AudioStreamWAV:
+		return stream.tags
 	else:
-		current_player.stream = new_audio_stream
+		return {}
+
+
+func set_playlist(playlist:AudioStreamPlaylist,play_immediate:bool=false):
+	_playlist.clear()
+	_playlist.resize(playlist.stream_count)
+	for i:int in range(playlist.stream_count):
+		_playlist[i] = playlist.get_list_stream(i)
+	
+
+func play_music(new_audio_stream:AudioStream,crossfade:bool=true, clear_playlist:bool=true):
+	var stream:AudioStream = new_audio_stream
+	if new_audio_stream is AudioStreamPlaylist:
+		set_playlist(new_audio_stream)
+		_playlist_idx = randi() % _playlist.size() if new_audio_stream.shuffle else 0
+		stream = _playlist[_playlist_idx]
+	elif _playlist.size() and new_audio_stream in _playlist:
+		_playlist_idx = _playlist.find(new_audio_stream)
+	elif clear_playlist:
+		_playlist.clear()
+		_playlist_idx=-1
+	if current_player.playing and crossfade:
+		crossfade_to(stream)
+	else:
+		current_player.stream = stream
 		current_player.play()
 		fade_in(current_player)
-	if new_audio_stream is AudioStreamRandomizer: # Make it loop if it's a music randomizer resource.
-		current_player.finished.connect(current_player.play)
-	elif current_player.finished.is_connected(current_player.play):
-		current_player.finished.disconnect(current_player.play)
-		
+
  
 func fade_in(player: AudioStreamPlayer,fade_time:float=DEFAULT_FADE_TIME,final_volume:float=1) -> Tween:
 	player.volume_linear = 0
@@ -111,7 +128,7 @@ func fade_out(player: AudioStreamPlayer,fade_time:float=DEFAULT_FADE_TIME) -> Tw
 
 func crossfade_to(new_track: AudioStream,fade_time:float=DEFAULT_FADE_TIME):
 	next_player.stream = new_track
-	next_player.volume_db = -60
+	next_player.volume_linear = 0
 	next_player.play()
 
 	var tween = create_tween().set_parallel(true)
