@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://ijvsnyqbif14"]
 
 [ext_resource type="Script" uid="uid://e51y4ebwfmom" path="res://world/overworld.gd" id="1_1ff6a"]
+[ext_resource type="Resource" uid="uid://butqllg1oh0hl" path="res://ui/input/overworld_keyboardmouse.tres" id="2_bf07s"]
 [ext_resource type="AudioStream" uid="uid://b3sbne5jtcp5o" path="res://audio/playlist_hecksn_explore.tres" id="2_dyh3o"]
 [ext_resource type="PackedScene" uid="uid://chxqmaptib7am" path="res://entities/overworld_player.tscn" id="2_x4s76"]
 [ext_resource type="Script" uid="uid://bssxn87alhafy" path="res://scripts/debug_camera.gd" id="3_dfsuq"]
@@ -17,6 +18,7 @@ y_sort_enabled = true
 script = ExtResource("1_1ff6a")
 player_faction_goal = NodePath("PlayerGoal")
 enemy_faction_goal = NodePath("EnemyGoal")
+input_mapping_context = ExtResource("2_bf07s")
 background_music = ExtResource("2_dyh3o")
 interface_scene = "uid://dn2qdyhps5xut"
 

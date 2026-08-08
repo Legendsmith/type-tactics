@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="GUIDEAction" format=3 uid="uid://gx2rk7280sq0"]
+
+[ext_resource type="Script" uid="uid://cluhc11vixkf1" path="res://addons/guide/guide_action.gd" id="1_pwgjo"]
+
+[resource]
+script = ExtResource("1_pwgjo")
+name = &"interact"
+is_remappable = true
+display_name = "Interact"
+display_category = "Overworld"
+metadata/_custom_type_script = "uid://cluhc11vixkf1"

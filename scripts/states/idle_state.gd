@@ -12,3 +12,4 @@ func _update(delta: float) -> void:
 	#agent.animation_player.play(animation+str(OverworldAgent.get_direction_index(target_point)))
 	if agent.desired_velocity:
 		dispatch(&"move")
+	

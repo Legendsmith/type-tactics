@@ -14,7 +14,12 @@ const SAVE_DEBOUNCE_TIME: float = 1.0
 @onready var auto_run_disabled_button: Button = %AutoRunDisabledButton
 @onready var auto_run_enabled_button: Button = %AutoRunEnabledButton
 
+@onready var mouse_interaction_enabled_button: Button = %MouseInteractionEnabledButton
+@onready var mouse_interaction_disabled_button: Button = %MouseInteractionDisabledButton
+
 @onready var vibration_strength_slider: HSlider = %VibrationStrengthSlider
+
+@onready var remap_grid_container:GridContainer = %RemapGridContainer
 
 
 @onready var window_mode_options: OptionButton = %WindowModeOptions
@@ -29,11 +34,16 @@ const SAVE_DEBOUNCE_TIME: float = 1.0
 @onready var character_voice_volume_slider: HSlider = %CharacterVoiceVolumeSlider
 #endregion
 
+#region Rebinding Controls
+var _remapper:GUIDERemapper = GUIDERemapper.new()
+var _formatter:GUIDEInputFormatter = GUIDEInputFormatter.new(48)
+@onready var input_detector:GUIDEInputDetector = %InputDetector
+#endregion
+
 var _text_speed_values: Array[float] = []
 var _text_speed_labels: Array[StringName] = []
 
 var _save_debounce_timer: Timer = Timer.new()
-
 
 func _ready() -> void:
 	# Don't do anything stupid while inside the editor
@@ -100,6 +110,8 @@ func _setup_signals() -> void:
 	# battle_animation_slider.value_changed.connect(_on_battle_animation_changed)
 	auto_run_disabled_button.pressed.connect(_on_auto_run_disabled_pressed)
 	auto_run_enabled_button.pressed.connect(_on_auto_run_enabled_pressed)
+	mouse_interaction_enabled_button.pressed.connect(_on_mouse_interaction_enabled_pressed)
+	mouse_interaction_disabled_button.pressed.connect(_on_mouse_interaction_disabled_pressed)
 	vibration_strength_slider.value_changed.connect(_on_vibration_strength_changed)
 	
 	window_mode_options.item_selected.connect(_on_window_mode_selected)
@@ -137,6 +149,14 @@ func _on_auto_run_enabled_pressed() -> void:
 	GameSettings.auto_run_enabled = true
 	queue_save()
 
+func _on_mouse_interaction_disabled_pressed() -> void:
+	GameSettings.mouse_interaction_enabled = false
+	queue_save()
+
+
+func _on_mouse_interaction_enabled_pressed() -> void:
+	GameSettings.mouse_interaction_enabled = true
+	queue_save()
 
 func _on_vibration_strength_changed(value: float) -> void:
 	GameSettings.vibration_strength = value
@@ -252,3 +272,29 @@ func _set(property: StringName, value: Variant) -> bool:
 # 	return false
 
 #endregion
+
+#region Controls
+func _build_controls_interface() -> void:
+	var remappables:Array[GUIDERemapper.ConfigItem] = _remapper.get_remappable_items()
+	for item:GUIDERemapper.ConfigItem in remappables:
+		var current_input:GUIDEInput = _remapper.get_bound_input_or_null(item)
+		## Make a label for the input
+		var input_name_label:Label = Label.new()
+		input_name_label.text = item.display_name
+		remap_grid_container.add_child(input_name_label)
+		#This rich text label takes the actual binding of the input and also registers changes to it.
+		var label:RichTextLabel = RichTextLabel.new()
+		_apply_input(current_input, label)
+		remap_grid_container.add_child(label)
+		remap_grid_container.add_child(label)
+		item.changed.connect(_apply_input.bind(label))
+
+# This function applies the input to a label. If the input is null, it will
+# show a grayed out "Not bound" text.
+func _apply_input(input:GUIDEInput, label:RichTextLabel) -> void:
+	if input == null:
+		label.parse_bbcode("[color=gray]Not bound[/color]")
+		return
+		
+	var icon:String = await _formatter.input_as_richtext_async(input)
+	label.parse_bbcode(icon)

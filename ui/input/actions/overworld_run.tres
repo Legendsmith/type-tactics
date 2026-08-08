@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="GUIDEAction" format=3 uid="uid://t08tra2qrvhx"]
+
+[ext_resource type="Script" uid="uid://cluhc11vixkf1" path="res://addons/guide/guide_action.gd" id="1_g4hmq"]
+
+[resource]
+script = ExtResource("1_g4hmq")
+name = &"run"
+is_remappable = true
+display_name = "Run"
+display_category = "Movement"
+metadata/_custom_type_script = "uid://cluhc11vixkf1"

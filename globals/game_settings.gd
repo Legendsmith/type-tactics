@@ -18,6 +18,9 @@ var battle_animation_speed: float = 1.0: set = set_battle_animation_speed
 var auto_run_enabled: bool = false
 ## Determines scale at which vibrations are sent to the player's input device.
 var vibration_strength: float = 0.5: set = set_vibration_strength
+## Indicates if the overworld interactions with other npcs should be controlled via mouse or keyboard direction.
+var mouse_interaction_enabled:bool = true
+
 
 # Graphics
 ## Determines if the game is played in a window or set to full screen
