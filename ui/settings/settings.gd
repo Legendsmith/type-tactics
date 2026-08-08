@@ -298,3 +298,27 @@ func _apply_input(input:GUIDEInput, label:RichTextLabel) -> void:
 		
 	var icon:String = await _formatter.input_as_richtext_async(input)
 	label.parse_bbcode(icon)
+
+func _rebind(item:GUIDERemapper.ConfigItem) -> void:
+	input_detector.detect(item.value_type)
+
+	var input:GUIDEInput = await input_detector.input_detected
+	# if the detection was aborted, there is no input to check for conflicts.
+	if input == null:
+		return
+		
+	# check for collisions. This will return an array of all items that
+	# collide with the input we want to bind.
+	var collisions:Array[GUIDERemapper.ConfigItem] = _remapper.get_input_collisions(item, input)
+		
+	# if any collision is from a non-remappable mapping, we cannot use this input
+	# at all, so we abort the binding.
+	if collisions.any(func(it:GUIDERemapper.ConfigItem): return not it.is_remappable):
+		return
+		
+	# We resolve the collisions by unbinding the conflicting input.
+	for collision in collisions:
+		_remapper.set_bound_input(collision, null)
+		
+	# And finally we set the new input.
+	_remapper.set_bound_input(item, input)     
