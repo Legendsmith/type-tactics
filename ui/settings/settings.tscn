@@ -15,6 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_fayoa")
 script = ExtResource("2_fayoa")
+text_speed_options/count = 0
 
 [node name="TabContainer" type="TabContainer" parent="." unique_id=444074348]
 layout_mode = 1

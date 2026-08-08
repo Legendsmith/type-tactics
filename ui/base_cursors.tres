@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ImagePack" format=3 uid="uid://c3ltxuww0js4j"]
+
+[ext_resource type="Script" uid="uid://dbk77bg7vg61a" path="res://scripts/image_pack.gd" id="1_8ftcr"]
+[ext_resource type="Image" uid="uid://bf68q3lbh55pp" path="res://ui/cursor/cursor_talk_16_2.png" id="1_g30dh"]
+[ext_resource type="Image" uid="uid://bm4biye5c4tr4" path="res://ui/cursor/cursor_default_16.png" id="2_jr75j"]
+[ext_resource type="Image" uid="uid://cbv7d7m870mhj" path="res://ui/cursor/cursor_aim_16.png" id="3_bj8c6"]
+[ext_resource type="Image" uid="uid://4b0j1kp53dvs" path="res://ui/cursor/cursor_interact_16.png" id="4_j8vcf"]
+[ext_resource type="Image" uid="uid://d36fbwo83321a" path="res://ui/cursor/cursor_cant_interact_16.png" id="5_m812x"]
+[ext_resource type="Image" uid="uid://fwvglfddg12h" path="res://ui/cursor/cursor_talk_16_1.png" id="6_i2ti2"]
+[ext_resource type="Image" uid="uid://bbx8ouvao1r6y" path="res://ui/cursor/cursor_talk_repeat_16.png" id="7_gomob"]
+
+[resource]
+script = ExtResource("1_8ftcr")
+images = Array[Image]([ExtResource("2_jr75j"), ExtResource("3_bj8c6"), ExtResource("4_j8vcf"), ExtResource("5_m812x"), ExtResource("6_i2ti2"), ExtResource("7_gomob")])
+alt_images = Dictionary[int, Image]({
+4: ExtResource("1_g30dh")
+})

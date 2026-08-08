@@ -1,6 +1,8 @@
 class_name OverworldPlayer
 extends OverworldAgent
 
+const INTERACT_RANGE:float = 32
+
 func _ready() -> void:
 	spatial_hash.hash_location_changed.connect(SpatialMap.on_player_hash_location_changed)
 	spatial_hash.update()
@@ -9,6 +11,7 @@ func _ready() -> void:
 	GameManager.request_hashmap_near.connect(spatial_hash.on_request_hashmap_near)
 	add_to_group(Constants.PLAYER_ENTITY)
 	add_to_group("overworld_agents")
+	animation_player.animation_started.connect(set_facing)
 	tick_offset = 1
 	refresh_hp()
 	configure_physics(faction)
@@ -34,3 +37,13 @@ func move(velocity:Vector2,_delta_frames:float = skip_frames+1):
 
 func think():
 	pass
+
+func interact():
+	var interact_direction:Vector2 = facing * INTERACT_RANGE
+	print_debug(interact_direction)
+	var q:PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(global_position,global_position+interact_direction,(1<<Constants.PHYS_INTERACT),[get_rid()])
+	q.hit_from_inside = true
+	var result:Dictionary = get_world_2d().direct_space_state.intersect_ray(q)
+	print(result)
+	if result and result["collider"] is OverworldAgent:
+		result.collider.on_interact()

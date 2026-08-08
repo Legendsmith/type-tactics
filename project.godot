@@ -22,6 +22,7 @@ buses/default_bus_layout="uid://c4ybxfq1niihg"
 [autoload]
 
 GUIDE="*uid://p2jwrgjcbexr"
+Cursor="*uid://cged1pq4dniq6"
 UnlockableContent="*uid://p3ilsmea4pp7"
 Dialogic="*uid://ds2q0uclmolvu"
 GameManager="*uid://or5hd5dlt0kq"
@@ -36,13 +37,15 @@ gdscript/warnings/integer_division=0
 
 [dialogic]
 
-directories/dch_directory={}
-directories/dtl_directory={}
-layout/style_directory={
-"dialogic_style_mon": "res://ui/dialogic_style_mon.tres",
-"dialogic_style_vn": "res://ui/dialogic_style_vn.tres"
+directories/dch_directory={
+"fufu": "res://data/dialogic/fufu.dch",
+"hecksn": "res://data/dialogic/hecksn.dch"
 }
-layout/style_list=["res://ui/dialogic_style_mon.tres", "res://ui/dialogic_style_vn.tres"]
+directories/dtl_directory={
+"timeline_test_hecksn": "res://data/dialogic/timeline_test_hecksn.dtl"
+}
+layout/style_directory={}
+layout/style_list=[]
 layout/default_style=""
 text/letter_speed=0.01
 text/initial_text_reveal_skippable=true
@@ -61,6 +64,24 @@ choices/reveal_delay=0
 choices/reveal_by_input=false
 save/autosave_delay=60.0
 save/encryption_on_exports_only=true
+text/autopauses={}
+audio/channel_defaults={
+"": {
+"audio_bus": "",
+"fade_length": 0.0,
+"loop": false,
+"volume": 0.0
+},
+"music": {
+"audio_bus": "",
+"fade_length": 0.0,
+"loop": true,
+"volume": 0.0
+}
+}
+variables={}
+glossary/default_case_sensitive=true
+layout/end_behaviour=1
 
 [display]
 

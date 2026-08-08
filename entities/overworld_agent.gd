@@ -1,12 +1,15 @@
 class_name OverworldAgent
 extends RigidBody2D
 const MAX_BT_DELTA:float = 2.0
+enum Facing{RIGHT,DOWN,LEFT,UP}
 signal inflicted_damage(who:Node2D,amount:int,damage_target:Node2D)
 
 const SPRITE_DIR:int = 4
 const SPRITE_DIR_COEF:float = PI/(SPRITE_DIR/2.0)
 const SPRITE_H_BIAS:float = 0.84
 
+var dialogic_timeline:DialogicTimeline
+var dialogic_timeline_index:int = 0
 
 @export var faction: StringName = Constants.ENEMY_GROUP
 @export var action: StringName = &"move":
@@ -38,6 +41,7 @@ var spatial_hash:Object
 
 var use_flow_field=false
 var flow_field:FlowField
+var facing:Vector2
 
 func _ready() -> void:
 	spatial_hash.update()
@@ -46,6 +50,7 @@ func _ready() -> void:
 		load_unit_definition(unit_def)
 	GameManager.request_hashmap_near.connect(spatial_hash.on_request_hashmap_near)
 	add_to_group("overworld_agents")
+	animation_player.animation_started.connect(set_facing)
 	tick_offset = randi() % Engine.physics_ticks_per_second
 	refresh_hp()
 	nav_agent.waypoint_reached.connect(think.unbind(1))
@@ -57,6 +62,25 @@ func _ready() -> void:
 		await NavigationServer2D.map_changed
 		_setup_bt_player()
 
+func _on_mouse_entered():
+	print_debug("mouse entered")
+	Cursor.set_cursor(Cursor.Type.TALK)
+
+func _on_mouse_exited():
+	Cursor.set_cursor(Cursor.Type.DEFAULT)
+
+func set_facing(animation:StringName):
+	match animation:
+		&"idle_0",&"move_0":
+			facing = Vector2.RIGHT
+		&"idle_1",&"move_1":
+			facing = Vector2.DOWN
+		&"idle_2",&"move_2":
+			facing = Vector2.LEFT
+		&"idle_3",&"move_3":
+			facing = Vector2.UP
+		_:
+			facing = Vector2.RIGHT
 
 func load_unit_definition(unit_definition:UnitDef):
 	unit_def = unit_definition
@@ -65,6 +89,8 @@ func load_unit_definition(unit_definition:UnitDef):
 	overworld_def = unit_def.attribute_base[Unit.Attribute.DEFENSE]
 	overworld_hp = unit_def.attribute_base[Unit.Attribute.HP]
 	max_speed = unit_def.get_modified_overworld_speed()
+	if unit_definition.dialogic_timeline:
+		dialogic_timeline = unit_definition.dialogic_timeline
 	$Sprite2D.texture = unit_def.overworld_sprite
 	name = "OverworldAgent%" + unit_def.unit_name.capitalize()
 
@@ -79,7 +105,11 @@ func configure_physics(_faction:StringName):
 	nav_agent.navigation_layers = faction_def.nav_layer
 	nav_agent.avoidance_layers = faction_def.avoid_own
 	nav_agent.avoidance_mask = Factions.master_avoid
-
+	if dialogic_timeline:
+		collision_layer = collision_layer | (1<<Constants.PHYS_INTERACT)
+		input_pickable = true
+		mouse_entered.connect(_on_mouse_entered)
+		mouse_exited.connect(_on_mouse_exited)
 
 func refresh_hp():
 	overworld_hp = max_overworld_hp
@@ -204,6 +234,9 @@ func get_goal() ->Node2D:
 	else:
 		goal = get_tree().current_scene.enemy_faction_goal
 	return goal
+
+func on_interact():
+	Dialogic.start(dialogic_timeline,dialogic_timeline_index)
 
 static func get_direction_index(input_vector: Vector2) -> int:
 	var biased_vector:Vector2 = Vector2(input_vector.x, input_vector.y * SPRITE_H_BIAS) #bias to horizontal by reducing the vertical slightly.

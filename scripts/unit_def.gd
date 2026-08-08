@@ -4,6 +4,7 @@ extends Resource
 @export var display_name:String
 @export var unit_name:String
 @export var twitch_name:String = ""
+@export var dialogic_timeline:DialogicTimeline
 @export var default_faction:StringName = &"opponent"
 @export var portrait:Texture2D
 @export var sprite:Texture2D

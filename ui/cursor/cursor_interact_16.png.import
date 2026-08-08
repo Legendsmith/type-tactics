@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://4b0j1kp53dvs"
+path="res://.godot/imported/cursor_interact_16.png-5fc0298e5d274e8c5d79f99d700fafdd.image"
+
+[deps]
+
+source_file="res://ui/cursor/cursor_interact_16.png"
+dest_files=["res://.godot/imported/cursor_interact_16.png-5fc0298e5d274e8c5d79f99d700fafdd.image"]
+
+[params]
+
