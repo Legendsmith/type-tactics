@@ -17,7 +17,7 @@ func _ready():
 func activate(position:Vector2):
 	#agent.linear_damp = agent.linear_damp_max*0.1 # Set damp low so the agent can move well.
 	process_mode = PROCESS_MODE_INHERIT
-	agent.linear_damp = 1
+	agent.linear_damp = 1.25
 	set_physics_process(true)
 	target_position = position
 	agent.use_flow_field=false

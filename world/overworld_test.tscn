@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dvw52vl726m40" path="res://entities/overworld_nav_link.tscn" id="7_jvvm4"]
 [ext_resource type="Script" uid="uid://dsj0pbh1pq15n" path="res://world/debug_spatial_map_indicator.gd" id="8_icj1w"]
 [ext_resource type="PackedScene" uid="uid://8ievdkdx8ig7" path="res://entities/overworld_agent.tscn" id="9_ickr5"]
-[ext_resource type="Resource" uid="uid://bjr687jm77f84" path="res://data/unitdef_crusader.tres" id="10_dyh3o"]
+[ext_resource type="Resource" uid="uid://ba0nr1pte4x2j" path="res://data/unitdef_hecksn.tres" id="10_dyh3o"]
 
 [node name="Overworld" type="Node2D" unique_id=1120571415 node_paths=PackedStringArray("player_faction_goal", "enemy_faction_goal")]
 y_sort_enabled = true
@@ -21,7 +21,7 @@ background_music = ExtResource("2_dyh3o")
 interface_scene = "uid://dn2qdyhps5xut"
 
 [node name="OverworldPlayer" parent="." unique_id=1005182913 instance=ExtResource("2_x4s76")]
-position = Vector2(272, 144)
+position = Vector2(258, 168)
 
 [node name="Camera2D" type="Camera2D" parent="OverworldPlayer" unique_id=183223178]
 process_mode = 3
@@ -50,18 +50,20 @@ start_position = Vector2(0, 1024)
 end_position = Vector2(-6256, 384)
 
 [node name="SpatialMapIndicator" type="Marker2D" parent="." unique_id=1613410303]
+visible = false
 z_index = 2
 script = ExtResource("8_icj1w")
 
 [node name="OverworldAgent" parent="." unique_id=1303149982 node_paths=PackedStringArray("target") instance=ExtResource("9_ickr5")]
-position = Vector2(242.17612, 134.64099)
+position = Vector2(479, 421)
 faction = &"player"
+action = &"follow"
 target = NodePath("../OverworldPlayer")
 unit_def = ExtResource("10_dyh3o")
 
 [node name="PlayerGoal" type="Marker2D" parent="." unique_id=669997728]
 z_index = 2
-position = Vector2(6848, 704)
+position = Vector2(6847, 705)
 gizmo_extents = 256.0
 script = ExtResource("5_it6pe")
 debug_draw = true

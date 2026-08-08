@@ -54,6 +54,7 @@ script = ExtResource("1_ih2uh")
 [sub_resource type="BTAction" id="BTAction_q7exg"]
 script = ExtResource("2_d2quf")
 nav_agent = NodePath("NavigationAgent2D")
+continuous_update = null
 
 [sub_resource type="BTSequence" id="BTSequence_x8r13"]
 custom_name = "Attack"
@@ -205,6 +206,7 @@ max_distance = 64.0
 script = ExtResource("2_d2quf")
 approach_distance_default = 48.0
 nav_agent = NodePath("NavigationAgent2D")
+continuous_update = null
 
 [sub_resource type="BTDynamicSequence" id="BTDynamicSequence_hknjq"]
 custom_name = "Movement"
