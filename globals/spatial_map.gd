@@ -9,6 +9,8 @@ signal request_hashmap_near_filter(list: Array, coordinates: Vector2i, method: S
 # Used to activate entities near this part of the map, usually when the player approaches.
 signal activate_grid(coordinates:Vector2i)
 signal request_astar_links()
+signal request_map_point_id(node:Node,position:Vector2i,property:StringName)
+signal hashmap_point_id(hash_object:SpatialHash)
 signal request_tilemap(requester:Node,coordinates:Vector2i)
 signal activate_flow_path(faction:StringName,spatial_hash:Vector2i)
 signal agent_request_flow_field(agent:OverworldAgent,spatial_hash:Vector2i)
@@ -33,17 +35,17 @@ func register_astar_point(coordinates:Vector2) -> int:
 	## Check if this point is already in the compressed map, return the id if it is.
 	if closest_existing_id != -1 and Vector2i(astar.get_point_position(closest_existing_id)) == hash_position:
 		return closest_existing_id
-	else: #If it's not create a new one and 
+	else: #If it's not create a new one
 		var point_id:int = astar.get_available_point_id()
 		astar.add_point(point_id,hash_position,1)
 		last_astar_id = point_id
 		return point_id
 
-func register_astar_link(from:Vector2,to:Vector2,bidirectional:bool=false)->int:
-	var from_id:int = astar.get_closest_point(Vector2i(from/SPATIAL_HASH_SIZE))
-	var destination_id:int = astar.get_closest_point(Vector2i(to/SPATIAL_HASH_SIZE))
-	astar.connect_points(from_id,destination_id,bidirectional)
-	return destination_id
+#func register_astar_link(from:Vector2,to:Vector2,bidirectional:bool=false)->int:
+#	var from_id:int = astar.get_closest_point(Vector2i(from/SPATIAL_HASH_SIZE))
+#	var destination_id:int = astar.get_closest_point(Vector2i(to/SPATIAL_HASH_SIZE))
+#	astar.connect_points(from_id,destination_id,bidirectional)
+#	return destination_id
 
 func on_player_hash_location_changed(location:Vector2i):
 	activate_grid.emit(location)

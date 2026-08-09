@@ -11,6 +11,7 @@ const NEAR_MAP: Array[Vector2i] = [
 var agent: Node2D
 var hash_location: Vector2i
 var hash_near: Array[Vector2i]
+var astar_point_id:int
 
 func _init(_agent:Node2D) -> void:
 	agent = _agent
@@ -26,6 +27,7 @@ func update_hash(forced: bool = false) -> void:
 	var new_hash: Vector2i = Vector2i(position / Constants.SPATIAL_HASH_SIZE)
 	if new_hash == hash_location and not forced:
 		return
+	SpatialMap.hashmap_point_id.emit(self)
 	var new_near: Array = NEAR_MAP.map(func(vec:Vector2i)->Vector2i: return vec + new_hash)
 	hash_location = new_hash
 	hash_location_changed.emit(hash_location)
@@ -36,8 +38,6 @@ func on_request_hashmap_near(list: Array, coordinates: Vector2i, faction:StringN
 	if coordinates in hash_near:
 		if faction == agent.faction or faction == &"":
 			list.append(agent)
-
-
 
 func on_request_hashmap_near_filter(list: Array, coordinates: Vector2i, faction:StringName, method: Callable) -> void:
 ## Calls a method on its agent when requested.
