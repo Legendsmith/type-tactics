@@ -109,18 +109,9 @@ result_var = &"target"
 script = ExtResource("1_d2quf")
 tolerance = 32
 
-[sub_resource type="BBVariant" id="BBVariant_0tue6"]
-resource_name = "look"
-saved_value = &"look"
-type = 21
-
-[sub_resource type="BTSetVar" id="BTSetVar_usyuo"]
-variable = &"action"
-value = SubResource("BBVariant_0tue6")
-
 [sub_resource type="BTSequence" id="BTSequence_ih2uh"]
 custom_name = "Move to goal"
-children = [SubResource("BTCheckVar_q7exg"), SubResource("BTSetVar_w8rvi"), SubResource("BTCallMethod_ih2uh"), SubResource("BTAction_ih2uh"), SubResource("BTSetVar_usyuo")]
+children = [SubResource("BTCheckVar_q7exg"), SubResource("BTSetVar_w8rvi"), SubResource("BTCallMethod_ih2uh"), SubResource("BTAction_ih2uh")]
 
 [sub_resource type="BBVariant" id="BBVariant_dulym"]
 resource_name = "follow"

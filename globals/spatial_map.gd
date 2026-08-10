@@ -22,6 +22,8 @@ signal agent_request_flow_field(agent:OverworldAgent,spatial_hash:Vector2i)
 ## Used to determine if a battle should occur by checking if everyone in a given location is the same faction. If not: Battle!
 signal hashmap_faction_check(faction:Pointer.StringNamePtr,check:Pointer.BoolPtr,coordinates: Vector2i)
 
+signal control_updated(coordinates:Vector2i,faction:StringName)
+
 signal request_battle(location:Vector2i)
 
 var astar:AStar2D = AStar2D.new()
@@ -83,8 +85,11 @@ func check_control() -> void:
 					control_map[coordinates] = &"contested"
 					request_battle.emit(coordinates)
 				else:
-					control_map[coordinates] = faction.value
+					update_control(coordinates,faction.value)
 		dirty_control_map = false
 		control_map_update_ready = true
 
 		
+func update_control(coordinates:Vector2i,faction:StringName):
+	control_map[coordinates] = faction
+	control_updated.emit(coordinates,faction)

@@ -32,6 +32,7 @@ func _ready() -> void:
 	collision_shape.position = Vector2.ONE * Constants.SPATIAL_HASH_SIZE * 0.5 # offset it since a shape's position is its centre
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
+	visible = false
 	collision_mask = Factions.faction_list[side_a].physics_layer | Factions.faction_list[side_b].physics_layer
 	await get_tree().physics_frame
 	print_debug("Starting battle at ", global_position)
@@ -50,7 +51,7 @@ func reactivate(coordinates:Vector2i):
 		process_mode = Node.PROCESS_MODE_INHERIT
 		monitoring = true
 		count +=1
-		visible=true
+		visible = false
 		print_debug("Battle number %s at previously contested %s" % [count+1, global_position])
 
 func _on_body_entered(body:Node2D):

@@ -2,7 +2,7 @@ class_name FlowField
 @warning_ignore("unused_signal")
 signal field_ready
 
-const allow_diagonals:= true
+const allow_diagonals:= false
 
 var field: Dictionary[Vector2i,float]
 var tile_size:int = 16

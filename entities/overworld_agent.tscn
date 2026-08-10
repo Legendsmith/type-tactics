@@ -228,7 +228,6 @@ simplify_epsilon = 2.0
 avoidance_enabled = true
 radius = 8.0
 neighbor_distance = 256.0
-debug_enabled = true
 debug_use_custom = true
 script = ExtResource("2_wa1af")
 

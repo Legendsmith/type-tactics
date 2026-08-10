@@ -3,10 +3,9 @@ extends TileMapLayer
 
 const MAX_RESULTS:int = 24
 signal activate_link(faction:StringName,path:PackedVector2Array)
-
+@onready var astar_point_id:int = SpatialMap.register_astar_point(global_position)
 @onready var hash_rect:Rect2i = Rect2i(global_position / Constants.SPATIAL_HASH_SIZE,ceil((get_used_rect().size*tile_set.tile_size)/Constants.SPATIAL_HASH_SIZE)+Vector2i.ONE)
 @onready var tick_offset:int = randi() % Engine.physics_ticks_per_second
-var astar_point_id:int = SpatialMap.register_astar_point(global_position)
 
 func _ready() -> void:
 	if get_used_rect().position < Vector2i.ZERO:

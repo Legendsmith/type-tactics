@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://ctbowctifq484"]
+
+[ext_resource type="Script" uid="uid://dlx1v0wvthpp6" path="res://world/overworld_city.gd" id="1_l3qnh"]
+[ext_resource type="Texture2D" uid="uid://fm052b1hdoak" path="res://texture/overworld_tileset_grass.png" id="2_ckp2v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5mdms"]
+size = Vector2(48, 48)
+
+[node name="City" type="Area2D" unique_id=1605779971]
+script = ExtResource("1_l3qnh")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=382922139]
+position = Vector2(0, -24)
+texture = ExtResource("2_ckp2v")
+offset = Vector2(0, 20)
+region_enabled = true
+region_rect = Rect2(0, 201, 65, 55)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1855533377]
+shape = SubResource("RectangleShape2D_5mdms")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1883647832]
+custom_minimum_size = Vector2(48, 16)
+offset_left = -24.0
+offset_top = 32.0
+offset_right = 24.0
+offset_bottom = 48.0
+max_value = 1.0
+show_percentage = false

@@ -41,15 +41,15 @@ func update_hash(forced: bool = false) -> void:
 
 func on_hash_location_changed(location: Vector2i) -> void:
 	if SpatialMap.control_map.has(location):
-		if SpatialMap.control_map[location] == agent.faction or SpatialMap.control_map[location] == &"updating" or SpatialMap.control_map[location] == &"contested":
+		if SpatialMap.control_map[location] == agent.faction or SpatialMap.control_map[location] == Constants.UPDATE or SpatialMap.control_map[location] == Constants.CONTEST:
 			return
 		else:
-			SpatialMap.control_map[location] = &"updating"
+			SpatialMap.control_map[location] = Constants.UPDATE
 			if SpatialMap.control_map_update_ready and not SpatialMap.dirty_control_map:
 				SpatialMap.dirty_control_map = true
 				SpatialMap.check_control.call_deferred()
 	else:
-		SpatialMap.control_map[location] = agent.faction
+		SpatialMap.update_control(location,agent.faction)
 
 
 func on_hashmap_faction_check(control_faction:Pointer.StringNamePtr,check: Pointer.BoolPtr,  coordinates:Vector2i) -> void:
