@@ -53,13 +53,13 @@ func reactivate(coordinates:Vector2i):
 		visible=true
 		print_debug("Battle number %s at previously contested %s" % [count+1, global_position])
 
-func _on_body_entered(body:OverworldAgent):
+func _on_body_entered(body:Node2D):
 	active_fighters[body.faction].append(body)
 	if not body in participants:
 			participants.append(body)
 	
 
-func _on_body_exited(body:OverworldAgent):
+func _on_body_exited(body:Node2D):
 	active_fighters[body.faction].erase(body)
 	body.action=&"move"
 		
@@ -86,7 +86,7 @@ func battle(attacker:Array,defender:Array):
 		if not agent.target in defender or agent.target.overworld_hp <= 0:
 			var target:PhysicsBody2D = defender.pick_random()
 			agent.target = target
-		if agent.global_position.distance_squared_to(agent.target.global_position) < ATK_RANGE:
+		if agent is OverworldAgent and agent.global_position.distance_squared_to(agent.target.global_position) < ATK_RANGE:
 			var direction = agent.global_position.direction_to(agent.target.global_position)
 			agent.linear_velocity = direction * agent.speed
 
