@@ -1,6 +1,6 @@
 extends NavigationLink2D
-var astar_start_id:int
-var astar_end_id:int
+var astar_start_id:int = -1
+var astar_end_id:int = -1
 
 var tile_map:TileMapLayer:
 	set(new_tile_map):
@@ -14,10 +14,12 @@ var tile_map:TileMapLayer:
 var flow_field:FlowField
 var active_factions:Array[StringName] = []
 
-#@onready var hash_location:Vector2i = Vector2i(to_global(start_position)/Constants.SPATIAL_HASH_SIZE)
+@onready var hash_location:Vector2i = Vector2i(to_global(start_position)/Constants.SPATIAL_HASH_SIZE)
 
 func _ready() -> void:
-	SpatialMap.request_tilemap.emit(self,Vector2i(to_global(start_position)/Constants.SPATIAL_HASH_SIZE))
+	print_debug(hash_location)
+	SpatialMap.request_tilemap.emit(self,Vector2i(hash_location))
+	astar_start_id = tile_map.astar_point_id
 	$StartArea.body_entered.connect(on_agent_enter)
 	$StartArea.collision_mask = Factions.master_phys | (1 << Constants.PLAYER_PHYSICS_LAYER)
 	SpatialMap.agent_request_flow_field.connect(on_agent_request_flow_field)
