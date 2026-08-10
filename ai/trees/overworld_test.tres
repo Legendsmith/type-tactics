@@ -48,16 +48,35 @@ type = 21
 variable = &"action"
 value = SubResource("BBVariant_x8r13")
 
-[sub_resource type="BTAction" id="BTAction_d2quf"]
+[sub_resource type="BBVariant" id="BBVariant_fg2y1"]
+resource_name = "4.0"
+saved_value = 4.0
+type = 3
+
+[sub_resource type="BTSetVar" id="BTSetVar_f56ys"]
+variable = &"distance"
+value = SubResource("BBVariant_fg2y1")
+
+[sub_resource type="BBVariant" id="BBVariant_tb43h"]
+resource_name = "4"
+saved_value = 4
+type = 2
+
+[sub_resource type="BTSetVar" id="BTSetVar_qrvxw"]
+variable = &"skip_frames"
+value = SubResource("BBVariant_tb43h")
+
+[sub_resource type="BTAction" id="BTAction_tb43h"]
 script = ExtResource("1_ih2uh")
 
-[sub_resource type="BTAction" id="BTAction_q7exg"]
+[sub_resource type="BTAction" id="BTAction_qrvxw"]
 script = ExtResource("2_d2quf")
 nav_agent = NodePath("NavigationAgent2D")
+continuous_update = true
 
-[sub_resource type="BTSequence" id="BTSequence_x8r13"]
+[sub_resource type="BTDynamicSequence" id="BTDynamicSequence_dulym"]
 custom_name = "Attack"
-children = [SubResource("BTCheckVar_ih2uh"), SubResource("BTAction_d2quf"), SubResource("BTAction_q7exg")]
+children = [SubResource("BTCheckVar_ih2uh"), SubResource("BTSetVar_f56ys"), SubResource("BTSetVar_qrvxw"), SubResource("BTAction_tb43h"), SubResource("BTAction_qrvxw")]
 
 [sub_resource type="BBVariant" id="BBVariant_d2quf"]
 resource_name = "move"
@@ -67,6 +86,15 @@ type = 21
 [sub_resource type="BTCheckVar" id="BTCheckVar_q7exg"]
 variable = &"action"
 value = SubResource("BBVariant_d2quf")
+
+[sub_resource type="BBVariant" id="BBVariant_qrvxw"]
+resource_name = "8"
+saved_value = 8
+type = 2
+
+[sub_resource type="BTSetVar" id="BTSetVar_w8rvi"]
+variable = &"skip_frames"
+value = SubResource("BBVariant_qrvxw")
 
 [sub_resource type="BBNode" id="BBNode_x8r13"]
 resource_name = "."
@@ -92,7 +120,7 @@ value = SubResource("BBVariant_0tue6")
 
 [sub_resource type="BTSequence" id="BTSequence_ih2uh"]
 custom_name = "Move to goal"
-children = [SubResource("BTCheckVar_q7exg"), SubResource("BTCallMethod_ih2uh"), SubResource("BTAction_ih2uh"), SubResource("BTSetVar_usyuo")]
+children = [SubResource("BTCheckVar_q7exg"), SubResource("BTSetVar_w8rvi"), SubResource("BTCallMethod_ih2uh"), SubResource("BTAction_ih2uh"), SubResource("BTSetVar_usyuo")]
 
 [sub_resource type="BBVariant" id="BBVariant_dulym"]
 resource_name = "follow"
@@ -232,9 +260,9 @@ script = ExtResource("6_hknjq")
 custom_name = "Look at Player (Default)"
 children = [SubResource("BTAction_7n44i"), SubResource("BTAction_usyuo")]
 
-[sub_resource type="BTSelector" id="BTSelector_d2quf"]
-children = [SubResource("BTSequence_x8r13"), SubResource("BTSequence_ih2uh"), SubResource("BTSequence_5f00d"), SubResource("BTSequence_dulym"), SubResource("BTSequence_fg2y1")]
+[sub_resource type="BTDynamicSelector" id="BTDynamicSelector_kou5i"]
+children = [SubResource("BTDynamicSequence_dulym"), SubResource("BTSequence_ih2uh"), SubResource("BTSequence_5f00d"), SubResource("BTSequence_dulym"), SubResource("BTSequence_fg2y1")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_j5063")
-root_task = SubResource("BTSelector_d2quf")
+root_task = SubResource("BTDynamicSelector_kou5i")

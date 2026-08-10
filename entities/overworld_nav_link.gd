@@ -17,7 +17,7 @@ var active_factions:Array[StringName] = []
 #@onready var hash_location:Vector2i = Vector2i(to_global(start_position)/Constants.SPATIAL_HASH_SIZE)
 
 func _ready() -> void:
-	SpatialMap.request_tilemap.emit(self,hash_location)
+	SpatialMap.request_tilemap.emit(self,Vector2i(to_global(start_position)/Constants.SPATIAL_HASH_SIZE))
 	$StartArea.body_entered.connect(on_agent_enter)
 	$StartArea.collision_mask = Factions.master_phys | (1 << Constants.PLAYER_PHYSICS_LAYER)
 	SpatialMap.agent_request_flow_field.connect(on_agent_request_flow_field)

@@ -55,12 +55,3 @@ func build_query(offset:Vector2=Vector2.ZERO):
 	q.collision_mask = Factions.master_phys
 	q.exclude = [get_tree().get_first_node_in_group(Constants.PLAYER_ENTITY).get_rid()] # need this so player ent won't get mind controlled
 	return q
-
-func _draw() -> void:
-	var offset:Vector2 = Vector2.ONE * (Constants.SPATIAL_HASH_SIZE/2)
-	for x:int in range(hash_rect.size.x):
-		for y:int in range(hash_rect.size.y):
-			var xi:int = x * Constants.SPATIAL_HASH_SIZE
-			var yi:int = y * Constants.SPATIAL_HASH_SIZE
-			draw_string(ThemeDB.fallback_font, Vector2(xi,yi) + offset, "%d,%d" % [i,x], HORIZONTAL_ALIGNMENT_CENTER, -1, 48, Color.SKY_BLUE)
-			#draw_string(ThemeDB.fallback_font, Vector2(-ix,-xx) + offset, str(i), HORIZONTAL_ALIGNMENT_CENTER, -1, 16, Color.GOLD)
