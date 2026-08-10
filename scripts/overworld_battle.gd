@@ -1,31 +1,41 @@
-extends Node2D
+extends Area2D
 signal battle_over(winner:StringName)
 var spatial_hash:SpatialHash
 
 const ATK_RANGE:float = 24 * 24
 
-var physics_query:Dictionary[StringName,PhysicsShapeQueryParameters2D]
-var shape:Shape2D = load("uid://diaqls5q1pn3")
 var damage_timer:Timer
 @onready var side_a:StringName = Factions.faction_list.keys()[0]
 @onready var side_b:StringName = Factions.faction_list.keys()[1]
 var winner:StringName = &""
 var participants:Array[Node2D]
 var count:int = 0
+var collision_shape:CollisionShape2D
+
+@onready var active_fighters:Dictionary[StringName,Array] = {side_a:[],side_b:[]}
 
 func _ready() -> void:
 	damage_timer = Timer.new()
+	monitorable = false
+	monitoring =true
 	spatial_hash.update_hash()
+	# Damage timer for assigning targets to battle participants
 	SpatialMap.request_battle.connect(reactivate)
 	damage_timer.wait_time = Constants.OVERWORLD_BATTLE_TICK
 	add_child(damage_timer)
 	damage_timer.timeout.connect(_tick)
 	damage_timer.start()
+	#colllision
+	collision_shape = CollisionShape2D.new()
+	collision_shape.shape = load(Constants.OVERWORLD_PHYSICS_QUERY_SHAPE_RESOURCE)
+	add_child(collision_shape)
+	collision_shape.position = Vector2.ONE * Constants.SPATIAL_HASH_SIZE * 0.5 # offset it since a shape's position is its centre
+	body_entered.connect(_on_body_entered)
+	body_exited.connect(_on_body_exited)
+	collision_mask = Factions.faction_list[side_a].physics_layer | Factions.faction_list[side_b].physics_layer
 	await get_tree().physics_frame
-	build_query(side_a)
-	build_query(side_b)
 	print_debug("Starting battle at ", global_position)
-	_tick()
+	
 
 
 func _exit_tree() -> void:
@@ -38,51 +48,43 @@ func reactivate(coordinates:Vector2i):
 	if coordinates == spatial_hash.hash_location:
 		participants.clear()
 		process_mode = Node.PROCESS_MODE_INHERIT
+		monitoring = true
 		count +=1
 		visible=true
 		print_debug("Battle number %s at previously contested %s" % [count+1, global_position])
 
+func _on_body_entered(body:OverworldAgent):
+	active_fighters[body.faction].append(body)
+	if not body in participants:
+			participants.append(body)
+	
 
-func build_query(key:StringName):
-	var faction:Factions.Faction = Factions.faction_list[key]
-	var q:PhysicsShapeQueryParameters2D = PhysicsShapeQueryParameters2D.new()
-	q.shape = shape
-	q.transform = Transform2D.IDENTITY.translated(self.global_position + (Vector2.ONE * Constants.SPATIAL_HASH_SIZE * 0.5))
-	q.collision_mask = faction.physics_layer
-	q.exclude = [get_tree().get_first_node_in_group(Constants.PLAYER_ENTITY).get_rid()] # need this so player ent won't get mind controlled
-	physics_query[key] = q
-
+func _on_body_exited(body:OverworldAgent):
+	active_fighters[body.faction].erase(body)
+	body.action=&"move"
+		
 func _tick():
-	var a_attackers:Array[Dictionary] = get_world_2d().direct_space_state.intersect_shape(
-		physics_query[side_a]
-	)
-	var b_attackers:Array[Dictionary] = get_world_2d().direct_space_state.intersect_shape(
-		physics_query[side_b]
-	)
-	if a_attackers.size() == 0:
-		battle_over.emit(b_attackers)
+	if active_fighters[side_a].size() == 0:
+		battle_over.emit(side_b)
 		winner = side_b
 		end_battle()
 		return
-	if b_attackers.size() == 0:
-		battle_over.emit(a_attackers)
+	if active_fighters[side_b].size() == 0:
+		battle_over.emit(side_a)
 		winner = side_a
 		end_battle()
 		return
 	
-	battle(a_attackers,b_attackers)
-	battle(b_attackers,a_attackers)
+	battle(active_fighters[side_a],active_fighters[side_b])
+	battle(active_fighters[side_b],active_fighters[side_a])
 	
 
-func battle(attacker:Array[Dictionary],defender:Array[Dictionary]):
-	for dict:Dictionary in attacker:
-		var agent:OverworldAgent = dict[&"collider"]
-		if not agent in participants:
-			participants.append(agent)
+func battle(attacker:Array,defender:Array):
+	for agent:Node2D in attacker:
 		agent.use_flow_field=false
 		agent.action = &"attack"
-		if not agent.target in participants or agent.target.overworld_hp <= 0:
-			var target:PhysicsBody2D = defender.pick_random()[&"collider"]
+		if not agent.target in defender or agent.target.overworld_hp <= 0:
+			var target:PhysicsBody2D = defender.pick_random()
 			agent.target = target
 		if agent.global_position.distance_squared_to(agent.target.global_position) < ATK_RANGE:
 			var direction = agent.global_position.direction_to(agent.target.global_position)
@@ -108,9 +110,10 @@ func end_battle():
 		print("| "+ " | ".join(titles) + " |")
 		print("| "+ " | ".join(columns) + " |")
 		print("| "+ " | ".join(values) + " |")
+		monitoring = false
 		process_mode = Node.PROCESS_MODE_DISABLED
 		visible = false
 		#queue_free()
 
 func _draw() -> void:
-	draw_rect(Rect2(Vector2.ZERO,shape.size),Color.YELLOW * Color(1,1,1,0.2))
+	draw_rect(Rect2(Vector2.ZERO,collision_shape.shape.size),Color.YELLOW * Color(1,1,1,0.2))

@@ -7,7 +7,7 @@ extends MainScene2D
 
 var battle_script_location:String = "uid://cfqrbe5b87mbm"
 
-var battles:Dictionary[Vector2i,Node2D]
+var battles:Dictionary[Vector2i,Area2D]
 
 func _ready() -> void:
 	if player_unit_def and get_tree().get_node_count_in_group(Constants.PLAYER_ENTITY): # If we're passed a unit definition for the player, load it.
@@ -23,7 +23,7 @@ func battle_check(coordinates:Vector2i):
 	var global_location:Vector2 = Vector2(coordinates * Constants.SPATIAL_HASH_SIZE)
 	if not coordinates in battles.keys():
 		#build_query(global_location)
-		var new_battle:Node2D = Node2D.new()
+		var new_battle:Area2D = Area2D.new()
 		new_battle.set_script(load(battle_script_location))
 		new_battle.global_position = global_location
 		add_child(new_battle)
