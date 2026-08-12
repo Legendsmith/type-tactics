@@ -37,7 +37,7 @@ func _physics_process(_delta: float) -> void:
 func pathfind():
 	var next_pos = get_next_path_position()
 	## what's the angle difference between our move and the direction and direction to next target.
-	var desired_velocity: Vector2 = agent.global_position.direction_to(next_pos) * min(distance_to_target(),max_speed)
+	var desired_velocity: Vector2 = agent.global_position.direction_to(next_pos) * min(distance_to_target()+agent.linear_damp*2,max_speed)
 	if avoidance_enabled:
 		set_velocity(desired_velocity)
 	else:

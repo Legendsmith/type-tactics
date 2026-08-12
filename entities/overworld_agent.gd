@@ -101,7 +101,7 @@ func set_action(new_action:StringName):
 func configure_physics(_faction:StringName):
 	var faction_def:Factions.Faction = Factions.faction_list[_faction]
 	collision_layer = faction_def.physics_layer
-	collision_mask = faction_def.physics_mask | collision_layer
+	collision_mask = faction_def.physics_mask #| collision_layer
 	nav_agent.navigation_layers = faction_def.nav_layer
 	nav_agent.avoidance_layers = faction_def.avoid_own
 	nav_agent.avoidance_mask = Factions.master_avoid
@@ -137,17 +137,17 @@ func recieve_damage(attacker:OverworldAgent,power:int,delta:float) -> float:
 func _physics_process(delta) -> void:
 	bt_delta += delta
 	if contact_monitor:
-		var contact_count = get_contact_count()
-		for i:int in range(contact_count):
-			var contact_target:Node2D = get_colliding_bodies()[i]
+		var count:int = get_contact_count()
+		if count:
+			var contact_target:Node2D = get_colliding_bodies()[0]
 			if contact_target is TileMapLayer or contact_target.faction == faction:
-				continue
+				return
 			var roll:float = randf_range(Constants.OVERWORLD_DAMAGE_VARIANCE,1)
 			var dmg:float = contact_target.recieve_damage(self,overworld_pwr*roll,delta)
 			#attack_charge -= delta
 			inflicted_damage.emit(self,dmg,contact_target)
 			damage_inflicted += dmg
-		#attack_charge = clampf(attack_charge+(delta/5),0,Constants.OVERWORLD_MAX_ATTACK_CHARGE)
+			#attack_charge = clampf(attack_charge+(delta/5),0,Constants.OVERWORLD_MAX_ATTACK_CHARGE)
 		
 	if (Engine.get_physics_frames() + tick_offset) % (skip_frames + 1) == 0:
 		spatial_hash.update()

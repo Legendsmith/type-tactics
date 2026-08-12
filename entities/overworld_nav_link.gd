@@ -1,6 +1,6 @@
 extends NavigationLink2D
-var astar_start_id:int
-var astar_end_id:int
+var astar_start_id:int = -1
+var astar_end_id:int = -1
 
 var tile_map:TileMapLayer:
 	set(new_tile_map):
@@ -17,7 +17,9 @@ var active_factions:Array[StringName] = []
 @onready var hash_location:Vector2i = Vector2i(to_global(start_position)/Constants.SPATIAL_HASH_SIZE)
 
 func _ready() -> void:
-	SpatialMap.request_tilemap.emit(self,hash_location)
+	print_debug(hash_location)
+	SpatialMap.request_tilemap.emit(self,Vector2i(hash_location))
+	astar_start_id = tile_map.astar_point_id
 	$StartArea.body_entered.connect(on_agent_enter)
 	$StartArea.collision_mask = Factions.master_phys | (1 << Constants.PLAYER_PHYSICS_LAYER)
 	SpatialMap.agent_request_flow_field.connect(on_agent_request_flow_field)
@@ -40,13 +42,8 @@ func on_activate_link(faction:StringName,path:PackedInt64Array) -> void:
 
 ## Usually called once, registers the link in the global astar map.
 func on_request_astar_links():
-	astar_start_id = SpatialMap.register_astar_point(to_global(start_position))
-	astar_end_id = SpatialMap.register_astar_point(to_global(end_position))
-	SpatialMap.register_astar_link(
-		to_global(start_position),
-		to_global(end_position),
-		bidirectional
-	)
+	SpatialMap.request_map_point_id.emit(self,Vector2i(to_global(end_position)/Constants.SPATIAL_HASH_SIZE),&"astar_end_id")
+	SpatialMap.astar.connect_points(astar_start_id,astar_end_id,bidirectional)
 
 #builds the flow field towards it using its assigned tilemap.
 func build_flow_field():
@@ -71,6 +68,6 @@ func configure_areas():
 	$StartArea.monitoring = true
 
 func on_agent_request_flow_field(agent:OverworldAgent,spatial_hash:Vector2i):
-	if agent.faction in active_factions and spatial_hash == hash_location:
+	if agent.faction in active_factions and tile_map.hash_rect.has_point(spatial_hash):
 		agent.flow_field = flow_field
 	

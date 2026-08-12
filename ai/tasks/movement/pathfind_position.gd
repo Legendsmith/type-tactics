@@ -26,8 +26,8 @@ func _setup() -> void:
 	_nav_agent = agent.get_node(nav_agent)
 
 func _tick(_delta: float) -> Status:
-	if continuous_update:
-		_nav_agent.activate_nav_agent()
+	if continuous_update and target_position != blackboard.get_var(position_var):
+		activate_nav_agent()
 	if _nav_agent.is_navigation_finished() or agent.global_position.distance_squared_to(target_position) <= _distance_squared:
 		return SUCCESS
 	elif _nav_agent.process_mode != Node2D.PROCESS_MODE_INHERIT:
