@@ -1,5 +1,5 @@
+@tool
 ## Helper object for drawing the Spatial Hash grid in a World2D.
-
 extends Node2D
 
 func _draw() -> void:
