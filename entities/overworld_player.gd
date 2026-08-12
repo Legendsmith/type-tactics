@@ -21,6 +21,7 @@ func _ready() -> void:
 	bt_player.blackboard.set_var(&"faction", faction) # Set faction
 	bt_player.blackboard.set_var(&"max_speed", max_speed)
 	bt_player.blackboard.set_var(&"speed", max_speed)
+	contact_monitor = true
 
 
 func _physics_process(delta) -> void:

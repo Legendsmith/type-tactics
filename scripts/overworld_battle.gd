@@ -82,6 +82,8 @@ func _tick():
 
 func battle(attacker:Array,defender:Array):
 	for agent:Node2D in attacker:
+		if agent is OverworldPlayer:
+			continue
 		agent.use_flow_field=false
 		agent.action = &"attack"
 		if not agent.target in defender or agent.target.overworld_hp <= 0:
@@ -94,7 +96,7 @@ func battle(attacker:Array,defender:Array):
 
 func end_battle():
 		damage_timer.stop()
-		SpatialMap.control_map[spatial_hash.hash_location] = winner
+		SpatialMap.update_control(spatial_hash.hash_location,winner)
 		print_debug("Battle over! Winner: %s" % Factions.faction_list[winner].name)
 		var titles:PackedStringArray = []
 		titles.resize(participants.size())
