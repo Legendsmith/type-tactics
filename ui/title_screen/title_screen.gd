@@ -1,6 +1,7 @@
 extends Control
 
 @export_custom(0,"scene") var new_game_scene:String = "uid://dn7yyypoxhesl"
+@export var background_music:AudioStream
 
 @onready var continue_button: Button = %ContinueButton
 @onready var new_game_button: Button = %NewGameButton
@@ -15,6 +16,7 @@ var _play_highlight_queued: bool = false
 
 func _ready() -> void:
 	setup_signals()
+	GameManager.play_music(background_music)
 
 func setup_signals() -> void:
 	continue_button.pressed.connect(_on_continue_pressed)
