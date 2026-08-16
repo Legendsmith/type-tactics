@@ -455,6 +455,11 @@ _data = {
 &"RESET": SubResource("Animation_llslm")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_5mdms"]
+font_color = Color(0.6, 0.6, 0.6, 1)
+stacked_outline_count = 1
+stacked_outline_0/size = 4
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8t8k"]
 content_margin_left = 12.0
 content_margin_top = 4.0
@@ -518,6 +523,12 @@ theme_override_font_sizes/font_size = 80
 text = "CREDITS"
 horizontal_alignment = 1
 
+[node name="Label" type="Label" parent="CreditsContainer" unique_id=1902155879]
+layout_mode = 2
+text = "Links are Clickable!"
+label_settings = SubResource("LabelSettings_5mdms")
+horizontal_alignment = 1
+
 [node name="ArtCredits" type="VBoxContainer" parent="CreditsContainer" unique_id=573760489]
 layout_mode = 2
 size_flags_vertical = 6
@@ -549,12 +560,6 @@ theme = ExtResource("11_d7n5t")
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 alignment = 2
-
-[node name="PersonLabel" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/LegendsmithRow/PersonInfo" unique_id=884683486]
-layout_mode = 2
-theme = ExtResource("11_d7n5t")
-theme_type_variation = &"CreditLine"
-text = "Legendsmith"
 
 [node name="LinkPill" type="PanelContainer" parent="CreditsContainer/ArtCredits/VBoxContainer/LegendsmithRow/PersonInfo" unique_id=1194653659]
 layout_mode = 2
@@ -606,6 +611,12 @@ theme = ExtResource("11_d7n5t")
 theme_override_font_sizes/font_size = 16
 text = "Legendsmith_AU"
 
+[node name="PersonLabel" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/LegendsmithRow/PersonInfo" unique_id=884683486]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+theme_type_variation = &"CreditLine"
+text = "Legendsmith"
+
 [node name="Involvement" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/LegendsmithRow" unique_id=1838584439]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -614,12 +625,12 @@ theme = ExtResource("11_d7n5t")
 theme_type_variation = &"CreditLine"
 text = "Lead Artist"
 
-[node name="MidnighRow" type="HBoxContainer" parent="CreditsContainer/ArtCredits/VBoxContainer" unique_id=1501088712]
+[node name="MidnightRow" type="HBoxContainer" parent="CreditsContainer/ArtCredits/VBoxContainer" unique_id=1501088712]
 layout_mode = 2
 theme = ExtResource("11_d7n5t")
 theme_type_variation = &"CreditRow"
 
-[node name="PersonInfo" type="HFlowContainer" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnighRow" unique_id=1993486260]
+[node name="PersonInfo" type="HFlowContainer" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnightRow" unique_id=1993486260]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -628,13 +639,7 @@ theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 alignment = 2
 
-[node name="PersonLabel" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnighRow/PersonInfo" unique_id=1885507621]
-layout_mode = 2
-theme = ExtResource("11_d7n5t")
-theme_type_variation = &"CreditLine"
-text = "Midnight Novae"
-
-[node name="LinkPill" type="PanelContainer" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnighRow/PersonInfo" unique_id=1810400677]
+[node name="LinkPill" type="PanelContainer" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnightRow/PersonInfo" unique_id=1810400677]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("11_d7n5t")
@@ -642,24 +647,24 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_q8t8k")
 script = ExtResource("2_b6jqh")
 link = "https://x.com/midnightnovae"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnighRow/PersonInfo/LinkPill" unique_id=361005865]
+[node name="HBoxContainer" type="HBoxContainer" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnightRow/PersonInfo/LinkPill" unique_id=361005865]
 layout_mode = 2
 theme = ExtResource("11_d7n5t")
 
-[node name="TextureRect" type="TextureRect" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnighRow/PersonInfo/LinkPill/HBoxContainer" unique_id=917935367]
+[node name="TextureRect" type="TextureRect" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnightRow/PersonInfo/LinkPill/HBoxContainer" unique_id=917935367]
 layout_mode = 2
 theme = ExtResource("11_d7n5t")
 texture = ExtResource("2_q8t8k")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnighRow/PersonInfo/LinkPill/HBoxContainer" unique_id=794771832]
+[node name="Label" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnightRow/PersonInfo/LinkPill/HBoxContainer" unique_id=794771832]
 layout_mode = 2
 theme = ExtResource("11_d7n5t")
 theme_override_font_sizes/font_size = 16
 text = "@Midnightnovae"
 
-[node name="LinkPill2" type="PanelContainer" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnighRow/PersonInfo" unique_id=307434523]
+[node name="LinkPill2" type="PanelContainer" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnightRow/PersonInfo" unique_id=307434523]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("11_d7n5t")
@@ -667,24 +672,30 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_q8t8k")
 script = ExtResource("2_b6jqh")
 link = "https://www.twitch.tv/m1dn1ghtnovae"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnighRow/PersonInfo/LinkPill2" unique_id=366379261]
+[node name="HBoxContainer" type="HBoxContainer" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnightRow/PersonInfo/LinkPill2" unique_id=366379261]
 layout_mode = 2
 theme = ExtResource("11_d7n5t")
 
-[node name="TextureRect" type="TextureRect" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnighRow/PersonInfo/LinkPill2/HBoxContainer" unique_id=847120489]
+[node name="TextureRect" type="TextureRect" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnightRow/PersonInfo/LinkPill2/HBoxContainer" unique_id=847120489]
 layout_mode = 2
 theme = ExtResource("11_d7n5t")
 texture = ExtResource("13_borvj")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnighRow/PersonInfo/LinkPill2/HBoxContainer" unique_id=754629665]
+[node name="Label" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnightRow/PersonInfo/LinkPill2/HBoxContainer" unique_id=754629665]
 layout_mode = 2
 theme = ExtResource("11_d7n5t")
 theme_override_font_sizes/font_size = 16
 text = "M1DN1GHTNOVAE"
 
-[node name="Involvement" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnighRow" unique_id=1414167424]
+[node name="PersonLabel" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnightRow/PersonInfo" unique_id=1885507621]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+theme_type_variation = &"CreditLine"
+text = "Midnight Novae"
+
+[node name="Involvement" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/MidnightRow" unique_id=1414167424]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -705,12 +716,6 @@ theme = ExtResource("11_d7n5t")
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 alignment = 2
-
-[node name="PersonLabel" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/EletheosRow/PersonInfo" unique_id=1968536275]
-layout_mode = 2
-theme = ExtResource("11_d7n5t")
-theme_type_variation = &"CreditLine"
-text = "Eletheos"
 
 [node name="LinkPill" type="PanelContainer" parent="CreditsContainer/ArtCredits/VBoxContainer/EletheosRow/PersonInfo" unique_id=837398911]
 layout_mode = 2
@@ -737,6 +742,12 @@ theme = ExtResource("11_d7n5t")
 theme_override_font_sizes/font_size = 16
 text = "@eletheos"
 
+[node name="PersonLabel" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/EletheosRow/PersonInfo" unique_id=1968536275]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+theme_type_variation = &"CreditLine"
+text = "Eletheos"
+
 [node name="Involvement" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/EletheosRow" unique_id=419190655]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -758,12 +769,6 @@ theme = ExtResource("11_d7n5t")
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 alignment = 2
-
-[node name="PersonLabel" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/CrusaderRow/PersonInfo" unique_id=333716904]
-layout_mode = 2
-theme = ExtResource("11_d7n5t")
-theme_type_variation = &"CreditLine"
-text = "Crusader"
 
 [node name="LinkPill" type="PanelContainer" parent="CreditsContainer/ArtCredits/VBoxContainer/CrusaderRow/PersonInfo" unique_id=1812841130]
 layout_mode = 2
@@ -840,6 +845,12 @@ theme = ExtResource("11_d7n5t")
 theme_type_variation = &"LinkPillText"
 text = "Crusaders Arcade"
 
+[node name="PersonLabel" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/CrusaderRow/PersonInfo" unique_id=333716904]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+theme_type_variation = &"CreditLine"
+text = "Crusader"
+
 [node name="Involvement" type="Label" parent="CreditsContainer/ArtCredits/VBoxContainer/CrusaderRow" unique_id=1218333384]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -880,12 +891,6 @@ theme = ExtResource("11_d7n5t")
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 alignment = 2
-
-[node name="PersonLabel" type="Label" parent="CreditsContainer/DesignCredits/VBoxContainer/LegendsmithRow/PersonInfo" unique_id=1421590876]
-layout_mode = 2
-theme = ExtResource("11_d7n5t")
-theme_type_variation = &"CreditLine"
-text = "Legendsmith"
 
 [node name="LinkPill" type="PanelContainer" parent="CreditsContainer/DesignCredits/VBoxContainer/LegendsmithRow/PersonInfo" unique_id=1601735505]
 layout_mode = 2
@@ -937,6 +942,12 @@ theme = ExtResource("11_d7n5t")
 theme_override_font_sizes/font_size = 16
 text = "Legendsmith_AU"
 
+[node name="PersonLabel" type="Label" parent="CreditsContainer/DesignCredits/VBoxContainer/LegendsmithRow/PersonInfo" unique_id=1421590876]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+theme_type_variation = &"CreditLine"
+text = "Legendsmith"
+
 [node name="Involvement" type="Label" parent="CreditsContainer/DesignCredits/VBoxContainer/LegendsmithRow" unique_id=565151203]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -944,6 +955,85 @@ size_flags_vertical = 0
 theme = ExtResource("11_d7n5t")
 theme_type_variation = &"CreditLine"
 text = "Concept, Design Lead, Gameplay Design"
+autowrap_mode = 2
+
+[node name="MurrayRow" type="HBoxContainer" parent="CreditsContainer/DesignCredits/VBoxContainer" unique_id=233909095]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+theme_type_variation = &"CreditRow"
+
+[node name="PersonInfo" type="HFlowContainer" parent="CreditsContainer/DesignCredits/VBoxContainer/MurrayRow" unique_id=1221050298]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("11_d7n5t")
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+alignment = 2
+
+[node name="LinkPill" type="PanelContainer" parent="CreditsContainer/DesignCredits/VBoxContainer/MurrayRow/PersonInfo" unique_id=425148242]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("11_d7n5t")
+theme_override_styles/panel = SubResource("StyleBoxFlat_q8t8k")
+script = ExtResource("2_b6jqh")
+link = "@humanguy8"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CreditsContainer/DesignCredits/VBoxContainer/MurrayRow/PersonInfo/LinkPill" unique_id=496293407]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+
+[node name="TextureRect" type="TextureRect" parent="CreditsContainer/DesignCredits/VBoxContainer/MurrayRow/PersonInfo/LinkPill/HBoxContainer" unique_id=936694770]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+texture = ExtResource("2_q8t8k")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CreditsContainer/DesignCredits/VBoxContainer/MurrayRow/PersonInfo/LinkPill/HBoxContainer" unique_id=1630630905]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+theme_override_font_sizes/font_size = 16
+text = "@humanguy8"
+
+[node name="LinkPill2" type="PanelContainer" parent="CreditsContainer/DesignCredits/VBoxContainer/MurrayRow/PersonInfo" unique_id=378959192]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("11_d7n5t")
+theme_override_styles/panel = SubResource("StyleBoxFlat_q8t8k")
+script = ExtResource("2_b6jqh")
+link = "https://www.twitch.tv/murraythehuman"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CreditsContainer/DesignCredits/VBoxContainer/MurrayRow/PersonInfo/LinkPill2" unique_id=1822624767]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+
+[node name="TextureRect" type="TextureRect" parent="CreditsContainer/DesignCredits/VBoxContainer/MurrayRow/PersonInfo/LinkPill2/HBoxContainer" unique_id=1281384584]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+texture = ExtResource("13_borvj")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CreditsContainer/DesignCredits/VBoxContainer/MurrayRow/PersonInfo/LinkPill2/HBoxContainer" unique_id=580505675]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+theme_override_font_sizes/font_size = 16
+text = "murraythehuman"
+
+[node name="PersonLabel" type="Label" parent="CreditsContainer/DesignCredits/VBoxContainer/MurrayRow/PersonInfo" unique_id=908545640]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+theme_type_variation = &"CreditLine"
+text = "Murraythehuman"
+
+[node name="Involvement" type="Label" parent="CreditsContainer/DesignCredits/VBoxContainer/MurrayRow" unique_id=1862618049]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("11_d7n5t")
+theme_type_variation = &"CreditLine"
+text = "Overworld Design"
 autowrap_mode = 2
 
 [node name="MusicCredit" type="VBoxContainer" parent="CreditsContainer" unique_id=657843860]
@@ -978,12 +1068,6 @@ theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 alignment = 2
 
-[node name="PersonLabel" type="Label" parent="CreditsContainer/MusicCredit/VBoxContainer/ClayRow/PersonInfo" unique_id=2134839256]
-layout_mode = 2
-theme = ExtResource("11_d7n5t")
-theme_type_variation = &"CreditLine"
-text = "Clay³"
-
 [node name="LinkPill" type="PanelContainer" parent="CreditsContainer/MusicCredit/VBoxContainer/ClayRow/PersonInfo" unique_id=685647551]
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1009,13 +1093,19 @@ theme = ExtResource("11_d7n5t")
 theme_override_font_sizes/font_size = 16
 text = "Claycubed"
 
+[node name="PersonLabel" type="Label" parent="CreditsContainer/MusicCredit/VBoxContainer/ClayRow/PersonInfo" unique_id=2134839256]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+theme_type_variation = &"CreditLine"
+text = "Clay³"
+
 [node name="Involvement" type="Label" parent="CreditsContainer/MusicCredit/VBoxContainer/ClayRow" unique_id=2062548990]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 theme = ExtResource("11_d7n5t")
 theme_type_variation = &"CreditLine"
-text = "Composer - Battle Music"
+text = "Composer"
 autowrap_mode = 2
 
 [node name="toasterRow" type="HBoxContainer" parent="CreditsContainer/MusicCredit/VBoxContainer" unique_id=786387617]
@@ -1031,12 +1121,6 @@ theme = ExtResource("11_d7n5t")
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 alignment = 2
-
-[node name="PersonLabel" type="Label" parent="CreditsContainer/MusicCredit/VBoxContainer/toasterRow/PersonInfo" unique_id=273866299]
-layout_mode = 2
-theme = ExtResource("11_d7n5t")
-theme_type_variation = &"CreditLine"
-text = "BXSSM3LT"
 
 [node name="LinkPill" type="PanelContainer" parent="CreditsContainer/MusicCredit/VBoxContainer/toasterRow/PersonInfo" unique_id=1700757888]
 layout_mode = 2
@@ -1063,6 +1147,12 @@ theme = ExtResource("11_d7n5t")
 theme_override_font_sizes/font_size = 16
 text = "BXSSM3LT"
 
+[node name="PersonLabel" type="Label" parent="CreditsContainer/MusicCredit/VBoxContainer/toasterRow/PersonInfo" unique_id=273866299]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+theme_type_variation = &"CreditLine"
+text = "BXSSM3LT"
+
 [node name="Involvement" type="Label" parent="CreditsContainer/MusicCredit/VBoxContainer/toasterRow" unique_id=2014936151]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1085,12 +1175,6 @@ theme = ExtResource("11_d7n5t")
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 alignment = 2
-
-[node name="PersonLabel" type="Label" parent="CreditsContainer/MusicCredit/VBoxContainer/HecksNRow/PersonInfo" unique_id=1380497187]
-layout_mode = 2
-theme = ExtResource("11_d7n5t")
-theme_type_variation = &"CreditLine"
-text = "HecksN"
 
 [node name="LinkPill" type="PanelContainer" parent="CreditsContainer/MusicCredit/VBoxContainer/HecksNRow/PersonInfo" unique_id=890731538]
 layout_mode = 2
@@ -1117,13 +1201,19 @@ theme = ExtResource("11_d7n5t")
 theme_override_font_sizes/font_size = 16
 text = "HecksN"
 
+[node name="PersonLabel" type="Label" parent="CreditsContainer/MusicCredit/VBoxContainer/HecksNRow/PersonInfo" unique_id=1380497187]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+theme_type_variation = &"CreditLine"
+text = "HecksN"
+
 [node name="Involvement" type="Label" parent="CreditsContainer/MusicCredit/VBoxContainer/HecksNRow" unique_id=1574114392]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 theme = ExtResource("11_d7n5t")
 theme_type_variation = &"CreditLine"
-text = "Overworld"
+text = "Composer"
 autowrap_mode = 2
 
 [node name="ProgrammingCredits" type="VBoxContainer" parent="CreditsContainer" unique_id=550290043]
@@ -1157,12 +1247,6 @@ theme = ExtResource("11_d7n5t")
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 alignment = 2
-
-[node name="PersonLabel" type="Label" parent="CreditsContainer/ProgrammingCredits/VBoxContainer/LegendsmithRow/PersonInfo" unique_id=298453045]
-layout_mode = 2
-theme = ExtResource("11_d7n5t")
-theme_type_variation = &"CreditLine"
-text = "Legendsmith"
 
 [node name="LinkPill" type="PanelContainer" parent="CreditsContainer/ProgrammingCredits/VBoxContainer/LegendsmithRow/PersonInfo" unique_id=574238241]
 layout_mode = 2
@@ -1214,6 +1298,12 @@ theme = ExtResource("11_d7n5t")
 theme_override_font_sizes/font_size = 16
 text = "Legendsmith_AU"
 
+[node name="PersonLabel" type="Label" parent="CreditsContainer/ProgrammingCredits/VBoxContainer/LegendsmithRow/PersonInfo" unique_id=298453045]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+theme_type_variation = &"CreditLine"
+text = "Legendsmith"
+
 [node name="Involvement" type="Label" parent="CreditsContainer/ProgrammingCredits/VBoxContainer/LegendsmithRow" unique_id=543970504]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1236,12 +1326,6 @@ theme = ExtResource("11_d7n5t")
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 alignment = 2
-
-[node name="PersonLabel" type="Label" parent="CreditsContainer/ProgrammingCredits/VBoxContainer/PheubelRow/PersonInfo" unique_id=798345387]
-layout_mode = 2
-theme = ExtResource("11_d7n5t")
-theme_type_variation = &"CreditLine"
-text = "Pheubel"
 
 [node name="LinkPill" type="PanelContainer" parent="CreditsContainer/ProgrammingCredits/VBoxContainer/PheubelRow/PersonInfo" unique_id=1156441524]
 layout_mode = 2
@@ -1291,6 +1375,12 @@ stretch_mode = 5
 layout_mode = 2
 theme = ExtResource("11_d7n5t")
 theme_override_font_sizes/font_size = 16
+text = "Pheubel"
+
+[node name="PersonLabel" type="Label" parent="CreditsContainer/ProgrammingCredits/VBoxContainer/PheubelRow/PersonInfo" unique_id=798345387]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+theme_type_variation = &"CreditLine"
 text = "Pheubel"
 
 [node name="Involvement" type="Label" parent="CreditsContainer/ProgrammingCredits/VBoxContainer/PheubelRow" unique_id=643194712]
@@ -1407,12 +1497,6 @@ theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 alignment = 2
 
-[node name="PersonLabel" type="Label" parent="CreditsContainer/WritingCredits/VBoxContainer/LegendsmithRow/PersonInfo" unique_id=524381110]
-layout_mode = 2
-theme = ExtResource("11_d7n5t")
-theme_type_variation = &"CreditLine"
-text = "Legendsmith"
-
 [node name="LinkPill" type="PanelContainer" parent="CreditsContainer/WritingCredits/VBoxContainer/LegendsmithRow/PersonInfo" unique_id=700351888]
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1463,13 +1547,123 @@ theme = ExtResource("11_d7n5t")
 theme_override_font_sizes/font_size = 16
 text = "Legendsmith_AU"
 
+[node name="PersonLabel" type="Label" parent="CreditsContainer/WritingCredits/VBoxContainer/LegendsmithRow/PersonInfo" unique_id=524381110]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+theme_type_variation = &"CreditLine"
+text = "Legendsmith"
+
 [node name="Involvement" type="Label" parent="CreditsContainer/WritingCredits/VBoxContainer/LegendsmithRow" unique_id=698724850]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 theme = ExtResource("11_d7n5t")
 theme_type_variation = &"CreditLine"
-text = "Story"
+text = "Concept"
+autowrap_mode = 2
+
+[node name="CrusaderRow" type="HBoxContainer" parent="CreditsContainer/WritingCredits/VBoxContainer" unique_id=306211390]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+theme_type_variation = &"CreditRow"
+
+[node name="PersonInfo" type="HFlowContainer" parent="CreditsContainer/WritingCredits/VBoxContainer/CrusaderRow" unique_id=822145260]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("11_d7n5t")
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+alignment = 2
+
+[node name="LinkPill" type="PanelContainer" parent="CreditsContainer/WritingCredits/VBoxContainer/CrusaderRow/PersonInfo" unique_id=774732307]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("11_d7n5t")
+theme_override_styles/panel = SubResource("StyleBoxFlat_q8t8k")
+script = ExtResource("2_b6jqh")
+link = "https://x.com/CrusaderTwitch"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CreditsContainer/WritingCredits/VBoxContainer/CrusaderRow/PersonInfo/LinkPill" unique_id=1131377392]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+
+[node name="TextureRect" type="TextureRect" parent="CreditsContainer/WritingCredits/VBoxContainer/CrusaderRow/PersonInfo/LinkPill/HBoxContainer" unique_id=551540218]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+texture = ExtResource("2_q8t8k")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CreditsContainer/WritingCredits/VBoxContainer/CrusaderRow/PersonInfo/LinkPill/HBoxContainer" unique_id=1273395207]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+theme_type_variation = &"LinkPillText"
+text = "@CrusaderTwitch"
+
+[node name="LinkPill2" type="PanelContainer" parent="CreditsContainer/WritingCredits/VBoxContainer/CrusaderRow/PersonInfo" unique_id=252454912]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("11_d7n5t")
+theme_override_styles/panel = SubResource("StyleBoxFlat_q8t8k")
+script = ExtResource("2_b6jqh")
+link = "https://www.twitch.tv/crusader"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CreditsContainer/WritingCredits/VBoxContainer/CrusaderRow/PersonInfo/LinkPill2" unique_id=1684975422]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+
+[node name="TextureRect" type="TextureRect" parent="CreditsContainer/WritingCredits/VBoxContainer/CrusaderRow/PersonInfo/LinkPill2/HBoxContainer" unique_id=1959698318]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+texture = ExtResource("13_borvj")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CreditsContainer/WritingCredits/VBoxContainer/CrusaderRow/PersonInfo/LinkPill2/HBoxContainer" unique_id=1151236533]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+theme_type_variation = &"LinkPillText"
+text = "Crusader"
+
+[node name="LinkPill3" type="PanelContainer" parent="CreditsContainer/WritingCredits/VBoxContainer/CrusaderRow/PersonInfo" unique_id=227535178]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("11_d7n5t")
+theme_override_styles/panel = SubResource("StyleBoxFlat_q8t8k")
+script = ExtResource("2_b6jqh")
+link = "https://www.youtube.com/@crusadersarcade"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CreditsContainer/WritingCredits/VBoxContainer/CrusaderRow/PersonInfo/LinkPill3" unique_id=524045287]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+
+[node name="TextureRect" type="TextureRect" parent="CreditsContainer/WritingCredits/VBoxContainer/CrusaderRow/PersonInfo/LinkPill3/HBoxContainer" unique_id=1258350871]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+texture = ExtResource("16_p3mgq")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CreditsContainer/WritingCredits/VBoxContainer/CrusaderRow/PersonInfo/LinkPill3/HBoxContainer" unique_id=1038832924]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+theme_type_variation = &"LinkPillText"
+text = "Crusaders Arcade"
+
+[node name="PersonLabel" type="Label" parent="CreditsContainer/WritingCredits/VBoxContainer/CrusaderRow/PersonInfo" unique_id=1305113574]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+theme_type_variation = &"CreditLine"
+text = "Crusader"
+
+[node name="Involvement" type="Label" parent="CreditsContainer/WritingCredits/VBoxContainer/CrusaderRow" unique_id=988467836]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("11_d7n5t")
+theme_type_variation = &"CreditLine"
+text = "Concept & Consultation"
 autowrap_mode = 2
 
 [node name="MorkaeiRow" type="HBoxContainer" parent="CreditsContainer/WritingCredits/VBoxContainer" unique_id=2010852787]
@@ -1485,12 +1679,6 @@ theme = ExtResource("11_d7n5t")
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 alignment = 2
-
-[node name="PersonLabel" type="Label" parent="CreditsContainer/WritingCredits/VBoxContainer/MorkaeiRow/PersonInfo" unique_id=1981688583]
-layout_mode = 2
-theme = ExtResource("11_d7n5t")
-theme_type_variation = &"CreditLine"
-text = "Morkaei"
 
 [node name="LinkPill" type="PanelContainer" parent="CreditsContainer/WritingCredits/VBoxContainer/MorkaeiRow/PersonInfo" unique_id=1793942124]
 layout_mode = 2
@@ -1542,13 +1730,19 @@ theme = ExtResource("11_d7n5t")
 theme_override_font_sizes/font_size = 16
 text = "morkaei"
 
+[node name="PersonLabel" type="Label" parent="CreditsContainer/WritingCredits/VBoxContainer/MorkaeiRow/PersonInfo" unique_id=1981688583]
+layout_mode = 2
+theme = ExtResource("11_d7n5t")
+theme_type_variation = &"CreditLine"
+text = "Morkaei"
+
 [node name="Involvement" type="Label" parent="CreditsContainer/WritingCredits/VBoxContainer/MorkaeiRow" unique_id=265186168]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 theme = ExtResource("11_d7n5t")
 theme_type_variation = &"CreditLine"
-text = "Story"
+text = "Consultation"
 autowrap_mode = 2
 
 [node name="ThirdPartyCredits" type="VBoxContainer" parent="CreditsContainer" unique_id=1706423474]
