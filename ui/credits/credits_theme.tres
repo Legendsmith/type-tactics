@@ -1,0 +1,30 @@
+[gd_resource type="Theme" format=3 uid="uid://bcqmvnph6rqj1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8t8k"]
+content_margin_left = 12.0
+content_margin_top = 4.0
+content_margin_right = 12.0
+content_margin_bottom = 4.0
+bg_color = Color(0.310617, 0.310617, 0.310617, 1)
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[resource]
+CreditCategory/base_type = &"Label"
+CreditCategory/font_sizes/font_size = 60
+CreditLine/base_type = &"Label"
+CreditLine/font_sizes/font_size = 20
+CreditRow/base_type = &"HBoxContainer"
+CreditRow/constants/separation = 32
+CreditRowsContainer/base_type = &"VBoxContainer"
+CreditRowsContainer/constants/separation = 12
+LinkPill/base_type = &"PanelContainer"
+LinkPill/styles/panel = SubResource("StyleBoxFlat_q8t8k")
+LinkPillText/base_type = &"Label"
