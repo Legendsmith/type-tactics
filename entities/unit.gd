@@ -178,12 +178,14 @@ func recieve_damage(damage:int):
 #endregion
 
 #region Techniques
+## Get the techniques that have entries for charges from the unit
 func get_technique_uses() -> Dictionary:
 	var technique_usages:Dictionary[BattleTechnique,int]
 	for tech:BattleTechnique in technique_charges:
 		technique_usages[tech] = technique_charges[tech]/CombatMechanics.charge_usage(tech,types)
 	return technique_usages
 
+## Queue technique. Returns true if success, failure if it can't. Use this for UI response or BT decision
 func queue_technique(tech:BattleTechnique) -> bool:
 	var charge_usage:int = CombatMechanics.charge_usage(tech,types)
 	var action:TurnAction = TurnAction.new(self)
@@ -196,9 +198,11 @@ func queue_technique(tech:BattleTechnique) -> bool:
 		return false
 #endregion
 #region Turns
+## Run on new turn signal from BattleStage. Clears the action
 func on_new_turn() -> void:
 	next_action = default_action
 
+## Alerts if no move is assigned and this is player controlled.
 func on_finalize_turn() -> void:
 	if next_action.technique_name == BattleTechnique.NONE_ACTION and control_type == Constants.PLAYER_GROUP:
 		var data:Dictionary = {"alert":GameInterface.Alert.NONE_ACTION,"source":self,"zoom":true}
