@@ -1,10 +1,11 @@
-extends MainScene2D
+extends Node2D
 
 signal finalize_turn
 signal new_turn
 signal unit_added(unit:Unit)
 signal battle_over(winner:StringName)
 
+@export var background_music:AudioStream
 static var battle_unit:PackedScene = load("uid://bm03ut2gnfrq8")
 
 var turn_ready:bool = false
@@ -15,7 +16,8 @@ var units_enemy:Dictionary[Unit,CombatMechanics.UnitStatus]
 
 
 func _ready():
-	super()
+	if background_music:
+		GameManager.play_music(background_music)
 	get_tree().call_group(Unit.UNIT_GROUP,&"battle_setup")
 
 
