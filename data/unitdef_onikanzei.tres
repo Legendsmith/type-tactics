@@ -1,15 +1,14 @@
 [gd_resource type="Resource" script_class="UnitDef" format=3 uid="uid://dtmudlmwio5qh"]
 
-[ext_resource type="Script" uid="uid://btssfmuejunjh" path="res://scripts/battle_technique.gd" id="1_qxees"]
-[ext_resource type="Script" uid="uid://cqggivyif4ut8" path="res://scripts/equip_item.gd" id="2_pvfpe"]
-[ext_resource type="Texture2D" uid="uid://delc8lcmw0i2v" path="res://texture/onikanzei_overworld.png" id="3_1ngu8"]
-[ext_resource type="Script" uid="uid://bwf3wwv84lr8q" path="res://scripts/unit_def.gd" id="4_4o5w7"]
+[ext_resource type="Script" uid="uid://btssfmuejunjh" path="res://scripts/battle_technique.gd" id="1_t8wng"]
+[ext_resource type="Script" uid="uid://cqggivyif4ut8" path="res://scripts/equip_item.gd" id="2_n8i51"]
+[ext_resource type="Texture2D" uid="uid://delc8lcmw0i2v" path="res://texture/onikanzei_overworld.png" id="3_ngvxb"]
+[ext_resource type="Script" uid="uid://bwf3wwv84lr8q" path="res://scripts/unit_def.gd" id="4_sb6ub"]
 
 [resource]
 resource_name = "onikanzei-overworld.png"
-script = ExtResource("4_4o5w7")
-display_name = "Onikanzei Overworld.png"
-unit_name = "onikanzei-overworld.png"
-twitch_name = "onikanzei-overworld.png"
-overworld_sprite = ExtResource("3_1ngu8")
-attribute_base = PackedInt32Array(100, 100, 100, 100, 100, 100, 100)
+script = ExtResource("4_sb6ub")
+display_name = "Oni Kanzei"
+unit_name = "onikanzei"
+twitch_name = "onikanzei"
+overworld_sprite = ExtResource("3_ngvxb")
