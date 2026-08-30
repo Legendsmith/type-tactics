@@ -6,6 +6,7 @@ extends MainScene2D
 @export var enemy_faction_goal:Node2D
 
 var battle_script_location:String = "uid://cfqrbe5b87mbm"
+var player_battle_scene:String = "uid://gwsvkadrrijx"
 
 var battles:Dictionary[Vector2i,Area2D]
 
@@ -37,3 +38,11 @@ func battle_check(coordinates:Vector2i):
 #	q.collision_mask = Factions.master_phys & faction.physics_layer
 #	q.exclude = [get_tree().get_first_node_in_group(Constants.PLAYER_ENTITY).get_rid()] # need this so player ent won't get mind controlled
 #	return q
+
+func player_battle():
+	var battle_stage:Node2D = load(player_battle_scene).instantiate()
+	process_mode = Node.PROCESS_MODE_DISABLED
+	get_tree().root.add_child(battle_stage)
+	await battle_stage.battle_over
+	battle_stage.queue_free()
+	process_mode = Node.PROCESS_MODE_INHERIT
