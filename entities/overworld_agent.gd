@@ -1,3 +1,4 @@
+@tool
 class_name OverworldAgent
 extends RigidBody2D
 const MAX_BT_DELTA:float = 2.0
@@ -44,23 +45,37 @@ var flow_field:FlowField
 var facing:Vector2
 
 func _ready() -> void:
-	spatial_hash.update()
-	spatial_hash.hash_location_changed.connect(on_hash_location_changed)
-	if unit_def:
-		load_unit_definition(unit_def)
-	GameManager.request_hashmap_near.connect(spatial_hash.on_request_hashmap_near)
-	add_to_group("overworld_agents")
-	animation_player.animation_started.connect(set_facing)
-	tick_offset = randi() % Engine.physics_ticks_per_second
-	refresh_hp()
-	nav_agent.waypoint_reached.connect(think.unbind(1))
-	configure_physics(faction)
-	if NavigationServer2D.map_is_active(get_world_2d().get_navigation_map()):
-		_setup_bt_player()
+	if Engine.is_editor_hint():
+		# This editor-run code should be changed before release to only run the code in the else.
+		_in_editor()
+		editor_state_changed.connect(_in_editor)
+		process_mode = Node.PROCESS_MODE_DISABLED
+		return
 	else:
-		#print_debug("Awaiting NavigationServer")
-		await NavigationServer2D.map_changed
-		_setup_bt_player()
+		process_mode = Node.PROCESS_MODE_INHERIT
+		spatial_hash.update()
+		spatial_hash.hash_location_changed.connect(on_hash_location_changed)
+		if unit_def:
+			load_unit_definition(unit_def)
+		GameManager.request_hashmap_near.connect(spatial_hash.on_request_hashmap_near)
+		add_to_group("overworld_agents")
+		animation_player.animation_started.connect(set_facing)
+		tick_offset = randi() % Engine.physics_ticks_per_second
+		refresh_hp()
+		nav_agent.waypoint_reached.connect(think.unbind(1))
+		configure_physics(faction)
+		if NavigationServer2D.map_is_active(get_world_2d().get_navigation_map()):
+			_setup_bt_player()
+		else:
+			#print_debug("Awaiting NavigationServer")
+			await NavigationServer2D.map_changed
+			_setup_bt_player()
+
+func _in_editor() -> void:
+	if unit_def:
+		var sprite:Sprite2D = find_child("Sprite2D",false)
+		sprite.texture = unit_def.overworld_sprite
+		name = "OverworldAgent" + unit_def.unit_name.capitalize()
 
 func _on_mouse_entered():
 	print_debug("mouse entered")
@@ -92,7 +107,7 @@ func load_unit_definition(unit_definition:UnitDef):
 	if unit_definition.dialogic_timeline:
 		dialogic_timeline = unit_definition.dialogic_timeline
 	$Sprite2D.texture = unit_def.overworld_sprite
-	name = "OverworldAgent%" + unit_def.unit_name.capitalize()
+	name = "OverworldAgent" + unit_def.unit_name.capitalize()
 
 func set_action(new_action:StringName):
 	action = new_action

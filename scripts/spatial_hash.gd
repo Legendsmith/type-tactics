@@ -15,6 +15,8 @@ var astar_point_id: int
 
 
 func _init(_agent: Node2D) -> void:
+	if Engine.is_editor_hint():
+		return
 	agent = _agent
 	SpatialMap.request_hashmap_near.connect(on_request_hashmap_near)
 	SpatialMap.request_hashmap_near_filter.connect(on_request_hashmap_near_filter)
