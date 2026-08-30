@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UnitDef" format=3 uid="uid://dbb0a84ijd38j"]
+
+[ext_resource type="Script" uid="uid://btssfmuejunjh" path="res://scripts/battle_technique.gd" id="1_u5y1f"]
+[ext_resource type="Script" uid="uid://cqggivyif4ut8" path="res://scripts/equip_item.gd" id="2_gdhgt"]
+[ext_resource type="Texture2D" uid="uid://cjbsa7qa426c6" path="res://texture/rekson_overworld.png" id="3_hxmsk"]
+[ext_resource type="Script" uid="uid://bwf3wwv84lr8q" path="res://scripts/unit_def.gd" id="4_1q4c3"]
+
+[resource]
+resource_name = "rekson"
+script = ExtResource("4_1q4c3")
+display_name = "Rekson"
+unit_name = "rekson"
+twitch_name = "rekson"
+overworld_sprite = ExtResource("3_hxmsk")
+attribute_base = PackedInt32Array(100, 100, 100, 100, 100, 100, 100)

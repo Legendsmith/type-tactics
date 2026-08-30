@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UnitDef" format=3 uid="uid://b11bdligm3huq"]
+
+[ext_resource type="Script" uid="uid://btssfmuejunjh" path="res://scripts/battle_technique.gd" id="1_6an1g"]
+[ext_resource type="Script" uid="uid://cqggivyif4ut8" path="res://scripts/equip_item.gd" id="2_alsv8"]
+[ext_resource type="Texture2D" uid="uid://ds3cwuyu41ebu" path="res://texture/darksticlight_overworld.png" id="3_4qu65"]
+[ext_resource type="Script" uid="uid://bwf3wwv84lr8q" path="res://scripts/unit_def.gd" id="4_coxwd"]
+
+[resource]
+resource_name = "darksticlight"
+script = ExtResource("4_coxwd")
+display_name = "Darksticlight"
+unit_name = "darksticlight"
+twitch_name = "darksticlight"
+overworld_sprite = ExtResource("3_4qu65")
+attribute_base = PackedInt32Array(100, 100, 100, 100, 100, 100, 100)

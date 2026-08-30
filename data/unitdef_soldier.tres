@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UnitDef" format=3 uid="uid://b3ep0kxppjpck"]
+
+[ext_resource type="Script" uid="uid://btssfmuejunjh" path="res://scripts/battle_technique.gd" id="1_y0bfi"]
+[ext_resource type="Script" uid="uid://cqggivyif4ut8" path="res://scripts/equip_item.gd" id="2_n0y4j"]
+[ext_resource type="Texture2D" uid="uid://b67h2vwbxw8v3" path="res://texture/soldier_gecko_overworld.png" id="3_sjie3"]
+[ext_resource type="Script" uid="uid://bwf3wwv84lr8q" path="res://scripts/unit_def.gd" id="4_tqton"]
+
+[resource]
+resource_name = "soldier"
+script = ExtResource("4_tqton")
+display_name = "Soldier"
+unit_name = "soldier"
+twitch_name = "soldier"
+overworld_sprite = ExtResource("3_sjie3")
+attribute_base = PackedInt32Array(100, 100, 100, 100, 100, 100, 100)

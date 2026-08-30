@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UnitDef" format=3 uid="uid://dq4fah3dbldn"]
+
+[ext_resource type="Script" uid="uid://btssfmuejunjh" path="res://scripts/battle_technique.gd" id="1_uwvr2"]
+[ext_resource type="Script" uid="uid://cqggivyif4ut8" path="res://scripts/equip_item.gd" id="2_w86pp"]
+[ext_resource type="Texture2D" uid="uid://bp5lautixrs28" path="res://texture/lunyari_overworld.png" id="3_bqox6"]
+[ext_resource type="Script" uid="uid://bwf3wwv84lr8q" path="res://scripts/unit_def.gd" id="4_jxcxx"]
+
+[resource]
+resource_name = "lunyari"
+script = ExtResource("4_jxcxx")
+display_name = "Lunyari"
+unit_name = "lunyari"
+twitch_name = "lunyari"
+overworld_sprite = ExtResource("3_bqox6")
+attribute_base = PackedInt32Array(100, 100, 100, 100, 100, 100, 100)
