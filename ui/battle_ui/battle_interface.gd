@@ -13,9 +13,21 @@ const MAX_TOASTS: int = 5
 
 # FIXME: add typing to this. right now it is templated for the next joe shmoe who ties things together.
 var combat_system
+var selected_unit: Unit
+var highlighted_unit: Unit
 var toast_queue: Array[Button] = []
 
 var _combat_log_state: int = 0
+
+
+func _ready() -> void:
+	#FIXME: hook this onto a system that keeps track of the state of the combat.
+	#		right now, no such system exists.
+	combat_system = get_tree().get_first_node_in_group(&"combat_system")
+	
+	reset_combat_log_state()
+	clear_all_toasts(true)
+
 
 #func _ready() -> void:
 	#for unit:Unit in get_tree().get_nodes_in_group(Unit.UNIT_GROUP):
@@ -35,18 +47,28 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_tree().paused = !get_tree().paused
 	get_viewport().set_input_as_handled()
 
-func _ready() -> void:
-	#FIXME: hook this onto a system that keeps track of the state of the combat.
-	#		right now, no such system exists.
-	combat_system = get_tree().get_first_node_in_group(&"combat_system")
+
+func set_highlighted_unit(unit: Unit) -> void:
+	if highlighted_unit == unit:
+		return
 	
-	reset_combat_log_state()
-	clear_all_toasts(true)
+	#TODO: Use effects to make it clear which unit is highlighted
+	highlighted_unit = unit
+
+
+func set_selected_unit(unit: Unit) -> void:
+	if selected_unit == unit:
+		return
+	
+	#TODO: use effect to make clear which unit is selected (glow? pulse? hue shift?)
+	selected_unit = unit
+	
 
 
 func show_combat_log() -> void:
 	build_combat_log()
 	combat_log.show()
+
 
 func hide_combat_log() -> void:
 	combat_log.hide()
