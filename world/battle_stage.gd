@@ -7,11 +7,14 @@ signal battle_over(winner:StringName)
 
 static var battle_unit:PackedScene = load("uid://bm03ut2gnfrq8")
 
+var enemy_team:TeamDef
+var player_team:TeamDef
+
 var turn_ready:bool = false
 
 var units_player:Dictionary[Unit,CombatMechanics.UnitStatus]
 var units_enemy:Dictionary[Unit,CombatMechanics.UnitStatus]
-
+var winner:StringName=&""
 
 
 func _ready():
@@ -53,3 +56,7 @@ func check_unit_status(units:Dictionary[Unit,CombatMechanics.UnitStatus]):
 		func(value:CombatMechanics.UnitStatus):
 			return value == CombatMechanics.UnitStatus.ACTIVE
 	)
+
+func battle_end():
+	winner = Constants.PLAYER_GROUP
+	battle_over.emit(winner)

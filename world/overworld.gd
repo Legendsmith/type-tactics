@@ -39,10 +39,18 @@ func battle_check(coordinates:Vector2i):
 #	q.exclude = [get_tree().get_first_node_in_group(Constants.PLAYER_ENTITY).get_rid()] # need this so player ent won't get mind controlled
 #	return q
 
-func player_battle():
+func player_battle(opponent:OverworldAgent)->void:
 	var battle_stage:Node2D = load(player_battle_scene).instantiate()
 	process_mode = Node.PROCESS_MODE_DISABLED
+	visible = false
 	get_tree().root.add_child(battle_stage)
 	await battle_stage.battle_over
+	var winner:StringName = battle_stage.winner
 	battle_stage.queue_free()
+	# TODO, add some kind of transition.
+	if battle_stage.winner == Constants.PLAYER_GROUP:
+		Dialogic.start(opponent.dialogic_timeline,Constants.DIALOG_BATTLE_VICTORY)
+	elif battle_stage.winner == Constants.ENEMY_GROUP:
+		Dialogic.start(opponent.dialogic_timeline,Constants.DIALOG_BATTLE_DEFEAT)
 	process_mode = Node.PROCESS_MODE_INHERIT
+	visible = true

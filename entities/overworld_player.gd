@@ -1,27 +1,33 @@
+@tool
 class_name OverworldPlayer
 extends OverworldAgent
 
 const INTERACT_RANGE:float = 32
 
 func _ready() -> void:
-	spatial_hash.hash_location_changed.connect(SpatialMap.on_player_hash_location_changed)
-	spatial_hash.update()
-	if unit_def:
-		load_unit_definition(unit_def)
-	GameManager.request_hashmap_near.connect(spatial_hash.on_request_hashmap_near)
-	add_to_group(Constants.PLAYER_ENTITY)
-	add_to_group("overworld_agents")
-	animation_player.animation_started.connect(set_facing)
-	tick_offset = 1
-	refresh_hp()
-	configure_physics(faction)
-	collision_layer = collision_layer | (1 << Constants.PLAYER_PHYSICS_LAYER)
-	bt_player.blackboard.bind_var_to_property(&"target", self , &"target", true)
-	bt_player.blackboard.bind_var_to_property(&"action", self , &"action", true)
-	bt_player.blackboard.set_var(&"faction", faction) # Set faction
-	bt_player.blackboard.set_var(&"max_speed", max_speed)
-	bt_player.blackboard.set_var(&"speed", max_speed)
-	contact_monitor = true
+	if Engine.is_editor_hint(): #remove this before release
+		if unit_def:
+			var sprite:Sprite2D = find_child("Sprite2D",false)
+			sprite.texture = unit_def.overworld_sprite
+	else:
+		spatial_hash.hash_location_changed.connect(SpatialMap.on_player_hash_location_changed)
+		spatial_hash.update()
+		if unit_def:
+			load_unit_definition(unit_def)
+		GameManager.request_hashmap_near.connect(spatial_hash.on_request_hashmap_near)
+		add_to_group(Constants.PLAYER_ENTITY)
+		add_to_group("overworld_agents")
+		animation_player.animation_started.connect(set_facing)
+		tick_offset = 1
+		refresh_hp()
+		configure_physics(faction)
+		collision_layer = collision_layer | (1 << Constants.PLAYER_PHYSICS_LAYER)
+		bt_player.blackboard.bind_var_to_property(&"target", self , &"target", true)
+		bt_player.blackboard.bind_var_to_property(&"action", self , &"action", true)
+		bt_player.blackboard.set_var(&"faction", faction) # Set faction
+		bt_player.blackboard.set_var(&"max_speed", max_speed)
+		bt_player.blackboard.set_var(&"speed", max_speed)
+		contact_monitor = true
 
 
 func _physics_process(delta) -> void:

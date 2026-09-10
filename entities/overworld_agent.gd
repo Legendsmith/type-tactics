@@ -10,7 +10,7 @@ const SPRITE_DIR_COEF:float = PI/(SPRITE_DIR/2.0)
 const SPRITE_H_BIAS:float = 0.84
 
 var dialogic_timeline:DialogicTimeline
-var dialogic_timeline_index:int = 0
+var dialogic_timeline_label:String=""
 
 @export var faction: StringName = Constants.ENEMY_GROUP
 @export var action: StringName = &"move":
@@ -251,7 +251,7 @@ func get_goal() ->Node2D:
 	return goal
 
 func on_interact():
-	Dialogic.start(dialogic_timeline,dialogic_timeline_index)
+	Dialogic.start(dialogic_timeline,dialogic_timeline_label)
 
 static func get_direction_index(input_vector: Vector2) -> int:
 	var biased_vector:Vector2 = Vector2(input_vector.x, input_vector.y * SPRITE_H_BIAS) #bias to horizontal by reducing the vertical slightly.

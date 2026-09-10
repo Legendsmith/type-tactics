@@ -54,3 +54,8 @@ const SFX_BUS_INDEX: int = 2
 const CHARACTER_VOICING_INDEX: int = 3
 
 #endregion
+
+#region Dialogic Constants
+const DIALOG_BATTLE_BEGIN:String = "battle_begin"
+const DIALOG_BATTLE_VICTORY:String = "player_victory"
+const DIALOG_BATTLE_DEFEAT:String = "player_defeat"

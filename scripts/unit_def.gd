@@ -24,7 +24,7 @@ extends Resource
 func get_modified_overworld_speed():
 	return overworld_speed_base + (attribute_base[Unit.Attribute.SPEED]/100)-1
 
-func get_overworld_power():
+func get_overworld_power() -> int:
 	if base_techniques.size():
 		var power:float = 0
 		var total_charges = base_techniques.reduce(func(accum,tech:BattleTechnique):
@@ -32,7 +32,7 @@ func get_overworld_power():
 		)
 		for tech:BattleTechnique in base_techniques:
 			power += tech.power * (tech.max_charges/total_charges)
-		return roundf(power)
+		return roundi(power)
 	else:
-		return overworld_power
+		return int(overworld_power)
 		
