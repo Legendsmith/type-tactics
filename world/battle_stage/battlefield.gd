@@ -133,5 +133,13 @@ func get_target_at_map_position(pos:Vector2i):
 	var query_result = get_world_2d().direct_space_state.intersect_point(query)
 	return query_result
 
-func get_next_free_file(_rank:int)->int:
-	return 0
+func get_next_free(start_rank:int=0)->Vector2i: # This could probably be optimized.
+	for rank:int in range(start_rank,dimensions.y):
+		for file:int in range(0,dimensions.x):
+			if get_target_at_map_position(Vector2i(file,rank)):
+				continue
+			else:
+				return Vector2i(file,rank)
+		rank +=1
+	return Vector2i.ONE * -1 # Return -1 if not found.
+		
