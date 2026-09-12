@@ -147,6 +147,7 @@ func serialize_attributes(attribute_array:Array):
 func battle_setup():
 	if not get_parent() is Battlefield:
 		return
+	process_mode = Node.PROCESS_MODE_INHERIT
 	call_bonuses()
 	#get_tree().current_scene.new_turn.connect(on_new_turn)
 	#get_tree().current_scene.finalize_turn.connect(on_finalize_turn)
