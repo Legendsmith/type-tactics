@@ -61,13 +61,13 @@ events = [SubResource("InputEventKey_pkcqa")]
 stream_count = 5
 stream_0/stream = ExtResource("14_im6e8")
 stream_0/volume = -60.0
-stream_1/stream = ExtResource("15_lfrwr")
-stream_1/volume = 0.0
-stream_2/stream = ExtResource("16_lxkdq")
+stream_1/stream = ExtResource("18_swt7p")
+stream_1/volume = -60.0
+stream_2/stream = ExtResource("17_2perw")
 stream_2/volume = -60.0
-stream_3/stream = ExtResource("17_2perw")
+stream_3/stream = ExtResource("15_lfrwr")
 stream_3/volume = -60.0
-stream_4/stream = ExtResource("18_swt7p")
+stream_4/stream = ExtResource("16_lxkdq")
 stream_4/volume = -60.0
 
 [node name="CampaignSelect" type="Control" unique_id=1162155355]
@@ -140,6 +140,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"CampaignButton"
+disabled = true
 metadata/player_unit_def = ExtResource("7_rqlqe")
 metadata/music_idx = 0
 
@@ -150,7 +151,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"CampaignButton"
 metadata/player_unit_def = ExtResource("8_ldm55")
-metadata/music_idx = 4
+metadata/music_idx = 1
 
 [node name="ButtonAuteru" type="Button" parent="AccordionContainer/ChooseYourCampaign/CampaignButtonGrid" unique_id=338494892]
 material = ExtResource("3_h1uhm")
@@ -160,7 +161,7 @@ size_flags_vertical = 3
 theme_type_variation = &"CampaignButton"
 disabled = true
 metadata/player_unit_def = ExtResource("9_u8jpo")
-metadata/music_idx = 3
+metadata/music_idx = 2
 
 [node name="Extras" type="FoldableContainer" parent="AccordionContainer" unique_id=1204940429]
 unique_name_in_owner = true
@@ -182,7 +183,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource("10_aelmw")
-expand_mode = 3
+expand_mode = 2
 stretch_mode = 6
 
 [node name="TextureMidnigtNovae" type="TextureRect" parent="AccordionContainer/Extras/ExtrasTextureGrid" unique_id=1186162818]
@@ -190,7 +191,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource("11_tg36y")
-expand_mode = 3
+expand_mode = 2
 stretch_mode = 6
 
 [node name="ExtrasButtonGrid" type="GridContainer" parent="AccordionContainer/Extras" unique_id=1349047966]
@@ -206,6 +207,7 @@ size_flags_vertical = 3
 theme_type_variation = &"CampaignButtonFlat"
 text = "Eletheos"
 metadata/player_unit_def = ExtResource("10_u8jpo")
+metadata/music_idx = 3
 
 [node name="ButtonPlayAsMidnightNovae" type="Button" parent="AccordionContainer/Extras/ExtrasButtonGrid" unique_id=2018302041]
 layout_mode = 2
@@ -214,6 +216,7 @@ size_flags_vertical = 3
 theme_type_variation = &"CampaignButtonFlat"
 text = "MidnightNovae"
 metadata/player_unit_def = ExtResource("11_3w8t2")
+metadata/music_idx = 3
 
 [node name="BackButton" type="Button" parent="." unique_id=1407666684]
 unique_name_in_owner = true
