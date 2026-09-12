@@ -13,7 +13,6 @@ viewport_path = NodePath("SubViewport")
 texture_filter = 1
 script = ExtResource("1_k7dgi")
 background_music = ExtResource("2_no2cn")
-interface_scene = "uid://dysomavkjoi23"
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1413354219]
 size = Vector2i(1920, 1080)

@@ -27,7 +27,7 @@ func _ready() -> void:
 
 func initalize_player_battle_scene():
 	battle_stage = load(player_battle_scene).instantiate()
-	get_tree().root.add_child(battle_stage)
+	#get_tree().root.add_child(battle_stage)
 	battle_stage.process_mode = PROCESS_MODE_DISABLED
 	battle_stage.visible=false
 	tree_exiting.connect(battle_stage.queue_free) # connect the exit of the battle stage to this node.

@@ -16,6 +16,7 @@ func _ready() -> void:
 			load_unit_definition(unit_def)
 		GameManager.request_hashmap_near.connect(spatial_hash.on_request_hashmap_near)
 		add_to_group(Constants.PLAYER_ENTITY)
+		process_mode = Node.PROCESS_MODE_INHERIT
 		add_to_group("overworld_agents")
 		animation_player.animation_started.connect(set_facing)
 		tick_offset = 1
