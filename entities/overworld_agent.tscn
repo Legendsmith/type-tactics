@@ -204,6 +204,7 @@ var/distance/hint_string = ""
 radius = 8.0
 
 [node name="OverworldAgent" type="RigidBody2D" unique_id=1303149982]
+process_mode = 4
 physics_material_override = SubResource("PhysicsMaterial_5mdms")
 lock_rotation = true
 max_contacts_reported = 1

@@ -8,9 +8,12 @@ const MAX_MODIFIER:int = 6
 const UNIT_GROUP := &"units"
 const MAX_EQUIP:int = 2
 
+static var battle_unit_scene:String = "uid://bm03ut2gnfrq8"
+
 enum Attribute {
 	HP, ATTACK, DEFENSE, SPECIAL_ATTACK, SPECIAL_DEFENSE, SPEED, SIZE
 }
+
 
 class TurnAction:
 	var technique:BattleTechnique
@@ -140,9 +143,6 @@ func serialize_attributes(attribute_array:Array):
 
 #endregion 
 #region Setup, Items and Healing/Refresh
-func _ready():
-	add_to_group(UNIT_GROUP)
-
 
 func battle_setup():
 	if not get_parent() is Battlefield:
@@ -226,3 +226,16 @@ func battle_animation(animation_name:StringName) -> AnimationPlayer:
 
 func _exit_tree() -> void:
 	remove_from_group(CombatMechanics.TARGET_GROUP)
+	remove_from_group(UNIT_GROUP)
+
+func _enter_tree() -> void:
+	add_to_group(UNIT_GROUP)
+
+func exit_battlefield():
+	var _parent:Node = get_parent()
+	if _parent is Battlefield:
+		_parent.remove_child(self)
+		var connections:Array[Dictionary] = get_incoming_connections()
+		for entry:Dictionary in connections: #disconnect from all the battlefield connections.
+			entry["signal"].disconnect(entry["callable"])
+		process_mode=Node.PROCESS_MODE_DISABLED
