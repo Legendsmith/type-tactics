@@ -150,7 +150,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"CampaignButton"
 metadata/player_unit_def = ExtResource("8_ldm55")
-metadata/music_idx = 5
+metadata/music_idx = 4
 
 [node name="ButtonAuteru" type="Button" parent="AccordionContainer/ChooseYourCampaign/CampaignButtonGrid" unique_id=338494892]
 material = ExtResource("3_h1uhm")
