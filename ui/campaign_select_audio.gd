@@ -1,7 +1,7 @@
 extends AudioStreamPlayer
 @export var active_index:int = 1
 @export var stream_count:int = 5
-@export var fade_time:float = 0.25
+@export var fade_time:float = 0.4
 var tween:Tween
 
 func _ready() -> void:
@@ -12,9 +12,6 @@ func _ready() -> void:
 	play()
 
 func on_crossfade_music(index:int)->void:
-	print(index)
-	if tween:
-		tween.stop()
 	tween = create_tween().set_parallel(true)
 	for idx:int in range(stream_count):
 		if idx == index:
