@@ -13,6 +13,12 @@
 [ext_resource type="Resource" uid="uid://c7s8be61kkr4" path="res://data/unitdef_gata.tres" id="10_u8jpo"]
 [ext_resource type="Resource" uid="uid://buuup837csiv0" path="res://data/unitdef_midnightnovae.tres" id="11_3w8t2"]
 [ext_resource type="Texture2D" uid="uid://b8jocrrfg5yr8" path="res://texture/campaign_select_midnightnovae.png" id="11_tg36y"]
+[ext_resource type="AudioStream" uid="uid://y4ih2r1nnwj2" path="res://audio/claycubed_characterselect_riff.ogg" id="14_im6e8"]
+[ext_resource type="AudioStream" uid="uid://iufpes5nenw5" path="res://audio/claycubed_characterselect_vocal.ogg" id="15_lfrwr"]
+[ext_resource type="AudioStream" uid="uid://bvy086x5r5y4m" path="res://audio/claycubed_characterselect_arp.ogg" id="16_lxkdq"]
+[ext_resource type="AudioStream" uid="uid://bmbhvyp0v47w7" path="res://audio/claycubed_characterselect_piano.ogg" id="17_2perw"]
+[ext_resource type="AudioStream" uid="uid://xixd5203d1kj" path="res://audio/claycubed_characterselect_synth.ogg" id="18_swt7p"]
+[ext_resource type="Script" uid="uid://c7k30cv54fo80" path="res://ui/campaign_select_audio.gd" id="19_vamvd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cixdc"]
 bg_color = Color(0.09943332, 0.085499994, 0.19, 1)
@@ -50,6 +56,19 @@ keycode = 4194305
 
 [sub_resource type="Shortcut" id="Shortcut_pkcqa"]
 events = [SubResource("InputEventKey_pkcqa")]
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_5mdms"]
+stream_count = 5
+stream_0/stream = ExtResource("14_im6e8")
+stream_0/volume = -60.0
+stream_1/stream = ExtResource("15_lfrwr")
+stream_1/volume = 0.0
+stream_2/stream = ExtResource("16_lxkdq")
+stream_2/volume = -60.0
+stream_3/stream = ExtResource("17_2perw")
+stream_3/volume = -60.0
+stream_4/stream = ExtResource("18_swt7p")
+stream_4/volume = -60.0
 
 [node name="CampaignSelect" type="Control" unique_id=1162155355]
 layout_mode = 3
@@ -122,6 +141,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"CampaignButton"
 metadata/player_unit_def = ExtResource("7_rqlqe")
+metadata/music_idx = 0
 
 [node name="ButtonFufu" type="Button" parent="AccordionContainer/ChooseYourCampaign/CampaignButtonGrid" unique_id=339495271]
 material = ExtResource("3_h1uhm")
@@ -130,6 +150,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = &"CampaignButton"
 metadata/player_unit_def = ExtResource("8_ldm55")
+metadata/music_idx = 5
 
 [node name="ButtonAuteru" type="Button" parent="AccordionContainer/ChooseYourCampaign/CampaignButtonGrid" unique_id=338494892]
 material = ExtResource("3_h1uhm")
@@ -139,6 +160,7 @@ size_flags_vertical = 3
 theme_type_variation = &"CampaignButton"
 disabled = true
 metadata/player_unit_def = ExtResource("9_u8jpo")
+metadata/music_idx = 3
 
 [node name="Extras" type="FoldableContainer" parent="AccordionContainer" unique_id=1204940429]
 unique_name_in_owner = true
@@ -207,3 +229,10 @@ grow_horizontal = 0
 grow_vertical = 0
 shortcut = SubResource("Shortcut_pkcqa")
 text = "Back"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1931289772]
+stream = SubResource("AudioStreamSynchronized_5mdms")
+volume_db = -10.0
+script = ExtResource("19_vamvd")
+
+[connection signal="crossfade_music" from="." to="AudioStreamPlayer" method="on_crossfade_music"]
