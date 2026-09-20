@@ -7,8 +7,8 @@ signal player_battle(opponent)
 @export var player_faction_goal:Node2D
 @export var enemy_faction_goal:Node2D
 
-var battle_script_location:String = "uid://cfqrbe5b87mbm"
-var player_battle_scene:String = "uid://gwsvkadrrijx"
+static var battle_script_location:String = "uid://cfqrbe5b87mbm"
+static var player_battle_scene:String = "uid://gwsvkadrrijx"
 
 var battles:Dictionary[Vector2i,Area2D]
 var battle_stage:MainScene2D
@@ -31,6 +31,7 @@ func initalize_player_battle_scene():
 	battle_stage.process_mode = PROCESS_MODE_DISABLED
 	battle_stage.visible=false
 	tree_exiting.connect(battle_stage.queue_free) # connect the exit of the battle stage to this node.
+	player_battle.connect(battle_stage.begin_player_battle)
 	battle_stage.battle_over.connect(on_battle_over)
 
 
@@ -45,14 +46,19 @@ func npc_battle_check(coordinates:Vector2i):
 		battles[coordinates]=new_battle
 
 
-func begin_player_battle(opponent:OverworldAgent)->MainScene2D:
+func begin_player_battle(opponent:OverworldAgent)->Node2D:
+	print_debug("Beginning Player Battle")
+	get_tree().root.add_child(battle_stage)
 	process_mode = Node.PROCESS_MODE_DISABLED
 	visible = false
+	GameManager.hide_interface()
 	player_battle.emit(opponent)
 	return battle_stage
 
 
 func on_battle_over(_winner:StringName):
 	# TODO, add some kind of transition.
+	get_tree().root.remove_child(battle_stage)
+	GameManager.show_interface()
 	process_mode = Node.PROCESS_MODE_INHERIT
 	visible = true

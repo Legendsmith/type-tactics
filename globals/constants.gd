@@ -59,3 +59,4 @@ const CHARACTER_VOICING_INDEX: int = 3
 const DIALOG_BATTLE_BEGIN:String = "battle_begin"
 const DIALOG_BATTLE_VICTORY:String = "player_victory"
 const DIALOG_BATTLE_DEFEAT:String = "player_defeat"
+const DIALOG_REPEAT:String = "repeat"

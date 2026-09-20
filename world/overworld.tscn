@@ -23,6 +23,7 @@ goal_faction_name = &"opponent"
 
 [node name="OverworldPlayer" parent="." unique_id=1005182913 instance=ExtResource("14_33iqb")]
 position = Vector2(241, 135)
+contact_monitor = false
 
 [node name="Camera2D" type="Camera2D" parent="OverworldPlayer" unique_id=183223178]
 process_mode = 3

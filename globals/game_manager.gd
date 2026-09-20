@@ -54,7 +54,12 @@ func clear_spectrum_analyser():
 		spectrum_analyser = null
 		analyser_effect_index = -1
 	
-
+func hide_interface():
+	if game_interface:
+		game_interface.visible=false
+func show_interface():
+	if game_interface:
+		game_interface.visible=true
 
 func change_scene(scene_path: String,transition:StringName=&"fade", clear_interface:bool = true,extra_data:Dictionary[StringName,Variant]={}):
 	if not scene_changing:

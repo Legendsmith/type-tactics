@@ -37,11 +37,17 @@ func _physics_process(delta) -> void:
 		spatial_hash.update()
 		bt_delta = 0.0
 	if contact_monitor:
-		var count:int = get_contact_count()
-		for i:int in range(count):
-			var contact_target:Node2D = get_colliding_bodies()[0]
-			if contact_target is TileMapLayer or contact_target.faction == faction:
-				return
+		attack(delta)
+
+func attack(delta:float) -> void:
+	var count:int = get_contact_count()
+	if count:
+		var contact_target:Node2D = get_colliding_bodies()[0]
+		if contact_target is TileMapLayer or contact_target.faction == faction:
+			return
+		if contact_target.input_pickable:
+			contact_target.on_interact()
+		else:
 			var roll:float = randf_range(Constants.OVERWORLD_DAMAGE_VARIANCE,1)
 			var dmg:float = contact_target.recieve_damage(self,overworld_pwr*roll,delta)
 			#attack_charge -= delta

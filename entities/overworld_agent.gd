@@ -82,7 +82,7 @@ func _in_editor() -> void:
 		name = "OverworldAgent" + unit_def.unit_name.capitalize()
 
 func _on_mouse_entered():
-	print_debug("mouse entered")
+	#print_debug("mouse entered")
 	Cursor.set_cursor(Cursor.Type.TALK)
 
 func _on_mouse_exited():
@@ -110,6 +110,8 @@ func load_unit_definition(unit_definition:UnitDef):
 	max_speed = unit_def.get_modified_overworld_speed()
 	if unit_definition.dialogic_timeline:
 		dialogic_timeline = unit_definition.dialogic_timeline
+		if faction == Constants.ENEMY_GROUP:
+			dialogic_timeline_label = Constants.DIALOG_BATTLE_BEGIN
 	$Sprite2D.texture = unit_def.overworld_sprite
 	name = "OverworldAgent" + unit_def.unit_name.capitalize()
 
@@ -156,18 +158,7 @@ func recieve_damage(attacker:OverworldAgent,power:int,delta:float) -> float:
 func _physics_process(delta) -> void:
 	bt_delta += delta
 	if contact_monitor:
-		var count:int = get_contact_count()
-		if count:
-			var contact_target:Node2D = get_colliding_bodies()[0]
-			if contact_target is TileMapLayer or contact_target.faction == faction:
-				return
-			var roll:float = randf_range(Constants.OVERWORLD_DAMAGE_VARIANCE,1)
-			var dmg:float = contact_target.recieve_damage(self,overworld_pwr*roll,delta)
-			#attack_charge -= delta
-			inflicted_damage.emit(self,dmg,contact_target)
-			damage_inflicted += dmg
-			#attack_charge = clampf(attack_charge+(delta/5),0,Constants.OVERWORLD_MAX_ATTACK_CHARGE)
-		
+		attack(delta)
 	if (Engine.get_physics_frames() + tick_offset) % (skip_frames + 1) == 0:
 		spatial_hash.update()
 		if use_flow_field:
@@ -176,6 +167,21 @@ func _physics_process(delta) -> void:
 		#print_debug("Backup think")
 		spatial_hash.update()
 		think()
+
+
+func attack(delta:float) -> void:
+	var count:int = get_contact_count()
+	if count:
+		var contact_target:Node2D = get_colliding_bodies()[0]
+		if contact_target is TileMapLayer or contact_target.faction == faction:
+			return
+		var roll:float = randf_range(Constants.OVERWORLD_DAMAGE_VARIANCE,1)
+		var dmg:float = contact_target.recieve_damage(self,overworld_pwr*roll,delta)
+		#attack_charge -= delta
+		inflicted_damage.emit(self,dmg,contact_target)
+		damage_inflicted += dmg
+		#attack_charge = clampf(attack_charge+(delta/5),0,Constants.OVERWORLD_MAX_ATTACK_CHARGE)
+
 
 func move(velocity:Vector2,delta_frames:float = skip_frames+1):
 	apply_central_force(velocity*(delta_frames+linear_damp))

@@ -59,7 +59,7 @@ func on_hashmap_faction_check(control_faction:Pointer.StringNamePtr,check: Point
 		if control_faction.value == &"":
 			control_faction.value = agent.faction
 			return
-		print_debug("Check: Agent faction %s | %s" % [agent.faction,control_faction.value])
+		#print_debug("Check: Agent faction %s | %s" % [agent.faction,control_faction.value])
 		if check.value:
 			check.value = control_faction.value == agent.faction
 

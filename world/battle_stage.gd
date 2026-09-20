@@ -21,6 +21,8 @@ func _ready():
 
 func begin_player_battle(opponent:OverworldAgent):
 	%EnemyBattlefield.reset_map() # Reset occupancy map.
+	$Camera2D.enabled = true
+	visible=true
 	var centre_file:int = ceili(%EnemyBattlefield.dimensions.x/2)
 	var num_to_deploy:int = min(opponent.initial_deploy,opponent.units.size())
 	for i:int in range(num_to_deploy):
@@ -56,6 +58,7 @@ func check_unit_status(units:Dictionary[Unit,CombatMechanics.UnitStatus]):
 func battle_end():
 	winner = Constants.PLAYER_GROUP
 	visible = false
+	$Camera2D.enabled = false
 	%EnemyBattlefield.reset() # Reset the enemy side.
 	process_mode = PROCESS_MODE_DISABLED
 	battle_over.emit(winner)

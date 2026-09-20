@@ -10,18 +10,19 @@ extends Camera2D
 var _dragging: bool = false
 
 func _unhandled_input(event: InputEvent) -> void:
-	_dragging = Input.is_action_pressed(&"camera_drag")
-	if event is InputEventMouseMotion and _dragging:
-		#var motion:InputEventMouseMotion = event as InputEventMouseMotion
-		offset-=event.relative/get_zoom()
-	### Zoom
-	var new_zoom: Vector2 = get_zoom()
-	if event.is_action_pressed("camera_zoom_in"):
-		new_zoom += _zoom_step
-	elif event.is_action_pressed("camera_zoom_out"):
-		new_zoom -= _zoom_step
-	set_zoom(new_zoom.clamp(_min_zoom, _max_zoom))
-	
+	if enabled:
+		_dragging = Input.is_action_pressed(&"camera_drag")
+		if event is InputEventMouseMotion and _dragging:
+			#var motion:InputEventMouseMotion = event as InputEventMouseMotion
+			offset-=event.relative/get_zoom()
+		### Zoom
+		var new_zoom: Vector2 = get_zoom()
+		if event.is_action_pressed("camera_zoom_in"):
+			new_zoom += _zoom_step
+		elif event.is_action_pressed("camera_zoom_out"):
+			new_zoom -= _zoom_step
+		set_zoom(new_zoom.clamp(_min_zoom, _max_zoom))
+		
 
 #func _process(delta: float) -> void:
 #	var input_dir: Vector2 = Input.get_vector(&"move_left", &"move_right", &"move_up",&"move_down")

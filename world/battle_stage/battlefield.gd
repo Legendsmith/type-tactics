@@ -37,7 +37,7 @@ func get_tile_center_local_position(file: int, rank: int) -> Vector2:
 func get_tile_center_global_position(file: int, rank: int) -> Vector2:
 	return get_tile_center_local_position(file, rank) + global_position
 
-func reset():
+func reset_map() -> void:
 	occupancy_map = BitMap.new()
 	if get_child_count():
 		for node:Node2D in get_children():
