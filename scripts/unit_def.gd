@@ -20,6 +20,8 @@ extends Resource
 @export var default_desired_rank:int = 0
 @export var equipment:Array[EquipItem] = []
 @export var overworld_speed_base:float = 192
+## Joins battles with the player Y/N. This is true for everything except chat mascots.
+@export var join_battles:bool = true
 
 func get_modified_overworld_speed():
 	return overworld_speed_base + (attribute_base[Unit.Attribute.SPEED]/100)-1

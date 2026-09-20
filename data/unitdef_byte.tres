@@ -10,6 +10,5 @@ resource_name = "byte"
 script = ExtResource("4_6iv3j")
 display_name = "Byte"
 unit_name = "byte"
-twitch_name = "byte"
 overworld_sprite = ExtResource("3_a0jss")
-attribute_base = PackedInt32Array(100, 100, 100, 100, 100, 100, 100)
+join_battles = false
