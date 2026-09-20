@@ -11,7 +11,7 @@ static var battle_script_location:String = "uid://cfqrbe5b87mbm"
 static var player_battle_scene:String = "uid://gwsvkadrrijx"
 
 var battles:Dictionary[Vector2i,Area2D]
-var battle_stage:MainScene2D
+var battle_stage:Node2D
 
 
 func _ready() -> void:
@@ -62,3 +62,5 @@ func on_battle_over(_winner:StringName):
 	GameManager.show_interface()
 	process_mode = Node.PROCESS_MODE_INHERIT
 	visible = true
+	if background_music:
+		GameManager.play_music(background_music)

@@ -24,7 +24,7 @@ func _ready():
 
 func begin_player_battle(opponent:OverworldAgent):
 	%EnemyBattlefield.reset_map() # Reset occupancy map.
-	$Camera2D.enabled = true
+	$Camera2D.make_current()
 	visible=true
 	var centre_file:int = ceili(%EnemyBattlefield.dimensions.x/2)
 	var num_to_deploy:int = min(opponent.initial_deploy,opponent.units.size())
