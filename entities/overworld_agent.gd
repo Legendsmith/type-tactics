@@ -25,7 +25,11 @@ var desired_velocity:Vector2 = Vector2.ZERO
 @export var overworld_def: int = 100
 @export var overworld_hp: float = 100
 @export var max_overworld_hp: int = 100
-@export var unit_def:UnitDef
+@export var unit_def:UnitDef:
+	set(new): #Remove4Release
+		unit_def=new
+		if Engine.is_editor_hint(): 
+			_in_editor()
 var damage_inflicted:float = 0
 #var attack_charge:float = 0
 
@@ -46,7 +50,7 @@ var facing:Vector2
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
-		# This editor-run code should be changed before release to only run the code in the else.
+		# This editor-run code should be  before release to only run the code in the else. #Remove4Release
 		_in_editor()
 		editor_state_changed.connect(_in_editor)
 		process_mode = Node.PROCESS_MODE_DISABLED
