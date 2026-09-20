@@ -1,4 +1,4 @@
-extends MainScene2D
+extends Node2D
 
 signal finalize_turn
 signal new_turn
@@ -7,6 +7,8 @@ signal battle_over(winner:StringName)
 
 var enemy_team:TeamDef
 var player_team:TeamDef
+@export var background_music:AudioStream
+static var battle_unit:PackedScene = load("uid://bm03ut2gnfrq8")
 
 var turn_ready:bool = false
 # TODO: have this tracked by team entities such as the player entity.
@@ -16,7 +18,8 @@ var winner:StringName=&""
 
 
 func _ready():
-	super()
+	if background_music:
+		GameManager.play_music(background_music)
 	get_tree().call_group(Unit.UNIT_GROUP,&"battle_setup")
 
 func begin_player_battle(opponent:OverworldAgent):
