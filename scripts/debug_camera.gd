@@ -8,6 +8,11 @@ extends Camera2D
 @onready var _min_zoom: Vector2 = Vector2.ONE * min_zoom
 
 var _dragging: bool = false
+func _ready() -> void:
+	var scene:Node2D = get_tree().current_scene
+	if scene is Overworld:
+		await scene.ready
+		scene.battle_stage.battle_over.connect(make_current.unbind(1))
 
 func _unhandled_input(event: InputEvent) -> void:
 	if enabled:
@@ -22,7 +27,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif event.is_action_pressed("camera_zoom_out"):
 			new_zoom -= _zoom_step
 		set_zoom(new_zoom.clamp(_min_zoom, _max_zoom))
-		
+	
 
 #func _process(delta: float) -> void:
 #	var input_dir: Vector2 = Input.get_vector(&"move_left", &"move_right", &"move_up",&"move_down")

@@ -30,10 +30,11 @@ class TurnAction:
 		elif target is Unit:
 			ctx.target_units.append(target)
 		else:
-			target = owner #self target fallback? For now.
+			ctx.target_units.append(owner) #self target fallback? For now.
 		return ctx
 	func complete_turn():
-		owner.technique_charges[technique] -= CombatMechanics.charge_usage(technique,owner.types)
+		if technique in owner.technique_charges: # The none technique has no charges.
+			owner.technique_charges[technique] -= CombatMechanics.charge_usage(technique,owner.types)
 
 @export var unit_definition:UnitDef
 @export var display_name:String = "Combatant"
@@ -179,12 +180,14 @@ func recieve_damage(damage:int):
 #endregion
 
 #region Techniques
+## Get the techniques that have entries for charges from the unit
 func get_technique_uses() -> Dictionary:
 	var technique_usages:Dictionary[BattleTechnique,int]
 	for tech:BattleTechnique in technique_charges:
 		technique_usages[tech] = technique_charges[tech]/CombatMechanics.charge_usage(tech,types)
 	return technique_usages
 
+## Queue technique. Returns true if success, failure if it can't. Use this for UI response or BT decision
 func queue_technique(tech:BattleTechnique) -> bool:
 	var charge_usage:int = CombatMechanics.charge_usage(tech,types)
 	var action:TurnAction = TurnAction.new(self)
@@ -197,16 +200,37 @@ func queue_technique(tech:BattleTechnique) -> bool:
 		return false
 #endregion
 #region Turns
+## Run on new turn signal from BattleStage. Clears the action
 func on_new_turn() -> void:
 	next_action = default_action
+	update.emit()
 
+## True if this unit has been given something other than the default "No Action" technique.
+func has_action() -> bool:
+	return next_action.technique != default_action.technique
+
+## Turn readiness is checked by the battle stage, this only raises the alert for the player.
 func on_finalize_turn() -> void:
-	if next_action.technique_name == BattleTechnique.NONE_ACTION and control_type == Constants.PLAYER_GROUP:
+	if not has_action() and control_type == Constants.PLAYER_GROUP and is_instance_valid(GameManager.game_interface):
 		var data:Dictionary = {"alert":GameInterface.Alert.NONE_ACTION,"source":self,"zoom":true}
-		GameManager.game_interface.alert(data)
-		get_tree().current_scene.turn_ready = false
+		GameManager.game_interface.show_alert(data)
 
 #endregion
+
+## Instantiates battle units for every definition that joins battles, ready to fight.
+static func build_team(defs:Array[UnitDef], control:StringName) -> Array[Unit]:
+	var team_units:Array[Unit] = []
+	var unit_scene:PackedScene = load(battle_unit_scene)
+	for def:UnitDef in defs:
+		if not def.join_battles:
+			continue
+		var new_unit:Unit = unit_scene.instantiate()
+		new_unit.control_type = control
+		new_unit.create_from_unit_def(def)
+		new_unit.equipped_items = def.equipment
+		new_unit.full_refresh()
+		team_units.append(new_unit)
+	return team_units
 
 func create_from_unit_def(def:UnitDef) -> Unit:
 	unit_definition=def

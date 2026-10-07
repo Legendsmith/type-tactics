@@ -27,7 +27,7 @@ mouse_filter = 1
 theme = ExtResource("1_dgdf5")
 script = ExtResource("2_dgdf5")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1671671964]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1378590800]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,17 +35,116 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="EnemyContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=2101977935]
+[node name="Control" type="Control" parent="VBoxContainer" unique_id=338344244]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="ToastContainer" type="VBoxContainer" parent="VBoxContainer/Control" unique_id=610624803]
 unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.95348835
+anchor_right = 0.2
+anchor_bottom = 1.0
+grow_vertical = 0
+alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Toast1" type="Button" parent="VBoxContainer/Control/ToastContainer" unique_id=114677458]
+layout_mode = 2
+theme_type_variation = &"AlertButton"
+text = "Toast1"
+
+[node name="Timer" type="Timer" parent="VBoxContainer/Control/ToastContainer/Toast1" unique_id=1472946434]
+
+[node name="Toast2" type="Button" parent="VBoxContainer/Control/ToastContainer" unique_id=174572462]
+layout_mode = 2
+theme_type_variation = &"AlertButton"
+text = "toast2"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1067299579]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer" unique_id=1647474950]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CombatLog" type="MarginContainer" parent="." unique_id=1318850182]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 400
+theme_override_constants/margin_bottom = 100
+
+[node name="PanelContainer" type="PanelContainer" parent="CombatLog" unique_id=1307981264]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CombatLog/PanelContainer" unique_id=739173413]
+layout_mode = 2
+
+[node name="CombatLogContainer" type="VBoxContainer" parent="CombatLog/PanelContainer/ScrollContainer" unique_id=71334268]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 2
+
+[node name="Log1" type="RichTextLabel" parent="CombatLog/PanelContainer/ScrollContainer/CombatLogContainer" unique_id=1438689100]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[color=yellow]amog[/color] did [color=red]999[/color] damage to [color=orange]sus[/color]."
+fit_content = true
+
+[node name="HSeparator" type="HSeparator" parent="CombatLog/PanelContainer/ScrollContainer/CombatLogContainer" unique_id=495310377]
+layout_mode = 2
+
+[node name="Log2" type="RichTextLabel" parent="CombatLog/PanelContainer/ScrollContainer/CombatLogContainer" unique_id=2070098506]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[color=yellow]chungus[/color] healed [color=yellow]pearto[/color] by [color=green]500[/color] HP."
+fit_content = true
+
+[node name="OLD" type="Control" parent="." unique_id=951931362]
+visible = false
+modulate = Color(1, 1, 1, 0.22352941)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OLD" unique_id=1671671964]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 301.0
+offset_bottom = 152.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EnemyContainer" type="VBoxContainer" parent="OLD/VBoxContainer" unique_id=2101977935]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 0
 
-[node name="TopUIArea" type="HBoxContainer" parent="VBoxContainer" unique_id=1725570141]
+[node name="TopUIArea" type="HBoxContainer" parent="OLD/VBoxContainer" unique_id=1725570141]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TopUIArea" unique_id=2045485811]
+[node name="MarginContainer" type="MarginContainer" parent="OLD/VBoxContainer/TopUIArea" unique_id=2045485811]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/margin_left = 8
@@ -53,47 +152,43 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="AlertBar" type="HBoxContainer" parent="VBoxContainer/TopUIArea/MarginContainer" unique_id=1273560862]
-unique_name_in_owner = true
+[node name="AlertBar" type="HBoxContainer" parent="OLD/VBoxContainer/TopUIArea/MarginContainer" unique_id=1273560862]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 alignment = 2
 
-[node name="Alert" type="Button" parent="VBoxContainer/TopUIArea/MarginContainer/AlertBar" unique_id=1167145379]
+[node name="Alert" type="Button" parent="OLD/VBoxContainer/TopUIArea/MarginContainer/AlertBar" unique_id=1167145379]
 layout_mode = 2
 theme = ExtResource("1_dgdf5")
 theme_type_variation = &"AlertButton"
 text = "Alert!"
 
-[node name="Alert2" type="Button" parent="VBoxContainer/TopUIArea/MarginContainer/AlertBar" unique_id=587256413]
+[node name="Alert2" type="Button" parent="OLD/VBoxContainer/TopUIArea/MarginContainer/AlertBar" unique_id=587256413]
 layout_mode = 2
 theme = ExtResource("1_dgdf5")
 theme_type_variation = &"AlertButton"
 text = "Alert2"
 
-[node name="PlayerContainer" type="VBoxContainer" parent="VBoxContainer/TopUIArea" unique_id=345202133]
-unique_name_in_owner = true
+[node name="PlayerContainer" type="VBoxContainer" parent="OLD/VBoxContainer/TopUIArea" unique_id=345202133]
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 8
 
-[node name="BattleBarMargin" type="MarginContainer" parent="VBoxContainer" unique_id=841507245]
+[node name="BattleBarMargin" type="MarginContainer" parent="OLD/VBoxContainer" unique_id=841507245]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="BattleBar" type="HBoxContainer" parent="VBoxContainer/BattleBarMargin" unique_id=294696036]
+[node name="BattleBar" type="HBoxContainer" parent="OLD/VBoxContainer/BattleBarMargin" unique_id=294696036]
 layout_mode = 2
 alignment = 2
 
-[node name="MoveList" type="ItemList" parent="VBoxContainer/BattleBarMargin/BattleBar" unique_id=1439130373]
-unique_name_in_owner = true
+[node name="MoveList" type="ItemList" parent="OLD/VBoxContainer/BattleBarMargin/BattleBar" unique_id=1439130373]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_dgdf5")
 
-[node name="Messagelabel" type="Label" parent="VBoxContainer/BattleBarMargin/BattleBar/MoveList" unique_id=1531920678]
-unique_name_in_owner = true
+[node name="Messagelabel" type="Label" parent="OLD/VBoxContainer/BattleBarMargin/BattleBar/MoveList" unique_id=1531920678]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -111,41 +206,38 @@ theme_type_variation = &"BattleBarLabel"
 text = "It's Battle time!"
 horizontal_alignment = 1
 
-[node name="Container" type="MarginContainer" parent="VBoxContainer/BattleBarMargin/BattleBar" unique_id=761303398]
+[node name="Container" type="MarginContainer" parent="OLD/VBoxContainer/BattleBarMargin/BattleBar" unique_id=761303398]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_right = 12
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/BattleBarMargin/BattleBar/Container" unique_id=1885913780]
+[node name="GridContainer" type="GridContainer" parent="OLD/VBoxContainer/BattleBarMargin/BattleBar/Container" unique_id=1885913780]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_constants/h_separation = 29
 columns = 2
 
-[node name="ButtonFight" type="Button" parent="VBoxContainer/BattleBarMargin/BattleBar/Container/GridContainer" unique_id=186597241]
-unique_name_in_owner = true
+[node name="ButtonFight" type="Button" parent="OLD/VBoxContainer/BattleBarMargin/BattleBar/Container/GridContainer" unique_id=186597241]
 layout_mode = 2
 theme_type_variation = &"BattleActionButton"
 text = "Fight"
 
-[node name="ButtonItem" type="Button" parent="VBoxContainer/BattleBarMargin/BattleBar/Container/GridContainer" unique_id=664902004]
-unique_name_in_owner = true
+[node name="ButtonItem" type="Button" parent="OLD/VBoxContainer/BattleBarMargin/BattleBar/Container/GridContainer" unique_id=664902004]
 layout_mode = 2
 theme_type_variation = &"BattleActionButton"
 text = "Item"
 
-[node name="ButtonTeam" type="Button" parent="VBoxContainer/BattleBarMargin/BattleBar/Container/GridContainer" unique_id=1680408812]
-unique_name_in_owner = true
+[node name="ButtonTeam" type="Button" parent="OLD/VBoxContainer/BattleBarMargin/BattleBar/Container/GridContainer" unique_id=1680408812]
 layout_mode = 2
 theme_type_variation = &"BattleActionButton"
 text = "Team"
 
-[node name="ButtonRun" type="Button" parent="VBoxContainer/BattleBarMargin/BattleBar/Container/GridContainer" unique_id=1822733284]
-unique_name_in_owner = true
+[node name="ButtonRun" type="Button" parent="OLD/VBoxContainer/BattleBarMargin/BattleBar/Container/GridContainer" unique_id=1822733284]
 layout_mode = 2
 theme_type_variation = &"BattleActionButton"
 text = "Flee"
 
 [node name="PauseMenu" parent="." unique_id=1677720938 instance=ExtResource("3_iqia2")]
+visible = false
 layout_mode = 1

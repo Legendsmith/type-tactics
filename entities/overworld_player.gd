@@ -4,6 +4,10 @@ extends OverworldAgent
 
 const INTERACT_RANGE:float = 32
 
+## Units that travel with the player, the player's own unit definition is deployed first.
+@export var team:TeamDef
+var units:Array[Unit] = []
+
 func _ready() -> void:
 	if Engine.is_editor_hint(): #remove this before release
 		if unit_def:
@@ -63,6 +67,17 @@ func move(velocity:Vector2,_delta_frames:float = skip_frames+1):
 
 func think():
 	pass
+
+## Builds the player's battle units on first use. They persist between battles so damage carries over.
+func get_battle_units() -> Array[Unit]:
+	if units.is_empty():
+		var defs:Array[UnitDef] = []
+		if unit_def:
+			defs.append(unit_def)
+		if team:
+			defs.append_array(team.units)
+		units = Unit.build_team(defs, Constants.PLAYER_GROUP)
+	return units
 
 func interact():
 	var interact_direction:Vector2 = facing * INTERACT_RANGE
