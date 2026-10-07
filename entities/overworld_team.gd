@@ -29,16 +29,7 @@ func on_interact():
 			begin_battle()
 
 func init_team():
-	units.resize(team.units.size())
-	var unit_scene:PackedScene = load(Unit.battle_unit_scene)
-	for i:int in range(team.units.size()):
-		var unitdef:UnitDef = team.units[i]
-		var new_unit:Unit = unit_scene.instantiate()
-		new_unit.control_type = team.control
-		new_unit.create_from_unit_def(unitdef)
-		new_unit.equipped_items=unitdef.equipment
-		units[i] = new_unit
-			
+	units = Unit.build_team(team.units, team.control)
 
 
 func begin_battle():
