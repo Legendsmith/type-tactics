@@ -209,6 +209,10 @@ func on_new_turn() -> void:
 func has_action() -> bool:
 	return next_action.technique != default_action.technique
 
+## True if any technique has enough charges left for at least one more use.
+func can_act() -> bool:
+	return get_technique_uses().values().any(func(uses:int): return uses > 0)
+
 ## Turn readiness is checked by the battle stage, this only raises the alert for the player.
 func on_finalize_turn() -> void:
 	if not has_action() and control_type == Constants.PLAYER_GROUP and is_instance_valid(GameManager.game_interface):
@@ -226,6 +230,7 @@ static func build_team(defs:Array[UnitDef], control:StringName) -> Array[Unit]:
 			continue
 		var new_unit:Unit = unit_scene.instantiate()
 		new_unit.control_type = control
+		new_unit.name = def.unit_name.validate_node_name()
 		new_unit.create_from_unit_def(def)
 		new_unit.equipped_items = def.equipment
 		new_unit.full_refresh()
