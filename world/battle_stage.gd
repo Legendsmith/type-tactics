@@ -5,6 +5,9 @@ signal new_turn
 signal unit_added(unit:Unit)
 signal battle_over(winner:StringName)
 
+## Free fallback technique for units with no charges left, so battles can't stall.
+const STRUGGLE_TECHNIQUE:String = "res://data/battletechnique_struggle.tres"
+
 var enemy_team:TeamDef
 var player_team:TeamDef
 
@@ -79,6 +82,7 @@ func start_turn():
 	turn_index += 1
 	new_turn.emit()
 	assign_enemy_actions()
+	assign_struggle_actions()
 
 ## Placeholder enemy AI until team behaviour trees drive this: use the first technique with charges left on a random active player unit.
 func assign_enemy_actions():
@@ -95,12 +99,24 @@ func assign_enemy_actions():
 					unit.next_action.target = unit
 				break
 
+## Units on either side with no charges left for any technique struggle against a random foe.
+func assign_struggle_actions():
+	var struggle:BattleTechnique = load(STRUGGLE_TECHNIQUE)
+	for side:Array in [[units_player, units_enemy], [units_enemy, units_player]]:
+		var foes:Array[Unit] = get_active_units(side[1])
+		if foes.is_empty():
+			continue
+		for unit:Unit in get_active_units(side[0]):
+			if not unit.can_act():
+				unit.next_action = Unit.TurnAction.new(unit, struggle)
+				unit.next_action.target = foes.pick_random()
+				unit.update.emit()
+
 ## Executes every active unit's assigned action, fastest first. Returns false if the turn couldn't run because a player unit has no action.
 func execute_turn() -> bool:
 	if executing_turn or winner:
 		return false
-	# Units with no charges left can't pick anything, so they pass rather than block the turn.
-	turn_ready = get_active_units(units_player).all(func(unit:Unit): return unit.has_action() or not unit.can_act())
+	turn_ready = get_active_units(units_player).all(func(unit:Unit): return unit.has_action())
 	finalize_turn.emit() # Units raise their own alerts for missing actions.
 	if not turn_ready:
 		return false

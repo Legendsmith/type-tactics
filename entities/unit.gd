@@ -212,7 +212,7 @@ func can_act() -> bool:
 
 ## Turn readiness is checked by the battle stage, this only raises the alert for the player.
 func on_finalize_turn() -> void:
-	if not has_action() and can_act() and control_type == Constants.PLAYER_GROUP and is_instance_valid(GameManager.game_interface):
+	if not has_action() and control_type == Constants.PLAYER_GROUP and is_instance_valid(GameManager.game_interface):
 		var data:Dictionary = {"alert":GameInterface.Alert.NONE_ACTION,"source":self,"zoom":true}
 		GameManager.game_interface.show_alert(data)
 
