@@ -99,7 +99,8 @@ func assign_enemy_actions():
 func execute_turn() -> bool:
 	if executing_turn or winner:
 		return false
-	turn_ready = get_active_units(units_player).all(func(unit:Unit): return unit.has_action())
+	# Units with no charges left can't pick anything, so they pass rather than block the turn.
+	turn_ready = get_active_units(units_player).all(func(unit:Unit): return unit.has_action() or not unit.can_act())
 	finalize_turn.emit() # Units raise their own alerts for missing actions.
 	if not turn_ready:
 		return false
