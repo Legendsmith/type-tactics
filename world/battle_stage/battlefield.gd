@@ -39,12 +39,14 @@ func get_tile_center_global_position(file: int, rank: int) -> Vector2:
 
 func reset_map() -> void:
 	occupancy_map = BitMap.new()
-	if get_child_count():
-		for node:Node2D in get_children():
-			if node is Unit:
-				node.exit_battlefield()
-			else:
-				node.queue_free()
+	occupancy_map.create(dimensions)
+	for node:Node in get_children():
+		if node == terrain_layer:
+			continue
+		if node is Unit:
+			node.exit_battlefield()
+		else:
+			node.queue_free()
 
 ## returns the position of the native tilemap layer based on the given file and coordinates
 func get_map_position(file: int, rank: int) -> Vector2i:
