@@ -21,6 +21,7 @@ func _ready() -> void:
 	bt_player.blackboard.set_var(&"faction", faction) # Set faction
 	bt_player.blackboard.set_var(&"max_speed", max_speed)
 	bt_player.blackboard.set_var(&"speed", max_speed)
+	contact_monitor = true
 
 
 func _physics_process(delta) -> void:
@@ -28,6 +29,18 @@ func _physics_process(delta) -> void:
 	if bt_delta > MAX_BT_DELTA:
 		spatial_hash.update()
 		bt_delta = 0.0
+	if contact_monitor:
+		var count:int = get_contact_count()
+		for i:int in range(count):
+			var contact_target:Node2D = get_colliding_bodies()[0]
+			if contact_target is TileMapLayer or contact_target.faction == faction:
+				return
+			var roll:float = randf_range(Constants.OVERWORLD_DAMAGE_VARIANCE,1)
+			var dmg:float = contact_target.recieve_damage(self,overworld_pwr*roll,delta)
+			#attack_charge -= delta
+			inflicted_damage.emit(self,dmg,contact_target)
+			damage_inflicted += dmg
+			#attack_charge = clampf(attack_charge+(delta/5),0,Constants.OVERWORLD_MAX_ATTACK_CHARGE)
 
 func recieve_damage(_attacker:OverworldAgent,_power:int,_delta:float) -> float:
 	return 0

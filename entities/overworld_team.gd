@@ -3,7 +3,7 @@ extends OverworldAgent
 @export var team: TeamDef
 
 func _ready() -> void:
-	calculate_overworld_attributes()
+	#calculate_overworld_attributes()
 	super()
 
 

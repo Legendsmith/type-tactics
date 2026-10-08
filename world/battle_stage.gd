@@ -3,6 +3,7 @@ extends Node2D
 signal finalize_turn
 signal new_turn
 signal unit_added(unit:Unit)
+signal battle_over(winner:StringName)
 
 @export var background_music:AudioStream
 static var battle_unit:PackedScene = load("uid://bm03ut2gnfrq8")

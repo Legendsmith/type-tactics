@@ -10,6 +10,7 @@ var scene_changing:bool = false
 var game_interface:Control
 
 ## Music Variables
+const MUSIC_BUS_NAME:String = "Music"
 const ARTIST_SEPARATOR:String = ", "
 const DEFAULT_FADE_TIME:float = 1.5
 var music_attribution:Dictionary[String,PackedStringArray]
@@ -25,10 +26,35 @@ var _playlist_idx:int = -1
 
 var fade_out_tween
 
+var spectrum_analyser:AudioEffectSpectrumAnalyzerInstance
+var analyser_effect_index:int = -1
+
 func _ready():
 	anim.play("fade",1,-1,true)
 	current_player.finished.connect(play_next_in_queue)
 	next_player.finished.connect(play_next_in_queue)
+
+func get_or_add_spectrum_analyzer():
+	if is_instance_valid(spectrum_analyser):
+		return spectrum_analyser
+	else:
+		var music_bus_index = AudioServer.get_bus_index(MUSIC_BUS_NAME)
+		var spectrum_effect = AudioEffectSpectrumAnalyzer.new()
+		spectrum_effect.fft_size = AudioEffectSpectrumAnalyzer.FFT_SIZE_512
+		spectrum_effect.buffer_length = 0.5
+		AudioServer.add_bus_effect(music_bus_index, spectrum_effect)
+		analyser_effect_index = AudioServer.get_bus_effect_count(music_bus_index)-1
+		spectrum_analyser = AudioServer.get_bus_effect_instance(music_bus_index, analyser_effect_index)
+		return spectrum_analyser
+
+func clear_spectrum_analyser():
+	if spectrum_analyser:
+		AudioServer.remove_bus_effect(AudioServer.get_bus_index(MUSIC_BUS_NAME),analyser_effect_index)
+		spectrum_analyser.queue_free()
+		spectrum_analyser = null
+		analyser_effect_index = -1
+	
+
 
 func change_scene(scene_path: String,transition:StringName=&"fade", clear_interface:bool = true,extra_data:Dictionary[StringName,Variant]={}):
 	if not scene_changing:

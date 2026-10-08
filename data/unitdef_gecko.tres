@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UnitDef" format=3 uid="uid://k7mldkotv6gi"]
+
+[ext_resource type="Script" uid="uid://btssfmuejunjh" path="res://scripts/battle_technique.gd" id="1_vlvxt"]
+[ext_resource type="Script" uid="uid://cqggivyif4ut8" path="res://scripts/equip_item.gd" id="2_r3url"]
+[ext_resource type="Texture2D" uid="uid://cvtjshecp1e5i" path="res://texture/gecko_overworld.png" id="3_axsgr"]
+[ext_resource type="Script" uid="uid://bwf3wwv84lr8q" path="res://scripts/unit_def.gd" id="4_11h4m"]
+
+[resource]
+resource_name = "gecko"
+script = ExtResource("4_11h4m")
+display_name = "Gecko"
+unit_name = "gecko"
+twitch_name = "gecko"
+overworld_sprite = ExtResource("3_axsgr")
+attribute_base = PackedInt32Array(100, 100, 100, 100, 100, 100, 100)

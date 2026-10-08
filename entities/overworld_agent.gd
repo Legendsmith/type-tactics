@@ -1,3 +1,4 @@
+@tool
 class_name OverworldAgent
 extends RigidBody2D
 const MAX_BT_DELTA:float = 2.0
@@ -44,23 +45,37 @@ var flow_field:FlowField
 var facing:Vector2
 
 func _ready() -> void:
-	spatial_hash.update()
-	spatial_hash.hash_location_changed.connect(on_hash_location_changed)
-	if unit_def:
-		load_unit_definition(unit_def)
-	GameManager.request_hashmap_near.connect(spatial_hash.on_request_hashmap_near)
-	add_to_group("overworld_agents")
-	animation_player.animation_started.connect(set_facing)
-	tick_offset = randi() % Engine.physics_ticks_per_second
-	refresh_hp()
-	nav_agent.waypoint_reached.connect(think.unbind(1))
-	configure_physics(faction)
-	if NavigationServer2D.map_is_active(get_world_2d().get_navigation_map()):
-		_setup_bt_player()
+	if Engine.is_editor_hint():
+		# This editor-run code should be changed before release to only run the code in the else.
+		_in_editor()
+		editor_state_changed.connect(_in_editor)
+		process_mode = Node.PROCESS_MODE_DISABLED
+		return
 	else:
-		#print_debug("Awaiting NavigationServer")
-		await NavigationServer2D.map_changed
-		_setup_bt_player()
+		process_mode = Node.PROCESS_MODE_INHERIT
+		spatial_hash.update()
+		spatial_hash.hash_location_changed.connect(on_hash_location_changed)
+		if unit_def:
+			load_unit_definition(unit_def)
+		GameManager.request_hashmap_near.connect(spatial_hash.on_request_hashmap_near)
+		add_to_group("overworld_agents")
+		animation_player.animation_started.connect(set_facing)
+		tick_offset = randi() % Engine.physics_ticks_per_second
+		refresh_hp()
+		nav_agent.waypoint_reached.connect(think.unbind(1))
+		configure_physics(faction)
+		if NavigationServer2D.map_is_active(get_world_2d().get_navigation_map()):
+			_setup_bt_player()
+		else:
+			#print_debug("Awaiting NavigationServer")
+			await NavigationServer2D.map_changed
+			_setup_bt_player()
+
+func _in_editor() -> void:
+	if unit_def:
+		var sprite:Sprite2D = find_child("Sprite2D",false)
+		sprite.texture = unit_def.overworld_sprite
+		name = "OverworldAgent" + unit_def.unit_name.capitalize()
 
 func _on_mouse_entered():
 	print_debug("mouse entered")
@@ -92,7 +107,7 @@ func load_unit_definition(unit_definition:UnitDef):
 	if unit_definition.dialogic_timeline:
 		dialogic_timeline = unit_definition.dialogic_timeline
 	$Sprite2D.texture = unit_def.overworld_sprite
-	name = "OverworldAgent%" + unit_def.unit_name.capitalize()
+	name = "OverworldAgent" + unit_def.unit_name.capitalize()
 
 func set_action(new_action:StringName):
 	action = new_action
@@ -101,7 +116,7 @@ func set_action(new_action:StringName):
 func configure_physics(_faction:StringName):
 	var faction_def:Factions.Faction = Factions.faction_list[_faction]
 	collision_layer = faction_def.physics_layer
-	collision_mask = faction_def.physics_mask | collision_layer
+	collision_mask = faction_def.physics_mask #| collision_layer
 	nav_agent.navigation_layers = faction_def.nav_layer
 	nav_agent.avoidance_layers = faction_def.avoid_own
 	nav_agent.avoidance_mask = Factions.master_avoid
@@ -137,17 +152,17 @@ func recieve_damage(attacker:OverworldAgent,power:int,delta:float) -> float:
 func _physics_process(delta) -> void:
 	bt_delta += delta
 	if contact_monitor:
-		var contact_count = get_contact_count()
-		for i:int in range(contact_count):
-			var contact_target:Node2D = get_colliding_bodies()[i]
+		var count:int = get_contact_count()
+		if count:
+			var contact_target:Node2D = get_colliding_bodies()[0]
 			if contact_target is TileMapLayer or contact_target.faction == faction:
-				continue
+				return
 			var roll:float = randf_range(Constants.OVERWORLD_DAMAGE_VARIANCE,1)
 			var dmg:float = contact_target.recieve_damage(self,overworld_pwr*roll,delta)
 			#attack_charge -= delta
 			inflicted_damage.emit(self,dmg,contact_target)
 			damage_inflicted += dmg
-		#attack_charge = clampf(attack_charge+(delta/5),0,Constants.OVERWORLD_MAX_ATTACK_CHARGE)
+			#attack_charge = clampf(attack_charge+(delta/5),0,Constants.OVERWORLD_MAX_ATTACK_CHARGE)
 		
 	if (Engine.get_physics_frames() + tick_offset) % (skip_frames + 1) == 0:
 		spatial_hash.update()

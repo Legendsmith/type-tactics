@@ -2,6 +2,34 @@
 
 [ext_resource type="Theme" uid="uid://d2rlegeqi7jag" path="res://ui/title_screen/title_screen_theme.tres" id="1_ffat2"]
 [ext_resource type="Script" uid="uid://dqochfbav61o3" path="res://ui/title_screen/title_screen.gd" id="2_72buf"]
+[ext_resource type="AudioStream" uid="uid://0i461517eff" path="res://audio/hecksn_kingdom_of_midnight.ogg" id="3_72buf"]
+[ext_resource type="Texture2D" uid="uid://bs04madjt4pcm" path="res://ui/title_screen/title_screen_background_1.tga" id="4_2er51"]
+[ext_resource type="Texture2D" uid="uid://d4e3cco114hlv" path="res://ui/title_screen/title_screen_background_2.tga" id="5_ca08b"]
+[ext_resource type="Script" uid="uid://bpb1k0dr8i0uh" path="res://ui/audio_responsive_modulate.gd" id="5_lgnx5"]
+[ext_resource type="Shader" uid="uid://cccui034nn260" path="res://texture/wavy_effect.gdshader" id="6_lgnx5"]
+[ext_resource type="Script" uid="uid://uv3i6ndl4xnm" path="res://scripts/audio_analyser.gd" id="8_1djn3"]
+[ext_resource type="Script" uid="uid://b523mbrd2wdvk" path="res://ui/title_screen/audio_responsive_wave_effect.gd" id="8_gwpbi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_svo4y"]
+shader = ExtResource("6_lgnx5")
+shader_parameter/scrollAmount = Vector2(0.1, 0)
+shader_parameter/multiplierAmount = 0.01
+shader_parameter/time_add = 0.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cixdc"]
+frequency = 0.0012
+fractal_type = 2
+fractal_octaves = 2
+fractal_lacunarity = 1.25
+fractal_gain = 0.78
+fractal_ping_pong_strength = 1.0
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5mdms"]
+width = 1080
+height = 1080
+noise = SubResource("FastNoiseLite_cixdc")
+seamless = true
 
 [node name="TitleScreen" type="Control" unique_id=1050843240]
 layout_mode = 3
@@ -12,6 +40,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_ffat2")
 script = ExtResource("2_72buf")
+background_music = ExtResource("3_72buf")
 
 [node name="Background" type="SubViewportContainer" parent="." unique_id=1994614095]
 layout_mode = 1
@@ -25,6 +54,40 @@ grow_vertical = 2
 handle_input_locally = false
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
+
+[node name="BackgroundLayer1" type="TextureRect" parent="Background/SubViewport" unique_id=1289694442]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_2er51")
+expand_mode = 2
+script = ExtResource("5_lgnx5")
+base_modulate = Color(0.1, 0.1, 0.1, 1)
+modulate_rate = 3.0
+
+[node name="BackgroundLayer2" type="TextureRect" parent="Background/SubViewport/BackgroundLayer1" unique_id=468374896]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_ca08b")
+expand_mode = 2
+
+[node name="WaveEffect" type="TextureRect" parent="Background/SubViewport/BackgroundLayer1/BackgroundLayer2" unique_id=373665308]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_svo4y")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_5mdms")
+script = ExtResource("8_gwpbi")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=826096385]
 layout_mode = 1
@@ -90,3 +153,12 @@ bus = &"Sfx"
 [node name="ButtonHighlightedStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=337504869]
 unique_name_in_owner = true
 bus = &"Sfx"
+
+[node name="AudioAnalyser" type="Node" parent="." unique_id=1345336360]
+script = ExtResource("8_1djn3")
+bass_min = 60.0
+bass_max = 75.0
+treble_min = 331.0
+
+[connection signal="bass" from="AudioAnalyser" to="Background/SubViewport/BackgroundLayer1" method="on_audio_analyser"]
+[connection signal="treble" from="AudioAnalyser" to="Background/SubViewport/BackgroundLayer1/BackgroundLayer2/WaveEffect" method="on_audio_analyser"]

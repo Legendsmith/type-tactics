@@ -1,5 +1,5 @@
+@tool
 ## Helper object for drawing the Spatial Hash grid in a World2D.
-
 extends Node2D
 
 func _draw() -> void:
@@ -28,11 +28,11 @@ func draw_grid(length:int) -> void:
 			12.0
 		)
 	
-	var offset:Vector2 = Vector2.ONE * (Constants.SPATIAL_HASH_SIZE/2)
-	for i:int in range(0,length):
-		for x:int in range(0,length):
-			var ix:int = i * Constants.SPATIAL_HASH_SIZE
-			var xx:int = x * Constants.SPATIAL_HASH_SIZE
-			draw_string(ThemeDB.fallback_font, Vector2(ix,xx) + offset, "%d,%d" % [i,x], HORIZONTAL_ALIGNMENT_CENTER, -1, 48, Color.GOLD)
-			#draw_string(ThemeDB.fallback_font, Vector2(-ix,-xx) + offset, str(i), HORIZONTAL_ALIGNMENT_CENTER, -1, 16, Color.GOLD)
-		
+	#var offset:Vector2 = Vector2.ONE * (Constants.SPATIAL_HASH_SIZE/2)
+	#for i:int in range(0,length):
+	#	for x:int in range(0,length):
+	#		var ix:int = i * Constants.SPATIAL_HASH_SIZE
+	#		var xx:int = x * Constants.SPATIAL_HASH_SIZE
+	#		draw_string(ThemeDB.fallback_font, Vector2(ix,xx) + offset, "%d,%d" % [i,x], HORIZONTAL_ALIGNMENT_CENTER, -1, 48, Color.GOLD)
+	#		#draw_string(ThemeDB.fallback_font, Vector2(-ix,-xx) + offset, str(i), HORIZONTAL_ALIGNMENT_CENTER, -1, 16, Color.GOLD)
+	#	

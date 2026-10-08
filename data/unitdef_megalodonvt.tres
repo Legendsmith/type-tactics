@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UnitDef" format=3 uid="uid://dkhtquahbumcg"]
+
+[ext_resource type="Script" uid="uid://btssfmuejunjh" path="res://scripts/battle_technique.gd" id="1_y01ms"]
+[ext_resource type="Script" uid="uid://cqggivyif4ut8" path="res://scripts/equip_item.gd" id="2_fvaoa"]
+[ext_resource type="Texture2D" uid="uid://crtpwuvvqsl02" path="res://texture/megalodonvt_overworld.png" id="3_ufteo"]
+[ext_resource type="Script" uid="uid://bwf3wwv84lr8q" path="res://scripts/unit_def.gd" id="4_0pvpf"]
+
+[resource]
+resource_name = "megalodonvt"
+script = ExtResource("4_0pvpf")
+display_name = "Megalodonvt"
+unit_name = "megalodonvt"
+twitch_name = "megalodonvt"
+overworld_sprite = ExtResource("3_ufteo")
+attribute_base = PackedInt32Array(100, 100, 100, 100, 100, 100, 100)

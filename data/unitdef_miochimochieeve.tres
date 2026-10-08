@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UnitDef" format=3 uid="uid://c1i3gtmsi2anb"]
+
+[ext_resource type="Script" uid="uid://btssfmuejunjh" path="res://scripts/battle_technique.gd" id="1_l8ruv"]
+[ext_resource type="Script" uid="uid://cqggivyif4ut8" path="res://scripts/equip_item.gd" id="2_mqtcd"]
+[ext_resource type="Texture2D" uid="uid://bcveu5a0x1vfa" path="res://texture/miochimochieeve_overworld.png" id="3_i1vlf"]
+[ext_resource type="Script" uid="uid://bwf3wwv84lr8q" path="res://scripts/unit_def.gd" id="4_gc66c"]
+
+[resource]
+resource_name = "miochimochieeve"
+script = ExtResource("4_gc66c")
+display_name = "Miochimochieeve"
+unit_name = "miochimochieeve"
+twitch_name = "miochimochieeve"
+overworld_sprite = ExtResource("3_i1vlf")
+attribute_base = PackedInt32Array(100, 100, 100, 100, 100, 100, 100)

@@ -12,3 +12,4 @@ display_name = "Fufu"
 unit_name = "fufu"
 twitch_name = "fufu"
 overworld_sprite = ExtResource("3_mnwnl")
+overworld_power = 120.0

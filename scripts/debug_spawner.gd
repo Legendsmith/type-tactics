@@ -1,7 +1,7 @@
-extends Node
-@export var spawn_points:Array[Node2D]
+extends Node2D
 @export var skip_frames:int = 2
 @export var entity:PackedScene
+@export var unit_def:UnitDef
 var spawn_enabled:bool
 
 func _ready() -> void:
@@ -21,8 +21,9 @@ func _physics_process(_delta: float) -> void:
 		spawn()
 
 func spawn():
-	var spawn_position:Vector2 = spawn_points.pick_random().global_position
+	var spawn_position:Vector2 = global_position
 	var new_ent:Node2D = entity.instantiate()
+	new_ent.unit_def = unit_def
 	get_tree().current_scene.add_child(new_ent)
 	new_ent.global_position = spawn_position
 	OverworldAgent.teleport(new_ent,spawn_position)

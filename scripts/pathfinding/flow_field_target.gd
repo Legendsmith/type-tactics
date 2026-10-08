@@ -43,6 +43,6 @@ func _draw() -> void:
 		flow_field.debug_draw(self,tile_map,tile_map.global_position-global_position)
 
 func on_agent_request_flow_field(agent:OverworldAgent,spatial_hash:Vector2i):
-	if agent.target == self and spatial_hash == tile_map.hash_location:
+	if agent.target == self and tile_map.hash_rect.has_point(spatial_hash):
 		agent.flow_field = flow_field
 	

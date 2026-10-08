@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://cd0nk7g74l2mw" path="res://scripts/states/move_state.gd" id="6_pbd16"]
 
 [node name="OverworldPlayer" unique_id=1303149982 instance=ExtResource("1_gip2u")]
+contact_monitor = true
+max_contacts_reported = 4
 script = ExtResource("2_j0qpx")
 faction = &"player"
 speed = 128.0
