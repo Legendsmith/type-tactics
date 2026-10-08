@@ -4,6 +4,7 @@
 [ext_resource type="Resource" uid="uid://bmnnsv1yw4tvi" path="res://data/ability_apexmovement.tres" id="1_wt05u"]
 [ext_resource type="Script" uid="uid://cqggivyif4ut8" path="res://scripts/equip_item.gd" id="2_wt05u"]
 [ext_resource type="Texture2D" uid="uid://qa3k6uitfbql" path="res://texture/crusader_overworld.png" id="3_hqaqo"]
+[ext_resource type="Resource" uid="uid://btmpepma0pi0r" path="res://data/dialogic/timeline_test_crusader.dtl" id="3_kiope"]
 [ext_resource type="Script" uid="uid://bwf3wwv84lr8q" path="res://scripts/unit_def.gd" id="4_kiope"]
 
 [resource]
@@ -11,5 +12,6 @@ script = ExtResource("4_kiope")
 display_name = "Crusader"
 unit_name = "Crusader"
 twitch_name = "crusader"
+dialogic_timeline = ExtResource("3_kiope")
 overworld_sprite = ExtResource("3_hqaqo")
 ability = ExtResource("1_wt05u")

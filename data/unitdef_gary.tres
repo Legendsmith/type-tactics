@@ -9,5 +9,5 @@
 script = ExtResource("4_5lwhy")
 display_name = "Gary"
 unit_name = "gary"
-twitch_name = "gary"
 overworld_sprite = ExtResource("3_pjesg")
+join_battles = false

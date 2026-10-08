@@ -10,7 +10,7 @@ const SPRITE_DIR_COEF:float = PI/(SPRITE_DIR/2.0)
 const SPRITE_H_BIAS:float = 0.84
 
 var dialogic_timeline:DialogicTimeline
-var dialogic_timeline_index:int = 0
+var dialogic_timeline_label:String=""
 
 @export var faction: StringName = Constants.ENEMY_GROUP
 @export var action: StringName = &"move":
@@ -25,7 +25,11 @@ var desired_velocity:Vector2 = Vector2.ZERO
 @export var overworld_def: int = 100
 @export var overworld_hp: float = 100
 @export var max_overworld_hp: int = 100
-@export var unit_def:UnitDef
+@export var unit_def:UnitDef:
+	set(new): #Remove4Release
+		unit_def=new
+		if Engine.is_editor_hint(): 
+			_in_editor()
 var damage_inflicted:float = 0
 #var attack_charge:float = 0
 
@@ -46,7 +50,7 @@ var facing:Vector2
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
-		# This editor-run code should be changed before release to only run the code in the else.
+		# This editor-run code should be  before release to only run the code in the else. #Remove4Release
 		_in_editor()
 		editor_state_changed.connect(_in_editor)
 		process_mode = Node.PROCESS_MODE_DISABLED
@@ -78,7 +82,7 @@ func _in_editor() -> void:
 		name = "OverworldAgent" + unit_def.unit_name.capitalize()
 
 func _on_mouse_entered():
-	print_debug("mouse entered")
+	#print_debug("mouse entered")
 	Cursor.set_cursor(Cursor.Type.TALK)
 
 func _on_mouse_exited():
@@ -106,6 +110,8 @@ func load_unit_definition(unit_definition:UnitDef):
 	max_speed = unit_def.get_modified_overworld_speed()
 	if unit_definition.dialogic_timeline:
 		dialogic_timeline = unit_definition.dialogic_timeline
+		if faction == Constants.ENEMY_GROUP:
+			dialogic_timeline_label = Constants.DIALOG_BATTLE_BEGIN
 	$Sprite2D.texture = unit_def.overworld_sprite
 	name = "OverworldAgent" + unit_def.unit_name.capitalize()
 
@@ -152,18 +158,7 @@ func recieve_damage(attacker:OverworldAgent,power:int,delta:float) -> float:
 func _physics_process(delta) -> void:
 	bt_delta += delta
 	if contact_monitor:
-		var count:int = get_contact_count()
-		if count:
-			var contact_target:Node2D = get_colliding_bodies()[0]
-			if contact_target is TileMapLayer or contact_target.faction == faction:
-				return
-			var roll:float = randf_range(Constants.OVERWORLD_DAMAGE_VARIANCE,1)
-			var dmg:float = contact_target.recieve_damage(self,overworld_pwr*roll,delta)
-			#attack_charge -= delta
-			inflicted_damage.emit(self,dmg,contact_target)
-			damage_inflicted += dmg
-			#attack_charge = clampf(attack_charge+(delta/5),0,Constants.OVERWORLD_MAX_ATTACK_CHARGE)
-		
+		attack(delta)
 	if (Engine.get_physics_frames() + tick_offset) % (skip_frames + 1) == 0:
 		spatial_hash.update()
 		if use_flow_field:
@@ -172,6 +167,21 @@ func _physics_process(delta) -> void:
 		#print_debug("Backup think")
 		spatial_hash.update()
 		think()
+
+
+func attack(delta:float) -> void:
+	var count:int = get_contact_count()
+	if count:
+		var contact_target:Node2D = get_colliding_bodies()[0]
+		if contact_target is TileMapLayer or contact_target.faction == faction:
+			return
+		var roll:float = randf_range(Constants.OVERWORLD_DAMAGE_VARIANCE,1)
+		var dmg:float = contact_target.recieve_damage(self,overworld_pwr*roll,delta)
+		#attack_charge -= delta
+		inflicted_damage.emit(self,dmg,contact_target)
+		damage_inflicted += dmg
+		#attack_charge = clampf(attack_charge+(delta/5),0,Constants.OVERWORLD_MAX_ATTACK_CHARGE)
+
 
 func move(velocity:Vector2,delta_frames:float = skip_frames+1):
 	apply_central_force(velocity*(delta_frames+linear_damp))
@@ -251,7 +261,7 @@ func get_goal() ->Node2D:
 	return goal
 
 func on_interact():
-	Dialogic.start(dialogic_timeline,dialogic_timeline_index)
+	Dialogic.start(dialogic_timeline,dialogic_timeline_label)
 
 static func get_direction_index(input_vector: Vector2) -> int:
 	var biased_vector:Vector2 = Vector2(input_vector.x, input_vector.y * SPRITE_H_BIAS) #bias to horizontal by reducing the vertical slightly.

@@ -72,14 +72,14 @@ func flow_path_to_destination(faction:StringName, global_destination:Vector2) ->
 func check_control() -> void:
 	if dirty_control_map and control_map_update_ready:
 		control_map_update_ready = false
-		print_debug("Updating map")
+		#print_debug("Updating map")
 		for coordinates:Vector2i in control_map:
 			await get_tree().process_frame
 			if control_map[coordinates] == &"updating":
 				var result:Pointer.BoolPtr = Pointer.BoolPtr.new(true)
 				var faction:Pointer.StringNamePtr = Pointer.StringNamePtr.new()
 				hashmap_faction_check.emit(faction,result,coordinates)
-				print_debug("Location: %s, Result: %s Faction: %s" % [coordinates,result.value,faction.value])
+				#print_debug("Location: %s, Result: %s Faction: %s" % [coordinates,result.value,faction.value])
 				# TODO: Put in some kind of notification for control change
 				if not result.value:
 					control_map[coordinates] = &"contested"

@@ -7,18 +7,17 @@
 [ext_resource type="Script" uid="uid://cepft2joco8rq" path="res://world/battle_stage/battlefield.gd" id="4_uvr5w"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_no2cn"]
-viewport_path = NodePath("SubViewport")
+viewport_path = NodePath("BackgroundViewport")
 
 [node name="BattleStage" type="Node2D" unique_id=257154894]
 texture_filter = 1
 script = ExtResource("1_k7dgi")
 background_music = ExtResource("2_no2cn")
-interface_scene = "uid://dysomavkjoi23"
 
-[node name="SubViewport" type="SubViewport" parent="." unique_id=1413354219]
+[node name="BackgroundViewport" type="SubViewport" parent="." unique_id=1413354219]
 size = Vector2i(1920, 1080)
 
-[node name="BattleStage3d" parent="SubViewport" unique_id=1722786175 instance=ExtResource("4_2lwrw")]
+[node name="BattleStage3d" parent="BackgroundViewport" unique_id=1722786175 instance=ExtResource("4_2lwrw")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1878710175]
 
@@ -41,10 +40,8 @@ script = ExtResource("4_uvr5w")
 [node name="TerrainLayer" type="TileMapLayer" parent="PlayerBattlefield" unique_id=878440425]
 y_sort_enabled = true
 position = Vector2(-64, -96)
-tile_map_data = PackedByteArray("AAAAAAAAAAACAAAAAAAAAAEAAAACAAAAAAAAAAIAAAAGAAAAAAACAAIAAAAGAAAAAAACAAEAAAADAAAAAAACAAAAAAADAAAAAAABAAIAAAAHAAAAAAABAAEAAAACAAAAAAABAAAAAAAHAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAAAAAAAIAAAAAAAAAAEAAAACAAAAAAAAAAIAAAAHAAAAAAACAAIAAAAJAAAAAAACAAEAAAAFAAAAAAACAAAAAAACAAAAAAABAAIAAAAEAAAAAAABAAEAAAABAAAAAAABAAAAAAABAAAAAAA=")
 tile_set = ExtResource("4_no2cn")
-
-[node name="Team" type="Node" parent="PlayerBattlefield" unique_id=551652807]
 
 [node name="EnemyBattlefield" type="Node2D" parent="." unique_id=1348137018]
 unique_name_in_owner = true

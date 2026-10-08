@@ -1,14 +1,18 @@
 class_name Overworld
 extends MainScene2D
 
+signal player_battle(opponent)
+
 @export var player_unit_def:UnitDef
 @export var player_faction_goal:Node2D
 @export var enemy_faction_goal:Node2D
 
-var battle_script_location:String = "uid://cfqrbe5b87mbm"
-var player_battle_scene:String = "uid://gwsvkadrrijx"
+static var battle_script_location:String = "uid://cfqrbe5b87mbm"
+static var player_battle_scene:String = "uid://gwsvkadrrijx"
 
 var battles:Dictionary[Vector2i,Area2D]
+var battle_stage:Node2D
+
 
 func _ready() -> void:
 	if player_unit_def and get_tree().get_node_count_in_group(Constants.PLAYER_ENTITY): # If we're passed a unit definition for the player, load it.
@@ -17,10 +21,21 @@ func _ready() -> void:
 	SpatialMap.activate_flow_path.emit(Constants.PLAYER_GROUP,Vector2i(player_faction_goal.global_position/Constants.SPATIAL_HASH_SIZE))
 	SpatialMap.activate_flow_path.emit(Constants.ENEMY_GROUP,Vector2i(enemy_faction_goal.global_position/Constants.SPATIAL_HASH_SIZE))
 	super()
-	SpatialMap.request_battle.connect(battle_check)
+	SpatialMap.request_battle.connect(npc_battle_check)
+	initalize_player_battle_scene()
 	
 
-func battle_check(coordinates:Vector2i):
+func initalize_player_battle_scene():
+	battle_stage = load(player_battle_scene).instantiate()
+	#get_tree().root.add_child(battle_stage)
+	battle_stage.process_mode = PROCESS_MODE_DISABLED
+	battle_stage.visible=false
+	tree_exiting.connect(battle_stage.queue_free) # connect the exit of the battle stage to this node.
+	player_battle.connect(battle_stage.begin_player_battle)
+	battle_stage.battle_over.connect(on_battle_over)
+
+
+func npc_battle_check(coordinates:Vector2i):
 	var global_location:Vector2 = Vector2(coordinates * Constants.SPATIAL_HASH_SIZE)
 	if not coordinates in battles.keys():
 		#build_query(global_location)
@@ -30,19 +45,22 @@ func battle_check(coordinates:Vector2i):
 		add_child(new_battle)
 		battles[coordinates]=new_battle
 
-#func build_query(key:StringName,location:Vector2):
-#	var faction:Factions.Faction = Factions.faction_list[key]
-#	var q:PhysicsShapeQueryParameters2D = PhysicsShapeQueryParameters2D.new()
-#	q.shape = load(Constants.OVERWORLD_PHYSICS_QUERY_SHAPE_RESOURCE)
-#	q.transform = Transform2D.IDENTITY.translated(location)
-#	q.collision_mask = Factions.master_phys & faction.physics_layer
-#	q.exclude = [get_tree().get_first_node_in_group(Constants.PLAYER_ENTITY).get_rid()] # need this so player ent won't get mind controlled
-#	return q
 
-func player_battle():
-	var battle_stage:Node2D = load(player_battle_scene).instantiate()
-	process_mode = Node.PROCESS_MODE_DISABLED
+func begin_player_battle(opponent:OverworldAgent)->Node2D:
+	print_debug("Beginning Player Battle")
 	get_tree().root.add_child(battle_stage)
-	await battle_stage.battle_over
-	battle_stage.queue_free()
+	process_mode = Node.PROCESS_MODE_DISABLED
+	visible = false
+	GameManager.hide_interface()
+	player_battle.emit(opponent)
+	return battle_stage
+
+
+func on_battle_over(_winner:StringName):
+	# TODO, add some kind of transition.
+	get_tree().root.remove_child(battle_stage)
+	GameManager.show_interface()
 	process_mode = Node.PROCESS_MODE_INHERIT
+	visible = true
+	if background_music:
+		GameManager.play_music(background_music)

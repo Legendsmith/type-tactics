@@ -1,27 +1,38 @@
+@tool
 class_name OverworldPlayer
 extends OverworldAgent
 
 const INTERACT_RANGE:float = 32
 
+## Units that travel with the player, the player's own unit definition is deployed first.
+@export var team:TeamDef
+var units:Array[Unit] = []
+
 func _ready() -> void:
-	spatial_hash.hash_location_changed.connect(SpatialMap.on_player_hash_location_changed)
-	spatial_hash.update()
-	if unit_def:
-		load_unit_definition(unit_def)
-	GameManager.request_hashmap_near.connect(spatial_hash.on_request_hashmap_near)
-	add_to_group(Constants.PLAYER_ENTITY)
-	add_to_group("overworld_agents")
-	animation_player.animation_started.connect(set_facing)
-	tick_offset = 1
-	refresh_hp()
-	configure_physics(faction)
-	collision_layer = collision_layer | (1 << Constants.PLAYER_PHYSICS_LAYER)
-	bt_player.blackboard.bind_var_to_property(&"target", self , &"target", true)
-	bt_player.blackboard.bind_var_to_property(&"action", self , &"action", true)
-	bt_player.blackboard.set_var(&"faction", faction) # Set faction
-	bt_player.blackboard.set_var(&"max_speed", max_speed)
-	bt_player.blackboard.set_var(&"speed", max_speed)
-	contact_monitor = true
+	if Engine.is_editor_hint(): #remove this before release
+		if unit_def:
+			var sprite:Sprite2D = find_child("Sprite2D",false)
+			sprite.texture = unit_def.overworld_sprite
+	else:
+		spatial_hash.hash_location_changed.connect(SpatialMap.on_player_hash_location_changed)
+		spatial_hash.update()
+		if unit_def:
+			load_unit_definition(unit_def)
+		GameManager.request_hashmap_near.connect(spatial_hash.on_request_hashmap_near)
+		add_to_group(Constants.PLAYER_ENTITY)
+		process_mode = Node.PROCESS_MODE_INHERIT
+		add_to_group("overworld_agents")
+		animation_player.animation_started.connect(set_facing)
+		tick_offset = 1
+		refresh_hp()
+		configure_physics(faction)
+		collision_layer = collision_layer | (1 << Constants.PLAYER_PHYSICS_LAYER)
+		bt_player.blackboard.bind_var_to_property(&"target", self , &"target", true)
+		bt_player.blackboard.bind_var_to_property(&"action", self , &"action", true)
+		bt_player.blackboard.set_var(&"faction", faction) # Set faction
+		bt_player.blackboard.set_var(&"max_speed", max_speed)
+		bt_player.blackboard.set_var(&"speed", max_speed)
+		contact_monitor = true
 
 
 func _physics_process(delta) -> void:
@@ -30,11 +41,17 @@ func _physics_process(delta) -> void:
 		spatial_hash.update()
 		bt_delta = 0.0
 	if contact_monitor:
-		var count:int = get_contact_count()
-		for i:int in range(count):
-			var contact_target:Node2D = get_colliding_bodies()[0]
-			if contact_target is TileMapLayer or contact_target.faction == faction:
-				return
+		attack(delta)
+
+func attack(delta:float) -> void:
+	var count:int = get_contact_count()
+	if count:
+		var contact_target:Node2D = get_colliding_bodies()[0]
+		if contact_target is TileMapLayer or contact_target.faction == faction:
+			return
+		if contact_target.input_pickable:
+			contact_target.on_interact()
+		else:
 			var roll:float = randf_range(Constants.OVERWORLD_DAMAGE_VARIANCE,1)
 			var dmg:float = contact_target.recieve_damage(self,overworld_pwr*roll,delta)
 			#attack_charge -= delta
@@ -50,6 +67,17 @@ func move(velocity:Vector2,_delta_frames:float = skip_frames+1):
 
 func think():
 	pass
+
+## Builds the player's battle units on first use. They persist between battles so damage carries over.
+func get_battle_units() -> Array[Unit]:
+	if units.is_empty():
+		var defs:Array[UnitDef] = []
+		if unit_def:
+			defs.append(unit_def)
+		if team:
+			defs.append_array(team.units)
+		units = Unit.build_team(defs, Constants.PLAYER_GROUP)
+	return units
 
 func interact():
 	var interact_direction:Vector2 = facing * INTERACT_RANGE

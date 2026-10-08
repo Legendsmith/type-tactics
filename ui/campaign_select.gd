@@ -1,5 +1,5 @@
 extends Control
-
+signal crossfade_music(index:int)
 @export_custom(0,"scene") var campaign_overworld_scene:String = "uid://ijvsnyqbif14"
 ## The scene to go to when the back button is pressed.
 @export_custom(0,"scene") var back_scene:String = "uid://dea4j22alycht"
@@ -35,6 +35,9 @@ func on_button_mouse_enter(button:Button,title_node:FoldableContainer):
 		title_node.title = button.name.substr(6).to_upper()+" "+button_disabled_extra_text
 	else:
 		title_node.title = button.name.substr(6).to_snake_case().capitalize().to_upper()
+	if button.has_meta("music_idx"):
+		crossfade_music.emit(button.get_meta("music_idx"))
+
 
 
 func configure_accordion_button(button:Button,title_node:FoldableContainer):

@@ -1,0 +1,23 @@
+label battle_begin
+join fufu center
+join crusader center
+crusader: I've got to stop you, Fufu!
+fufu: Another machine distracting me?
+[end_timeline]
+label player_victory
+join fufu center
+join crusader center
+crusader: I should have known I couldn't defeat you. I'm sorry, Katie.
+fufu: How do you know that name? You're coming with me, cyborg.
+[end_timeline]
+label player_defeat
+join crusader center
+crusader: I can't believe it, but we did it. Now maybe we can find Katie...
+leave crusader
+join fufu center
+fufu: This defeat is merely a setback.
+[end_timeline]
+label repeat
+join crusader center
+crusader: Yeah?
+[end_timeline]

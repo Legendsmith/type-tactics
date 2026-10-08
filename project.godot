@@ -38,10 +38,12 @@ gdscript/warnings/integer_division=0
 [dialogic]
 
 directories/dch_directory={
+"crusader": "res://data/dialogic/crusader.dch",
 "fufu": "res://data/dialogic/fufu.dch",
 "hecksn": "res://data/dialogic/hecksn.dch"
 }
 directories/dtl_directory={
+"timeline_test_crusader": "res://data/dialogic/timeline_test_crusader.dtl",
 "timeline_test_hecksn": "res://data/dialogic/timeline_test_hecksn.dtl"
 }
 layout/style_directory={}

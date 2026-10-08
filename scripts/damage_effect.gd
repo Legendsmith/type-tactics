@@ -32,6 +32,6 @@ func apply(context: CombatMechanics.Context):
 		target_context.effect_params[&"damage"] = damage
 		if passed:
 			print_debug("Damage is: ", damage)
-			target.hp = max(target_context[&"min_hp"], target.hp - damage)
+			target.hp = max(target_context.effect_params[&"min_hp"], target.hp - damage)
 			any_success = true
 	return any_success

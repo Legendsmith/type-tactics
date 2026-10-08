@@ -8,9 +8,12 @@ const MAX_MODIFIER:int = 6
 const UNIT_GROUP := &"units"
 const MAX_EQUIP:int = 2
 
+static var battle_unit_scene:String = "uid://bm03ut2gnfrq8"
+
 enum Attribute {
 	HP, ATTACK, DEFENSE, SPECIAL_ATTACK, SPECIAL_DEFENSE, SPEED, SIZE
 }
+
 
 class TurnAction:
 	var technique:BattleTechnique
@@ -27,10 +30,11 @@ class TurnAction:
 		elif target is Unit:
 			ctx.target_units.append(target)
 		else:
-			target = owner #self target fallback? For now.
+			ctx.target_units.append(owner) #self target fallback? For now.
 		return ctx
 	func complete_turn():
-		owner.technique_charges[technique] -= CombatMechanics.charge_usage(technique,owner.types)
+		if technique in owner.technique_charges: # The none technique has no charges.
+			owner.technique_charges[technique] -= CombatMechanics.charge_usage(technique,owner.types)
 
 @export var unit_definition:UnitDef
 @export var display_name:String = "Combatant"
@@ -140,13 +144,11 @@ func serialize_attributes(attribute_array:Array):
 
 #endregion 
 #region Setup, Items and Healing/Refresh
-func _ready():
-	add_to_group(UNIT_GROUP)
-
 
 func battle_setup():
 	if not get_parent() is Battlefield:
 		return
+	process_mode = Node.PROCESS_MODE_INHERIT
 	call_bonuses()
 	#get_tree().current_scene.new_turn.connect(on_new_turn)
 	#get_tree().current_scene.finalize_turn.connect(on_finalize_turn)
@@ -201,15 +203,34 @@ func queue_technique(tech:BattleTechnique) -> bool:
 ## Run on new turn signal from BattleStage. Clears the action
 func on_new_turn() -> void:
 	next_action = default_action
+	update.emit()
 
-## Alerts if no move is assigned and this is player controlled.
+## True if this unit has been given something other than the default "No Action" technique.
+func has_action() -> bool:
+	return next_action.technique != default_action.technique
+
+## Turn readiness is checked by the battle stage, this only raises the alert for the player.
 func on_finalize_turn() -> void:
-	if next_action.technique_name == BattleTechnique.NONE_ACTION and control_type == Constants.PLAYER_GROUP:
+	if not has_action() and control_type == Constants.PLAYER_GROUP and is_instance_valid(GameManager.game_interface):
 		var data:Dictionary = {"alert":GameInterface.Alert.NONE_ACTION,"source":self,"zoom":true}
-		GameManager.game_interface.alert(data)
-		get_tree().current_scene.turn_ready = false
+		GameManager.game_interface.show_alert(data)
 
 #endregion
+
+## Instantiates battle units for every definition that joins battles, ready to fight.
+static func build_team(defs:Array[UnitDef], control:StringName) -> Array[Unit]:
+	var team_units:Array[Unit] = []
+	var unit_scene:PackedScene = load(battle_unit_scene)
+	for def:UnitDef in defs:
+		if not def.join_battles:
+			continue
+		var new_unit:Unit = unit_scene.instantiate()
+		new_unit.control_type = control
+		new_unit.create_from_unit_def(def)
+		new_unit.equipped_items = def.equipment
+		new_unit.full_refresh()
+		team_units.append(new_unit)
+	return team_units
 
 func create_from_unit_def(def:UnitDef) -> Unit:
 	unit_definition=def
@@ -230,3 +251,16 @@ func battle_animation(animation_name:StringName) -> AnimationPlayer:
 
 func _exit_tree() -> void:
 	remove_from_group(CombatMechanics.TARGET_GROUP)
+	remove_from_group(UNIT_GROUP)
+
+func _enter_tree() -> void:
+	add_to_group(UNIT_GROUP)
+
+func exit_battlefield():
+	var _parent:Node = get_parent()
+	if _parent is Battlefield:
+		_parent.remove_child(self)
+		var connections:Array[Dictionary] = get_incoming_connections()
+		for entry:Dictionary in connections: #disconnect from all the battlefield connections.
+			entry["signal"].disconnect(entry["callable"])
+		process_mode=Node.PROCESS_MODE_DISABLED
